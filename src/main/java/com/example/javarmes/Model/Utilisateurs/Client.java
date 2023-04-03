@@ -1,6 +1,6 @@
 package com.example.javarmes.Model.Utilisateurs;
 
-public class Client extends Personne {
+public class Client extends Personnes {
 
     /**Attributs correspondant au client*/
     protected int nb_article;
