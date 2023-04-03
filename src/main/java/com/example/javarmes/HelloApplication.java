@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
     public void start(Stage stage) throws IOException {
         Button inscription = new Button("Nouvelle inscription");
         Button sortie = new Button("Exit");
@@ -36,8 +37,6 @@ public class HelloApplication extends Application {
         image.setOnAction(ActionEvent->{
             Image();
         });
-
-
 
         stage.setTitle("Page d'acceuil");
 
