@@ -1,6 +1,6 @@
 package com.example.javarmes.Model.DAO;
 
-import org.example.Modèle.Utilisateurs.Client;
+import com.example.javarmes.Model.Utilisateurs.Client;
 
 import java.sql.SQLException;
 

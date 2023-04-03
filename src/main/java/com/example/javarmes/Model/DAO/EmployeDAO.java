@@ -1,15 +1,17 @@
 package com.example.javarmes.Model.DAO;
 
-import org.example.Modèle.Utilisateurs.*;
+import com.example.javarmes.Model.Utilisateurs.Client;
+import com.example.javarmes.Model.Utilisateurs.Employes;
+import com.example.javarmes.Model.Utilisateurs.*;
 
 import java.sql.SQLException;
 
 public interface EmployeDAO {
 
     /** Méthodes de gestion des employés */
-    void  AjouterEmploye(Employe employe) throws SQLException; /**Des employés peuvent être ajoutés*/
-    void MettreAJourEmploye(Employe employe) throws SQLException;
-    void SupprimerEmploye(int id) throws SQLException;
+    void  AjouterEmployes(Employes Employes) throws SQLException; /**Des employés peuvent être ajoutés*/
+    void MettreAJourEmployes(Employes Employes) throws SQLException;
+    void SupprimerEmployes(int id) throws SQLException;
 
     /** Méthodes de gestion de clients faisable par les employés*/
 

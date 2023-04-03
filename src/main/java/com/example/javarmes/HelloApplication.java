@@ -80,6 +80,8 @@ public class HelloApplication extends Application {
         Scene sceene = new Scene(panne,520,540);
 
         settle.setScene(sceene);
+        settle.setX(50);
+        settle.setY(200);
         settle.show();
     }
 

@@ -1,6 +1,8 @@
 package com.example.javarmes.Model.DAO;
 
-import org.example.Modèle.Utilisateurs.*;
+import com.example.javarmes.Model.Utilisateurs.Client;
+import com.example.javarmes.Model.Utilisateurs.Employes;
+import com.example.javarmes.Model.Utilisateurs.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +12,7 @@ import java.sql.SQLException;
 public class ImpleEmployeDAO implements EmployeDAO {
     /** Méthodes de gestion des employés */
     @Override
-    public void AjouterEmploye(Employe employe) throws SQLException {
+    public void AjouterEmployes(Employes employe) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
         try{
@@ -33,7 +35,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     }
 
     @Override
-    public void SupprimerEmploye(int id) throws SQLException{
+    public void SupprimerEmployes(int id) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
         try{
@@ -55,7 +57,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     }
 
     @Override
-    public void MettreAJourEmploye(Employe employe) throws SQLException{
+    public void MettreAJourEmployes(Employes employe) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
         try{
@@ -105,6 +107,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
         }
         return client;
     }
+
     @Override
     public void AjouterClient (Client client) throws SQLException{
         Connection con = null;

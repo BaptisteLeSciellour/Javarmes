@@ -6,6 +6,9 @@ public abstract class Arme { /** il faut se demander si nous plaçons la class p
     protected double prix;
     protected int quantite;
     protected String nom;
-    protected String indentification; /** à savoir comment on la génère **/
+    protected String indentification;
+
+    public void ToString() {
+    } /** à savoir comment on la génère **/
 
 }

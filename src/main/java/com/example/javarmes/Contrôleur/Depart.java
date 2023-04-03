@@ -1,6 +1,6 @@
 package com.example.javarmes.Contrôleur;
 
-import org.example.Modèle.Armes.*;
+import com.example.javarmes.Model.Armes.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -36,7 +36,7 @@ public class Depart {
                     vec.add(B);
                     break;
 
-                case("Poing"):
+                /**case("Poing"):
                     System.out.print("création d'une arme de poing");
                     Poing C = new Poing();
                     vec.add(C);
