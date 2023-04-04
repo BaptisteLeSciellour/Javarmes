@@ -14,11 +14,13 @@ import java.util.Scanner;
 
 public class Controleur {
 
+
         /**On appel les fonctions pour ajouter un client**/
+
         public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
 
-            /***bouton client **/
+            /**bouton client **/
 
             Scanner sc = new Scanner(System.in);
             Scanner sc2 = new Scanner(System.in);
@@ -147,7 +149,6 @@ public class Controleur {
 
             }
         }
-
 
 
 }

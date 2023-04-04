@@ -127,105 +127,7 @@ public class Screen {
 
 
         bbtn.setOnAction(actionEvent -> {
-            Text txt1 = new Text("Création du client : ");
-
-
-            Text txt4 = new Text("Saisir le mail:");
-            txt4.setLayoutX(90);
-            txt4.setLayoutY(290);
-
-            TextField txt5 = new TextField();
-            txt5.setLayoutX(90);
-            txt5.setLayoutY(300);
-            String mail = txt5.getText();
-
-            Text txt6 = new Text("Saisir le MDP:");
-            txt6.setLayoutX(90);
-            txt6.setLayoutY(340);
-
-            TextField txt7 = new TextField();
-            txt7.setLayoutX(90); // ici on les décales
-            txt7.setLayoutY(350); // ici on remonte les cases
-            String mdp = txt7.getText();
-
-            ImpleClientDAO clientDAO = new ImpleClientDAO();
-            //Client client = new Client (2, "test1@gmail.com", "test_1mdp");
-
-            //Client client= new Client(mail, mdp);
-
-            /**On crée le client**/
-            Client client = new Client(mail, mdp);
-
-            try {
-
-                /**ajouter dans la base de donnéé**/
-                clientDAO.Ajouter(client);
-
-                if (client != null) {
-
-                    /**Affichage du client**/
-                    Text txt8 = new Text("Client ajouté :");
-                    txt8.setLayoutX(90);
-                    txt8.setLayoutY(290);
-
-                    Text txt2 = new Text("mail :");
-                    txt2.setLayoutX(90);
-                    txt2.setLayoutY(290);
-
-                    Text txt3 = new Text("MDP :");
-                    txt3.setLayoutX(90);
-                    txt3.setLayoutY(290);
-
-
-                    //  System.out.println("Client ajouté :"+"\nmail: "+ client.getMail() +"\nMDP: "+ client.getMdp()+" \n");
-                } else {
-                    Text pas = new Text("Le client n'a pas été créé\n");
-                    pas.setLayoutX(90);
-                    pas.setLayoutY(290);
-
-                    // System.out.println("Le client n'a pas été créé\n");
-                }
-            } catch (SQLException e) {
-                //System.out.println("Erreur");
-                // System.out.println(e);
-
-                Text exception = new Text("Erreur");
-                exception.setLayoutX(90);
-                exception.setLayoutY(290);
-
-            }
-
-            /**création des vecteurs d'un client**/
-            ArrayList<Client> vecclient = new ArrayList<Client>();
-            vecclient.add(client);
-
-            /**Affichage**/
-            for (Client cli : vecclient) {
-                cli.ToString();
-                System.out.println("\n");
-            }
-
-            /**
-             Button bbtn = new Button("Prise");
-             bbtn.setLayoutX(140);
-             bbtn.setLayoutY(400);
-             **/
-
-            /**
-            ///String phrase = txt.getText();
-
-            //System.out.println(phrase);
-
-            String SecondNom = txt.getText();
-
-            System.out.print(SecondNom + "\n");
-
-            Client clt = new Client();
-            clt.setNom(SecondNom);
-            clt.setPrenom(phrase);
-            clt.ToString();
-
-            **/
+            creationclient();
         });
 
 
@@ -239,6 +141,95 @@ public class Screen {
         settle.show();
     }
 
+
+    public void creationclient()
+    {
+        Text txt1 = new Text("Création du client : ");
+
+        Pane panne = new Pane();
+        Text txt4 = new Text("Saisir le mail:");
+        txt4.setLayoutX(90);
+        txt4.setLayoutY(290);
+
+        TextField txt5 = new TextField();
+        txt5.setLayoutX(90);
+        txt5.setLayoutY(300);
+        String mail = txt5.getText();
+
+        Text txt6 = new Text("Saisir le MDP:");
+        txt6.setLayoutX(90);
+        txt6.setLayoutY(340);
+
+        TextField txt7 = new TextField();
+        txt7.setLayoutX(90); // ici on les décales
+        txt7.setLayoutY(350); // ici on remonte les cases
+        String mdp = txt7.getText();
+
+        ImpleClientDAO clientDAO = new ImpleClientDAO();
+        //Client client = new Client (2, "test1@gmail.com", "test_1mdp");
+
+        //Client client= new Client(mail, mdp);
+
+        /**On crée le client**/
+        Client client = new Client(mail, mdp);
+
+        try {
+
+            /**ajouter dans la base de donnéé**/
+            clientDAO.Ajouter(client);
+
+            if (client != null) {
+
+                /**Affichage du client**/
+                Text txt8 = new Text("Client ajouté :");
+                txt8.setLayoutX(90);
+                txt8.setLayoutY(290);
+
+                Text txt2 = new Text("mail :");
+                txt2.setLayoutX(90);
+                txt2.setLayoutY(290);
+
+                Text txt3 = new Text("MDP :");
+                txt3.setLayoutX(90);
+                txt3.setLayoutY(290);
+
+
+                //  System.out.println("Client ajouté :"+"\nmail: "+ client.getMail() +"\nMDP: "+ client.getMdp()+" \n");
+            } else {
+                Text pas = new Text("Le client n'a pas été créé\n");
+                pas.setLayoutX(90);
+                pas.setLayoutY(290);
+
+                // System.out.println("Le client n'a pas été créé\n");
+            }
+        } catch (SQLException e) {
+            //System.out.println("Erreur");
+            // System.out.println(e);
+
+            Text exception = new Text("Erreur");
+            exception.setLayoutX(90);
+            exception.setLayoutY(290);
+            panne.getChildren().addAll(txt1,txt4,txt6,txt5,txt7);
+        }
+
+
+        Stage setttle = new Stage();
+        Scene scene = new Scene(panne,500,500);
+        setttle.setScene(scene);
+        setttle.show();
+
+        /**création des vecteurs d'un client**/
+        ArrayList<Client> vecclient = new ArrayList<Client>();
+        vecclient.add(client);
+
+        /**Affichage**/
+        for (Client cli : vecclient) {
+            cli.ToString();
+            System.out.println("\n");
+        }
+
+
+    }
 
 
 
