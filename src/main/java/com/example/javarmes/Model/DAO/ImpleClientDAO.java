@@ -28,6 +28,7 @@ public class ImpleClientDAO implements ClientDAO {
                 con.close();
             }
         }
+
     }
     @Override
     public void MettreAJour(Client client) throws SQLException{

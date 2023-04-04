@@ -1,5 +1,5 @@
-package com.example.javarmes.Model.Armes;
-public class Poing extends Arme {
+package com.example.javarmes.Model.Articles;
+public class Munitions extends Article {
     double prix;
     int quantite;
     String nom;
@@ -38,7 +38,7 @@ public class Poing extends Arme {
 
     String indentification;
 
-    public Poing(String a , int b , double c) {
+    public Munitions(String a , int b , double c) {
         nom = a;
         prix = c;
         quantite = b;
