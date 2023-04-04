@@ -26,13 +26,13 @@ public class Depart {
             {
                 case("Chasse"):
                     System.out.print("création d'une arme de chasse");
-                    Article A = new Chasse();
+                    Article A = new CategorieC();
                     vec.add(A);
                     break;
 
                 case("Assaut"):
                     System.out.print("création d'une arme d'assaut");
-                    Assaut B = new Assaut();
+                    CategorieB B = new CategorieB();
                     vec.add(B);
                     break;
 

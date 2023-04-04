@@ -1,6 +1,6 @@
 package com.example.javarmes.Model.Articles;
 
-public class Chasse extends Article {
+public class CategorieC extends Article {
     int quantite;
     public void creation( String a, int b , double c)
     {

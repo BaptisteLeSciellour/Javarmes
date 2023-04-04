@@ -1,5 +1,5 @@
 package com.example.javarmes.Model.Articles;
-public class Poing extends Article {
+public class Munitions extends Article {
     double prix;
     int quantite;
     String nom;
@@ -38,7 +38,7 @@ public class Poing extends Article {
 
     String indentification;
 
-    public Poing(String a , int b , double c) {
+    public Munitions(String a , int b , double c) {
         nom = a;
         prix = c;
         quantite = b;
