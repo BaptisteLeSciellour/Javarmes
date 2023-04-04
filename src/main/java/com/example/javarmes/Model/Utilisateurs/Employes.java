@@ -14,6 +14,10 @@ public class Employes extends Personnes{
         this.prenom = c;
     }
 
+    public Employes() {
+
+    }
+
     public String getPrenom() {
         return prenom;
     }

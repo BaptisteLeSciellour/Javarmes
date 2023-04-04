@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="résolution des problèmes de package et de nomination">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Screen.java" afterDir="false" />
+    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Ajout de la classe Screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Ajout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Action/Ajout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Depart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Action/Depart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Employes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Employes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Personnes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Personnes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javarmes/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javarmes/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Screen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680512527983</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ajout de la classe Screen">
+      <created>1680592611400</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680592611400</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -121,6 +120,7 @@
     <MESSAGE value="Ajout de tout le travail du projet précédent" />
     <MESSAGE value="fin de l'ajout du travail précédent et ajout des protected pour les deux classes abstraites" />
     <MESSAGE value="résolution des problèmes de package et de nomination" />
-    <option name="LAST_COMMIT_MESSAGE" value="résolution des problèmes de package et de nomination" />
+    <MESSAGE value="Ajout de la classe Screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la classe Screen" />
   </component>
 </project>

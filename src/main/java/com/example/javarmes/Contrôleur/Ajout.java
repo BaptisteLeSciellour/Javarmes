@@ -1,8 +1,7 @@
 package com.example.javarmes.Contrôleur;
-import com.example.javarmes.Model.Armes.Arme;
-import com.example.javarmes.Model.Armes.Assaut;
-import com.example.javarmes.Model.Armes.Chasse;
-import com.example.javarmes.Model.Armes.Poing;
+import com.example.javarmes.Model.Articles.Article;
+import com.example.javarmes.Model.Articles.CategorieB;
+import com.example.javarmes.Model.Articles.CategorieC;
 
 
 public class Ajout {
@@ -13,12 +12,12 @@ public class Ajout {
         {
             case("Chasse"):
                 System.out.print("création d'une arme de chasse");
-                Arme A = new Chasse();
+                Article A = new CategorieC();
                 break;
 
             case("Assaut"):
                 System.out.print("création d'une arme d'assaut");
-                Assaut B = new Assaut();
+                CategorieB B = new CategorieB();
                 break;
 
             /**case("Poing"):

@@ -1,6 +1,6 @@
 package com.example.javarmes.Contrôleur;
 
-import com.example.javarmes.Model.Armes.*;
+import com.example.javarmes.Model.Articles.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ public class Depart {
     public void lancement()
     {
         System.out.println("Bonjour, bienvenue sur Javarme\n");
-        ArrayList<Arme> vec = new ArrayList<Arme>();
+        ArrayList<Article> vec = new ArrayList<Article>();
 
         boolean passage=false;
         do {
@@ -26,13 +26,13 @@ public class Depart {
             {
                 case("Chasse"):
                     System.out.print("création d'une arme de chasse");
-                    Arme A = new Chasse();
+                    Article A = new CategorieC();
                     vec.add(A);
                     break;
 
                 case("Assaut"):
                     System.out.print("création d'une arme d'assaut");
-                    Assaut B = new Assaut();
+                    CategorieB B = new CategorieB();
                     vec.add(B);
                     break;
 
@@ -60,7 +60,7 @@ public class Depart {
 
         }while(!passage);
 
-        for ( Arme a : vec)
+        for ( Article a : vec)
         {
             a.ToString();
             System.out.println("\n");
