@@ -12,6 +12,7 @@ public class Client extends Personnes {
 
     protected int nb_commandes;
 
+    public Client() {}
     public Client(String a , String b){
         this.mail=a;
         this.mdp=b;

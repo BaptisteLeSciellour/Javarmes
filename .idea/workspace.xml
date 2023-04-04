@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="fin de l'ajout du travail précédent et ajout des protected pour les deux classes abstraites">
+    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="résolution des problèmes de package et de nomination">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Screen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Ajout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Ajout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Depart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Depart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Ajout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Action/Ajout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Depart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Contrôleur/Action/Depart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Armes/Arme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Armes/Arme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ClientDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/EmployeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/EmployeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleClientDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleEmployeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleEmployeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/TestsTemporaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/TestsTemporaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Employes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Employes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Personnes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Personnes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javarmes/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javarmes/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,14 +48,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/bapt8/OneDrive/Bureau/Inge 3/Cours/Informatique/Javarmes"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bapt8/OneDrive/Bureau/Inge 3/Cours/Informatique/Javarmes&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.javarmes.Model.Armes" />
@@ -64,6 +64,9 @@
       <recent name="C:\Users\bapt8\OneDrive\Bureau\Inge 3\Cours\Informatique\Javarmes\src\main\java\com\example\javarmes" />
       <recent name="C:\Users\bapt8\OneDrive\Bureau\Inge 3\Cours\Informatique\Javarmes\src\main\java\com\example\javarmes\Utilisateurs" />
       <recent name="C:\Users\bapt8\OneDrive\Bureau\Inge 3\Cours\Informatique\Javarmes\src\main\java\com\example\javarmes\DAO" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.javarmes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -103,13 +106,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680511524252</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="résolution des problèmes de package et de nomination">
+      <created>1680512527983</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680512527983</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Création du projet final avec JavaFX" />
     <MESSAGE value="Ajout de tout le travail du projet précédent" />
     <MESSAGE value="fin de l'ajout du travail précédent et ajout des protected pour les deux classes abstraites" />
-    <option name="LAST_COMMIT_MESSAGE" value="fin de l'ajout du travail précédent et ajout des protected pour les deux classes abstraites" />
+    <MESSAGE value="résolution des problèmes de package et de nomination" />
+    <option name="LAST_COMMIT_MESSAGE" value="résolution des problèmes de package et de nomination" />
   </component>
 </project>

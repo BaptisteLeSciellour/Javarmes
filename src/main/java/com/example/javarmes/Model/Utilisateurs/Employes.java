@@ -1,8 +1,6 @@
 package com.example.javarmes.Model.Utilisateurs;
 
 public class Employes extends Personnes{
-    String prenom;
-    String nom;
     int id;
 
     public Employes(String c, String b) {
