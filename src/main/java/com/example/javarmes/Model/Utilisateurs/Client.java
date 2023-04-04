@@ -71,5 +71,5 @@ public class Client extends Personnes {
         this.id = id;
     }
 
-    public void ToString(){System.out.print("Ce client se nomme : "+this.nom+" "+this.prenom);}
+    public void ToString(){System.out.print("Ce client se nomme : "+this.mail+" "+this.mdp);}
 }

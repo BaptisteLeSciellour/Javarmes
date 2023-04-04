@@ -43,6 +43,6 @@ public class Employes extends Personnes{
     }
 
     public void ToString() {
-        System.out.print("Cet employé ce nomme : " + this.nom + " " + this.prenom);
+        System.out.print("Cet employé se nomme : " + this.nom + " " + this.prenom+ " " + this.id);
     }
 }
