@@ -5,9 +5,9 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
  classe mais on fait le changement sur la série d'authentification**/
     /**Attributs*/
     protected float prix_unique;
-    protected float prix_vrac;
-    protected int quantite;
 
+
+    protected int quantite;
     protected String indentification; /** à savoir comment on la génère **/
 
     protected float reduction;
@@ -15,6 +15,16 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
     protected char categorie ;
     protected double calibre;
     protected char permis;
+
+    public Article(char categorie, String nom, float prix_unique, double calibre ) {
+        this.categorie = categorie;
+        this.nom= nom;
+        this.prix_unique = prix_unique;
+        this.quantite = quantite;
+        this.calibre = calibre;
+        //this.permis = permis;
+    }
+
 
     public char getPermis() {
         return permis;
@@ -71,14 +81,6 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
-    }
-
-    public float getPrix_vrac() {
-        return prix_vrac;
-    }
-
-    public void setPrix_vrac(float prix_vrac) {
-        this.prix_vrac = prix_vrac;
     }
 
     public float getReduction() {
