@@ -1,6 +1,7 @@
 package com.example.javarmes.Vue;
 
 import com.example.javarmes.Model.Utilisateurs.Client;
+import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,16 +29,15 @@ public class Screen {
         Pane pane = new Pane();
 
         pane.getChildren().addAll(inscription,sortie,image);
-        Screen screen = new Screen();
         inscription.setOnAction(event->{
-            screen.Inscription();
+            menuInscription();
         });
 
         sortie.setOnAction(actionEvent -> {
             Platform.exit();
         });
         image.setOnAction(ActionEvent->{
-            screen.Image();
+            Image();
         });
 
         stage.setTitle("Page d'acceuil");
@@ -47,6 +47,33 @@ public class Screen {
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
+    }
+
+    public void menuInscription()
+    {
+        Pane panne = new Pane();
+        Stage settle = new Stage();
+        Button client = new Button("client");
+        Button employe = new Button("Employe");
+        client.setLayoutX(60);
+        client.setLayoutY(300);
+        client.setOnAction(actionEvent -> {
+            InscriptionClient();
+            settle.close();
+        });
+        employe.setLayoutX(150);
+        employe.setLayoutY(300);
+        employe.setOnAction(actionEvent -> {
+            InscriptionEmploye();
+            settle.close();
+        });
+        panne.getChildren().addAll(client,employe);
+        Scene sceene = new Scene(panne,320,540);
+
+        settle.setScene(sceene);
+        settle.setX(0);
+        settle.setY(0);
+        settle.show();
     }
     public void Image()
     {
@@ -65,7 +92,7 @@ public class Screen {
         settle.show();
     }
 
-    public void Inscription() /** Nous avons un second écran qui apparait**/
+    public void InscriptionClient() /** Nous avons un second écran qui apparait**/
     {
         Pane panne = new Pane();
         Stage settle = new Stage();
@@ -101,6 +128,52 @@ public class Screen {
             clt.ToString();
         });
         panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt);
+
+        Scene sceene = new Scene(panne,320,540);
+
+        settle.setScene(sceene);
+        settle.setX(0);
+        settle.setY(0);
+        settle.show();
+    }
+
+    public void InscriptionEmploye() /** Nous avons un second écran qui apparait**/
+    {
+        Pane panne = new Pane();
+        Stage settle = new Stage();
+        Text ttxxtt = new Text("Employe");
+        ttxxtt.setLayoutX(90);
+        ttxxtt.setLayoutY(30);
+        Text txt = new Text("Prenom");
+        txt.setLayoutX(90);
+        txt.setLayoutY(290);
+        TextField txtfield = new TextField();
+        txtfield.setLayoutX(90);
+        txtfield.setLayoutY(300);
+        Text txxt = new Text("Nom de famille");
+        txxt.setLayoutX(90);
+        txxt.setLayoutY(340);
+        TextField textField = new TextField();
+        textField.setLayoutX(90); // ici on les décales
+        textField.setLayoutY(350); // ici on remonte les cases
+        Button bbtn = new Button("Prise");
+        bbtn.setLayoutX(140);
+        bbtn.setLayoutY(400);
+        bbtn.setOnAction(event1->{
+            String phrase = txtfield.getText();
+
+            System.out.println(phrase);
+
+            String SecondNom = textField.getText();
+
+            System.out.print(SecondNom+"\n");
+
+            Employes empl = new Employes();
+            empl.setNom(SecondNom);
+            empl.setPrenom(phrase);
+            empl.ToString();
+        });
+        panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt,ttxxtt);
 
         Scene sceene = new Scene(panne,320,540);
 
