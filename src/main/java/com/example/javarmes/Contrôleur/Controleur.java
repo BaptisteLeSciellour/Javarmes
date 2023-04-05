@@ -180,9 +180,10 @@ public class Controleur {
 
 
                 // Client client = new Client(mail, mdp);
+                Client caca = new Client(mail,mdp);
                 try {
 
-                    clientDAO.Ajouter(client);
+                    clientDAO.Ajouter(caca);
 
                     if (client != null) {
                         System.out.println("Client ajouté :" + "\nmail: " + client.getMail() + "\nMDP: " + client.getMdp() + " \n");
