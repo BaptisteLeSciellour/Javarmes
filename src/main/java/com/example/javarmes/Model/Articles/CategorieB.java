@@ -2,7 +2,7 @@ package com.example.javarmes.Model.Articles;
 
 public class CategorieB extends Article {
 
-    public CategorieB(char categorie, String nom, float prix_unique, double calibre) {
-        super(categorie, nom, prix_unique, calibre);
+    public CategorieB(String identification, char categorie, String nom, float prix_unique,int quantite,  double calibre) {
+        super(identification, categorie, nom, prix_unique, quantite, calibre);
     }
 }

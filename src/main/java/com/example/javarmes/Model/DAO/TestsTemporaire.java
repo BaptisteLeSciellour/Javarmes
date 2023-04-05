@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class TestsTemporaire {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        ImpleClientDAO clientDAO = new ImpleClientDAO();
+        /** ImpleClientDAO clientDAO = new ImpleClientDAO();
         //Client client = new Client (2, "test1@gmail.com", "test_1mdp");
         try{
             Client client = clientDAO.ChoisirClient(2);
@@ -19,6 +19,9 @@ public class TestsTemporaire {
         }catch(SQLException e){
             System.out.println("Erreur");
             System.out.println(e);
-        }
+        }**/
+
+
     }
+
     }

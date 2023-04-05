@@ -5,10 +5,8 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
  classe mais on fait le changement sur la série d'authentification**/
     /**Attributs*/
     protected float prix_unique;
-
-
     protected int quantite;
-    protected String indentification; /** à savoir comment on la génère **/
+    protected String identification; /** à savoir comment on la génère **/
 
     protected float reduction;
     protected String nom;
@@ -16,13 +14,24 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
     protected double calibre;
     protected char permis;
 
-    public Article(char categorie, String nom, float prix_unique, double calibre ) {
+    /**Constructeur article pour client**/
+    public Article(String identification, char categorie, String nom, float prix_unique, double calibre )
+    {
+        this.identification = identification;
         this.categorie = categorie;
         this.nom= nom;
         this.prix_unique = prix_unique;
         this.quantite = quantite;
         this.calibre = calibre;
-        //this.permis = permis;
+    }
+    /** Constructeur Article pour employé **/
+    public Article(String identification, char categorie, String nom, float prix_unique,int quantite, double calibre ) {
+        this.identification = identification;
+        this.categorie = categorie;
+        this.nom= nom;
+        this.prix_unique = prix_unique;
+        this.quantite = quantite;
+        this.calibre = calibre;
     }
 
 
@@ -59,11 +68,11 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
     }
 
     public String getIndentification() {
-        return indentification;
+        return identification;
     }
 
     public void setIndentification(String indentification) {
-        this.indentification = indentification;
+        this.identification = indentification;
     }
 
 
