@@ -4,18 +4,18 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
  une possibilités de crées des catégories une peux plus précise ( alimentaire , santé, ... ) ou alors on place tout dans la même
  classe mais on fait le changement sur la série d'authentification**/
     /**Attributs*/
-    protected float prix_unique;
+    protected double prix_unique;
     protected int quantite;
     protected String identification; /** à savoir comment on la génère **/
 
     protected float reduction;
     protected String nom;
-    protected char categorie ;
+    protected String categorie ;
     protected double calibre;
     protected char permis;
 
     /**Constructeur article pour client**/
-    public Article(String identification, char categorie, String nom, float prix_unique, double calibre )
+    public Article(String identification, String categorie, String nom, double prix_unique, double calibre )
     {
         this.identification = identification;
         this.categorie = categorie;
@@ -25,7 +25,7 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
         this.calibre = calibre;
     }
     /** Constructeur Article pour employé **/
-    public Article(String identification, char categorie, String nom, float prix_unique,int quantite, double calibre ) {
+    public Article(String identification, String categorie, String nom, double prix_unique,int quantite, double calibre ) {
         this.identification = identification;
         this.categorie = categorie;
         this.nom= nom;
@@ -51,11 +51,11 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
         this.calibre = calibre;
     }
 
-    public char getCategorie() {
+    public String getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(char categorie) {
+    public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
 
@@ -80,11 +80,11 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
         return quantite;
     }
 
-    public float getPrix_unique() {
+    public double getPrix_unique() {
         return prix_unique;
     }
 
-    public void setPrix_unique(float prix_unique) {
+    public void setPrix_unique(double prix_unique) {
         this.prix_unique = prix_unique;
     }
 
