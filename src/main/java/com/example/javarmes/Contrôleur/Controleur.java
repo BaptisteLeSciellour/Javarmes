@@ -180,13 +180,13 @@ public class Controleur {
 
 
                 // Client client = new Client(mail, mdp);
-                Client caca = new Client(mail,mdp);
+                Client clien = new Client(mail,mdp);
                 try {
 
-                    clientDAO.Ajouter(caca);
+                    clientDAO.Ajouter(clien);
 
                     if (client != null) {
-                        System.out.println("Client ajouté :" + "\nmail: " + client.getMail() + "\nMDP: " + client.getMdp() + " \n");
+                        System.out.println("Client ajouté :" + "\nmail: " + clien.getMail() + "\nMDP: " + clien.getMdp() + " \n");
                     } else {
                         System.out.println("Le client n'a pas été créé\n");
                     }
@@ -195,7 +195,7 @@ public class Controleur {
                     System.out.println(e);
                 }
 
-                vecclient.add(client);
+                vecclient.add(clien);
 
                 /**Affichage**/
                 for (Client cli : vecclient) {
@@ -246,6 +246,7 @@ public class Controleur {
 
             if (str == 1) {
 
+
                 try {
 
                     do {
@@ -272,6 +273,9 @@ public class Controleur {
 
                                 pass2 = false;
 
+                                // Client client = new Client(mail, mdp);
+                                Client clien = new Client(mailMAJ,mdpMAJ);
+                                clientDAO.MettreAJour(clien);
 
                             } else {
                                 System.out.println("Identifiant incompatible avec : ");
@@ -285,7 +289,8 @@ public class Controleur {
                     } while (!pass2);
 
 
-                    clientDAO.MettreAJour(client);
+
+
 
                    // passage = true;
 
@@ -340,6 +345,9 @@ public class Controleur {
                         System.out.println("Quel est l'identifiant du client : ");
                         id = identi.nextInt();
 
+
+
+                        clientDAO.Supprimer(id);
                         //Client clien = new Client();
 
                         /**Affichage**/
@@ -370,7 +378,8 @@ public class Controleur {
                     } while (!pass2);
 
                     System.out.println("TEST3");
-                    clientDAO.Supprimer(id);
+
+
 
                     // passage = true;
 
@@ -435,6 +444,7 @@ public class Controleur {
 
                                 cli.ToString();
                                 System.out.println("\n");
+                                clientDAO.ChoisirClient(id);
 
                             } else {
 
@@ -446,7 +456,7 @@ public class Controleur {
                     } while (!pass2);
 
 
-                    clientDAO.ChoisirClient(id);
+
 
                     // passage = true;
 
