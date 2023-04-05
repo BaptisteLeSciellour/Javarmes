@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-public class ImpleClientDAO implements ClientDAO {
+public class    ImpleClientDAO implements ClientDAO {
     @Override
     public void Ajouter(Client client) throws SQLException{
         Connection con = null;

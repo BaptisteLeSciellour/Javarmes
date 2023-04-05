@@ -10,7 +10,6 @@ public class HelloApplication extends Application {
         Screen screen = new Screen();
         screen.lancement();
     }
-
     public static void main(String[] args) {
         launch();
     }

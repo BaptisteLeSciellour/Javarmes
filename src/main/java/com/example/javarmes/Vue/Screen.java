@@ -109,7 +109,7 @@ public class Screen {
     public void InscriptionClient() /** Nous avons un second écran qui apparait**/
     {
 
-        Pane panne = new Pane();
+        Pane pannne = new Pane();
         Stage settle = new Stage();
 
         Text txt = new Text("Voulez-vous ajouter un client:");
@@ -127,13 +127,12 @@ public class Screen {
 
 
         bbtn.setOnAction(actionEvent -> {
-            creationclient();
+            creationClient(); /** ici on appelle l'écran que nous allons utiliser**/
+            settle.close();
         });
+        pannne.getChildren().addAll(bbtn,bbtn2,txt);
 
-
-        panne.getChildren().addAll(bbtn,bbtn2,txt);
-
-        Scene sceene = new Scene(panne, 320, 540);
+        Scene sceene = new Scene(pannne, 320, 540);
 
         settle.setScene(sceene);
         settle.setX(0);
@@ -142,97 +141,103 @@ public class Screen {
     }
 
 
-    public void creationclient()
+    public void creationClient()
     {
+        Stage stage = new Stage();
         Text txt1 = new Text("Création du client : ");
-
-        Pane panne = new Pane();
+        ImpleClientDAO clientDAO = new ImpleClientDAO();
         Text txt4 = new Text("Saisir le mail:");
         txt4.setLayoutX(90);
         txt4.setLayoutY(290);
 
-        TextField txt5 = new TextField();
-        txt5.setLayoutX(90);
-        txt5.setLayoutY(300);
-        String mail = txt5.getText();
+        TextField mailTF = new TextField();
+        mailTF.setLayoutX(90);
+        mailTF.setLayoutY(300);
+
 
         Text txt6 = new Text("Saisir le MDP:");
         txt6.setLayoutX(90);
         txt6.setLayoutY(340);
 
-        TextField txt7 = new TextField();
-        txt7.setLayoutX(90); // ici on les décales
-        txt7.setLayoutY(350); // ici on remonte les cases
-        String mdp = txt7.getText();
-
-        ImpleClientDAO clientDAO = new ImpleClientDAO();
-        //Client client = new Client (2, "test1@gmail.com", "test_1mdp");
-
-        //Client client= new Client(mail, mdp);
-
-        /**On crée le client**/
-        Client client = new Client(mail, mdp);
-
-        try {
-
-            /**ajouter dans la base de donnéé**/
-            clientDAO.Ajouter(client);
-
-            if (client != null) {
-
-                /**Affichage du client**/
-                Text txt8 = new Text("Client ajouté :");
-                txt8.setLayoutX(90);
-                txt8.setLayoutY(290);
-
-                Text txt2 = new Text("mail :");
-                txt2.setLayoutX(90);
-                txt2.setLayoutY(290);
-
-                Text txt3 = new Text("MDP :");
-                txt3.setLayoutX(90);
-                txt3.setLayoutY(290);
+        TextField mdpTF = new TextField();
+        mdpTF.setLayoutX(90); // ici on les décales
+        mdpTF.setLayoutY(350); // ici on remonte les cases
 
 
-                //  System.out.println("Client ajouté :"+"\nmail: "+ client.getMail() +"\nMDP: "+ client.getMdp()+" \n");
-            } else {
-                Text pas = new Text("Le client n'a pas été créé\n");
-                pas.setLayoutX(90);
-                pas.setLayoutY(290);
+        Button saisie = new Button("Saisie des données");
 
-                // System.out.println("Le client n'a pas été créé\n");
+        /**!!!!!!!!!!!!!!!!!!**/
+
+        saisie.setOnAction(event->{
+            String mail = mailTF.getText();
+            String mdp = mdpTF.getText();
+            Pane pane = new Pane();
+            Stage stage1 = new Stage();
+
+            Button btn = new Button("Sortie");
+            btn.setOnAction(actionEvent -> {
+                stage1.close();
+            });
+
+            Client client = new Client(mail, mdp);
+            try {
+
+                /**ajouter dans la base de donnéé**/
+                clientDAO.Ajouter(client);
+
+                if (client != null) {
+
+                    /**Affichage du client**/
+                    Text txt8 = new Text("Client ajouté :");
+                    txt8.setLayoutX(90);
+                    txt8.setLayoutY(90);
+
+                    Text txt2 = new Text("mail : "+mail);
+                    txt2.setLayoutX(90);
+                    txt2.setLayoutY(150);
+
+                    Text txt3 = new Text("MDP : "+mdp);
+                    txt3.setLayoutX(90);
+                    txt3.setLayoutY(200);
+                    pane.getChildren().addAll(txt8,txt2,txt3);
+
+                } else {
+                    Text pas = new Text("Le client n'a pas été créé\n");
+                    pas.setLayoutX(90);
+                    pas.setLayoutY(290);
+                    pane.getChildren().add(pas);
+                }
+            } catch (SQLException e) {
+
+                Text exception = new Text("Erreur"); /** il va falloir creer un écran d'erreur universel **/
+                exception.setLayoutX(90);
+                exception.setLayoutY(290);
+                pane.getChildren().add(exception);
+
             }
-        } catch (SQLException e) {
-            //System.out.println("Erreur");
-            // System.out.println(e);
+            ArrayList<Client> vecclient = new ArrayList<Client>();
+            vecclient.add(client);
 
-            Text exception = new Text("Erreur");
-            exception.setLayoutX(90);
-            exception.setLayoutY(290);
-            panne.getChildren().addAll(txt1,txt4,txt6,txt5,txt7);
-        }
+            /**Affichage**/
+            for (Client cli : vecclient) {
+                cli.ToString();
+                System.out.println("\n");
+            }
+            Scene scene = new Scene(pane,520,520);
+            stage1.setScene(scene);
+            stage1.show();
+            stage.close(); /**ici nous fermons l'écran d'avant**/
+        });
 
+        Pane panne = new Pane();
+        panne.getChildren().addAll(saisie,mailTF,mdpTF,txt1,txt4,txt6);
+        Scene settle = new Scene(panne,520,520);
 
-        Stage setttle = new Stage();
-        Scene scene = new Scene(panne,500,500);
-        setttle.setScene(scene);
-        setttle.show();
-
-        /**création des vecteurs d'un client**/
-        ArrayList<Client> vecclient = new ArrayList<Client>();
-        vecclient.add(client);
-
-        /**Affichage**/
-        for (Client cli : vecclient) {
-            cli.ToString();
-            System.out.println("\n");
-        }
+        stage.setScene(settle);
+        stage.show();
 
 
     }
-
-
-
     public void InscriptionEmploye() /** Nous avons un second écran qui apparait**/
     {
 
