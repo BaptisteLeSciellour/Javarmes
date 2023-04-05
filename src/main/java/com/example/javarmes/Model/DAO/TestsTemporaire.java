@@ -10,11 +10,11 @@ public class TestsTemporaire {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         ImpleArmesDAO ArmesDAO = new ImpleArmesDAO();
         //Client client = new Client (2, "test1@gmail.com", "test_1mdp");
-        Armes arme = new Armes("A0504","A", "Revolver",639.99,7.99);
+        Armes arme = new Armes("O3612","B", "Revolver",639.99,7.99);
         try{
             ArmesDAO.AjouterArmeB(arme);
             if(arme != null){
-                System.out.println("Client récupéré :"+" "+ arme.getIndentification() +" "+ arme.getCategorie()+" "+ arme.getNom() +" "+ arme.getPrix_unique()+" "+ arme.getCalibre());
+                System.out.println("Arme ajouté :"+" "+ arme.getIndentification() +" "+ arme.getCategorie()+" "+ arme.getNom() +" "+ arme.getPrix_unique()+" "+ arme.getCalibre());
             }else{
                 System.out.println("Aucune arme !");
             }

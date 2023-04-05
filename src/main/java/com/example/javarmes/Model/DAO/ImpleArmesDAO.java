@@ -13,13 +13,13 @@ public class ImpleArmesDAO implements ArmesDAO {
         PreparedStatement pstmnt = null;
         try{
             con = new DAOFactory().getConnection();
-            String requete = "INSERT INTO armes( identification, categorie, nom, prix_unique, calibre) VALUES (?, ?, ?, ?, ?)";
+            String requete = "INSERT INTO armes( identification, categorie, nom, prix_unique, quantite, calibre) VALUES (?, ?, ?, ?, ?, ?)";
             pstmnt = con.prepareStatement(requete);
             pstmnt.setString(1, armes.getIndentification());
             pstmnt.setString(2, armes.getCategorie());
             pstmnt.setString(3, armes.getNom());
-            pstmnt.setString(4, armes.getCategorie());
-            pstmnt.setDouble(5, armes.getPrix_unique());
+            pstmnt.setDouble(4, armes.getPrix_unique());
+            pstmnt.setInt(5, armes.getQuantite());
             pstmnt.setDouble(6, armes.getCalibre());
             pstmnt.executeUpdate();
             System.out.println("Arme ajouté à la base de données !");
@@ -33,5 +33,10 @@ public class ImpleArmesDAO implements ArmesDAO {
             }
         }
     }
+
+    //void MettreAJourArmeB(Armes armes) throws SQLException{
+
+    }
+
 
 }
