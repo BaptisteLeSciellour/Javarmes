@@ -3,7 +3,7 @@ public class Munitions extends Article {
 
     protected double prix_vrac;
 
-    public Munitions(String identification, char categorie, String nom, float prix_unique, double calibre, double prix_vrac) {
+    public Munitions(String identification, String categorie, String nom, float prix_unique, double calibre, double prix_vrac) {
         super(identification, categorie, nom, prix_unique, calibre);
         this.prix_vrac = prix_vrac;
     }
