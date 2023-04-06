@@ -13,10 +13,11 @@ public class ImpleClientDAO implements ClientDAO {
         PreparedStatement pstmnt = null;
         try{
             con = new DAOFactory().getConnection();
-            String requete = "INSERT INTO clients( mail , mdp) VALUES (?, ?)";
+            String requete = "INSERT INTO clients(id, mail , mdp) VALUES (?, ?, ?)";
             pstmnt = con.prepareStatement(requete);
-            pstmnt.setString(1, client.getMail());
-            pstmnt.setString(2, client.getMdp());
+            pstmnt.setInt(1, client.getId());
+            pstmnt.setString(2, client.getMail());
+            pstmnt.setString(3, client.getMdp());
             pstmnt.executeUpdate();
             System.out.println("Client ajouté à la base de données !");
         } catch(SQLException e) {
