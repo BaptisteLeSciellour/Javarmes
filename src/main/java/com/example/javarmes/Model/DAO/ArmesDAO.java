@@ -8,7 +8,7 @@ public interface ArmesDAO {
      void AjouterArmeB(Armes armes) throws SQLException;
      //void MettreAJourArmeB(Armes armes) throws SQLException;
      //void GererStockArmeB(int id) throws SQLException;/**Gestion du stock - incrémentation/décrémentation **/
-     //public List<Armes> RechercherArmes(String recherche, String critere)throws SQLException;
+     public List<Armes> RechercherArmes(String recherche, String critere)throws SQLException;
 
 
 }

@@ -172,10 +172,14 @@ public class Controleur {
                 System.out.println("Saisir le MDP:");
                 mdp = sc3.nextLine();
 
+                /**Saisie l'ID : ALEATOIRE entre 4 500 20 000 **/
+                Random rand=new Random();
+                int id = rand.nextInt(4500 + 14500); /** generation aléatoire**/
+
                 ImpleClientDAO clientDAO = new ImpleClientDAO();
 
                 // Client client = new Client(mail, mdp);
-                Client clien = new Client(mail,mdp);
+                Client clien = new Client(id,mail,mdp);
                 try {
 
                     clientDAO.Ajouter(clien);
@@ -267,7 +271,7 @@ public class Controleur {
                                 pass2 = false;
 
                                 // Client client = new Client(mail, mdp);
-                                Client clien = new Client(mailMAJ,mdpMAJ);
+                                Client clien = new Client(id,mailMAJ,mdpMAJ);
                                 clientDAO.MettreAJour(clien);
 
                             } else {
@@ -415,8 +419,6 @@ public class Controleur {
 
                         System.out.println("Quel est l'identifiant du client : ");
                         id = identi.nextInt();
-
-                        //Client clien = new Client();
 
                         /**Affichage**/
                         for (Client cli : vecclient) {
