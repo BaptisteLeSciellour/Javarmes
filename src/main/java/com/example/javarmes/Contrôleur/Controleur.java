@@ -174,10 +174,6 @@ public class Controleur {
                 mdp = sc3.nextLine();
 
                 ImpleClientDAO clientDAO = new ImpleClientDAO();
-                //Client client = new Client (2, "test1@gmail.com", "test_1mdp");
-
-                //Client client= new Client(mail, mdp);
-
 
                 // Client client = new Client(mail, mdp);
                 Client clien = new Client(mail,mdp);
@@ -243,9 +239,7 @@ public class Controleur {
 
             } while (str == 1 && str == 2);
 
-
             if (str == 1) {
-
 
                 try {
 
@@ -288,10 +282,6 @@ public class Controleur {
                         }
                     } while (!pass2);
 
-
-
-
-
                    // passage = true;
 
                     if (client == null) {
@@ -320,10 +310,7 @@ public class Controleur {
         boolean passage = false;
         boolean pass2 = false;
 
-
-
         int str = 0;
-
 
         ImpleClientDAO clientDAO = new ImpleClientDAO();
 
@@ -358,8 +345,6 @@ public class Controleur {
 
                                 System.out.println("On affiche la suppression pour tester "+ vecclient.remove(cli));
 
-
-
                                 pass2 = false;
 
                                     cli.ToString();
@@ -378,10 +363,6 @@ public class Controleur {
                     } while (!pass2);
 
                     System.out.println("TEST3");
-
-
-
-                    // passage = true;
 
                     if (client == null) {
                         System.out.println("Les informations du client n'ont pas été supprimées\n");
@@ -454,9 +435,6 @@ public class Controleur {
                         }
 
                     } while (!pass2);
-
-
-
 
                     // passage = true;
 

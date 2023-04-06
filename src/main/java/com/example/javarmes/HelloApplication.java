@@ -7,7 +7,7 @@ import com.example.javarmes.Vue.*;
 public class HelloApplication extends Application {
 
     public void start(Stage stage) throws IOException {
-        Screen screen = new Screen();
+        Menu screen = new Menu();
         screen.lancement();
     }
     public static void main(String[] args) {
