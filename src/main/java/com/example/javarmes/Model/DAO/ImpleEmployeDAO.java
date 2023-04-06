@@ -80,23 +80,22 @@ public class ImpleEmployeDAO implements EmployeDAO {
         }
     }
 
-    /** Méthodes de gestion de clients faisable par les employés*/
-    public Client ChoisirClient(int id) throws SQLException{
+    public  Employes ChoisirEmploye(int id) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
         ResultSet resultat = null;
-        Client client = null;
+        Employes employe = null;
         try{
             con = new DAOFactory().getConnection();
-            String requete = "SELECT * FROM clients  WHERE id = ?";
+            String requete = "SELECT * FROM employés  WHERE id = ?";
             pstmnt = con.prepareStatement(requete);
             pstmnt.setInt(1, id);
             resultat = pstmnt.executeQuery();
             if (resultat.next()){
-                client = new Client(resultat.getInt("id"), resultat.getString("mail"),resultat.getString("mdp"));
+                employe = new Employes(resultat.getInt("id"), resultat.getString("nom"),resultat.getString("prénom"));
             }
         } catch(SQLException e) {
-            System.out.println("Erreur lors de la récupération du client");
+            System.out.println("Erreur lors de la récupération de l'employé");
             System.out.println(e);
         } finally {
             if ((pstmnt !=null)||(con!=null)||(resultat!=null)) {
@@ -105,8 +104,37 @@ public class ImpleEmployeDAO implements EmployeDAO {
                 resultat.close();
             }
         }
+        return employe;
+    }
+
+    /** Méthodes de gestion de clients faisable par les employés*/
+    public Client ChoisirClient(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement pstmnt = null;
+        ResultSet resultat = null;
+        Client client = null;
+        try {
+            con = new DAOFactory().getConnection();
+            String requete = "SELECT * FROM clients  WHERE id = ?";
+            pstmnt = con.prepareStatement(requete);
+            pstmnt.setInt(1, id);
+            resultat = pstmnt.executeQuery();
+            if (resultat.next()) {
+                client = new Client(resultat.getInt("id"), resultat.getString("mail"), resultat.getString("mdp"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération du client");
+            System.out.println(e);
+        } finally {
+            if ((pstmnt != null) || (con != null) || (resultat != null)) {
+                pstmnt.close();
+                con.close();
+                resultat.close();
+            }
+        }
         return client;
     }
+
 
     @Override
     public void AjouterClient (Client client) throws SQLException{

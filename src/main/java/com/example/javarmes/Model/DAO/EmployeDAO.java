@@ -10,8 +10,9 @@ public interface EmployeDAO {
 
     /** Méthodes de gestion des employés */
     void  AjouterEmployes(Employes Employes) throws SQLException; /**Des employés peuvent être ajoutés*/
-    void MettreAJourEmployes(Employes Employes) throws SQLException;
+    void MettreAJourEmployes(Employes employe) throws SQLException;
     void SupprimerEmployes(int id) throws SQLException;
+    Employes ChoisirEmploye(int id) throws SQLException;
 
     /** Méthodes de gestion de clients faisable par les employés*/
 
