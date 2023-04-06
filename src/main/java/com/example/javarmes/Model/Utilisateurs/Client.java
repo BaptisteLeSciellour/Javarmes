@@ -18,6 +18,11 @@ public class Client extends Personnes {
         this.mdp=b;
     }
 
+    public Client(int id, String mail){
+        this.id=id;
+        this.mail=mail;
+    }
+
     public Client(int a, String b, String c){
         this.id=a;
         this.mail=b;
@@ -71,5 +76,5 @@ public class Client extends Personnes {
         this.id = id;
     }
 
-    public void ToString(){System.out.print("Ce client se nomme : "+this.mail+" "+this.mdp);}
+    public void ToString(){System.out.print("Infos client : id: "+this.id+" mail: "+this.mail);}
 }

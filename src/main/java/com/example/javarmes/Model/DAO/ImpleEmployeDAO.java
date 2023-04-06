@@ -144,11 +144,11 @@ public class ImpleEmployeDAO implements EmployeDAO {
         List<Client> ListeClients = new ArrayList<>();
         try{
             con = new DAOFactory().getConnection();
-            String requete = "SELECT * FROM clients ";
+            String requete = "SELECT id, mail FROM clients ";
             pstmnt = con.prepareStatement(requete);
             resultat = pstmnt.executeQuery();
             if (resultat.next()){
-                Client client = new Client(resultat.getInt("id"), resultat.getString("mail"),resultat.getString("mdp"));
+                Client client = new Client(resultat.getInt("id"), resultat.getString("mail"));
                 ListeClients.add(client);
             }
         } catch(SQLException e) {
