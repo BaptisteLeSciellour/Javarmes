@@ -8,7 +8,7 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
     protected int quantite;
     protected String identification; /** à savoir comment on la génère **/
 
-    protected float reduction;
+    protected boolean reduction;
     protected String nom;
     protected String categorie ;
     protected double calibre;
@@ -25,13 +25,14 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
         this.calibre = calibre;
     }
     /** Constructeur Article pour employé **/
-    public Article(String identification, String categorie, String nom, double prix_unique,int quantite, double calibre ) {
+    public Article(String identification, String categorie, String nom, double prix_unique,int quantite, double calibre, boolean reduction ) {
         this.identification = identification;
         this.categorie = categorie;
         this.nom= nom;
         this.prix_unique = prix_unique;
         this.quantite = quantite;
         this.calibre = calibre;
+        this.reduction = reduction;
     }
 
 
@@ -92,11 +93,11 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
         this.quantite = quantite;
     }
 
-    public float getReduction() {
+    public boolean getReduction() {
         return reduction;
     }
 
-    public void setReduction(float reduction) {
+    public void setReduction(boolean reduction) {
         this.reduction = reduction;
     }
 

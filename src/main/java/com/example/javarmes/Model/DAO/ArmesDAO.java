@@ -6,8 +6,7 @@ import java.util.*;
 public interface ArmesDAO {
 
      void AjouterArmeB(Armes armes) throws SQLException;
-     //void MettreAJourArmeB(Armes armes) throws SQLException;
-     //void GererStockArmeB(int id) throws SQLException;/**Gestion du stock - incrémentation/décrémentation **/
+     void GererStockArmeB(String identification, int quantite) throws SQLException;/**Gestion du stock - incrémentation/décrémentation **/
      public List<Armes> RechercherArmes(String recherche, String critere)throws SQLException;
 
 

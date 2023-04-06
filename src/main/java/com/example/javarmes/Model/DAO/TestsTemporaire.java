@@ -9,11 +9,11 @@ import java.util.List;
 public class TestsTemporaire {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-       ImpleArmesDAO ArmesDAO = new ImpleArmesDAO();
+       /**ImpleArmesDAO ArmesDAO = new ImpleArmesDAO();
         //Client client = new Client (2, "test1@gmail.com", "test_1mdp");
         //Armes arme = new Armes("O3612","B", "Revolver",639.99,7.99);
-        String recherche = "categorie";
-        String critere = "A";
+        String recherche = "reduction";
+        String critere = "5";
         try{
             //ArmesDAO.AjouterArmeB(arme);
             List<Armes> resultatRecherche = ArmesDAO.RechercherArmes(recherche, critere);
@@ -27,9 +27,17 @@ public class TestsTemporaire {
         }catch(SQLException e){
             System.out.println("Erreur");
             System.out.println(e);
-        }  //-------------------Test de la méthode de recherches dans le rayon Armes
+        }  //----------------------------------------Test de la méthode de recherches dans le rayon Armes------------------------------------------**/
 
 
+        /**ImpleArmesDAO ArmesDAO = new ImpleArmesDAO();
+        System.out.println("Saisissez nombre négatif pour décrémenter le stock et positif pour incrémenter "); // A saisir dans le contrôleur
+        try{
+            ArmesDAO.GererStockArmeB("A0504", 11);
+        }catch(SQLException e) {
+            System.out.println("Erreur");
+            System.out.println(e);
+        }----------------------------------------------Test Gestion des stocks d'armes---------------------------------------------------------**/
     }
 
     }
