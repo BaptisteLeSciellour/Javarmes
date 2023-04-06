@@ -1,16 +1,12 @@
 package com.example.javarmes.Vue;
 
 
-import com.example.javarmes.Model.Utilisateurs.Employes;
-
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -26,13 +22,22 @@ public class Menu {
         inscription.setLayoutY(500);
         Button sortie = new Button("Exit");
         Button image = new Button("Image");
+        Button anim  = new Button("Anim");
+        anim.setLayoutX(100);
+        anim.setLayoutY(100);
         sortie.setLayoutX(1500);
         inscription.setStyle("-fx-background-color: #3cb371; -fx-text-fill: white; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         Pane pane = new Pane();
 
-        pane.getChildren().addAll(inscription,sortie,image);
+        pane.getChildren().addAll(inscription,sortie,image,anim);
         inscription.setOnAction(event->{
             menuInscription();
+        });
+
+        anim.setOnAction(actionEvent -> {
+            Paiment paiment = new Paiment();
+            Stage sttage = new Stage();
+            paiment.anim(sttage);
         });
 
         sortie.setOnAction(actionEvent -> {

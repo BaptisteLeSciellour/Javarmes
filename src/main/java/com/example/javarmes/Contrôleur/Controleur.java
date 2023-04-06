@@ -122,7 +122,6 @@ public class Controleur {
                 System.out.println(e);
             }
 
-
             vecemployee.add(employes);
 
             /**Affichage**/
