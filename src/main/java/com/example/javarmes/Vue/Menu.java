@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.Objects;
 
 public class Menu {
 
@@ -22,14 +23,17 @@ public class Menu {
         inscription.setLayoutY(500);
         Button sortie = new Button("Exit");
         Button image = new Button("Image");
-        Button anim  = new Button("Anim");
+        Button anim  = new Button("Paiment");
+        Button pres = new Button("Présentation");
+        pres.setLayoutX(200);
+        pres.setLayoutY(200);
         anim.setLayoutX(100);
         anim.setLayoutY(100);
         sortie.setLayoutX(1500);
         inscription.setStyle("-fx-background-color: #3cb371; -fx-text-fill: white; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         Pane pane = new Pane();
 
-        pane.getChildren().addAll(inscription,sortie,image,anim);
+        pane.getChildren().addAll(inscription,sortie,image,anim,pres);
         inscription.setOnAction(event->{
             menuInscription();
         });
@@ -45,6 +49,9 @@ public class Menu {
         });
         image.setOnAction(ActionEvent->{
             Image();
+        });
+        pres.setOnAction(actionEvent -> {
+            menupresentation();
         });
 
         stage.setTitle("Page d'acceuil");
@@ -99,6 +106,47 @@ public class Menu {
         Stage settle = new Stage();
         settle.setScene(sceene);
         settle.show();
+    }
+
+    public void menupresentation()
+    {
+        Pane pane = new Pane();
+        Stage stage = new Stage();
+
+        Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
+        //Creating a rotated transition
+        ImageView Assaut = new ImageView(assaut);
+
+        Assaut.setLayoutX(0);
+        Assaut.setLayoutY(0);
+
+        Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
+        //Creating a rotated transition
+        ImageView Precision = new ImageView(precison);
+
+        Precision.setLayoutY(200);
+        Precision.setLayoutX(0);
+
+        Image chasse = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chasse.jpg")));
+        //Creating a rotated transition
+        ImageView Chasse = new ImageView(chasse);
+
+        Chasse.setLayoutX(200);
+        Chasse.setLayoutY(0);
+
+        Image poing = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing.png")));
+        //Creating a rotated transition
+        ImageView Poing = new ImageView(poing);
+
+        Poing.setLayoutX(200);
+        Poing.setLayoutY(200);
+
+        pane.getChildren().addAll(Assaut,Chasse,Poing,Precision);
+
+        Scene scene = new Scene(pane, 520, 540);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
     }
 
 }
