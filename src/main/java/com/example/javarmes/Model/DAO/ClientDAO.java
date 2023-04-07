@@ -8,9 +8,9 @@ public interface ClientDAO {
     void  Ajouter(Client Client) throws SQLException;
     void MettreAJour(Client Client) throws SQLException;
     void Supprimer(int id) throws SQLException;
+     Client ChoisirClient (int id) throws SQLException;
+     //fonction de recherche blindage !!
 
-    //public List<ClientDAO> ListerClients () throws SQLException;
-   // public ClientDAO ChoisirClient (int id) throws SQLException;
 /**
  public List<Jouet> rechercherJouet(String recherche) throws SQLException {
  List<Jouet> jouets = new ArrayList<>();
