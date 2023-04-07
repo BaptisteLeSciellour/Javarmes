@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ScreenCLient {
@@ -174,14 +173,12 @@ public class ScreenCLient {
 
     }
 
-    public void InscriptionClient(Text txxt) /** Nous avons un second écran qui apparait**/
+    public void InscriptionClient(Text txxt,ArrayList<Client>vecclient) /** Nous avons un second écran qui apparait**/
     {
 
         Pane pannne = new Pane();
         Stage settle = new Stage();
-        Client clt = new Client("CC","CC");
-        ArrayList<Client>vecclient = new ArrayList<Client>();
-        vecclient.add(clt);
+
 
         Text txt = new Text("Voulez-vous ajouter un client:");
         txt.setLayoutX(90);
@@ -242,7 +239,7 @@ public class ScreenCLient {
 
             for(Client e : vecclient)
             {
-                if(Objects.equals(e.getMail(),mail));
+                if(Objects.equals(e.getMail(),mail))
                 {
                     Text txt1 = new Text("Création du client : ");
                     ImpleClientDAO clientDAO = new ImpleClientDAO();
@@ -267,9 +264,6 @@ public class ScreenCLient {
                     saisie.setLayoutX(330);
                     saisie.setLayoutY(400);
                     n.getChildren().addAll(nvmdp,nvmail,nvxmailTF,mdpTF,saisie);
-                    Scene ssc = new Scene(n,520,520);
-                    stage.setScene(ssc);
-                    stage.show();
 
                     saisie.setOnAction(actionEvent1 -> {
                         Pane pane = new Pane();
@@ -296,9 +290,18 @@ public class ScreenCLient {
                         stage.show();
                     });
                 }
+                else
+                {
+                    Text erreur = new Text("pas de personne ce ce nom la ici");
+                    erreur.setLayoutX(90);
+                    erreur.setLayoutY(150);
+                    n.getChildren().add(erreur);
+                }
+                Scene ssc = new Scene(n,520,520);
+                stage.setScene(ssc);
+                stage.show();
+
             }
-
-
             settle.close();
         });
 
