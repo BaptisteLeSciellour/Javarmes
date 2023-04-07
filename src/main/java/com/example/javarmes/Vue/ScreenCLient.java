@@ -66,8 +66,6 @@ public class ScreenCLient {
                  mdp = mdpTF.getText();
 
                     for (Client cli : vecclient) {
-                        System.out.println(cli.getMail()+"//"+mail);
-                        System.out.println("///");
 
                         if (Objects.equals(mail, cli.getMail())) {
 
@@ -194,6 +192,10 @@ public class ScreenCLient {
         bbtn2.setLayoutX(240);
         bbtn2.setLayoutY(400);
 
+        Button bbtn3 = new Button("Supp");
+        bbtn3.setLayoutX(40);
+        bbtn3.setLayoutY(400);
+
         bbtn.setOnAction(actionEvent -> {
             creationClient(vecclient,txxt); /** ici on appelle l'écran que nous allons utiliser**/
             settle.close();
@@ -202,7 +204,11 @@ public class ScreenCLient {
         bbtn2.setOnAction(actionEvent -> {
             MAJClient(vecclient);
         });
-        pannne.getChildren().addAll(bbtn,bbtn2,txt);
+
+        bbtn3.setOnAction(actionEvent -> {
+            suppressionClient(vecclient);
+        });
+        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3);
 
         Scene sceene = new Scene(pannne, 320, 540);
 
@@ -316,4 +322,59 @@ public class ScreenCLient {
         settle.show();
     }
 
+    public void suppressionClient(ArrayList<Client>vecclient){
+
+            Pane pane = new Pane();
+            Stage stage = new Stage();
+
+                Text txt1 = new Text("Supression du client : ");
+                ImpleClientDAO clientDAO = new ImpleClientDAO();
+                Text txt4 = new Text("Saisir l'id de ce client:");
+                txt4.setLayoutX(90);
+                txt4.setLayoutY(290);
+
+                TextField idTF = new TextField();
+                idTF.setLayoutX(90);
+                idTF.setLayoutY(300);
+
+                Button validation = new Button("Validation");
+                validation.setLayoutX(90);
+                validation.setLayoutY(400);
+
+                pane.getChildren().addAll(txt1,idTF,validation);
+
+                validation.setOnAction(actionEvent -> {
+
+                    try {
+
+                        int id = Integer.valueOf(idTF.getText());
+
+                        /**Verification : si id existe deja **/
+                        for (Client cli : vecclient) {
+
+                            if (id == cli.getId()) {
+
+                                clientDAO.Supprimer(id);
+                                Text supp = new Text("Le profil d'id : "+id+" a bien été supprimer");
+                                supp.setLayoutX(50);
+                                supp.setLayoutY(100);
+                                pane.getChildren().add(supp);
+                                ///stage.close();
+                                break;
+                            }
+                        }
+
+                    } catch (SQLException e) {
+                        Text supp = new Text(e.toString());
+                        supp.setLayoutX(50);
+                        supp.setLayoutY(100);
+                        pane.getChildren().add(supp);
+                        stage.close();
+                    }
+                });
+
+         Scene scene = new Scene(pane,520,520);
+         stage.setScene(scene);
+         stage.show();
+    }
 }

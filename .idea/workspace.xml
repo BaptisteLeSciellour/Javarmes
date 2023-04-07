@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Affichage pour la mise à jour des clients&#10;Affichage et blindage de la création client">
+    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Remise à niveau des employés par rapport aux clients. &#10;MAJEnmploye + menuEmploye + méthode de la classe avec javaFX">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenCLient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenCLient.java" afterDir="false" />
@@ -172,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680864750845</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Remise à niveau des employés par rapport aux clients. &#10;MAJEnmploye + menuEmploye + méthode de la classe avec javaFX">
+      <created>1680871422778</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1680871422778</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -189,6 +196,7 @@
     <MESSAGE value="Finalisation du squelette de l'écran de paiment. &#10;Début du menu de choix pour les catégorie d'armes" />
     <MESSAGE value="Image pour le choix" />
     <MESSAGE value="Affichage pour la mise à jour des clients&#10;Affichage et blindage de la création client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Affichage pour la mise à jour des clients&#10;Affichage et blindage de la création client" />
+    <MESSAGE value="Remise à niveau des employés par rapport aux clients. &#10;MAJEnmploye + menuEmploye + méthode de la classe avec javaFX" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remise à niveau des employés par rapport aux clients. &#10;MAJEnmploye + menuEmploye + méthode de la classe avec javaFX" />
   </component>
 </project>

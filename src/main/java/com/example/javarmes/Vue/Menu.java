@@ -119,7 +119,7 @@ public class Menu {
         ArrayList<Employes> vecemployes = new ArrayList<Employes>();
         vecemployes.add(empl);
 
-        Client clt = new Client("CC","CC");
+        Client clt = new Client(123,"CC","CC");
         ArrayList<Client>vecclient = new ArrayList<Client>();
         vecclient.add(clt);
 

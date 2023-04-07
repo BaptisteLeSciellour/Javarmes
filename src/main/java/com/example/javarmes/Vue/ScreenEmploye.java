@@ -1,6 +1,7 @@
 package com.example.javarmes.Vue;
 
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
+import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -231,6 +233,10 @@ public class ScreenEmploye {
         bbtn2.setLayoutX(240);
         bbtn2.setLayoutY(400);
 
+        Button bbtn3 = new Button("Supp");
+        bbtn3.setLayoutX(40);
+        bbtn3.setLayoutY(400);
+
         bbtn.setOnAction(actionEvent -> {
             InscriptionEmploye(vecemployes); /** ici on appelle l'écran que nous allons utiliser**/
             settle.close();
@@ -239,7 +245,10 @@ public class ScreenEmploye {
         bbtn2.setOnAction(actionEvent -> {
             MAJEmploye(vecemployes);
         });
-        pannne.getChildren().addAll(bbtn,bbtn2,txt);
+        bbtn3.setOnAction(actionEvent -> {
+            SuppresionEmploye(vecemployes);
+        });
+        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3);
 
         Scene sceene = new Scene(pannne, 320, 540);
 
@@ -248,5 +257,61 @@ public class ScreenEmploye {
         settle.setY(0);
         settle.show();
     }
-}
 
+    public void SuppresionEmploye(ArrayList<Employes>vecemployes)
+    {
+        Pane pane = new Pane();
+        Stage stage = new Stage();
+
+        Text txt1 = new Text("Supression de l'employe : ");
+        ImpleEmployeDAO clientDAO = new ImpleEmployeDAO();
+        Text txt4 = new Text("Saisir l'id de cette employe:");
+        txt4.setLayoutX(90);
+        txt4.setLayoutY(290);
+
+        TextField idTF = new TextField();
+        idTF.setLayoutX(90);
+        idTF.setLayoutY(300);
+
+        Button validation = new Button("Validation");
+        validation.setLayoutX(90);
+        validation.setLayoutY(400);
+
+        pane.getChildren().addAll(txt1,idTF,validation);
+
+        validation.setOnAction(actionEvent -> {
+
+            try {
+
+                int id = Integer.valueOf(idTF.getText());
+
+                /**Verification : si id existe deja **/
+                for (Employes cli : vecemployes) {
+
+                    if (id == cli.getId()) {
+
+                        clientDAO.SupprimerEmployes(id);
+                        Text supp = new Text("Le profil d'id : "+id+" a bien été supprimer");
+                        supp.setLayoutX(50);
+                        supp.setLayoutY(100);
+                        pane.getChildren().add(supp);
+                        ///stage.close();
+                        break;
+                    }
+                }
+
+            } catch (SQLException e) {
+                Text supp = new Text(e.toString());
+                supp.setLayoutX(50);
+                supp.setLayoutY(100);
+                pane.getChildren().add(supp);
+                stage.close();
+            }
+        });
+
+        Scene scene = new Scene(pane,520,520);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+}
