@@ -214,7 +214,7 @@ public class Menu {
         Pane panne = new Pane();
         Stage stage = new Stage();
 
-        Text coor = new Text("SAISIE DES COORDONNES BANCAIRES");
+        Text coor = new Text("SAISIE DES COORDONNES BANCAIRES ");
         coor.setFont(new Font("Arial", 16));
         coor.setStyle("-fx-fill: white;");
 

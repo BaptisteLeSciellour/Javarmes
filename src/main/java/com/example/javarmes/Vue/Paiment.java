@@ -58,7 +58,7 @@ public class Paiment {
 
         rotateTransition.setOnFinished(actionEvent -> {
             stage.close();
-            Text txt = new Text("Transaction réussie mercie d'être passé par notre site");
+            Text txt = new Text("Transaction réussie mercie d'être passé par notre site :)");
             txt.setFont(new Font("Arial", 16));
             txt.setStyle("-fx-fill: white;");
             txt.setLayoutX(50);

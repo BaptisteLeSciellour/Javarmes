@@ -15,6 +15,7 @@ import java.util.Objects;
 import java.util.Random;
 
 
+
 public class ScreenCLient {
     public void creationClient(ArrayList<Client>vecclient,Text txxt)
     {
