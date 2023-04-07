@@ -1,6 +1,7 @@
 package com.example.javarmes.Model.DAO;
 
 import com.example.javarmes.Model.Articles.Armes;
+import com.example.javarmes.Model.Utilisateurs.Client;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class ImpleArmesDAO implements ArmesDAO {
 
-    public void AjouterArmeB(Armes armes) throws SQLException {
+    public void AjouterArme(Armes armes) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
         try {
@@ -26,7 +27,7 @@ public class ImpleArmesDAO implements ArmesDAO {
             pstmnt.setDouble(6, armes.getCalibre());
             pstmnt.setBoolean(7, armes.getReduction());
             pstmnt.executeUpdate();
-            System.out.println("Arme ajouté à la base de données !");
+            System.out.println("Arme ajoutée à la base de données !");
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'ajout ...");
             System.out.println(e);
@@ -69,7 +70,7 @@ public class ImpleArmesDAO implements ArmesDAO {
         return ResultatRecherche;
     }
 
-    public void GererStockArmeB(String identification, int quantite) throws SQLException {
+    public void GererStockArme(String identification, int quantite) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
         ResultSet resultat = null;
@@ -102,6 +103,33 @@ public class ImpleArmesDAO implements ArmesDAO {
                 resultat.close();
             }
         }
+    }
+
+    public List<Armes> ChoisirArmes() throws SQLException{
+        Connection con = null;
+        PreparedStatement pstmnt = null;
+        ResultSet result = null;
+        List<Armes> ListeArmes = new ArrayList<>();
+        try{
+            con = new DAOFactory().getConnection();
+            String requete = "SELECT * FROM armes ";
+            pstmnt = con.prepareStatement(requete);
+            result = pstmnt.executeQuery();
+            if (result.next()){
+                Armes armes = new Armes(result.getString("identification"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"));
+                ListeArmes.add(armes);
+            }
+        } catch(SQLException e) {
+            System.out.println("Erreur lors de la récupération de la liste des armes");
+            System.out.println(e);
+        } finally {
+            if ((pstmnt !=null)||(con!=null)||(result!=null)) {
+                pstmnt.close();
+                con.close();
+                result.close();
+            }
+        }
+        return ListeArmes;
     }
 }
 
