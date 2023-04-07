@@ -1,11 +1,12 @@
 package com.example.javarmes.Model.DAO;
 
+import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Utilisateurs.Client;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ImpleClientDAO implements ClientDAO {
     @Override
     public void Ajouter(Client client) throws SQLException{
@@ -76,6 +77,7 @@ public class ImpleClientDAO implements ClientDAO {
         }
     }
     /** Enlever ou laisser ? */
+    @Override
     public Client ChoisirClient(int id) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -101,5 +103,37 @@ public class ImpleClientDAO implements ClientDAO {
             }
         }
         return client;
+    }
+
+    /** Méthode qui retourne true si le mail existe déjà et false si ce n'est pas le cas**/
+    public boolean BlindageParRecherche (String mailSaisi) throws SQLException {
+        Connection con = null;
+        Statement stmnt = null;
+        ResultSet resultat = null;
+        boolean verification = false;
+        try {
+            con = DAOFactory.getConnection();
+            String requete = "SELECT * FROM clients WHERE mail = '"+ mailSaisi+ "'";
+            stmnt = con.createStatement();
+            resultat = stmnt.executeQuery(requete);
+            if (resultat.next()) {
+                Client client = new Client(resultat.getInt("id"), resultat.getString("mail"),resultat.getString("mdp"));
+                verification = true;
+                System.out.println(verification);
+            }else{
+                System.out.println(verification);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la recherche ...");
+            System.out.println(e);
+        } finally {
+            if ((stmnt != null) || (con != null) || (resultat != null)) {
+                stmnt.close();
+                con.close();
+                resultat.close();
+            }
+        }
+        return verification;
+
     }
 }

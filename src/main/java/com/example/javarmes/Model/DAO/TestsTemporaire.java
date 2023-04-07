@@ -38,6 +38,15 @@ public class TestsTemporaire {
             System.out.println("Erreur");
             System.out.println(e);
         }----------------------------------------------Test Gestion des stocks d'armes---------------------------------------------------------**/
+
+        ImpleClientDAO ClientDAO = new ImpleClientDAO();
+        String mailSaisi = "tintintin";
+        try{
+            ClientDAO.BlindageParRecherche(mailSaisi);
+        }catch(SQLException e) {
+            System.out.println("Erreur");
+            System.out.println(e);
+        }
     }
 
     }
