@@ -119,6 +119,7 @@ public class ScreenCLient {
         Pane pannne = new Pane();
         Stage settle = new Stage();
 
+
         Text txt = new Text("Voulez-vous ajouter un client:");
         txt.setLayoutX(90);
         txt.setLayoutY(290);

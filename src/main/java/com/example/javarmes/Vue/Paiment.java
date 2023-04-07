@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -31,8 +32,10 @@ public class Paiment {
 
         RotateTransition rotateTransition = new RotateTransition();
 
-        Text texte = new Text("Nous procédons au paiment");
-        texte.setLayoutY(300);
+        Text texte = new Text("PAIEMENT EN COURS...");
+        texte.setFont(new Font("Arial", 16));
+        texte.setStyle("-fx-fill: #4B5320;");
+        texte.setLayoutY(100);
         texte.setLayoutX(400);
 
         //Setting the duration for the transition
@@ -56,12 +59,18 @@ public class Paiment {
         rotateTransition.setOnFinished(actionEvent -> {
             stage.close();
             Text txt = new Text("Transaction réussie mercie d'être passé par notre site");
+            txt.setFont(new Font("Arial", 16));
+            txt.setStyle("-fx-fill: white;");
             txt.setLayoutX(50);
             txt.setLayoutY(300);
             Pane pane = new Pane(txt);
 
             Stage sttage = new Stage();
             Scene sc = new Scene(pane,520,520);
+            sc.getRoot().setStyle("-fx-background-color: #4B5320; "
+                    + "-fx-background-radius: 5px; "
+                    + "-fx-background-insets: 0px; "
+                    + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond
             sttage.setScene(sc);
             sttage.show();
         });
@@ -74,6 +83,11 @@ public class Paiment {
 
         //Adding scene to the stage
         stage.setScene(scene);
+
+        /*scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond*/
 
         //Displaying the contents of the stage
         stage.show();
