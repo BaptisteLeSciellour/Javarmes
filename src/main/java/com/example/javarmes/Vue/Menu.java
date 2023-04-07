@@ -1,8 +1,8 @@
 package com.example.javarmes.Vue;
 
 
-import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
+import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import javafx.scene.text.Text;
 
 import java.io.File;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -25,8 +24,6 @@ public class Menu {
 
     public void lancement()
     {
-
-
         Button inscription = new Button("Nouvelle inscription");
         Stage stage = new Stage();
 
@@ -113,26 +110,34 @@ public class Menu {
         stage.show();
     }
 
-
-
     public void menuInscription()
     {
         Pane panne = new Pane();
         Stage settle = new Stage();
+        /** ici les deux vecteurs contenant tout les personnes du sites**/
+        Employes empl = new Employes(123,"CC","CC");
+        ArrayList<Employes> vecemployes = new ArrayList<Employes>();
+        vecemployes.add(empl);
+
+        Client clt = new Client("CC","CC");
+        ArrayList<Client>vecclient = new ArrayList<Client>();
+        vecclient.add(clt);
+
         Button client = new Button("client");
         Button employe = new Button("Employe");
         client.setLayoutX(60);
         client.setLayoutY(300);
         client.setOnAction(actionEvent -> {
             ScreenCLient scc = new ScreenCLient();
-            scc.InscriptionClient();
+            Text txxt = new Text();
+            scc.InscriptionClient(txxt,vecclient);
             settle.close();
         });
         employe.setLayoutX(150);
         employe.setLayoutY(300);
         employe.setOnAction(actionEvent -> {
             ScreenEmploye sce = new ScreenEmploye();
-            sce.InscriptionEmploye();
+            sce.MenuEmploye(vecemployes);
             settle.close();
         });
         panne.getChildren().addAll(client,employe);
