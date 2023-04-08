@@ -76,7 +76,6 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
         this.identification = indentification;
     }
 
-
     public int getQuantite() {
         return quantite;
     }

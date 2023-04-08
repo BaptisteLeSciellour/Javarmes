@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Menu {
 
@@ -173,7 +174,12 @@ public class Menu {
         Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
         //Creating a rotated transition
         ImageView Assaut = new ImageView(assaut);
-
+        Assaut.setOnMouseClicked(mouseEvent -> {
+                    ScreenArticle scc = new ScreenArticle();
+                    AtomicInteger i = new AtomicInteger();
+                    scc.defilement(i);/// ce qui rend l'image clickable
+                }
+        );
         Assaut.setLayoutX(0);
         Assaut.setLayoutY(0);
 
