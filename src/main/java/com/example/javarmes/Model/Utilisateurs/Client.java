@@ -1,5 +1,9 @@
 package com.example.javarmes.Model.Utilisateurs;
 
+import com.example.javarmes.Model.Articles.Article;
+
+import java.util.ArrayList;
+
 public class Client extends Personnes {
 
     /**Attributs correspondant au client*/
@@ -12,7 +16,26 @@ public class Client extends Personnes {
 
     protected int nb_commandes;
 
+    protected ArrayList<Article> commandes;
+
     public Client() {}
+
+    public ArrayList<Article> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(ArrayList<Article> commandes) {
+        this.commandes = commandes;
+    }
+
+    public void addCommandes(Article a) {
+        this.commandes.add(a);
+    }
+
+    public void suppCommandes(Article a) {
+        this.commandes.remove(a);
+    }
+
     public Client(String a , String b){
         this.mail=a;
         this.mdp=b;

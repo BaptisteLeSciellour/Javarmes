@@ -1,6 +1,8 @@
 package com.example.javarmes.Vue;
 
 
+import com.example.javarmes.Model.Articles.Armes;
+import com.example.javarmes.Model.DAO.ImpleArmesDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.application.Platform;
@@ -16,6 +18,8 @@ import javafx.stage.Stage;
 import javafx.scene.text.Text;
 
 import java.io.File;
+import java.lang.reflect.Array;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -25,7 +29,7 @@ public class Menu {
 
     public void lancement()
     {
-        Button inscription = new Button("Nouvelle inscription");
+        Button inscription = new Button("Espace Personnel");
         Stage stage = new Stage();
 
         inscription.setLayoutX(700);
@@ -115,6 +119,7 @@ public class Menu {
     {
         Pane panne = new Pane();
         Stage settle = new Stage();
+
         /** ici les deux vecteurs contenant tout les personnes du sites**/
         Employes empl = new Employes(123,"CC","CC");
         ArrayList<Employes> vecemployes = new ArrayList<Employes>();
@@ -177,8 +182,15 @@ public class Menu {
         Assaut.setOnMouseClicked(mouseEvent -> {
                     ScreenArticle scc = new ScreenArticle();
                     AtomicInteger i = new AtomicInteger();
-                    scc.defilement(i);/// ce qui rend l'image clickable
-                }
+                    ArrayList<Armes> dassaut = new ArrayList<Armes>();
+            try {
+                ImpleArmesDAO ae = new ImpleArmesDAO();
+                dassaut= (ArrayList<Armes>) ae.RechercherArmes("Assaut"," ");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            scc.defilement(i,dassaut);/// ce qui rend l'image clickable
+            }
         );
         Assaut.setLayoutX(0);
         Assaut.setLayoutY(0);
@@ -186,6 +198,16 @@ public class Menu {
         Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
         //Creating a rotated transition
         ImageView Precision = new ImageView(precison);
+        Precision.setOnMouseClicked(mouseEvent -> {
+                    ScreenArticle scc = new ScreenArticle();
+                    ImageView imgv = new ImageView();
+                    imgv=scc.ImageChosse();
+                    imgv.setLayoutX(500);
+                    imgv.setLayoutY(100);
+                    pane.getChildren().add(imgv);
+
+                }
+        );
 
         Precision.setLayoutY(200);
         Precision.setLayoutX(0);
@@ -211,9 +233,6 @@ public class Menu {
         stage.setMaximized(true);
         stage.show();
     }
-
-
-
 
     public void coordonees() {  //sous programme permettannt de remplir les coordonnes bancaires
 
@@ -280,8 +299,5 @@ public class Menu {
             paiment.anim(sttage);
             // changer de page ici on envoit à l'animation puis succès du paiement
         });
-
-
-
 
     }}

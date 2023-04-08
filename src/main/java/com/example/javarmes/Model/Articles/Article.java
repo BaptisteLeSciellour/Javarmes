@@ -1,4 +1,6 @@
 package com.example.javarmes.Model.Articles;
+import javafx.scene.image.ImageView;
+
 import java.lang.*;
 public abstract class Article { /** il faut se demander si nous plaçons la class produit comme une abstraite ou non afin d'avoir, si oui,
  une possibilités de crées des catégories une peux plus précise ( alimentaire , santé, ... ) ou alors on place tout dans la même
@@ -13,6 +15,28 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
     protected String categorie ;
     protected double calibre;
     protected char permis;
+
+    protected ImageView illustration;
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public boolean isReduction() {
+        return reduction;
+    }
+
+    public ImageView getIllustration() {
+        return illustration;
+    }
+
+    public void setIllustration(ImageView illustration) {
+        this.illustration = illustration;
+    }
 
     /**Constructeur article pour client**/
     public Article(String identification, String categorie, String nom, double prix_unique, double calibre )
