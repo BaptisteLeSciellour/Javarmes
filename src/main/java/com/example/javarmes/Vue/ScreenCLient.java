@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -22,23 +23,32 @@ public class ScreenCLient {
         Stage stage = new Stage();
         Pane panne = new Pane();
 
-        Text txt1 = new Text("Création du client : ");
+        Text txt1 = new Text("*******   CREATION DU CLIENT   *******");
+        txt1.setFont(new Font("Arial", 26));
+        txt1.setStyle("-fx-fill: white;");
+        txt1.setLayoutX(45);
+        txt1.setLayoutY(100);
+
         ImpleClientDAO clientDAO = new ImpleClientDAO();
-        Text txt4 = new Text("Saisir le mail:");
+        Text txt4 = new Text("NOUVEL E-MAIL:");
+        txt4.setFont(new Font("Arial", 26));
+        txt4.setStyle("-fx-fill: white;");
         txt4.setLayoutX(90);
-        txt4.setLayoutY(290);
+        txt4.setLayoutY(200);
 
         TextField mailTF = new TextField();
         mailTF.setLayoutX(90);
-        mailTF.setLayoutY(300);
+        mailTF.setLayoutY(220);
 
-        Text txt6 = new Text("Saisir le MDP:");
+        Text txt6 = new Text("NOUVEAU MOT DE PASSE:");
+        txt6.setFont(new Font("Arial", 26));
+        txt6.setStyle("-fx-fill: white;");
         txt6.setLayoutX(90);
-        txt6.setLayoutY(340);
+        txt6.setLayoutY(300);
 
         TextField mdpTF = new TextField();
         mdpTF.setLayoutX(90); // ici on les décales
-        mdpTF.setLayoutY(350); // ici on remonte les cases
+        mdpTF.setLayoutY(320); // ici on remonte les cases
 
         if(txxt!=null)
         {
@@ -50,7 +60,10 @@ public class ScreenCLient {
         mailTF.clear();
         mdpTF.clear();
 
-        Button saisie = new Button("Saisie des données");
+        Button saisie = new Button("Valider les données");
+        saisie.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        saisie.setLayoutY(400);
+        saisie.setLayoutX(150);
 
         /**!!!!!!!!!!!!!!!!!!**/
 
@@ -119,18 +132,26 @@ public class ScreenCLient {
 
                     /**Affichage du client**/
                     Text txt8 = new Text("Client ajouté :");
+                    txt8.setFont(new Font("Arial", 26));
+                    txt8.setStyle("-fx-fill: white;");
                     txt8.setLayoutX(90);
                     txt8.setLayoutY(90);
 
                     Text txt2 = new Text("mail : "+mail);
+                    txt2.setFont(new Font("Arial", 26));
+                    txt2.setStyle("-fx-fill: white;");
                     txt2.setLayoutX(90);
                     txt2.setLayoutY(150);
 
                     Text txt3 = new Text("MDP : "+mdp);
+                    txt3.setFont(new Font("Arial", 26));
+                    txt3.setStyle("-fx-fill: white;");
                     txt3.setLayoutX(90);
                     txt3.setLayoutY(200);
 
                     Text ID = new Text("ID : "+id);
+                    ID.setFont(new Font("Arial", 26));
+                    ID.setStyle("-fx-fill: white;");
                     ID.setLayoutX(90);
                     ID.setLayoutY(250);
 
@@ -159,6 +180,10 @@ public class ScreenCLient {
                 System.out.println("\n");
             }
             Scene scene = new Scene(pane,520,520);
+            scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                    + "-fx-background-radius: 5px; "
+                    + "-fx-background-insets: 0px; "
+                    + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
             stage1.setScene(scene);
             stage1.show();
             stage.close(); /**ici nous fermons l'écran d'avant**/
@@ -166,7 +191,10 @@ public class ScreenCLient {
 
         panne.getChildren().addAll(saisie,mailTF,mdpTF,txt1,txt4,txt6);
         Scene settle = new Scene(panne,520,520);
-
+        settle.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
         stage.setScene(settle);
         stage.show();
 
@@ -179,21 +207,26 @@ public class ScreenCLient {
         Stage settle = new Stage();
 
 
-        Text txt = new Text("Voulez-vous ajouter un client:");
-        txt.setLayoutX(90);
-        txt.setLayoutY(290);
+        Text txt = new Text("Que voulez vous faire?");
+        txt.setFont(new Font("Arial", 26));
+        txt.setStyle("-fx-fill: white;");
+        txt.setLayoutX(20);
+        txt.setLayoutY(150);
 
         /**creer deux boutons**/
-        Button bbtn = new Button("OUI");
-        bbtn.setLayoutX(140);
-        bbtn.setLayoutY(400);
+        Button bbtn = new Button("Ajouter un client");
+        bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn.setLayoutX(70);
+        bbtn.setLayoutY(200);
 
-        Button bbtn2 = new Button("MAJ");
-        bbtn2.setLayoutX(240);
-        bbtn2.setLayoutY(400);
+        Button bbtn2 = new Button("MAJ d'un client");
+        bbtn2.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn2.setLayoutX(70);
+        bbtn2.setLayoutY(300);
 
-        Button bbtn3 = new Button("Supp");
-        bbtn3.setLayoutX(40);
+        Button bbtn3 = new Button("Supprimer un client");
+        bbtn3.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn3.setLayoutX(70);
         bbtn3.setLayoutY(400);
 
         bbtn.setOnAction(actionEvent -> {
@@ -211,6 +244,10 @@ public class ScreenCLient {
         pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3);
 
         Scene sceene = new Scene(pannne, 320, 540);
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
 
         settle.setScene(sceene);
         settle.setX(0);
