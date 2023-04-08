@@ -260,18 +260,25 @@ public class ScreenCLient {
         Stage settle = new Stage();
 
         Text txt = new Text("MAJ client");
+        txt.setFont(new Font("Arial", 26));
+        txt.setStyle("-fx-fill: white;");
         txt.setLayoutX(90);
         txt.setLayoutY(150);
 
         Text txt4 = new Text("Saisir le mail:");
+        txt4.setFont(new Font("Arial", 26));
+        txt4.setStyle("-fx-fill: white;");
         txt4.setLayoutX(90);
         txt4.setLayoutY(290);
 
         TextField mailTF = new TextField();
+        mailTF.setFont(new Font("Arial", 26));
+        mailTF.setStyle("-fx-fill: white;");
         mailTF.setLayoutX(90);
         mailTF.setLayoutY(300);
 
         Button validation = new Button("Validation");
+        validation.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         validation.setLayoutX(90);
         validation.setLayoutY(400);
 
@@ -286,8 +293,13 @@ public class ScreenCLient {
                 if(Objects.equals(e.getMail(),mail))
                 {
                     Text txt1 = new Text("Création du client : ");
+                    txt1.setFont(new Font("Arial", 26));
+                    txt1.setStyle("-fx-fill: white;");
+
                     ImpleClientDAO clientDAO = new ImpleClientDAO();
                     Text nvmail = new Text("Saisir le nouveau mail:");
+                    nvmail.setFont(new Font("Arial", 26));
+                    nvmail.setStyle("-fx-fill: white;");
                     nvmail.setLayoutX(90);
                     nvmail.setLayoutY(290);
 
@@ -296,6 +308,8 @@ public class ScreenCLient {
                     nvxmailTF.setLayoutY(300);
 
                     Text nvmdp = new Text("Saisir le nouveau MDP:");
+                    nvmdp.setFont(new Font("Arial", 26));
+                    nvmdp.setStyle("-fx-fill: white;");
                     nvmdp.setLayoutX(90);
                     nvmdp.setLayoutY(340);
 
@@ -305,6 +319,8 @@ public class ScreenCLient {
 
 
                     Button saisie = new Button("Saisie");
+                    saisie.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+
                     saisie.setLayoutX(330);
                     saisie.setLayoutY(400);
                     n.getChildren().addAll(nvmdp,nvmail,nvxmailTF,mdpTF,saisie);
@@ -337,11 +353,17 @@ public class ScreenCLient {
                 else
                 {
                     Text erreur = new Text("pas de personne ce ce nom la ici");
+                    erreur.setFont(new Font("Arial", 26));
+                    erreur.setStyle("-fx-fill: white;");
                     erreur.setLayoutX(90);
                     erreur.setLayoutY(150);
                     n.getChildren().add(erreur);
                 }
                 Scene ssc = new Scene(n,520,520);
+                ssc.getRoot().setStyle("-fx-background-color: #4B5320; "
+                        + "-fx-background-radius: 5px; "
+                        + "-fx-background-insets: 0px; "
+                        + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
                 stage.setScene(ssc);
                 stage.show();
 
@@ -352,7 +374,10 @@ public class ScreenCLient {
         pannne.getChildren().addAll(txt,validation,txt4,mailTF);
 
         Scene sceene = new Scene(pannne, 320, 540);
-
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
         settle.setScene(sceene);
         settle.setX(0);
         settle.setY(0);
@@ -365,8 +390,12 @@ public class ScreenCLient {
             Stage stage = new Stage();
 
                 Text txt1 = new Text("Supression du client : ");
+                txt1.setFont(new Font("Arial", 26));
+                txt1.setStyle("-fx-fill: white;");
                 ImpleClientDAO clientDAO = new ImpleClientDAO();
                 Text txt4 = new Text("Saisir l'id de ce client:");
+                txt4.setFont(new Font("Arial", 26));
+                txt4.setStyle("-fx-fill: white;");
                 txt4.setLayoutX(90);
                 txt4.setLayoutY(290);
 
@@ -375,6 +404,7 @@ public class ScreenCLient {
                 idTF.setLayoutY(300);
 
                 Button validation = new Button("Validation");
+                validation.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
                 validation.setLayoutX(90);
                 validation.setLayoutY(400);
 
@@ -411,6 +441,10 @@ public class ScreenCLient {
                 });
 
          Scene scene = new Scene(pane,520,520);
+        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
          stage.setScene(scene);
          stage.show();
     }
