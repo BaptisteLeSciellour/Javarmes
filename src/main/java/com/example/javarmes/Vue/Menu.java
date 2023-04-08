@@ -37,7 +37,7 @@ public class Menu {
         Button sortie = new Button("Exit");
         Button image = new Button("Image");
         Button anim  = new Button("Paiment");
-        Button pres = new Button("Présentation");
+        Button pres = new Button("Armes disponibles");
 
         Text menuu = new Text("M E N U");
         menuu.setFont(new Font("Arial", 36));
@@ -204,8 +204,13 @@ public class Menu {
             scc.defilement(i,dassaut);/// ce qui rend l'image clickable
             }
         );
-        Assaut.setLayoutX(0);
-        Assaut.setLayoutY(0);
+        Assaut.setLayoutX(100);
+        Assaut.setLayoutY(300);
+        Text ass = new Text("Arme d'Assaut");
+        ass.setFont(new Font("Arial", 36));
+        ass.setStyle("-fx-fill: white;");
+        ass.setLayoutX(100);
+        ass.setLayoutY(600);
 
         Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
         //Creating a rotated transition
@@ -221,26 +226,51 @@ public class Menu {
                 }
         );
 
-        Precision.setLayoutY(200);
-        Precision.setLayoutX(0);
+        Precision.setLayoutY(300);
+        Precision.setLayoutX(400);
+        Text pre = new Text("Arme de Precision");
+        pre.setFont(new Font("Arial", 36));
+        pre.setStyle("-fx-fill: white;");
+        pre.setLayoutX(400);
+        pre.setLayoutY(600);
+
+
+        Text typee = new Text("TYPES D'ARMES DISPONIBLES");
+        typee.setFont(new Font("Arial", 26));
+        typee.setStyle("-fx-fill: white;");
+        typee.setLayoutX(600);
+        typee.setLayoutY(200);
 
         Image chasse = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chasse.jpg")));
         //Creating a rotated transition
         ImageView Chasse = new ImageView(chasse);
-
-        Chasse.setLayoutX(200);
-        Chasse.setLayoutY(0);
+        Chasse.setLayoutX(800);
+        Chasse.setLayoutY(300);
+        Text cha = new Text("Arme de Chasse");
+        cha.setFont(new Font("Arial", 36));
+        cha.setStyle("-fx-fill: white;");
+        cha.setLayoutX(800);
+        cha.setLayoutY(600);
 
         Image poing = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing.png")));
         //Creating a rotated transition
         ImageView Poing = new ImageView(poing);
+        Poing.setLayoutX(1100);
+        Poing.setLayoutY(300);
+        Text po = new Text("Arme de Poing");
+        po.setFont(new Font("Arial", 36));
+        po.setStyle("-fx-fill: white;");
+        po.setLayoutX(1100);
+        po.setLayoutY(600);
 
-        Poing.setLayoutX(200);
-        Poing.setLayoutY(200);
 
-        pane.getChildren().addAll(Assaut,Chasse,Poing,Precision);
+        pane.getChildren().addAll(Assaut,Chasse,Poing,Precision,typee,ass,pre,po,cha);
 
         Scene scene = new Scene(pane, 520, 540);
+        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
