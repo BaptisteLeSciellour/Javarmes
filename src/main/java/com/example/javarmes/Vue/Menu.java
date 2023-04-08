@@ -129,26 +129,38 @@ public class Menu {
         ArrayList<Client>vecclient = new ArrayList<Client>();
         vecclient.add(clt);
 
-        Button client = new Button("client");
-        Button employe = new Button("Employe");
-        client.setLayoutX(60);
-        client.setLayoutY(300);
+
+        Text typee = new Text("TYPE D'UTILISATEUR");
+        typee.setFont(new Font("Arial", 26));
+        typee.setStyle("-fx-fill: white;");
+        typee.setLayoutX(20);
+        typee.setLayoutY(50);
+
+        Button client = new Button("CLIENT");
+        client.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        Button employe = new Button("EMPLOYE");
+        employe.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        client.setLayoutX(100);
+        client.setLayoutY(150);
         client.setOnAction(actionEvent -> {
             ScreenCLient scc = new ScreenCLient();
             Text txxt = new Text();
             scc.InscriptionClient(txxt,vecclient);
             settle.close();
         });
-        employe.setLayoutX(150);
+        employe.setLayoutX(100);
         employe.setLayoutY(300);
         employe.setOnAction(actionEvent -> {
             ScreenEmploye sce = new ScreenEmploye();
             sce.MenuEmploye(vecemployes);
             settle.close();
         });
-        panne.getChildren().addAll(client,employe);
+        panne.getChildren().addAll(client,employe,typee);
         Scene sceene = new Scene(panne,320,540);
-
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
         settle.setScene(sceene);
         settle.setX(0);
         settle.setY(0);
