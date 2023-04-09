@@ -150,9 +150,10 @@ public class ImpleClientDAO implements ClientDAO {
         Client connexionClient = null;
         try{
             con = DAOFactory.getConnection();
-            String requete = "SELECT * FROM clients WHERE mail = ?;" ;
+            String requete = "SELECT * FROM clients WHERE id = ? AND mail = ?" ;
             pstmnt = con.prepareStatement(requete);
-            pstmnt.setString(1,mail);
+            pstmnt.setInt(1,ID);
+            pstmnt.setString(2,mail);
             rsl = pstmnt.executeQuery();
             if(rsl.next()){
                 String mdpSaisi = rsl.getString("mdp");
@@ -162,9 +163,8 @@ public class ImpleClientDAO implements ClientDAO {
                 }else{
                     System.out.println("Mot de passe saisi incorrect");
                 }
-            } else{
-                System.out.println("Mail saisi incorrect");
-
+            }else{
+                System.out.println("Données saisies incorrectes");
             }
         }catch(SQLException e){
             System.out.println("Erreur lors de l'authentification");
