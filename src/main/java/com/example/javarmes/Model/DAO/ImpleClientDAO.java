@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImpleClientDAO implements ClientDAO {
+
+    /** Méthode qui permet à un client de s'inscrire**/
     @Override
     public void Ajouter(Client client) throws SQLException{
         Connection con = null;
@@ -32,6 +34,8 @@ public class ImpleClientDAO implements ClientDAO {
         }
 
     }
+    /** Méthode qui permet à un client de mettre à jour ses informations de connexion**/
+
     @Override
     public void MettreAJour(Client client) throws SQLException{
         Connection con = null;
@@ -55,6 +59,8 @@ public class ImpleClientDAO implements ClientDAO {
             }
         }
     }
+    /** Méthode qui permet à un client de supprimer son compte**/
+
     @Override
     public void Supprimer(int id) throws SQLException{
         Connection con = null;
@@ -136,4 +142,41 @@ public class ImpleClientDAO implements ClientDAO {
         return verification;
 
     }
+    /** Méthode qui permet au client de se connecter **/
+    public Client connexionClient(int ID, String mail, String mdp) throws SQLException{
+        Connection con = null;
+        PreparedStatement pstmnt = null ;
+        ResultSet rsl = null;
+        Client connexionClient = null;
+        try{
+            con = DAOFactory.getConnection();
+            String requete = "SELECT * FROM clients WHERE mail = ?;" ;
+            pstmnt = con.prepareStatement(requete);
+            pstmnt.setString(1,mail);
+            rsl = pstmnt.executeQuery();
+            if(rsl.next()){
+                String mdpSaisi = rsl.getString("mdp");
+                if(mdpSaisi.equals(mdp)){
+                    connexionClient = new Client(rsl.getInt("id"), rsl.getString("mail"), rsl.getString("mdp"));
+                    System.out.println("Client identifié");
+                }else{
+                    System.out.println("Mot de passe saisi incorrect");
+                }
+            } else{
+                System.out.println("Mail saisi incorrect");
+
+            }
+        }catch(SQLException e){
+            System.out.println("Erreur lors de l'authentification");
+            System.out.println(e);
+        } finally {
+            if((pstmnt!=null)||(con!=null)||(rsl!=null)){
+                pstmnt.close();
+                con.close();
+                rsl.close();
+            }
+        }
+        return connexionClient;
+    }
+
 }

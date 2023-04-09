@@ -11,4 +11,6 @@ public interface ClientDAO {
      Client ChoisirClient (int id) throws SQLException;
      boolean BlindageParRecherche (String mailSaisi) throws SQLException;
 
+     Client connexionClient(int ID, String mail, String mdp) throws SQLException;
+
 }
