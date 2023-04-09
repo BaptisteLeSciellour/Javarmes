@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Addition des commandes pour les clients">
+    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Articles/Armes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Articles/Armes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenEmploye.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenEmploye.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680961975780</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons.">
+      <created>1681037503272</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1681037503272</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -222,22 +228,7 @@
     <MESSAGE value="Suppresion client et employé" />
     <MESSAGE value="ajout de la classe screen article qui finalement nous permettras de tout faire avec les articles" />
     <MESSAGE value="Addition des commandes pour les clients" />
-    <option name="LAST_COMMIT_MESSAGE" value="Addition des commandes pour les clients" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
-          <line>378</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
-          <line>372</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons." />
   </component>
 </project>

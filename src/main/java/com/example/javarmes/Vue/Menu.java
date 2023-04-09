@@ -41,8 +41,9 @@ public class Menu {
         Button sortie = new Button("Exit");
        /** Button image = new Button("Image");
         Button anim  = new Button("Paiment");
-        Button pres = new Button("Armes disponibles");
-**/
+        **/
+        Button pres = new Button("Parcourir le site");
+
         Hyperlink hpy = new Hyperlink("Nouveau ?");
         hpy.setFont(new Font("Arial", 12));
         hpy.setStyle("-fx-fill: white;");
@@ -62,9 +63,10 @@ public class Menu {
         nomarque.setLayoutY(200);
         connection.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         sortie.setLayoutX(1500);
-        /**
+
         pres.setLayoutX(700);
         pres.setLayoutY(400);
+         /**
         anim.setLayoutX(700);
         anim.setLayoutY(300);
 
@@ -72,8 +74,8 @@ public class Menu {
         image.setLayoutY(500);
         image.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         anim.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+            **/
         pres.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-        **/
         Image armenu = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/armemenu.png")));
         //Creating a rotated transition
         ImageView Armenu = new ImageView(armenu);
@@ -93,9 +95,9 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection,sortie,/**,image,anim,pres,**/menuu,Armenu,Armenu2,nomarque,hpy);
+        ppane.getChildren().addAll(connection,sortie,/**,image,anim,**/pres,menuu,Armenu,Armenu2,nomarque,hpy);
         connection.setOnAction(event->{
-            connection();
+            Image();
         });
 
         sortie.setOnAction(actionEvent -> {
@@ -115,10 +117,10 @@ public class Menu {
         image.setOnAction(ActionEvent->{
             Image();
         });
+         **/
         pres.setOnAction(actionEvent -> {
             menupresentation();
         });
-        **/
         stage.setTitle("Page d'acceuil");
 
         /** ne pas toucher à cela*/
@@ -218,7 +220,7 @@ public class Menu {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            scc.defilement(i);/// ce qui rend l'image clickable
+            scc.defilement(i,dassaut);
             }
         );
         Assaut.setLayoutX(100);
@@ -233,14 +235,17 @@ public class Menu {
         //Creating a rotated transition
         ImageView Precision = new ImageView(precison);
         Precision.setOnMouseClicked(mouseEvent -> {
-                    ScreenArticle scc = new ScreenArticle();
-                    ImageView imgv = new ImageView();
-                    imgv=scc.ImageChosse();
-                    imgv.setLayoutX(500);
-                    imgv.setLayoutY(100);
-                    pane.getChildren().add(imgv);
-
-                }
+            ScreenArticle scc = new ScreenArticle();
+            AtomicInteger i = new AtomicInteger();
+            ArrayList<Armes> precisionn = new ArrayList<Armes>();
+            try {
+                ImpleArmesDAO ae = new ImpleArmesDAO();
+                precisionn= (ArrayList<Armes>) ae.RechercherArmes("precision"," ");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            scc.defilement(i,precisionn);
+            }
         );
 
         Precision.setLayoutY(300);
@@ -261,6 +266,19 @@ public class Menu {
         Image chasse = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chasse.jpg")));
         //Creating a rotated transition
         ImageView Chasse = new ImageView(chasse);
+        Chasse.setOnMouseClicked(mouseEvent -> {
+                    ScreenArticle scc = new ScreenArticle();
+                    AtomicInteger i = new AtomicInteger();
+                    ArrayList<Armes> chasses = new ArrayList<Armes>();
+                    try {
+                        ImpleArmesDAO ae = new ImpleArmesDAO();
+                        chasses= (ArrayList<Armes>) ae.RechercherArmes("chasse"," ");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    scc.defilement(i,chasses);
+                }
+        );
         Chasse.setLayoutX(800);
         Chasse.setLayoutY(300);
         Text cha = new Text("Arme de Chasse");
@@ -272,6 +290,19 @@ public class Menu {
         Image poing = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing.png")));
         //Creating a rotated transition
         ImageView Poing = new ImageView(poing);
+        Poing.setOnMouseClicked(mouseEvent -> {
+                    ScreenArticle scc = new ScreenArticle();
+                    AtomicInteger i = new AtomicInteger();
+                    ArrayList<Armes> poingg = new ArrayList<Armes>();
+                    try {
+                        ImpleArmesDAO ae = new ImpleArmesDAO();
+                        poingg= (ArrayList<Armes>) ae.RechercherArmes("poing"," ");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    scc.defilement(i,poingg);
+                }
+        );
         Poing.setLayoutX(1100);
         Poing.setLayoutY(300);
         Text po = new Text("Arme de Poing");
@@ -361,7 +392,7 @@ public class Menu {
 
     }
 
-    public void triId(int id) throws SQLException {
+ /**   public void triId(int id) throws SQLException {
         ArrayList<Employes> emp;
         ArrayList<Client>cli;
         ImpleEmployeDAO empp = new ImpleEmployeDAO();
@@ -370,7 +401,7 @@ public class Menu {
         for (Employes emppp : emp) {
 
             if (Objects.equals(id, emppp.getId())) {
-                Image(); /** à bien sur changer**/
+                Image();
             }
         }
         for (Client clii : cli) {
@@ -378,15 +409,15 @@ public class Menu {
             if (Objects.equals(id, clii.getId())) {
                 Paiment pm = new Paiment();
                 Stage stage = new Stage();
-                pm.anim(stage); /** bien sur à changer**/
+                pm.anim(stage);
             }
         }
         ScreenArticle scc= new ScreenArticle();
         AtomicInteger i = new AtomicInteger();
         scc.defilement(i);
-    }
+    }**/
 
-    public void connection(){
+  /**  public void connection(){
         Pane pannne = new Pane();
         Stage settle = new Stage();
 
@@ -423,7 +454,7 @@ public class Menu {
         settle.setX(0);
         settle.setY(0);
         settle.show();
-    }
+    }**/
 }
 
 
