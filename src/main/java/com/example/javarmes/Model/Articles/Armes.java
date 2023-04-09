@@ -2,8 +2,19 @@ package com.example.javarmes.Model.Articles;
 
 public class Armes extends Article {
 
-    public Armes(String identification, String categorie, String nom, double prix_unique, int quantite, double calibre, boolean reduction) {
+    protected String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Armes(String identification,String type, String categorie, String nom, double prix_unique, int quantite, double calibre, boolean reduction) {
         super(identification, categorie, nom, prix_unique, quantite, calibre,reduction);
+        this.type = type;
     }
     public Armes(){}
 
