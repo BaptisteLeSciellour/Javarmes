@@ -3,11 +3,14 @@ package com.example.javarmes.Vue;
 
 import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.DAO.ImpleArmesDAO;
+import com.example.javarmes.Model.DAO.ImpleClientDAO;
+import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +24,7 @@ import java.io.File;
 import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -29,15 +33,21 @@ public class Menu {
 
     public void lancement()
     {
-        Button inscription = new Button("Espace Personnel");
+        Button connection = new Button("Connexion");
         Stage stage = new Stage();
 
-        inscription.setLayoutX(700);
-        inscription.setLayoutY(600);
+        connection.setLayoutX(700);
+        connection.setLayoutY(600);
         Button sortie = new Button("Exit");
-        Button image = new Button("Image");
+       /** Button image = new Button("Image");
         Button anim  = new Button("Paiment");
         Button pres = new Button("Armes disponibles");
+**/
+        Hyperlink hpy = new Hyperlink("Nouveau ?");
+        hpy.setFont(new Font("Arial", 12));
+        hpy.setStyle("-fx-fill: white;");
+        hpy.setLayoutX(690);
+        hpy.setLayoutY(700);
 
         Text menuu = new Text("M E N U");
         menuu.setFont(new Font("Arial", 36));
@@ -50,19 +60,20 @@ public class Menu {
         nomarque.setStyle("-fx-fill: white;");
         nomarque.setLayoutX(650);
         nomarque.setLayoutY(200);
-
+        connection.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        sortie.setLayoutX(1500);
+        /**
         pres.setLayoutX(700);
         pres.setLayoutY(400);
         anim.setLayoutX(700);
         anim.setLayoutY(300);
-        sortie.setLayoutX(1500);
+
         image.setLayoutX(700);
         image.setLayoutY(500);
-        inscription.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         image.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         anim.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         pres.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-
+        **/
         Image armenu = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/armemenu.png")));
         //Creating a rotated transition
         ImageView Armenu = new ImageView(armenu);
@@ -82,26 +93,32 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(inscription,sortie,image,anim,pres,menuu,Armenu,Armenu2,nomarque);
-        inscription.setOnAction(event->{
-            menuInscription();
-        });
-
-        anim.setOnAction(actionEvent -> {
-
-            coordonees();
+        ppane.getChildren().addAll(connection,sortie,/**,image,anim,pres,**/menuu,Armenu,Armenu2,nomarque,hpy);
+        connection.setOnAction(event->{
+            connection();
         });
 
         sortie.setOnAction(actionEvent -> {
             Platform.exit();
         });
+
+        hpy.setOnAction(actionEvent -> {
+            menuinscription();
+        });
+        /**
+        anim.setOnAction(actionEvent -> {
+
+            coordonees();
+        });
+
+
         image.setOnAction(ActionEvent->{
             Image();
         });
         pres.setOnAction(actionEvent -> {
             menupresentation();
         });
-
+        **/
         stage.setTitle("Page d'acceuil");
 
         /** ne pas toucher à cela*/
@@ -115,7 +132,7 @@ public class Menu {
         stage.show();
     }
 
-    public void menuInscription()
+    public void menuinscription() /** va être utilsé pour l'inscription des nouvelles personnes**/
     {
         Pane panne = new Pane();
         Stage settle = new Stage();
@@ -145,14 +162,14 @@ public class Menu {
         client.setOnAction(actionEvent -> {
             ScreenCLient scc = new ScreenCLient();
             Text txxt = new Text();
-            scc.InscriptionClient(txxt,vecclient);
+            scc.creationClient(vecclient,txxt);
             settle.close();
         });
         employe.setLayoutX(100);
         employe.setLayoutY(300);
         employe.setOnAction(actionEvent -> {
             ScreenEmploye sce = new ScreenEmploye();
-            sce.MenuEmploye(vecemployes);
+            sce.InscriptionEmploye(vecemployes);
             settle.close();
         });
         panne.getChildren().addAll(client,employe,typee);
@@ -201,7 +218,7 @@ public class Menu {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            scc.defilement(i,dassaut);/// ce qui rend l'image clickable
+            scc.defilement(i);/// ce qui rend l'image clickable
             }
         );
         Assaut.setLayoutX(100);
@@ -342,4 +359,71 @@ public class Menu {
             // changer de page ici on envoit à l'animation puis succès du paiement
         });
 
-    }}
+    }
+
+    public void triId(int id) throws SQLException {
+        ArrayList<Employes> emp;
+        ArrayList<Client>cli;
+        ImpleEmployeDAO empp = new ImpleEmployeDAO();
+        emp = (ArrayList<Employes>)empp.ChoisirEmploye();
+        cli = (ArrayList<Client>) empp.ChoisirClient();
+        for (Employes emppp : emp) {
+
+            if (Objects.equals(id, emppp.getId())) {
+                Image(); /** à bien sur changer**/
+            }
+        }
+        for (Client clii : cli) {
+
+            if (Objects.equals(id, clii.getId())) {
+                Paiment pm = new Paiment();
+                Stage stage = new Stage();
+                pm.anim(stage); /** bien sur à changer**/
+            }
+        }
+        ScreenArticle scc= new ScreenArticle();
+        AtomicInteger i = new AtomicInteger();
+        scc.defilement(i);
+    }
+
+    public void connection(){
+        Pane pannne = new Pane();
+        Stage settle = new Stage();
+
+        Text txt = new Text("Connection");
+        txt.setLayoutX(90);
+        txt.setLayoutY(150);
+
+        Text txt4 = new Text("Saisir l'id:");
+        txt4.setLayoutX(90);
+        txt4.setLayoutY(290);
+
+        TextField idTF = new TextField();
+        idTF.setLayoutX(90);
+        idTF.setLayoutY(300);
+
+        Button validation = new Button("Validation");
+        validation.setLayoutX(90);
+        validation.setLayoutY(400);
+
+        validation.setOnAction(actionEvent -> {
+           int id = Integer.valueOf(idTF.getText());
+            try {
+                triId(id);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        pannne.getChildren().addAll(txt,validation,txt4,idTF);
+
+        Scene sceene = new Scene(pannne, 320, 540);
+
+        settle.setScene(sceene);
+        settle.setX(0);
+        settle.setY(0);
+        settle.show();
+    }
+}
+
+

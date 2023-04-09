@@ -72,9 +72,7 @@ public class ScreenEmploye {
 
                 if (id == emp.getId()) {
                     System.out.println("L'identifiant est deja pris par un autre employee");
-
                     pass2=false;
-
                 }
                 break;
             }

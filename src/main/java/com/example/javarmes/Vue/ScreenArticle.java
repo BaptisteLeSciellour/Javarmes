@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ScreenArticle {
-    public void defilement(AtomicInteger i, ArrayList<Armes>armes){
+    public void defilement(AtomicInteger i){
         Pane pane = new Pane();
         Stage stage = new Stage();
 
@@ -35,13 +35,13 @@ public class ScreenArticle {
         btn.setOnAction(actionEvent -> {
             i.getAndIncrement();
             txt.setText("hehe"+i);
-            defilement(i,armes);
+            defilement(i);
             stage.close();
         });
         btn2.setOnAction(actionEvent -> {
             i.getAndDecrement();
             txt.setText("hehe"+i);
-            defilement(i,armes);
+            defilement(i);
             stage.close();
         });
         pane.getChildren().addAll(btn,btn2,txt);

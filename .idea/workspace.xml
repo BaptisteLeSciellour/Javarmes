@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="ajout de la classe screen article qui finalement nous permettras de tout faire avec les articles">
+    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Addition des commandes pour les clients">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Articles/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Articles/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Articles/Armes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Articles/Armes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenEmploye.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenEmploye.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680945033868</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Addition des commandes pour les clients">
+      <created>1680961975780</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1680961975780</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -214,6 +221,23 @@
     <MESSAGE value="Remise à niveau des employés par rapport aux clients. &#10;MAJEnmploye + menuEmploye + méthode de la classe avec javaFX" />
     <MESSAGE value="Suppresion client et employé" />
     <MESSAGE value="ajout de la classe screen article qui finalement nous permettras de tout faire avec les articles" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout de la classe screen article qui finalement nous permettras de tout faire avec les articles" />
+    <MESSAGE value="Addition des commandes pour les clients" />
+    <option name="LAST_COMMIT_MESSAGE" value="Addition des commandes pour les clients" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
+          <line>378</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
+          <line>372</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
