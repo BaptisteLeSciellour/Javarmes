@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons.">
+    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="CHnagement encore un peux de cap, ajout de la possibilité de voir le site sans être connecté, installation de la posisibilté de parcourir les armes d'une certaine catégorie quand on clique sur la bonne image">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Articles/Armes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Articles/Armes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ArmesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ArmesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleArmesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleArmesDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenCLient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenCLient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +27,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="85d77124-07ba-4fb7-88a8-5c47cd5347d3" />
+        <option name="url" value="https://github.com/BaptisteLeSciellour/Javarmes.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -207,8 +223,26 @@
       <option name="project" value="LOCAL" />
       <updated>1681037503272</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="CHnagement encore un peux de cap, ajout de la possibilité de voir le site sans être connecté, installation de la posisibilté de parcourir les armes d'une certaine catégorie quand on clique sur la bonne image">
+      <created>1681063962885</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1681063962885</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -229,6 +263,7 @@
     <MESSAGE value="ajout de la classe screen article qui finalement nous permettras de tout faire avec les articles" />
     <MESSAGE value="Addition des commandes pour les clients" />
     <MESSAGE value="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons." />
+    <MESSAGE value="CHnagement encore un peux de cap, ajout de la possibilité de voir le site sans être connecté, installation de la posisibilté de parcourir les armes d'une certaine catégorie quand on clique sur la bonne image" />
+    <option name="LAST_COMMIT_MESSAGE" value="CHnagement encore un peux de cap, ajout de la possibilité de voir le site sans être connecté, installation de la posisibilté de parcourir les armes d'une certaine catégorie quand on clique sur la bonne image" />
   </component>
 </project>

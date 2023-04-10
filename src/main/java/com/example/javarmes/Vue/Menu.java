@@ -2,6 +2,7 @@ package com.example.javarmes.Vue;
 
 
 import com.example.javarmes.Model.Articles.Armes;
+import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.DAO.ImpleArmesDAO;
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
@@ -29,7 +30,6 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Menu {
-
 
     public void lancement()
     {
@@ -118,6 +118,7 @@ public class Menu {
             Image();
         });
          **/
+
         pres.setOnAction(actionEvent -> {
             menupresentation();
         });
@@ -206,17 +207,17 @@ public class Menu {
     {
         Pane pane = new Pane();
         Stage stage = new Stage();
-
+        Button connection = new Button("Connection");
         Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
         //Creating a rotated transition
         ImageView Assaut = new ImageView(assaut);
         Assaut.setOnMouseClicked(mouseEvent -> {
                     ScreenArticle scc = new ScreenArticle();
                     AtomicInteger i = new AtomicInteger();
-                    ArrayList<Armes> dassaut = new ArrayList<Armes>();
+                    ArrayList<Article> dassaut;
             try {
                 ImpleArmesDAO ae = new ImpleArmesDAO();
-                dassaut= (ArrayList<Armes>) ae.RechercherArmes("Assaut"," ");
+                dassaut= (ArrayList<Article>) ae.RechercherArmes("Assaut"," ");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -231,22 +232,178 @@ public class Menu {
         ass.setLayoutX(100);
         ass.setLayoutY(600);
 
+        connection.setOnAction(actionEvent -> {
+            try {
+                connectionClient(stage);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+
         Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
         //Creating a rotated transition
         ImageView Precision = new ImageView(precison);
         Assaut.setOnMouseClicked(mouseEvent -> {
             ScreenArticle scc = new ScreenArticle();
             AtomicInteger i = new AtomicInteger();
-            ArrayList<Armes> precisionn = new ArrayList<Armes>();
+            ArrayList<Article> precisionn;
             try {
                 ImpleArmesDAO ae = new ImpleArmesDAO();
-                precisionn= (ArrayList<Armes>) ae.RechercherArmes("precision"," ");
+                precisionn= (ArrayList<Article>) ae.RechercherArmes("precision"," ");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
             scc.defilement(i,precisionn);
+            }
+        );
+
+        Precision.setLayoutY(300);
+        Precision.setLayoutX(400);
+        Text pre = new Text("Arme de Precision");
+        pre.setFont(new Font("Arial", 36));
+        pre.setStyle("-fx-fill: white;");
+        pre.setLayoutX(400);
+        pre.setLayoutY(600);
 
 
+        Text typee = new Text("TYPES D'ARMES DISPONIBLES");
+        typee.setFont(new Font("Arial", 26));
+        typee.setStyle("-fx-fill: white;");
+        typee.setLayoutX(600);
+        typee.setLayoutY(200);
+
+        Image chasse = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chasse.jpg")));
+        //Creating a rotated transition
+        ImageView Chasse = new ImageView(chasse);
+        Chasse.setOnMouseClicked(mouseEvent -> {
+                    ScreenArticle scc = new ScreenArticle();
+                    AtomicInteger i = new AtomicInteger();
+                    ArrayList<Article> chasses ;
+                    try {
+                        ImpleArmesDAO ae = new ImpleArmesDAO();
+                        chasses= (ArrayList<Article>) ae.RechercherArmes("chasse"," ");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    scc.defilement(i,chasses);
+                }
+        );
+        /**
+        ///AFFICHAGE ARME DE CHASSE avec notations (faudra intégrer ca à la fonction setOn)
+        //fusil
+        Image fusil = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/fusil.jpg")));
+        ImageView Fusil = new ImageView(fusil);
+        Fusil.setLayoutX(200);
+        Fusil.setLayoutY(300);
+        //arbalete
+        Image arba = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/arba.jpg")));
+        ImageView Arba = new ImageView(arba);
+        Arba.setLayoutX(400);
+        Arba.setLayoutY(300);
+        //harpon
+        Image harpon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/harpon.jpg")));
+        ImageView Harpon = new ImageView(harpon);
+        Harpon.setLayoutX(600);
+        Harpon.setLayoutY(300);
+        //carabine
+        Image cara = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/carab.jpg")));
+        ImageView Carab = new ImageView(cara);
+        Carab.setLayoutX(800);
+        Carab.setLayoutY(300);
+        **/
+        Chasse.setLayoutX(800);
+        Chasse.setLayoutY(300);
+        Text cha = new Text("Arme de Chasse");
+        cha.setFont(new Font("Arial", 36));
+        cha.setStyle("-fx-fill: white;");
+        cha.setLayoutX(800);
+        cha.setLayoutY(600);
+
+        Image poing = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing.png")));
+        //Creating a rotated transition
+        ImageView Poing = new ImageView(poing);
+        Poing.setOnMouseClicked(mouseEvent -> {
+                    ScreenArticle scc = new ScreenArticle();
+                    AtomicInteger i = new AtomicInteger();
+                    ArrayList<Article> poingg ;
+                    try {
+                        ImpleArmesDAO ae = new ImpleArmesDAO();
+                        poingg= (ArrayList<Article>) ae.RechercherArmes("poing"," ");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    scc.defilement(i,poingg);
+                }
+        );
+        Poing.setLayoutX(1100);
+        Poing.setLayoutY(300);
+        Text po = new Text("Arme de Poing");
+        po.setFont(new Font("Arial", 36));
+        po.setStyle("-fx-fill: white;");
+        po.setLayoutX(1100);
+        po.setLayoutY(600);
+
+
+        pane.getChildren().addAll(Assaut,Chasse,Poing,Precision,typee,ass,pre,po,cha,connection);
+
+        Scene scene = new Scene(pane, 520, 540);
+        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+    public void menupresentationC(Client C) {
+        Pane pane = new Pane();
+        Stage stage = new Stage();
+        Button detail = new Button("Detail");
+        Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
+        //Creating a rotated transition
+        ImageView Assaut = new ImageView(assaut);
+        Assaut.setOnMouseClicked(mouseEvent -> {
+                    ScreenArticle scc = new ScreenArticle();
+                    AtomicInteger i = new AtomicInteger();
+                    ArrayList<Article> dassaut;
+                    try {
+                        ImpleArmesDAO ae = new ImpleArmesDAO();
+                        dassaut = (ArrayList<Article>) ae.RechercherArmes("Assaut", " ");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    scc.defilementC(i, dassaut,C);
+                }
+        );
+        Assaut.setLayoutX(100);
+        Assaut.setLayoutY(300);
+        Text ass = new Text("Arme d'Assaut");
+        ass.setFont(new Font("Arial", 36));
+        ass.setStyle("-fx-fill: white;");
+        ass.setLayoutX(100);
+        ass.setLayoutY(600);
+
+        detail.setOnAction(actionEvent -> {
+            ScreenCLient sc = new ScreenCLient();
+            sc.DetailClient(C); /// il faudrait changer cela pour plutot voir toutes les informations du client
+        });
+
+
+        Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
+        //Creating a rotated transition
+        ImageView Precision = new ImageView(precison);
+        Assaut.setOnMouseClicked(mouseEvent -> {
+                    ScreenArticle scc = new ScreenArticle();
+                    AtomicInteger i = new AtomicInteger();
+                    ArrayList<Article> precisionn;
+                    try {
+                        ImpleArmesDAO ae = new ImpleArmesDAO();
+                        precisionn = (ArrayList<Article>) ae.RechercherArmes("precision", " ");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    scc.defilementC(i, precisionn,C);
                 }
         );
 
@@ -271,90 +428,16 @@ public class Menu {
         Chasse.setOnMouseClicked(mouseEvent -> {
                     ScreenArticle scc = new ScreenArticle();
                     AtomicInteger i = new AtomicInteger();
-                    ArrayList<Armes> chasses = new ArrayList<Armes>();
+                    ArrayList<Article> chasses;
                     try {
                         ImpleArmesDAO ae = new ImpleArmesDAO();
-                        chasses= (ArrayList<Armes>) ae.RechercherArmes("chasse"," ");
+                        chasses = (ArrayList<Article>) ae.RechercherArmes("chasse", " ");
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    scc.defilement(i,chasses);
+                    scc.defilementC(i, chasses,C);
                 }
         );
-
-        ///AFFICHAGE ARME DE CHASSE avec notations (faudra intégrer ca à la fonction setOn)
-        //fusil
-        Image fusil = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/fusil.jpg")));
-        ImageView Fusil = new ImageView(fusil);
-        Fusil.setLayoutX(200);
-        Fusil.setLayoutY(300);
-        //arbalete
-        Image arba = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/arba.jpg")));
-        ImageView Arba = new ImageView(arba);
-        Arba.setLayoutX(400);
-        Arba.setLayoutY(300);
-        //harpon
-        Image harpon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/harpon.jpg")));
-        ImageView Harpon = new ImageView(harpon);
-        Harpon.setLayoutX(600);
-        Harpon.setLayoutY(300);
-        //carabine
-        Image cara = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/carab.jpg")));
-        ImageView Carab = new ImageView(cara);
-        Carab.setLayoutX(800);
-        Carab.setLayoutY(300);
-
-
-
-
-
-
-
-
-
-        Chasse.setLayoutX(800);
-        Chasse.setLayoutY(300);
-        Text cha = new Text("Arme de Chasse");
-        cha.setFont(new Font("Arial", 36));
-        cha.setStyle("-fx-fill: white;");
-        cha.setLayoutX(800);
-        cha.setLayoutY(600);
-
-        Image poing = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing.png")));
-        //Creating a rotated transition
-        ImageView Poing = new ImageView(poing);
-        Poing.setOnMouseClicked(mouseEvent -> {
-                    ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger();
-                    ArrayList<Armes> poingg = new ArrayList<Armes>();
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        poingg= (ArrayList<Armes>) ae.RechercherArmes("poing"," ");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    scc.defilement(i,poingg);
-                }
-        );
-        Poing.setLayoutX(1100);
-        Poing.setLayoutY(300);
-        Text po = new Text("Arme de Poing");
-        po.setFont(new Font("Arial", 36));
-        po.setStyle("-fx-fill: white;");
-        po.setLayoutX(1100);
-        po.setLayoutY(600);
-
-
-        pane.getChildren().addAll(Assaut,Chasse,Poing,Precision,typee,ass,pre,po,cha);
-
-        Scene scene = new Scene(pane, 520, 540);
-        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
-                + "-fx-background-radius: 5px; "
-                + "-fx-background-insets: 0px; "
-                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
     }
 
     public void coordonees() {  //sous programme permettannt de remplir les coordonnes bancaires
@@ -423,6 +506,53 @@ public class Menu {
             // changer de page ici on envoit à l'animation puis succès du paiement
         });
 
+    }
+
+    public void connectionClient(Stage stage) throws SQLException {
+        Pane pannne = new Pane();
+        Stage settle = new Stage();
+        ArrayList<Client> client;
+        ImpleEmployeDAO impC = new ImpleEmployeDAO();
+        client = (ArrayList<Client>) impC.ChoisirClient();
+        Text txt = new Text("Connection");
+        txt.setLayoutX(90);
+        txt.setLayoutY(150);
+
+        Text txt4 = new Text("Saisir le mail:");
+        txt4.setLayoutX(90);
+        txt4.setLayoutY(290);
+
+        TextField idTF = new TextField();
+        idTF.setLayoutX(90);
+        idTF.setLayoutY(300);
+
+        Button validation = new Button("Validation");
+        validation.setLayoutX(90);
+        validation.setLayoutY(400);
+
+        validation.setOnAction(actionEvent -> {
+            String mail = idTF.getText();
+            for(Client cli : client){
+                if(Objects.equals(mail,cli.getMail()))
+                {
+                    menupresentationC(cli);
+                    stage.close(); /// ici si les mails corresponde nous fermons la fen^tre d'avant
+                }
+            }
+            Text ttxxt = new Text("Cet email n'est pas renseigné dans notre base de donéees");
+            ttxxt.setLayoutX(0);
+            ttxxt.setLayoutY(100);
+            pannne.getChildren().add(ttxxt);
+        });
+
+        pannne.getChildren().addAll(txt,validation,txt4,idTF);
+
+        Scene sceene = new Scene(pannne, 320, 540);
+
+        settle.setScene(sceene);
+        settle.setX(0);
+        settle.setY(0);
+        settle.show();
     }
 
  /**   public void triId(int id) throws SQLException {

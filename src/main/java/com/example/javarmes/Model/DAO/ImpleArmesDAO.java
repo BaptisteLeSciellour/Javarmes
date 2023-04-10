@@ -1,6 +1,7 @@
 package com.example.javarmes.Model.DAO;
 
 import com.example.javarmes.Model.Articles.Armes;
+import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.Utilisateurs.Client;
 
 import java.sql.Connection;
@@ -42,11 +43,11 @@ public class ImpleArmesDAO implements ArmesDAO {
     /**
      * Méthode qui recherche dans la table Armes selon le critère saisi et la valeur voulue
      **/
-    public List<Armes> RechercherArmes(String recherche, String critere) throws SQLException {
+    public List<Article> RechercherArmes(String recherche, String critere) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
         ResultSet result = null;
-        List<Armes> ResultatRecherche = new ArrayList<>();
+        List<Article> ResultatRecherche = new ArrayList<>();
         try {
             con = DAOFactory.getConnection();
             String requete = "SELECT * FROM armes WHERE " + recherche + " = ?";
@@ -64,6 +65,7 @@ public class ImpleArmesDAO implements ArmesDAO {
             if ((pstmnt != null) || (con != null) || (result != null)) {
                 pstmnt.close();
                 con.close();
+                assert result != null;
                 result.close();
             }
         }

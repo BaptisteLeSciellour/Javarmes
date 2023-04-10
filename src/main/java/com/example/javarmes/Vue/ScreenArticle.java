@@ -1,6 +1,9 @@
 package com.example.javarmes.Vue;
 
 import com.example.javarmes.Model.Articles.Armes;
+import com.example.javarmes.Model.Articles.Article;
+import com.example.javarmes.Model.Utilisateurs.Client;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -19,10 +22,10 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ScreenArticle {
-    public void defilement(AtomicInteger i, ArrayList<Armes> armes){
+    public void defilement(AtomicInteger i, ArrayList<Article> armes){
         Pane pane = new Pane();
         Stage stage = new Stage();
-        Armes arm = new Armes();
+        Article arm;
         arm=armes.get(i.intValue());
         Text txt = new Text(" nom "+arm.getNom());
         txt.setLayoutX(90);
@@ -53,7 +56,89 @@ public class ScreenArticle {
         stage.show();
     }
 
-    public static ImageView ImageChosse(){
+    public void defilementC(AtomicInteger i, ArrayList<Article> armes, Client C){
+        Pane pane = new Pane();
+        Stage stage = new Stage();
+        Article arm;
+        Button achat = new Button("achat");
+        achat.setLayoutX(260);
+        achat.setLayoutY(260);
+        arm=armes.get(i.intValue());
+        Text txt = new Text(" nom "+arm.getNom());
+        txt.setLayoutX(90);
+        txt.setLayoutY(290);
+        Button btn = new Button("->");
+        btn.setLayoutX(240);
+        btn.setLayoutY(400);
+        Button btn2 = new Button("<-");
+        btn2.setLayoutX(140);
+        btn2.setLayoutY(400);
+        achat.setOnAction(actionEvent ->{
+            Text panier = new Text("Produit dans le panier");
+            C.addCommandes(arm);
+            pane.getChildren().add(panier);
+        });
+        btn.setOnAction(actionEvent -> {
+            i.getAndIncrement();
+            txt.setText("hehe"+i);
+            defilement(i,armes);
+            stage.close();
+        });
+        btn2.setOnAction(actionEvent -> {
+            i.getAndDecrement();
+            txt.setText("hehe"+i);
+            defilement(i,armes);
+            stage.close();
+        });
+
+        pane.getChildren().addAll(btn,btn2,txt,achat);
+        Scene scene = new Scene(pane,520,520);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void defilementP(AtomicInteger i, ArrayList<Article> armes, Client C){
+        Pane pane = new Pane();
+        Stage stage = new Stage();
+        Article arm;
+        Button retirer = new Button("retirer");
+        retirer.setLayoutX(260);
+        retirer.setLayoutY(260);
+        arm=armes.get(i.intValue());
+        Text txt = new Text(" nom "+arm.getNom());
+        txt.setLayoutX(90);
+        txt.setLayoutY(290);
+        Button btn = new Button("->");
+        btn.setLayoutX(240);
+        btn.setLayoutY(400);
+        Button btn2 = new Button("<-");
+        btn2.setLayoutX(140);
+        btn2.setLayoutY(400);
+        retirer.setOnAction(actionEvent ->{
+            Text panier = new Text("Produit dans le panier");
+            C.suppCommandes(arm);
+            pane.getChildren().add(panier);
+        });
+        btn.setOnAction(actionEvent -> {
+            i.getAndIncrement();
+            txt.setText("hehe"+i);
+            defilement(i,armes);
+            stage.close();
+        });
+        btn2.setOnAction(actionEvent -> {
+            i.getAndDecrement();
+            txt.setText("hehe"+i);
+            defilement(i,armes);
+            stage.close();
+        });
+
+        pane.getChildren().addAll(btn,btn2,txt,retirer);
+        Scene scene = new Scene(pane,520,520);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static ImageView DonationImage(){
 
         StackPane root = new StackPane();
         Stage primarystage = new Stage();

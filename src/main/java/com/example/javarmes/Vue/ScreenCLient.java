@@ -1,6 +1,8 @@
 package com.example.javarmes.Vue;
 
+import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
+import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
-
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ScreenCLient {
@@ -200,24 +202,31 @@ public class ScreenCLient {
 
     }
 
-    public void InscriptionClient(Text txxt,ArrayList<Client>vecclient) /** Nous avons un second écran qui apparait**/
+    public void affichagePanier(Client C){
+        ArrayList<Article> artt ;
+        artt = C.getCommandes();
+        ScreenArticle sc = new ScreenArticle();
+        AtomicInteger i = new AtomicInteger(0);
+        sc.defilementC(i,artt,C);
+    }
+    public void DetailClient(Client C) /** Nous avons un second écran qui apparait**/
     {
-
         Pane pannne = new Pane();
         Stage settle = new Stage();
-
-
+        Button panier = new Button("Panier");
+        panier.setLayoutX(0);
+        panier.setLayoutY(0);
         Text txt = new Text("Que voulez vous faire?");
         txt.setFont(new Font("Arial", 26));
         txt.setStyle("-fx-fill: white;");
         txt.setLayoutX(20);
         txt.setLayoutY(150);
 
-        /**creer deux boutons**/
+        /**creer deux boutons
         Button bbtn = new Button("Ajouter un client");
         bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         bbtn.setLayoutX(70);
-        bbtn.setLayoutY(200);
+        bbtn.setLayoutY(200);**/
 
         Button bbtn2 = new Button("MAJ d'un client");
         bbtn2.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
@@ -229,19 +238,31 @@ public class ScreenCLient {
         bbtn3.setLayoutX(70);
         bbtn3.setLayoutY(400);
 
+        /**
         bbtn.setOnAction(actionEvent -> {
-            creationClient(vecclient,txxt); /** ici on appelle l'écran que nous allons utiliser**/
+            creationClient(vecclient,txxt); /** ici on appelle l'écran que nous allons utiliser
             settle.close();
         });
-
+         **/
+        panier.setOnAction(actionEvent -> {
+            affichagePanier(C);
+        });
         bbtn2.setOnAction(actionEvent -> {
-            MAJClient(vecclient);
+            try {
+                MAJClient(C);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         bbtn3.setOnAction(actionEvent -> {
-            suppressionClient(vecclient);
+            try {
+                suppressionClient(C);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
-        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3);
+        pannne.getChildren().addAll(/**bbtn,**/bbtn2,txt,bbtn3);
 
         Scene sceene = new Scene(pannne, 320, 540);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -255,10 +276,12 @@ public class ScreenCLient {
         settle.show();
     }
 
-    public void MAJClient(ArrayList<Client>vecclient){
+    public void MAJClient(Client C) throws SQLException {
         Pane pannne = new Pane();
         Stage settle = new Stage();
-
+        ArrayList<Client> arr ;
+        ImpleEmployeDAO clii = new ImpleEmployeDAO();
+        arr = (ArrayList<Client>) clii.ChoisirClient();
         Text txt = new Text("MAJ client");
         txt.setFont(new Font("Arial", 26));
         txt.setStyle("-fx-fill: white;");
@@ -288,7 +311,7 @@ public class ScreenCLient {
 
             String mail = mailTF.getText();
 
-            for(Client e : vecclient)
+            for(Client e : arr)
             {
                 if(Objects.equals(e.getMail(),mail))
                 {
@@ -384,7 +407,7 @@ public class ScreenCLient {
         settle.show();
     }
 
-    public void suppressionClient(ArrayList<Client>vecclient){
+    public void suppressionClient(Client C) throws SQLException {
 
             Pane pane = new Pane();
             Stage stage = new Stage();
@@ -393,6 +416,9 @@ public class ScreenCLient {
                 txt1.setFont(new Font("Arial", 26));
                 txt1.setStyle("-fx-fill: white;");
                 ImpleClientDAO clientDAO = new ImpleClientDAO();
+                ArrayList<Client> arr ;
+                ImpleEmployeDAO clii = new ImpleEmployeDAO();
+                arr = (ArrayList<Client>) clii.ChoisirClient();
                 Text txt4 = new Text("Saisir l'id de ce client:");
                 txt4.setFont(new Font("Arial", 26));
                 txt4.setStyle("-fx-fill: white;");
@@ -417,7 +443,7 @@ public class ScreenCLient {
                         int id = Integer.valueOf(idTF.getText());
 
                         /**Verification : si id existe deja **/
-                        for (Client cli : vecclient) {
+                        for (Client cli : arr) {
 
                             if (id == cli.getId()) {
 
