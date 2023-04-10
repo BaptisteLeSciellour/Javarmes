@@ -234,7 +234,7 @@ public class Menu {
         Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
         //Creating a rotated transition
         ImageView Precision = new ImageView(precison);
-        Precision.setOnMouseClicked(mouseEvent -> {
+        Assaut.setOnMouseClicked(mouseEvent -> {
             ScreenArticle scc = new ScreenArticle();
             AtomicInteger i = new AtomicInteger();
             ArrayList<Armes> precisionn = new ArrayList<Armes>();
@@ -245,7 +245,9 @@ public class Menu {
                 throw new RuntimeException(e);
             }
             scc.defilement(i,precisionn);
-            }
+
+
+                }
         );
 
         Precision.setLayoutY(300);
@@ -279,6 +281,37 @@ public class Menu {
                     scc.defilement(i,chasses);
                 }
         );
+
+        ///AFFICHAGE ARME DE CHASSE avec notations (faudra intégrer ca à la fonction setOn)
+        //fusil
+        Image fusil = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/fusil.jpg")));
+        ImageView Fusil = new ImageView(fusil);
+        Fusil.setLayoutX(200);
+        Fusil.setLayoutY(300);
+        //arbalete
+        Image arba = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/arba.jpg")));
+        ImageView Arba = new ImageView(arba);
+        Arba.setLayoutX(400);
+        Arba.setLayoutY(300);
+        //harpon
+        Image harpon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/harpon.jpg")));
+        ImageView Harpon = new ImageView(harpon);
+        Harpon.setLayoutX(600);
+        Harpon.setLayoutY(300);
+        //carabine
+        Image cara = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/carab.jpg")));
+        ImageView Carab = new ImageView(cara);
+        Carab.setLayoutX(800);
+        Carab.setLayoutY(300);
+
+
+
+
+
+
+
+
+
         Chasse.setLayoutX(800);
         Chasse.setLayoutY(300);
         Text cha = new Text("Arme de Chasse");
