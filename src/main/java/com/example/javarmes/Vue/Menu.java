@@ -50,7 +50,13 @@ public class Menu {
         hpy.setLayoutX(690);
         hpy.setLayoutY(700);
 
-        Text menuu = new Text("M E N U");
+        Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png")));
+        //Creating a rotated transition
+        ImageView Logo = new ImageView(logo);
+        Logo.setLayoutX(570);
+        Logo.setLayoutY(100);
+
+       /* Text menuu = new Text("M E N U");
         menuu.setFont(new Font("Arial", 36));
         menuu.setStyle("-fx-fill: white;");
         menuu.setLayoutX(700);
@@ -62,7 +68,7 @@ public class Menu {
         nomarque.setLayoutX(650);
         nomarque.setLayoutY(200);
         connection.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-        sortie.setLayoutX(1500);
+        sortie.setLayoutX(1500);*/
 
         pres.setLayoutX(700);
         pres.setLayoutY(400);
@@ -95,7 +101,7 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection,sortie,/**,image,anim,**/pres,menuu,Armenu,Armenu2,nomarque,hpy);
+        ppane.getChildren().addAll(connection,sortie,/**,image,anim,**/pres,Logo,Armenu,Armenu2,hpy);
         connection.setOnAction(event->{
             Image();
         });
