@@ -9,6 +9,7 @@ import com.example.javarmes.Model.Utilisateurs.Client;
 import  com.example.javarmes.Model.DAO.*;
 import com.example.javarmes.Model.Utilisateurs.Employes;
 import com.example.javarmes.Model.Articles.*;
+import com.example.javarmes.Model.Articles.Armes;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -59,6 +60,15 @@ public class Controleur {
         vecemployee.add(employee2);
         vecemployee.add(employee3);
 
+        /**création des vecteurs d'employee**/
+        ArrayList<Armes> vecarmes = new ArrayList<Armes>();
+        Armes armes1 = new Armes("ttt","B","kalash", 14, 15);
+        vecarmes.add(armes1);
+        Armes armes2 = new Armes("baba","C","Fusille", 34, 9);
+        vecarmes.add(armes2);
+
+        /**Ajouter Armes**/
+        Controleur.AjoutArme(vecarmes);
 
         /**Creation Employee**/
         Employes employes = new Employes();
@@ -860,5 +870,291 @@ public class Controleur {
         } while (!passage);
     }
 
+    /**Stock gerer par l'employee**/
+    public static void Stock()
+    {
+        boolean passage=false;
+        int str=0,str1;
+        Scanner sc = new Scanner(System.in);
+        Scanner sc1 = new Scanner(System.in);
+
+        do {
+            do {
+                System.out.println("Voulez-vous gerer le stock de munition : 1-OUI 2-NON ");
+                str = sc.nextInt();
+
+            } while (str != 1 && str != 2);
+
+            if (str == 1) {
+
+                /**Stock de munition**/
+
+            }
+            if (str == 2) {
+
+                do {
+                    System.out.println("Voulez-vous gerer le stock d'armes : 1-OUI 2-NON ");
+                    str1 = sc1.nextInt();
+
+                } while (str1 != 1 && str1 != 2);
+
+                if(str1==1)
+                {
+                    /**Stock de armes**/
+
+
+                }
+                if(str1==2)
+                {
+                    passage =true;
+                }
+
+            }
+
+        } while (!passage);
+
+    }
+
+    public static void StockArmes()
+    {
+        boolean passage=false;
+        int str=0,str1=0;
+        Scanner sc = new Scanner(System.in);
+        Scanner sc1 = new Scanner(System.in);
+
+        do {
+            do {
+                System.out.println("Voulez-vous Ajouter une arme : 1-OUI 2-NON ");
+                str = sc.nextInt();
+
+            } while (str != 1 && str != 2);
+
+
+            if (str == 1) {
+                /**Ajouter arme**/
+
+            }
+            if (str == 2) {
+
+                do {
+
+                    System.out.println("Voulez-vous Supprimer une arme : 1-OUI 2-NON ");
+                    str1 = sc1.nextInt();
+
+                } while (str1 != 1 && str1 != 2);
+
+                if(str1==1)
+                {
+                    /**Supprimer une arme**/
+
+                }
+                if(str1==2) {
+                    passage = true;
+                }
+            }
+
+        } while (!passage);
+
+    }
+
+    public static void AjoutArme(ArrayList<Armes> vecarmes)
+    {
+
+        String identification,categorie, nom,type;
+        double prix_unique, calibre, temp;
+        int quantite;
+        boolean pass3=true;
+        boolean reduction=false;
+
+        Scanner sc1 = new Scanner(System.in);
+        Scanner sc2 = new Scanner(System.in);
+        Scanner sc3 = new Scanner(System.in);
+        Scanner sc4 = new Scanner(System.in);
+        Scanner sc5 = new Scanner(System.in);
+        Scanner sc6 = new Scanner(System.in);
+        Scanner sc7 = new Scanner(System.in);
+        Scanner sc8 = new Scanner(System.in);
+
+        /**Categorie **/
+       do {
+            System.out.println("Saisir la categorie :  B OU C");
+            categorie = sc1.nextLine();
+
+        } while (categorie == "B" && categorie == "C");
+
+        /**Categorie **/
+        do {
+            System.out.println("Saisir le type : Poing ou Assaut ou Chasse ou Precision");
+            type = sc8.nextLine();
+
+        } while (type == "Poing" && type == "Assaut" && type == "Precision" && type == "Chasse");
+
+        /**Identification **/
+            System.out.println("Saisir l'identification : ");
+            identification = sc2.nextLine();
+
+
+        /**Prix **/
+        do {
+            System.out.println("Saisir le prix:  ");
+            prix_unique = sc3.nextInt();
+
+        } while (prix_unique <=0 );
+
+
+        /**Nom armes **/
+            System.out.println("Saisir le nom :  ");
+            nom = sc4.nextLine();
+
+        /**Calibre **/
+        do {
+            System.out.println("Saisir le calibre:  ");
+            calibre = sc5.nextInt();
+
+        } while (calibre <=0 );
+
+        /**Reduction **/
+        do {
+            System.out.println("Saisir si une réduction est appliquée: 1-Oui 2-Non ");
+            temp = sc6.nextInt();
+
+        } while (temp != 1 && temp != 2);
+
+        if(temp==1)
+        {
+            reduction=true;
+
+        }
+        if(temp==2)
+        {
+            reduction=false;
+        }
+
+        /**Quantite **/
+        do {
+            System.out.println("Saisir la quantité:  ");
+            quantite = sc7.nextInt();
+
+        } while (quantite <0 );
+
+
+       // String identification, String categorie, String nom, double prix_unique, int quantite, double calibre, boolean reduction
+        Armes armes = new Armes(identification,type,categorie,nom,prix_unique,quantite,calibre,reduction);
+        ImpleArmesDAO armesDAO = new ImpleArmesDAO();
+
+         try {
+
+          armesDAO.AjouterArme(armes);
+
+            if (armes != null) {
+                System.out.println("Armes ajouté :" + "\nidentification: " + armes.getIndentification() + "\ncategorie: " + armes.getCategorie() + "\ntype: " + armes.getType() + "\nnom: " + armes.getNom() + " \n");
+            } else {
+                System.out.println("L'arme n'a pas été créé\n");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur");
+            System.out.println(e);
+        }
+
+
+        vecarmes.add(armes);
+
+        /**Affichage**/
+        for (Armes arme : vecarmes) {
+            arme.ToString();
+            System.out.println("\n");
+        }
+
+
+    }
+
+    public static void SupprimerArme(ArrayList<Armes> vecarmes)
+    {
+
+        String identification,categorie, nom;
+        double prix_unique, calibre, temp;
+        int quantite;
+        boolean pass3=true;
+        boolean reduction=false;
+
+
+        Scanner sc2 = new Scanner(System.in);
+
+
+
+        /**Identification **/
+        System.out.println("Saisir l'identification : ");
+        identification = sc2.nextLine();
+
+        /**Verification : si id existe deja **/
+        for (Armes arm : vecarmes) {
+
+            if (identification == arm.getIdentification()) {
+
+                //System.out.println("Suppression du client ayant pour : "+ "nom : " + emp.getPrenom()+ " prenom : " + emp.getNom() + " identifiant : "+ emp.getId());
+
+                System.out.println("On affiche la suppression pour tester "+ vecarmes.remove(arm));
+
+               // pass2 = true;
+
+                arm.ToString();
+
+                System.out.println("\n");
+                break;
+
+            } else {
+                System.out.println("Identifiant incompatible ");
+
+            }
+
+        }
+
+        // String identification, String categorie, String nom, double prix_unique, int quantite, double calibre, boolean reduction
+       //Armes armes = new Armes(identification,categorie,nom,prix_unique,quantite,calibre,reduction);
+
+        /**
+         try {
+
+         Armes.Ajouter(clien);
+
+         if (clien != null) {
+         System.out.println("Client ajouté :" + "\nmail: " + clien.getMail() + "\nMDP: " + clien.getMdp() + " \n");
+         } else {
+         System.out.println("Le client n'a pas été créé\n");
+         }
+         } catch (SQLException e) {
+         System.out.println("Erreur");
+         System.out.println(e);
+         }
+
+         **/
+
+
+        /**Affichage**/
+        for (Armes arme : vecarmes) {
+            arme.ToString();
+            System.out.println("\n");
+        }
+
+    }
+
+    public static void StockMunitions()
+    {
+
+
+    }
+
+    public static void AjoutMunitions()
+    {
+        /**Attributs des munitions**/
+      //  String identification, String categorie, String nom, double prix_unique,int quantite, double calibre,boolean reduction, double prix_vrac
+
+    }
+    public static void SupprimerMunitions()
+    {
+
+
+
+    }
 
 }
