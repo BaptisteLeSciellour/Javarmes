@@ -43,7 +43,7 @@ public class TestsTemporaire {
         //String mailSaisi = "tintintin";
         try{
             //ClientDAO.BlindageParRecherche(mailSaisi);
-            ClientDAO.connexionClient(3, "akshaya", "22");
+            ClientDAO.connexionClient(14889, "Aks", "1345");
         }catch(SQLException e) {
             System.out.println("Erreur");
             System.out.println(e);

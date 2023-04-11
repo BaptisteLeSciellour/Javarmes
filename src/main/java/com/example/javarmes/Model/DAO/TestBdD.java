@@ -10,7 +10,7 @@ public class TestBdD {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con=DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/cinema","root","");
+                    "jdbc:mysql://localhost:3306/ece_shopping","root","");
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery("show databases;");
             System.out.println("Connected");

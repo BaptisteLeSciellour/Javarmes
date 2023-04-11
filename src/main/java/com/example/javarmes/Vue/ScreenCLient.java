@@ -207,7 +207,7 @@ public class ScreenCLient {
         artt = C.getCommandes();
         ScreenArticle sc = new ScreenArticle();
         AtomicInteger i = new AtomicInteger(0);
-        sc.defilementC(i,artt,C);
+        sc.defilementP(i,artt,C);
     }
     public void DetailClient(Client C) /** Nous avons un second écran qui apparait**/
     {

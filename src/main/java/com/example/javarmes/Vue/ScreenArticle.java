@@ -61,8 +61,8 @@ public class ScreenArticle {
         Stage stage = new Stage();
         Article arm;
         Button achat = new Button("achat");
-        achat.setLayoutX(260);
-        achat.setLayoutY(260);
+        achat.setLayoutX(0);
+        achat.setLayoutY(0);
         arm=armes.get(i.intValue());
         Text txt = new Text(" nom "+arm.getNom());
         txt.setLayoutX(90);

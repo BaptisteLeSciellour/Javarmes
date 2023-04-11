@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="CHnagement encore un peux de cap, ajout de la possibilité de voir le site sans être connecté, installation de la posisibilté de parcourir les armes d'une certaine catégorie quand on clique sur la bonne image">
+    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Ajout méthode pour avoir accès au panier, supprimer et ajouter des choses dedans. Ajout d'un circuit d'écran différent pour si on se connecte ou non. Ajout de la possibilité de se connecter. Petite modif sur les armesDAO afin de plus facilement afficher les munitions.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ArmesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ArmesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleArmesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleArmesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleEmployeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImpleEmployeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/TestBdD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/TestBdD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/TestsTemporaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/TestsTemporaire.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenCLient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenCLient.java" afterDir="false" />
@@ -28,11 +28,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -59,15 +59,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bapt8/OneDrive/Bureau/Inge 3/Cours/Informatique/Javarmes&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.29.jar",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.javarmes.Model.Armes" />
@@ -230,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681063962885</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Ajout méthode pour avoir accès au panier, supprimer et ajouter des choses dedans. Ajout d'un circuit d'écran différent pour si on se connecte ou non. Ajout de la possibilité de se connecter. Petite modif sur les armesDAO afin de plus facilement afficher les munitions.">
+      <created>1681146805687</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1681146805687</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -264,6 +274,7 @@
     <MESSAGE value="Addition des commandes pour les clients" />
     <MESSAGE value="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons." />
     <MESSAGE value="CHnagement encore un peux de cap, ajout de la possibilité de voir le site sans être connecté, installation de la posisibilté de parcourir les armes d'une certaine catégorie quand on clique sur la bonne image" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHnagement encore un peux de cap, ajout de la possibilité de voir le site sans être connecté, installation de la posisibilté de parcourir les armes d'une certaine catégorie quand on clique sur la bonne image" />
+    <MESSAGE value="Ajout méthode pour avoir accès au panier, supprimer et ajouter des choses dedans. Ajout d'un circuit d'écran différent pour si on se connecte ou non. Ajout de la possibilité de se connecter. Petite modif sur les armesDAO afin de plus facilement afficher les munitions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout méthode pour avoir accès au panier, supprimer et ajouter des choses dedans. Ajout d'un circuit d'écran différent pour si on se connecte ou non. Ajout de la possibilité de se connecter. Petite modif sur les armesDAO afin de plus facilement afficher les munitions." />
   </component>
 </project>
