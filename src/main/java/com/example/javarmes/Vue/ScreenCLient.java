@@ -213,7 +213,7 @@ public class ScreenCLient {
     {
         Pane pannne = new Pane();
         Stage settle = new Stage();
-        Button panier = new Button("Panier");
+        Button panier = new Button("Panier de "+C.getMail());
         panier.setLayoutX(0);
         panier.setLayoutY(0);
         Text txt = new Text("Que voulez vous faire?");
@@ -238,12 +238,6 @@ public class ScreenCLient {
         bbtn3.setLayoutX(70);
         bbtn3.setLayoutY(400);
 
-        /**
-        bbtn.setOnAction(actionEvent -> {
-            creationClient(vecclient,txxt); /** ici on appelle l'écran que nous allons utiliser
-            settle.close();
-        });
-         **/
         panier.setOnAction(actionEvent -> {
             affichagePanier(C);
         });
@@ -262,7 +256,7 @@ public class ScreenCLient {
                 throw new RuntimeException(e);
             }
         });
-        pannne.getChildren().addAll(/**bbtn,**/bbtn2,txt,bbtn3);
+        pannne.getChildren().addAll(/**bbtn,**/bbtn2,txt,bbtn3,panier);
 
         Scene sceene = new Scene(pannne, 320, 540);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "

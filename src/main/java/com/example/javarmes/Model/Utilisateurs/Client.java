@@ -29,11 +29,11 @@ public class Client extends Personnes {
     }
 
     public void addCommandes(Article a) {
-        this.commandes.add(a);
+        commandes.add(a);
     }
 
     public void suppCommandes(Article a) {
-        this.commandes.remove(a);
+        commandes.remove(a);
     }
 
     public Client(String a , String b){

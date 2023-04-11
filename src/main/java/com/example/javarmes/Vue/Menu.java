@@ -66,18 +66,10 @@ public class Menu {
 
         pres.setLayoutX(700);
         pres.setLayoutY(400);
-        /**
-         anim.setLayoutX(700);
-         anim.setLayoutY(300);
 
-         image.setLayoutX(700);
-         image.setLayoutY(500);
-         image.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-         anim.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-         **/
         pres.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         Image armenu = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/armemenu.png")));
-        //Creating a rotated transition
+
         ImageView Armenu = new ImageView(armenu);
         Armenu.setFitWidth(500);
         Armenu.setFitHeight(400);
@@ -97,7 +89,11 @@ public class Menu {
 
         ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy);
         connection.setOnAction(event -> {
-            Image();
+            try {
+                connectionClient(stage);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         sortie.setOnAction(actionEvent -> {
@@ -107,17 +103,6 @@ public class Menu {
         hpy.setOnAction(actionEvent -> {
             menuinscription();
         });
-        /**
-         anim.setOnAction(actionEvent -> {
-
-         coordonees();
-         });
-
-
-         image.setOnAction(ActionEvent->{
-         Image();
-         });
-         **/
 
         pres.setOnAction(actionEvent -> {
             menupresentation();
@@ -530,9 +515,6 @@ public class Menu {
     public void connectionClient(Stage stage) throws SQLException {
         Pane pannne = new Pane();
         Stage settle = new Stage();
-        List<Client> client;
-        ImpleEmployeDAO impC = new ImpleEmployeDAO();
-        client = impC.ChoisirClient();
         Text txt = new Text("Connection");
         txt.setLayoutX(90);
         txt.setLayoutY(150);
@@ -543,23 +525,23 @@ public class Menu {
 
         TextField mailTF = new TextField();
         mailTF.setLayoutX(90);
-        mailTF.setLayoutY(190);
+        mailTF.setLayoutY(210);
 
         Text idT = new Text("Saisir le ID:");
         idT.setLayoutX(90);
-        idT.setLayoutY(210);
+        idT.setLayoutY(250);
 
         TextField idTF = new TextField();
         idTF.setLayoutX(90);
-        idTF.setLayoutY(230);
+        idTF.setLayoutY(290);
 
         Text mdpT = new Text("Saisir le motdepasse:");
         mdpT.setLayoutX(90);
-        mdpT.setLayoutY(250);
+        mdpT.setLayoutY(320);
 
         final PasswordField mdpTF = new PasswordField();
-        idTF.setLayoutX(90);
-        idTF.setLayoutY(270);
+        mdpTF.setLayoutX(90);
+        mdpTF.setLayoutY(360);
 
         Button validation = new Button("Validation");
         validation.setLayoutX(90);
@@ -572,11 +554,20 @@ public class Menu {
             int id=Integer.valueOf(idS);
             ImpleClientDAO imp = new ImpleClientDAO();
             try {
-                imp.connexionClient(id,mail,motdepasse);
-                /** mettre fonction de menuarme ...**/
-            } catch (SQLException e) {
-               System.out.println("Vous n'existez pas encore dans la base de données");
-            }
+                Client client = imp.connexionClient(id,mail,motdepasse);
+                if(client != null)
+                {
+                    ArrayList<Article> rl = new ArrayList<>();
+                    client.setCommandes(rl);
+                    menupresentationC(client);
+                }
+                else{
+                    Text nop = new Text("Error");
+                    pannne.getChildren().add(nop);
+                    nop.setLayoutX(90);
+                    nop.setLayoutY(480);
+                }
+            } catch (SQLException e) {}
         });
 
         pannne.getChildren().addAll(txt, validation, txt4, idTF,idT,mailTF,mdpTF,mdpT);

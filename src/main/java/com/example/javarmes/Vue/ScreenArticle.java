@@ -26,6 +26,11 @@ public class ScreenArticle {
         Pane pane = new Pane();
         Stage stage = new Stage();
         Article arm;
+        int size = armes.size();
+
+        /// système de controle pour que il ne soit pas possible de passer outre les tailles de vecteur
+        i.compareAndSet(size,0);
+        i.compareAndSet(-1,0);
         arm=armes.get(i.intValue());
         Text txt = new Text(" nom "+arm.getNom());
         txt.setLayoutX(90);
@@ -60,6 +65,12 @@ public class ScreenArticle {
         Pane pane = new Pane();
         Stage stage = new Stage();
         Article arm;
+        int size = armes.size();
+
+        /// système de controle pour que il ne soit pas possible de passer outre les tailles de vecteur
+        i.compareAndSet(size,0);
+        i.compareAndSet(-1,0);
+
         Button achat = new Button("achat");
         achat.setLayoutX(0);
         achat.setLayoutY(0);
@@ -80,14 +91,14 @@ public class ScreenArticle {
         });
         btn.setOnAction(actionEvent -> {
             i.getAndIncrement();
-            txt.setText("hehe"+i);
-            defilement(i,armes);
+            ///txt.setText("hehe"+i);
+            defilementC(i,armes,C);
             stage.close();
         });
         btn2.setOnAction(actionEvent -> {
             i.getAndDecrement();
-            txt.setText("hehe"+i);
-            defilement(i,armes);
+            ///txt.setText("hehe"+i);
+            defilementC(i,armes,C);
             stage.close();
         });
 
@@ -101,6 +112,11 @@ public class ScreenArticle {
         Pane pane = new Pane();
         Stage stage = new Stage();
         Article arm;
+        int size = armes.size();
+
+        /// système de controle pour que il ne soit pas possible de passer outre les tailles de vecteur
+        i.compareAndSet(size,0);
+        i.compareAndSet(-1,0);
         Button retirer = new Button("retirer");
         retirer.setLayoutX(260);
         retirer.setLayoutY(260);
@@ -122,13 +138,13 @@ public class ScreenArticle {
         btn.setOnAction(actionEvent -> {
             i.getAndIncrement();
             txt.setText("hehe"+i);
-            defilement(i,armes);
+            defilementP(i,armes,C);
             stage.close();
         });
         btn2.setOnAction(actionEvent -> {
             i.getAndDecrement();
             txt.setText("hehe"+i);
-            defilement(i,armes);
+            defilementC(i,armes,C);
             stage.close();
         });
 
