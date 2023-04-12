@@ -87,7 +87,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             pstmnt.setString(1, critere);
             result = pstmnt.executeQuery();
             while (result.next()) {
-                Munitions munition = new Munitions(result.getString("identification"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"), result.getDouble("prix_vrac"));
+                Munitions munition = new Munitions(result.getString("identification"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"), result.getDouble("prix_vrac"), result.getInt("nb_vente"));
                 ResultatRecherche.add(munition);
             }
         } catch (SQLException e) {
@@ -114,7 +114,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             pstmnt = con.prepareStatement(requete);
             result = pstmnt.executeQuery();
             if (result.next()) {
-                Munitions munition = new Munitions(result.getString("identification"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"), result.getDouble("prix_vrac"));
+                Munitions munition = new Munitions(result.getString("identification"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"), result.getDouble("prix_vrac"), result.getInt("nb_vente"));
                 ListeMunitions.add(munition);
             }
         } catch (SQLException e) {

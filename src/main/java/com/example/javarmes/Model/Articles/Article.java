@@ -15,6 +15,7 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
     protected String categorie ;
     protected double calibre;
     protected char permis;
+    protected int nb_vente;
 
     protected ImageView illustration;
 
@@ -30,6 +31,14 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
         return reduction;
     }
 
+    public int getNb_vente() {
+        return nb_vente;
+    }
+
+    public void setNb_vente(int nb_vente) {
+        this.nb_vente = nb_vente;
+    }
+
     public ImageView getIllustration() {
         return illustration;
     }
@@ -37,6 +46,7 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
     public void setIllustration(ImageView illustration) {
         this.illustration = illustration;
     }
+
 
     /**Constructeur article pour client**/
     public Article(String identification, String categorie, String nom, double prix_unique, double calibre )
@@ -49,7 +59,18 @@ public abstract class Article { /** il faut se demander si nous plaçons la clas
         this.calibre = calibre;
     }
     /** Constructeur Article pour employé **/
-    public Article(String identification, String categorie, String nom, double prix_unique,int quantite, double calibre, boolean reduction ) {
+    public Article(String identification, String categorie, String nom, double prix_unique,int quantite, double calibre, boolean reduction, int nb_vente) {
+        this.identification = identification;
+        this.categorie = categorie;
+        this.nom= nom;
+        this.prix_unique = prix_unique;
+        this.quantite = quantite;
+        this.calibre = calibre;
+        this.reduction = reduction;
+        this.nb_vente = nb_vente;
+    }
+
+    public Article(String identification, String categorie, String nom, double prix_unique,int quantite, double calibre, boolean reduction) {
         this.identification = identification;
         this.categorie = categorie;
         this.nom= nom;

@@ -55,7 +55,7 @@ public class ImpleArmesDAO implements ArmesDAO {
             pstmnt.setString(1, critere);
             result = pstmnt.executeQuery();
             while (result.next()) {
-                Armes arme = new Armes(result.getString("identification"),result.getString("type"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"));
+                Armes arme = new Armes(result.getString("identification"),result.getString("type"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"),result.getInt("nb_vente"));
                 ResultatRecherche.add(arme);
             }
         } catch (SQLException e) {
@@ -118,7 +118,7 @@ public class ImpleArmesDAO implements ArmesDAO {
             pstmnt = con.prepareStatement(requete);
             result = pstmnt.executeQuery();
             if (result.next()){
-                Armes armes = new Armes(result.getString("identification"),result.getString("type"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"));
+                Armes armes = new Armes(result.getString("identification"),result.getString("type"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"), result.getInt("nb_vente"));
                 ListeArmes.add(armes);
             }
         } catch(SQLException e) {
