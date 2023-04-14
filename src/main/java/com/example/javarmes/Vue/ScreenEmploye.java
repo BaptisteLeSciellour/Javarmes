@@ -44,75 +44,6 @@ import java.util.Random;
 
 public class ScreenEmploye {
 
-    public void InscriptionEmploye(ArrayList<Employes>vecemployes) /** Nous avons un second écran qui apparait**/
-    {
-        Pane panne = new Pane();
-        Stage settle = new Stage();
-
-        Text ttxxtt = new Text("Employe");
-        ttxxtt.setLayoutX(90);
-        ttxxtt.setLayoutY(30);
-        Text txt = new Text("Prenom");
-        txt.setLayoutX(90);
-        txt.setLayoutY(290);
-        TextField txtfield = new TextField();
-        txtfield.setLayoutX(90);
-        txtfield.setLayoutY(300);
-        Text txxt = new Text("Nom de famille");
-        txxt.setLayoutX(90);
-        txxt.setLayoutY(340);
-        TextField textField = new TextField();
-        textField.setLayoutX(90); // ici on les décales
-        textField.setLayoutY(350); // ici on remonte les cases
-        boolean pass2;
-        int id;
-        do {
-            pass2=true;
-
-            /**Génération de l'ID : ALEATOIRE entre 4 500 20 000 **/
-            Random rand = new Random();
-            id = rand.nextInt(4500 + 14500); /** generation aléatoire**/
-
-            /***on verifie que l'identifiant n'existe pas deja**/
-            for (Employes emp : vecemployes) {
-
-                if (id == emp.getId()) {
-                    System.out.println("L'identifiant est deja pris par un autre employee");
-                    pass2=false;
-                }
-                break;
-            }
-        } while (!pass2);
-
-
-        Button bbtn = new Button("Prise");
-        bbtn.setLayoutX(140);
-        bbtn.setLayoutY(400);
-        bbtn.setOnAction(event1->{
-            String phrase = txtfield.getText();
-
-            System.out.println(phrase);
-
-            String SecondNom = textField.getText();
-
-            System.out.print(SecondNom+"\n");
-
-            Employes empl = new Employes();
-            empl.setNom(SecondNom);
-            empl.setPrenom(phrase);
-            empl.ToString();
-            Employeaffich(phrase,SecondNom);
-            settle.close();
-        });
-        panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt,ttxxtt);
-
-        Scene sceene = new Scene(panne,320,540);
-
-        settle.setScene(sceene);
-        settle.setX(0);
-        settle.setY(0);
-        settle.show();
-    }
 
     public void MAJEmploye(ArrayList<Employes>vecemployes){
         Pane pannne = new Pane();
@@ -213,13 +144,17 @@ public class ScreenEmploye {
 
         Scene sceene = new Scene(pannne, 320, 540);
 
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
         settle.setScene(sceene);
         settle.setX(0);
         settle.setY(0);
         settle.show();
     }
 
-    public void MenuEmploye(ArrayList<Employes> vecemployes)
+    public void MenuEmploye(ArrayList<Employes> vecemployes,ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions)
     {
         Pane pannne = new Pane();
         Stage settle = new Stage();
@@ -241,8 +176,12 @@ public class ScreenEmploye {
         bbtn3.setLayoutX(40);
         bbtn3.setLayoutY(400);
 
+        Button bbtn4 = new Button("Gerer les stocks");
+        bbtn4.setLayoutX(340);
+        bbtn4.setLayoutY(400);
+
         bbtn.setOnAction(actionEvent -> {
-            InscriptionEmploye(vecemployes); /** ici on appelle l'écran que nous allons utiliser**/
+            InscriptionEmploye(vecemployes,vecarmes,vecmunitions); /** ici on appelle l'écran que nous allons utiliser**/
             settle.close();
         });
 
@@ -252,10 +191,19 @@ public class ScreenEmploye {
         bbtn3.setOnAction(actionEvent -> {
             SuppresionEmploye(vecemployes);
         });
-        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3);
+        bbtn4.setOnAction(actionEvent -> {
+
+            Stock(vecarmes,vecmunitions);
+
+        });
+        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3,bbtn4);
 
         Scene sceene = new Scene(pannne, 320, 540);
 
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
         settle.setScene(sceene);
         settle.setX(0);
         settle.setY(0);
@@ -313,6 +261,10 @@ public class ScreenEmploye {
         });
 
         Scene scene = new Scene(pane,520,520);
+        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
         stage.setScene(scene);
         stage.show();
     }
@@ -369,6 +321,7 @@ public class ScreenEmploye {
             stage.setScene(scene);
             stage.show();
         }
+
         public void InscriptionEmploye(ArrayList<Employes>vecemployes,ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions) /** Nous avons un second écran qui apparait**/
         {
             Pane panne = new Pane();
@@ -446,64 +399,6 @@ public class ScreenEmploye {
         }
 
 
-        public void MenuEmploye(ArrayList<Employes> vecemployes,ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions)
-        {
-            Pane pannne = new Pane();
-            Stage settle = new Stage();
-
-            Text txt = new Text("Employe: Que voulez-vous faire?");
-            txt.setLayoutX(90);
-            txt.setLayoutY(200);
-
-            /**creer deux boutons**/
-            Button bbtn = new Button("Ajouter un employee");
-            bbtn.setLayoutX(140);
-            bbtn.setLayoutY(400);
-
-            Button bbtn2 = new Button("MAJ un employee");
-            bbtn2.setLayoutX(340);
-            bbtn2.setLayoutY(400);
-
-            Button bbtn3 = new Button("Supprimer un employee");
-            bbtn3.setLayoutX(540);
-            bbtn3.setLayoutY(400);
-
-            Button bbtn4 = new Button("Gerer les stocks");
-            bbtn4.setLayoutX(740);
-            bbtn4.setLayoutY(400);
-
-
-
-            bbtn.setOnAction(actionEvent -> {
-                InscriptionEmploye(vecemployes,vecarmes,vecmunitions); /** ici on appelle l'écran que nous allons utiliser**/
-                settle.close();
-            });
-
-            bbtn2.setOnAction(actionEvent -> {
-                MAJEmploye(vecemployes);
-            });
-            bbtn3.setOnAction(actionEvent -> {
-                SuppresionEmploye(vecemployes);
-            });
-            bbtn4.setOnAction(actionEvent -> {
-
-                Stock(vecarmes,vecmunitions);
-
-            });
-            pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3,bbtn4);
-
-            Scene sceene = new Scene(pannne, 320, 540);
-
-            sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
-                    + "-fx-background-radius: 5px; "
-                    + "-fx-background-insets: 0px; "
-                    + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
-
-            settle.setScene(sceene);
-            settle.setX(0);
-            settle.setY(0);
-            settle.show();
-        }
 
         public  void Stock(ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions)
         {
@@ -609,10 +504,10 @@ public class ScreenEmploye {
 
 
         public  void AjoutArme(ArrayList<Armes> vecarmes)
-        {
-            Pane pane = new Pane();
+        {  Pane pane = new Pane();
             Stage stage = new Stage();
 
+            Armes armes = new Armes();
 
             /**identification de l'arme**/
             Text ident = new Text("Saisir le nom de l'identification:");
@@ -628,20 +523,87 @@ public class ScreenEmploye {
             CAT.setLayoutX(90);
             CAT.setLayoutY(150);
 
-            TextField cat = new TextField();
-            cat.setLayoutX(90);
-            cat.setLayoutY(160);
+
+            /**Catégorie Bou C**/
+            Button b = new Button("B");
+            b.setLayoutX(90);
+            b.setLayoutY(160);
+
+            Button c = new Button("C");
+            c.setLayoutX(150);
+            c.setLayoutY(160);
+
+
+
+            b.setOnAction(actionEvent -> {
+
+                armes.setCategorie("B");
+
+            });
+
+            c.setOnAction(actionEvent -> {
+
+                armes.setCategorie("C");
+
+            });
+
+            //ImageView imageView = new ImageView();
+
+            //imageView=DonationImage();
+
 
             /**type**/
-            Text tp = new Text("Saisir le type : Poing || Assaut || Chasse || Precision");
+            Text tp = new Text("Saisir le type :");
             tp.setLayoutX(90);
             tp.setLayoutY(210);
 
-            TextField typ = new TextField();
-            typ.setLayoutX(90);
-            typ.setLayoutY(220);
 
-            /**type**/
+            /**Catégorie Bou C**/
+            Button poing = new Button("Poing");
+            poing.setLayoutX(90);
+            poing.setLayoutY(220);
+
+            Button assaut = new Button("Assaut");
+            assaut.setLayoutX(150);
+            assaut.setLayoutY(220);
+
+            /**Catégorie Bou C**/
+            Button chasse = new Button("Chasse");
+            chasse.setLayoutX(250);
+            chasse.setLayoutY(220);
+
+            Button precision = new Button("Precision");
+            precision.setLayoutX(350);
+            precision.setLayoutY(220);
+
+
+            poing.setOnAction(actionEvent -> {
+
+                armes.setType("Poing");
+
+            });
+
+            assaut.setOnAction(actionEvent -> {
+
+                armes.setType("Assaut");
+
+            });
+
+            chasse.setOnAction(actionEvent -> {
+
+
+                armes.setType("Chasse");
+
+            });
+
+            precision.setOnAction(actionEvent -> {
+
+                armes.setType("Precision");
+
+            });
+
+
+            /**prix**/
             Text pr = new Text("Saisir le prix");
             pr.setLayoutX(90);
             pr.setLayoutY(270);
@@ -655,9 +617,9 @@ public class ScreenEmploye {
             nm.setLayoutX(90);
             nm.setLayoutY(330);
 
-            TextField no = new TextField();
-            no.setLayoutX(90);
-            no.setLayoutY(340);
+            TextField nom = new TextField();
+            nom.setLayoutX(90);
+            nom.setLayoutY(340);
 
             /**Calibre**/
             Text cl = new Text("Saisir le calibre");
@@ -669,22 +631,31 @@ public class ScreenEmploye {
             cal.setLayoutY(400);
 
             /**Reduction**/
-            Text red = new Text("Saisir si une réduction est appliquée: 1-Oui 2-Non ");
+            Text red = new Text("Saisir si une réduction est appliquée :  ");
             red.setLayoutX(90);
             red.setLayoutY(450);
 
-            TextField reduc = new TextField();
-            reduc.setLayoutX(90);
-            reduc.setLayoutY(460);
 
-            /**Calibre**/
-            Text qt = new Text("Quantité : ");
-            qt.setLayoutX(90);
-            qt.setLayoutY(510);
+            Button oui = new Button("OUI");
+            oui.setLayoutX(90);
+            oui.setLayoutY(460);
 
-            TextField quant = new TextField();
-            quant.setLayoutX(90);
-            quant.setLayoutY(520);
+            Button non = new Button("NON");
+            non.setLayoutX(130);
+            non.setLayoutY(460);
+
+            oui.setOnAction(actionEvent -> {
+
+                armes.setReduction(true);
+
+            });
+
+            non.setOnAction(actionEvent -> {
+
+                armes.setReduction(false);
+
+            });
+
 
             /**valide les données**/
             Button ajt = new Button("Valider");
@@ -696,74 +667,31 @@ public class ScreenEmploye {
             ImpleArmesDAO armesDAO = new ImpleArmesDAO();
 
 
-            pane.getChildren().addAll(reduc,quant,cal,idTF, cat,typ,prix,no,ajt,ident,CAT,tp,pr,nm,cl,red,qt);
+            pane.getChildren().addAll(oui,non,cal,idTF, b,c,prix,ajt,ident,CAT,tp,pr,nm,cl,red,nom,poing,chasse,assaut,precision);
 
 
             ajt.setOnAction(actionEvent -> {
 
-                String identification,categorie, nom,type;
-                double prix_unique, calibre, temp;
-                int quantite;
-                // boolean pass3=true;
-                boolean reduction=false;
+                armes.setQuantite(1);
 
-                identification = String.valueOf(idTF.getText());
+                armes.setNom( nom.getText());
 
-
-                do {
-
-                    categorie = cat.getText();
-
-                } while (categorie == "B" && categorie == "C");
-
-
-                // categorie = String.valueOf(cat.getText());
-
-                do {
-
-                    type = typ.getText();
-
-                } while (type == "Poing" && type == "Assaut" && type == "Precision" && type == "Chasse");
+                armes.setIdentification( String.valueOf(idTF.getText()));
 
                 /**Prix **/
                 do {
-                    prix_unique = Integer.valueOf(prix.getText());
+                    armes.setPrix_unique( Integer.valueOf(prix.getText()));
 
-                } while (prix_unique <=0 );
-
-                nom = no.getText();
+                } while (armes.getPrix_unique() <=0 );
 
 
                 /**calibre **/
                 do {
-                    calibre = Integer.valueOf(cal.getText());
+                    armes.setCalibre(Integer.valueOf(cal.getText()));
 
-                } while (calibre <=0 );
+                } while (armes.getCalibre() <=0 );
 
-                /**reduction **/
-                do {
-
-                    temp = Integer.valueOf(reduc.getText());
-
-                } while (temp != 1 && temp != 2);
-
-                if(temp==1)
-                {
-                    reduction=true;
-
-                }
-                if(temp==2)
-                {
-                    reduction=false;
-                }
-
-                /**Quantité**/
-                do {
-                    quantite = Integer.valueOf(quant.getText());
-
-                } while (quantite <0 );
-
-                Armes armes = new Armes(identification,type,categorie,nom,prix_unique,quantite,calibre,reduction);
+                //Armes armes = new Armes(identification,type,categorie,nom,prix_unique,quantite,calibre,reduction);
 
                 vecarmes.add(armes);
 
@@ -774,19 +702,15 @@ public class ScreenEmploye {
 
                     if (armes != null) {
 
-                        Text supp = new Text("Armes ajouté :\n" + "identification: " + armes.getIndentification() + "\ncategorie: " + armes.getCategorie() + "\ntype: " + armes.getType() + "\nnnom: " + armes.getNom() );
-                        supp.setLayoutX(300);
-                        supp.setLayoutY(300);
+                        Text supp = new Text("Armes ajouté :\n" + "identification: " + armes.getIndentification() + "\ncategorie: " + armes.getCategorie() + "\ntype: " + armes.getType() + "\nnom: " + armes.getNom()+ "\nquantite: "+ armes.getQuantite() + "\ncalibre: " + armes.getCalibre()+ "\nreduction: " + armes.getReduction()+ "\nprix: " + armes.getPrix_unique() );
+                        supp.setLayoutX(90);
+                        supp.setLayoutY(600);
                         pane.getChildren().add(supp);
 
 
-                        //System.out.println("Armes ajouté :" + "\nidentification: " + armes.getIndentification() + "\ncategorie: " + armes.getCategorie() + "\ntype: " + armes.getType() + "\nnom: " + armes.getNom() + " \n");
-                    } else {
-                        //System.out.println("L'arme n'a pas été créé\n");
+
                     }
                 } catch (SQLException e) {
-                    //  System.out.println("Erreur");
-                    //System.out.println(e);
 
                     Text supp = new Text(e.toString());
                     supp.setLayoutX(50);
@@ -797,7 +721,6 @@ public class ScreenEmploye {
 
             });
 
-
             Scene scene = new Scene(pane, 520, 520);
 
             scene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -807,6 +730,7 @@ public class ScreenEmploye {
 
             stage.setScene(scene);
             stage.show();
+
 
         }
 
@@ -1053,8 +977,8 @@ public class ScreenEmploye {
             Pane pane = new Pane();
             Stage stage = new Stage();
 
-            //int nb_vente
 
+            Munitions muni=new Munitions();
 
             Text ident = new Text("Saisir le nom de l'identification:");
             ident.setLayoutX(90);
@@ -1064,15 +988,35 @@ public class ScreenEmploye {
             idTF.setLayoutX(90);
             idTF.setLayoutY(100);
 
-
+            /**categorie**/
             Text CAT = new Text("Saisir la categorie :  B OU C");
             CAT.setLayoutX(90);
             CAT.setLayoutY(150);
 
-            TextField cat = new TextField();
-            cat.setLayoutX(90);
-            cat.setLayoutY(160);
+            /**Catégorie Bou C**/
+            Button b = new Button("B");
+            b.setLayoutX(90);
+            b.setLayoutY(160);
 
+            Button c = new Button("C");
+            c.setLayoutX(150);
+            c.setLayoutY(160);
+
+            b.setOnAction(actionEvent -> {
+
+                muni.setCategorie("B");
+
+            });
+
+            c.setOnAction(actionEvent -> {
+
+                muni.setCategorie("C");
+
+            });
+
+            //ImageView imageView = new ImageView();
+
+            //imageView=DonationImage();
 
             Text pr = new Text("Saisir le prix unique");
             pr.setLayoutX(90);
@@ -1107,23 +1051,32 @@ public class ScreenEmploye {
             cal.setLayoutX(90);
             cal.setLayoutY(400);
 
-
-            Text red = new Text("Saisir si une réduction est appliquée: 1-Oui 2-Non ");
+            /**Reduction**/
+            Text red = new Text("Saisir si une réduction est appliquée :  ");
             red.setLayoutX(90);
             red.setLayoutY(450);
 
-            TextField reduc = new TextField();
-            reduc.setLayoutX(90);
-            reduc.setLayoutY(460);
 
+            Button oui = new Button("OUI");
+            oui.setLayoutX(90);
+            oui.setLayoutY(460);
 
-            Text qt = new Text("Quantité : ");
-            qt.setLayoutX(90);
-            qt.setLayoutY(510);
+            Button non = new Button("NON");
+            non.setLayoutX(130);
+            non.setLayoutY(460);
 
-            TextField quant = new TextField();
-            quant.setLayoutX(90);
-            quant.setLayoutY(520);
+            oui.setOnAction(actionEvent -> {
+
+                muni.setReduction(true);
+
+            });
+
+            non.setOnAction(actionEvent -> {
+
+                muni.setReduction(false);
+
+            });
+
 
             Text vt = new Text("Nombre de vente: ");
             vt.setLayoutX(90);
@@ -1140,43 +1093,27 @@ public class ScreenEmploye {
             ajt.setLayoutY(300);
 
 
-
-            // Armes armes = new Armes(identification,type,categorie,nom,prix_unique,quantite,calibre,reduction);
             ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
 
-            pane.getChildren().addAll(reduc,quant,cal,idTF, cat,prvc,prixvrac,vente,vt,prix,no,ajt,ident,CAT,pr,nm,cl,red,qt);
+            pane.getChildren().addAll(cal,idTF,prvc,prixvrac,vente,vt,prix,no,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c);
 
 
             ajt.setOnAction(actionEvent -> {
 
                 String identification,categorie, nom;
-                double prix_unique,prix_vrac, calibre, temp;
+                double prix_unique,prix_vrac, calibre;
                 int quantite,nb_vente;
-                // boolean pass3=true;
-                boolean reduction=false;
 
-                identification = String.valueOf(idTF.getText());
+                muni.setQuantite(1);
 
+                muni.setIndentification( String.valueOf(idTF.getText()));
 
-                do {
-
-                    categorie = cat.getText();
-
-                } while (categorie == "B" && categorie == "C");
-
-
-                // categorie = String.valueOf(cat.getText());
-
-                do {
-
-                    nb_vente = Integer.valueOf(vente.getText());
-
-                } while (nb_vente <0 );
 
                 /**Prix **/
                 do {
                     prix_unique = Integer.valueOf(prix.getText());
+                    muni.setPrix_unique(prix_unique);
 
                 } while (prix_unique <=0 );
 
@@ -1184,66 +1121,40 @@ public class ScreenEmploye {
                 do {
                     prix_vrac = Integer.valueOf(prixvrac.getText());
 
+                    muni.setPrix_vrac(prix_vrac);
+
                 } while (prix_unique <=0 );
 
-                nom = no.getText();
+                muni.setNom ( no.getText());
 
 
                 /**calibre **/
                 do {
                     calibre = Integer.valueOf(cal.getText());
+                    muni.setCalibre(calibre);
 
                 } while (calibre <=0 );
 
-                /**reduction **/
-                do {
 
-                    temp = Integer.valueOf(reduc.getText());
-
-                } while (temp != 1 && temp != 2);
-
-                if(temp==1)
-                {
-                    reduction=true;
-
-                }
-                if(temp==2)
-                {
-                    reduction=false;
-                }
-
-                /**Quantité**/
-                do {
-                    quantite = Integer.valueOf(quant.getText());
-
-                } while (quantite <0 );
-
-
-
-                Munitions munition = new Munitions(identification, categorie,  nom, prix_unique,quantite, calibre, reduction,  prix_vrac, nb_vente);
-
-                vecmunitions.add(munition);
+                vecmunitions.add(muni);
 
 
                 try {
 
-                    munitionsDAO.ajouter(munition);
+                    munitionsDAO.ajouter(muni);
 
 
-                    if (munition != null) {
+                    if (muni != null) {
 
-                        Text supp = new Text("Armes ajouté :\n" + "identification: " + munition.getIndentification() + "\ncategorie: " + munition.getCategorie() + "\nnnom: " + munition.getNom() );
+                        Text supp = new Text("Armes ajouté :\n" + "identification: " + muni.getIndentification() + "\ncategorie: " + muni.getCategorie() + "\nnnom: " + muni.getNom() );
                         supp.setLayoutX(300);
                         supp.setLayoutY(300);
                         pane.getChildren().add(supp);
 
 
-                        //System.out.println("Armes ajouté :" + "\nidentification: " + armes.getIndentification() + "\ncategorie: " + armes.getCategorie() + "\ntype: " + armes.getType() + "\nnom: " + armes.getNom() + " \n");
                     }
 
                 } catch (SQLException e) {
-                    //  System.out.println("Erreur");
-                    //System.out.println(e);
 
                     Text supp = new Text(e.toString());
                     supp.setLayoutX(50);
@@ -1253,8 +1164,6 @@ public class ScreenEmploye {
                 }
 
             });
-
-
 
 
             Scene scene = new Scene(pane, 520, 520);

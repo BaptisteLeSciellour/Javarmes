@@ -3,6 +3,7 @@ package com.example.javarmes.Vue;
 
 import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Article;
+import com.example.javarmes.Model.Articles.Munitions;
 import com.example.javarmes.Model.DAO.ImpleArmesDAO;
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
@@ -155,6 +156,18 @@ public class Menu {
         ArrayList<Client> vecclient = new ArrayList<Client>();
         vecclient.add(clt);
 
+        /** Armes **/
+        //String identification,String type, String categorie, String nom, double prix_unique, int quantite, double calibre, boolean reduction, int nb_vente
+        Armes armes = new Armes("ID456","Precision","B","Bambi",3.14,5,9,false,5);
+        ArrayList<Armes> vecarmes = new ArrayList<Armes>();
+        vecarmes.add(armes);
+
+        /** Munitions **/
+        //String identification, String categorie, String nom, double prix_unique,int quantite, double calibre,boolean reduction, double prix_vrac, int nb_vente
+        Munitions munitions = new Munitions("ID333","B","BOUM",45,7,8,false,30,6);
+        ArrayList<Munitions> vecmunitions = new ArrayList<Munitions>();
+        vecmunitions.add(munitions);
+
 
         Text typee = new Text("TYPE D'UTILISATEUR");
         typee.setFont(new Font("Arial", 26));
@@ -178,7 +191,7 @@ public class Menu {
         employe.setLayoutY(300);
         employe.setOnAction(actionEvent -> {
             ScreenEmploye sce = new ScreenEmploye();
-            sce.InscriptionEmploye(vecemployes);
+            sce.InscriptionEmploye(vecemployes,vecarmes,vecmunitions);
             settle.close();
         });
         panne.getChildren().addAll(client, employe, typee);
