@@ -519,6 +519,9 @@ public class ScreenEmploye {
             muni.setLayoutX(190);
             muni.setLayoutY(300);
 
+
+
+
             arme.setOnAction(actionEvent -> {
 
                 StockArmes(vecarmes);
