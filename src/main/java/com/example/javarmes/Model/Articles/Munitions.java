@@ -8,6 +8,11 @@ public class Munitions extends Article {
         this.prix_vrac = prix_vrac;
     }
 
+    public Munitions()
+    {
+
+    }
+
     public Munitions(String identification, String categorie, String nom, double prix_unique,int quantite, double calibre,boolean reduction, double prix_vrac) {
         super(identification, categorie, nom, prix_unique, quantite, calibre, reduction);
         this.prix_vrac = prix_vrac;
