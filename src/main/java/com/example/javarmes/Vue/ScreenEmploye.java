@@ -523,6 +523,7 @@ public class ScreenEmploye {
 
                 StockArmes(vecarmes);
 
+
             });
 
             muni.setOnAction(actionEvent -> {
