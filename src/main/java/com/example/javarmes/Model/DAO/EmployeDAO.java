@@ -15,6 +15,7 @@ public interface EmployeDAO {
     Employes ChoisirEmploye(int id) throws SQLException;
     List<Employes> ChoisirEmploye() throws SQLException;
 
+    Employes connexionemployes(int id, String motdepasse) throws SQLException;
 
     /** Méthodes de gestion de clients faisable par les employés*/
 

@@ -901,8 +901,6 @@ public class Controleur {
                 if(str1==1)
                 {
                     /**Stock de armes**/
-
-
                 }
                 if(str1==2)
                 {

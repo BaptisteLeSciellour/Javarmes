@@ -1,7 +1,17 @@
 package com.example.javarmes.Model.Utilisateurs;
 
 public class Employes extends Personnes{
-    int id;
+    protected int id;
+
+    protected String motdepasse;
+
+    public String getMotdepasse() {
+        return motdepasse;
+    }
+
+    public void setMotdepasse(String motdepasse) {
+        this.motdepasse = motdepasse;
+    }
 
     public Employes(String c, String b) {
         this.nom = c;
@@ -15,9 +25,12 @@ public class Employes extends Personnes{
     }
 
     public Employes() {
-
     }
 
+    public Employes(int Id, String Mdp) {
+        this.id = Id;
+        this.motdepasse = Mdp;
+    }
     public String getPrenom() {
         return prenom;
     }

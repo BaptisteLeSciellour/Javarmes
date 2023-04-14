@@ -31,7 +31,7 @@ public class ScreenArticle {
         /// système de controle pour que il ne soit pas possible de passer outre les tailles de vecteur
         i.compareAndSet(size,0);
         i.compareAndSet(-1,0);
-        arm=armes.get(i.intValue());
+            arm=armes.get(i.intValue());
         Text txt = new Text(" nom "+arm.getNom());
         txt.setLayoutX(90);
         txt.setLayoutY(290);

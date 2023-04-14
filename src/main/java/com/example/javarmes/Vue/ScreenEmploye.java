@@ -1,15 +1,19 @@
 package com.example.javarmes.Vue;
 
+import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -256,8 +260,7 @@ public class ScreenEmploye {
         settle.show();
     }
 
-    public void SuppresionEmploye(ArrayList<Employes>vecemployes)
-    {
+    public void SuppresionEmploye(ArrayList<Employes>vecemployes) {
         Pane pane = new Pane();
         Stage stage = new Stage();
 
@@ -310,6 +313,33 @@ public class ScreenEmploye {
         Scene scene = new Scene(pane,520,520);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void camembertsamere(Stage primaryStage , ArrayList<Employes> art) {
+        final PieChart chart = new PieChart();
+        chart.setTitle("Stock de fruits");
+        /**chart.getData().setAll(new PieChart.Data("Pommes", 50), new PieChart.Data("Oranges", 30),
+                new PieChart.Data("Poires", 25), new PieChart.Data("Pêches", 42),
+                new PieChart.Data("Citrons", 5), new PieChart.Data("Kiwis", 19)
+        );**/
+
+
+        for(Employes B : art)
+        {
+
+            double a = Double.valueOf(B.getId());
+            chart.getData().setAll(
+                    new PieChart.Data(" ", 00),new PieChart.Data(B.getNom(), a)
+            );
+        }
+
+        // Montage de l'IU.
+        final StackPane root = new StackPane();
+        root.getChildren().add(chart);
+        final Scene scene = new Scene(root, 600, 500);
+        primaryStage.setTitle("Test de PieChart");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
 }

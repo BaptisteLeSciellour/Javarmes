@@ -261,5 +261,39 @@ public class ImpleEmployeDAO implements EmployeDAO {
         }
     }
 
+    public Employes connexionemployes(int ID, String mdp) throws SQLException {
+        Connection con = null;
+        PreparedStatement pstmnt = null;
+        ResultSet rsl = null;
+        Employes connexionEmploye = null;
+        try {
+            con = DAOFactory.getConnection();
+            String requete = "SELECT * FROM employés WHERE id = ?";
+            pstmnt = con.prepareStatement(requete);
+            pstmnt.setInt(1, ID);
+            rsl = pstmnt.executeQuery();
+            if (rsl.next()) {
+                String mdpSaisi = rsl.getString("motdepasse");
+                if (mdpSaisi.equals(mdp)) {
+                    connexionEmploye = new Employes(rsl.getInt("id"), rsl.getString("motdepasse"));
+                    System.out.println("Client identifié");
+                } else {
+                    System.out.println("Mot de passe saisi incorrect");
+                }
+            } else {
+                System.out.println("Données saisies incorrectes");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de l'authentification");
+            System.out.println(e);
+        } finally {
+            if ((pstmnt != null) || (con != null) || (rsl != null)) {
+                pstmnt.close();
+                con.close();
+                rsl.close();
+            }
+        }
+        return connexionEmploye;
+    }
 }
 

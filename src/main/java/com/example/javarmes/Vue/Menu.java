@@ -21,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
+import javafx.stage.WindowEvent;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -76,6 +77,22 @@ public class Menu {
         Armenu.setLayoutX(100);
         Armenu.setLayoutY(50);
 
+        Button test = new Button("test");
+        test.setLayoutX(200);
+        test.setLayoutY(300);
+
+        test.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+            Stage staaage = new Stage();
+            ImpleEmployeDAO impl = new ImpleEmployeDAO();
+            ArrayList<Employes> arr ;
+            try {
+                arr=(ArrayList<Employes>) impl.ChoisirEmploye();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            sc.camembertsamere(staaage,arr);
+        });
 
         Image armenu2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/armemenu2.png")));
         //Creating a rotated transition
@@ -87,13 +104,9 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy);
+        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy,test);
         connection.setOnAction(event -> {
-            try {
-                connectionClient(stage);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            menuconnexion();
         });
 
         sortie.setOnAction(actionEvent -> {
@@ -172,6 +185,60 @@ public class Menu {
         settle.show();
     }
 
+    public void menuconnexion() /** va être utilsé pour l'inscription des nouvelles personnes**/
+    {
+        Pane panne = new Pane();
+        Stage settle = new Stage();
+
+        /** ici les deux vecteurs contenant tout les personnes du sites**/
+        Employes empl = new Employes(123, "CC", "CC");
+        ArrayList<Employes> vecemployes = new ArrayList<Employes>();
+        vecemployes.add(empl);
+
+        Client clt = new Client(123, "CC", "CC");
+        ArrayList<Client> vecclient = new ArrayList<Client>();
+        vecclient.add(clt);
+
+
+        Text typee = new Text("TYPE D'UTILISATEUR");
+        typee.setFont(new Font("Arial", 26));
+        typee.setStyle("-fx-fill: white;");
+        typee.setLayoutX(20);
+        typee.setLayoutY(50);
+
+        Button client = new Button("CLIENT");
+        client.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        Button employe = new Button("EMPLOYE");
+        employe.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        client.setLayoutX(100);
+        client.setLayoutY(150);
+        client.setOnAction(actionEvent -> {
+            try {
+                connectionClient(settle);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        employe.setLayoutX(100);
+        employe.setLayoutY(300);
+        employe.setOnAction(actionEvent -> {
+            try {
+                connectionEmploye(settle);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        panne.getChildren().addAll(client, employe, typee);
+        Scene sceene = new Scene(panne, 320, 540);
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
+        settle.setScene(sceene);
+        settle.setX(0);
+        settle.setY(0);
+        settle.show();
+    }
     public void Image() {
         Pane pane = new Pane();
         final String imageURL = new File("C:\\Users\\bapt8\\OneDrive\\Images\\yolooo.png").toURI().toString();
@@ -205,7 +272,14 @@ public class Menu {
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    scc.defilement(i, dassaut);
+                    if(dassaut==null)
+                    {
+                        Image();
+                    }
+                    else {
+                        scc.defilement(i, dassaut);
+                        }
+
                 }
         );
         Assaut.setLayoutX(100);
@@ -579,4 +653,62 @@ public class Menu {
         settle.setY(0);
         settle.show();
     }
+
+    public void connectionEmploye(Stage stage) throws SQLException {
+        Pane pannne = new Pane();
+        Stage settle = new Stage();
+        Text txt = new Text("Connection");
+        txt.setLayoutX(90);
+        txt.setLayoutY(150);
+
+        Text idT = new Text("Saisir le ID:");
+        idT.setLayoutX(90);
+        idT.setLayoutY(250);
+
+        TextField idTF = new TextField();
+        idTF.setLayoutX(90);
+        idTF.setLayoutY(290);
+
+        Text mdpT = new Text("Saisir le motdepasse:");
+        mdpT.setLayoutX(90);
+        mdpT.setLayoutY(320);
+
+        final PasswordField mdpTF = new PasswordField();
+        mdpTF.setLayoutX(90);
+        mdpTF.setLayoutY(360);
+
+        Button validation = new Button("Validation");
+        validation.setLayoutX(90);
+        validation.setLayoutY(400);
+
+        validation.setOnAction(actionEvent -> {
+            String idS = idTF.getText();
+            String motdepasse = mdpTF.getText();
+            int id=Integer.valueOf(idS);
+            ImpleEmployeDAO imp = new ImpleEmployeDAO();
+            try {
+                Employes employes = imp.    connexionemployes(id,motdepasse);
+                if(employes != null)
+                {
+                    Image();
+                }
+                else{
+                    Text nop = new Text("Error");
+                    pannne.getChildren().add(nop);
+                    nop.setLayoutX(90);
+                    nop.setLayoutY(480);
+                }
+            } catch (SQLException e) {}
+        });
+
+        pannne.getChildren().addAll(txt, validation, idTF,idT,mdpTF,mdpT);
+
+        Scene sceene = new Scene(pannne, 320, 540);
+
+        settle.setScene(sceene);
+        settle.setX(0);
+        settle.setY(0);
+        settle.show();
+    }
+
 }
