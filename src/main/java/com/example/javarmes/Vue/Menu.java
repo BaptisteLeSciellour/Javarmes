@@ -288,6 +288,18 @@ public class Menu {
         Pane pane = new Pane();
         Stage stage = new Stage();
         Button connection = new Button("Connection");
+
+
+
+        Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bullet2.jpg")));
+        //Creating a rotated transition
+        ImageView Logo = new ImageView(logo);
+        Logo.setFitWidth(1400);
+        Logo.setFitHeight(300);
+        Logo.setLayoutX(250);
+        Logo.setLayoutY(1);
+
+
         Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
         //Creating a rotated transition
         ImageView Assaut = new ImageView(assaut);
@@ -345,7 +357,9 @@ public class Menu {
                 }
         );
 
-        Precision.setLayoutY(300);
+        Precision.setFitWidth(350);
+        Precision.setFitHeight(200);
+        Precision.setLayoutY(350);
         Precision.setLayoutX(400);
         Text pre = new Text("Arme de Precision");
         pre.setFont(new Font("Arial", 36));
@@ -409,7 +423,7 @@ public class Menu {
         po.setLayoutY(600);
 
 
-        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, connection);
+        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, Logo,connection);
 
         Scene scene = new Scene(pane, 520, 540);
         scene.getRoot().setStyle("-fx-background-color: #4B5320; "
