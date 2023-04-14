@@ -38,18 +38,26 @@ public class Menu {
         Stage stage = new Stage();
 
         connection.setLayoutX(700);
-        connection.setLayoutY(600);
+        connection.setLayoutY(500);
         Button sortie = new Button("Exit");
         /** Button image = new Button("Image");
          Button anim  = new Button("Paiment");
          **/
         Button pres = new Button("Parcourir le site");
 
-        Hyperlink hpy = new Hyperlink("Nouveau ?");
+       /* Hyperlink hpy = new Hyperlink("Nouveau ?");
         hpy.setFont(new Font("Arial", 12));
         hpy.setStyle("-fx-fill: white;");
         hpy.setLayoutX(690);
-        hpy.setLayoutY(700);
+        hpy.setLayoutY(700);*/
+
+
+        Button hpy = new Button("Créer un compte");
+        hpy.setLayoutX(700);
+        hpy.setLayoutY(600);
+        hpy.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+
+
 
         Text menuu = new Text("M E N U");
         menuu.setFont(new Font("Arial", 36));
