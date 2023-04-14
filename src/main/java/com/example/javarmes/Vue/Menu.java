@@ -83,7 +83,7 @@ public class Menu {
         ImageView Armenu = new ImageView(armenu);
         Armenu.setFitWidth(500);
         Armenu.setFitHeight(400);
-        Armenu.setLayoutX(100);
+        Armenu.setLayoutX(1);
         Armenu.setLayoutY(50);
 
         Button test = new Button("test");
@@ -108,12 +108,20 @@ public class Menu {
         ImageView Armenu2 = new ImageView(armenu2);
         Armenu2.setFitWidth(500);
         Armenu2.setFitHeight(400);
-        Armenu2.setLayoutX(900);
+        Armenu2.setLayoutX(1050);
         Armenu2.setLayoutY(50);
+
+        Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png")));
+        //Creating a rotated transition
+        ImageView Logo = new ImageView(logo);
+        Logo.setFitWidth(600);
+        Logo.setFitHeight(300);
+        Logo.setLayoutX(500);
+        Logo.setLayoutY(50);
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy,test);
+        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,test);
         connection.setOnAction(event -> {
             menuconnexion();
         });
