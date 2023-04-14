@@ -7,10 +7,12 @@ import com.example.javarmes.Model.Utilisateurs.Client;
 import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -159,7 +161,9 @@ public class ScreenEmploye {
         Pane pannne = new Pane();
         Stage settle = new Stage();
 
-        Text txt = new Text("Voulez-vous ajouter un Employe:");
+        Text txt = new Text("Voulez-vous ajouter un employé ?");
+        txt.setFont(new Font("Arial", 26));
+        txt.setStyle("-fx-fill: white;");
         txt.setLayoutX(90);
         txt.setLayoutY(290);
 
@@ -214,9 +218,13 @@ public class ScreenEmploye {
         Pane pane = new Pane();
         Stage stage = new Stage();
 
-        Text txt1 = new Text("Supression de l'employe : ");
+        Text txt1 = new Text("Supression de l'employé : ");
+        txt1.setFont(new Font("Arial", 26));
+        txt1.setStyle("-fx-fill: white;");
         ImpleEmployeDAO clientDAO = new ImpleEmployeDAO();
-        Text txt4 = new Text("Saisir l'id de cette employe:");
+        Text txt4 = new Text("Saisir l'identifiant de cet employé:");
+        txt4.setFont(new Font("Arial", 26));
+        txt4.setStyle("-fx-fill: white;");
         txt4.setLayoutX(90);
         txt4.setLayoutY(290);
 
@@ -300,15 +308,21 @@ public class ScreenEmploye {
         public void Employeaffich(String prenom, String nom)
         {
             Pane pane = new Pane();
-            Text txt8 = new Text("Employé ajouté :");
+            Text txt8 = new Text("Coordonnées enregistrées :");
+            txt8.setFont(new Font("Arial", 26));
+            txt8.setStyle("-fx-fill: white;");
             txt8.setLayoutX(90);
             txt8.setLayoutY(90);
 
-            Text txt2 = new Text("prenom : "+prenom);
+            Text txt2 = new Text("Prénom : "+prenom);
+            txt2.setFont(new Font("Arial", 26));
+            txt2.setStyle("-fx-fill: white;");
             txt2.setLayoutX(90);
             txt2.setLayoutY(150);
 
-            Text txt3 = new Text("nom : "+nom);
+            Text txt3 = new Text("Nom : "+nom);
+            txt3.setFont(new Font("Arial", 26));
+            txt3.setStyle("-fx-fill: white;");
             txt3.setLayoutX(90);
             txt3.setLayoutY(200);
             pane.getChildren().addAll(txt8,txt2,txt3);
@@ -327,21 +341,34 @@ public class ScreenEmploye {
             Pane panne = new Pane();
             Stage settle = new Stage();
 
-            Text ttxxtt = new Text("Employe");
-            ttxxtt.setLayoutX(90);
-            ttxxtt.setLayoutY(30);
-            Text txt = new Text("Prenom");
-            txt.setLayoutX(90);
+            Image txt1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/creapro.jpg")));
+            //Creating a rotated transition
+            ImageView Txt1 = new ImageView(txt1);
+            Txt1.setLayoutY(20);
+            Txt1.setLayoutX(100);
+
+            Text txt = new Text("Prénom");
+            txt.setFont(new Font("Arial", 26));
+            txt.setStyle("-fx-fill: white;");
+            txt.setLayoutX(300);
             txt.setLayoutY(290);
+
             TextField txtfield = new TextField();
-            txtfield.setLayoutX(90);
-            txtfield.setLayoutY(300);
+            txtfield.setLayoutX(300);
+            txtfield.setLayoutY(310);
+
             Text txxt = new Text("Nom de famille");
-            txxt.setLayoutX(90);
-            txxt.setLayoutY(340);
+            txxt.setFont(new Font("Arial", 26));
+            txxt.setStyle("-fx-fill: white;");
+            txxt.setLayoutX(300);
+            txxt.setLayoutY(380);
             TextField textField = new TextField();
-            textField.setLayoutX(90); // ici on les décales
-            textField.setLayoutY(350); // ici on remonte les cases
+            textField.setLayoutX(300); // ici on les décales
+            textField.setLayoutY(400); // ici on remonte les cases
+
+            CheckBox cb1 = new CheckBox("J'atteste ajouter un membre du staff.");
+            cb1.setLayoutX(300);
+            cb1.setLayoutY(450);
             boolean pass2;
             int id;
             do {
@@ -363,9 +390,9 @@ public class ScreenEmploye {
             } while (!pass2);
 
 
-            Button bbtn = new Button("Prise");
-            bbtn.setLayoutX(140);
-            bbtn.setLayoutY(400);
+            Button bbtn = new Button("Ajouter l'employé(e)");
+            bbtn.setLayoutX(300);
+            bbtn.setLayoutY(600);
             bbtn.setOnAction(event1->{
                 String phrase = txtfield.getText();
 
@@ -383,9 +410,9 @@ public class ScreenEmploye {
                 MenuEmploye(vecemployes,vecarmes,vecmunitions);
                 settle.close();
             });
-            panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt,ttxxtt);
+            panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt,Txt1,cb1);
 
-            Scene sceene = new Scene(panne,320,540);
+            Scene sceene = new Scene(panne,800,700);
 
             sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
                     + "-fx-background-radius: 5px; "
@@ -461,12 +488,8 @@ public class ScreenEmploye {
             sup.setLayoutY(300);
 
             Button aff = new Button("Afficher les armes");
-            aff.setLayoutX(360);
+            aff.setLayoutX(370);
             aff.setLayoutY(300);
-
-            Button re = new Button("Rechercher une armes");
-            re.setLayoutX(480);
-            re.setLayoutY(300);
 
             ajt.setOnAction(actionEvent -> {
 
@@ -487,16 +510,9 @@ public class ScreenEmploye {
 
             });
 
-            re.setOnAction(actionEvent -> {
-
-                RechercherArmes(vecarmes);
-
-            });
 
 
-
-
-            pane.getChildren().addAll(sup,ajt,aff,re);
+            pane.getChildren().addAll(sup,ajt,aff);
 
 
             Scene sceene = new Scene(pane, 320, 540);
@@ -667,13 +683,6 @@ public class ScreenEmploye {
 
             });
 
-            Text qt = new Text("Saisir la quantite");
-            qt.setLayoutX(90);
-            qt.setLayoutY(510);
-
-            TextField quant = new TextField();
-            quant.setLayoutX(90);
-            quant.setLayoutY(520);
 
             /**valide les données**/
             Button ajt = new Button("Valider");
@@ -685,20 +694,12 @@ public class ScreenEmploye {
             ImpleArmesDAO armesDAO = new ImpleArmesDAO();
 
 
-            pane.getChildren().addAll(oui,non,cal,qt,quant,idTF, b,c,prix,ajt,ident,CAT,tp,pr,nm,cl,red,nom,poing,chasse,assaut,precision);
+            pane.getChildren().addAll(oui,non,cal,idTF, b,c,prix,ajt,ident,CAT,tp,pr,nm,cl,red,nom,poing,chasse,assaut,precision);
 
 
             ajt.setOnAction(actionEvent -> {
 
-                int quantite=0;
-
-                /**Quantite **/
-                do {
-                    quantite= Integer.valueOf(quant.getText());
-
-                    armes.setQuantite(quantite);
-
-                } while (quantite <0 );
+                armes.setQuantite(1);
 
                 armes.setNom( nom.getText());
 
@@ -728,7 +729,7 @@ public class ScreenEmploye {
 
                     if (armes != null) {
 
-                        Text supp = new Text("Armes :\n" + "identification: " + armes.getIndentification() + "\ncategorie: " + armes.getCategorie() + "\ntype: " + armes.getType() + "\nprix unique: " + armes.getPrix_unique()+ "\ncalibre: " + armes.getCalibre()+ "\nnom: " + armes.getNom()+ "\nreduction: " + armes.getReduction()+ "\nquantite : " + armes.getQuantite() );
+                        Text supp = new Text("Armes ajouté :\n" + "identification: " + armes.getIndentification() + "\ncategorie: " + armes.getCategorie() + "\ntype: " + armes.getType() + "\nnom: " + armes.getNom()+ "\nquantite: "+ armes.getQuantite() + "\ncalibre: " + armes.getCalibre()+ "\nreduction: " + armes.getReduction()+ "\nprix: " + armes.getPrix_unique() );
                         supp.setLayoutX(90);
                         supp.setLayoutY(600);
                         pane.getChildren().add(supp);
@@ -781,12 +782,11 @@ public class ScreenEmploye {
                 /**Affichage**/
                 for (Armes arm : vecarmes) {
 
-                    Text supp = new Text("Armes :\n" + "identification: " + arm.getIndentification() + "\ncategorie: " + arm.getCategorie() + "\ntype: " + arm.getType() + "\nprix unique: " + arm.getPrix_unique()+ "\ncalibre: " + arm.getCalibre()+ "\nnom: " + arm.getNom()+ "\nreduction: " + arm.getReduction()+ "\nquantite : " + arm.getQuantite() );
-                    supp.setLayoutX(90);
+                    Text supp = new Text("Armes :\n" + "identification: " + arm.getIndentification() + "\ncategorie: " + arm.getCategorie() + "\ntype: " + arm.getType() + "\nnnom: " + arm.getNom() );
+                    supp.setLayoutX(300);
                     supp.setLayoutY(300+decalage);
                     pane.getChildren().add(supp);
-                    decalage=decalage+150;
-
+                    decalage=decalage+100;
 
                 }
             }
@@ -813,81 +813,7 @@ public class ScreenEmploye {
             stage.show();
         }
 
-    public void RechercherArmes(ArrayList<Armes>vecarmes)
-    {
 
-        Pane pane = new Pane();
-        Stage stage = new Stage();
-
-        Text txt1 = new Text("Recherche d'une arme : ");
-
-        ImpleArmesDAO munitionsDAO = new ImpleArmesDAO();
-
-
-        Text txt4 = new Text("Saisir l'identification: nom || categorie || type");
-        txt4.setLayoutX(90);
-        txt4.setLayoutY(290);
-
-        TextField idTF = new TextField();
-        idTF.setLayoutX(90);
-        idTF.setLayoutY(300);
-
-        Button validation = new Button("Validation");
-        validation.setLayoutX(90);
-        validation.setLayoutY(400);
-
-        pane.getChildren().addAll(txt1,txt4,idTF,validation);
-
-        validation.setOnAction(actionEvent -> {
-
-            /**
-
-             try {
-
-
-             String identification =  idTF.getText();
-
-
-             //Verification : si id existe deja
-             for (Armes arm : vecarmes) {
-
-             if (Objects.equals(identification , arm.getIdentification())) {
-
-
-             ArmesDAO.RechercherArmes(identification,quantite);
-
-
-
-             Text supp = new Text("Une arme d'identification : "+identification+" a bien été trouvée");
-             supp.setLayoutX(50);
-             supp.setLayoutY(100);
-             pane.getChildren().add(supp);
-
-
-             ///stage.close();
-             break;
-             }
-             }
-
-             } catch (SQLException e) {
-             Text supp = new Text(e.toString());
-             supp.setLayoutX(50);
-             supp.setLayoutY(100);
-             pane.getChildren().add(supp);
-             stage.close();
-             }
-             **/
-        });
-
-        Scene scene = new Scene(pane,520,520);
-        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
-                + "-fx-background-radius: 5px; "
-                + "-fx-background-insets: 0px; "
-                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
-        stage.setScene(scene);
-        stage.show();
-
-    }
 
         public  void SupprimerArmes(ArrayList<Armes>vecarmes)
         {
@@ -979,13 +905,8 @@ public class ScreenEmploye {
             sup.setLayoutY(300);
 
             Button aff = new Button("Afficher les munitions");
-            aff.setLayoutX(400);
+            aff.setLayoutX(440);
             aff.setLayoutY(300);
-
-            Button re = new Button("Rechercher une munition");
-            re.setLayoutX(550);
-            re.setLayoutY(300);
-
 
             ajt.setOnAction(actionEvent -> {
 
@@ -1004,13 +925,10 @@ public class ScreenEmploye {
                 Munitionsaffich(vecmunitions);
 
             });
-            re.setOnAction(actionEvent -> {
-
-                RechercherMunitions(vecmunitions);
-            });
 
 
-            pane.getChildren().addAll(sup,ajt,aff,re);
+
+            pane.getChildren().addAll(sup,ajt,aff);
 
 
             Scene sceene = new Scene(pane, 320, 540);
@@ -1027,82 +945,6 @@ public class ScreenEmploye {
 
         }
 
-        public void RechercherMunitions(ArrayList<Munitions>vecmunitions)
-        {
-
-            Pane pane = new Pane();
-            Stage stage = new Stage();
-
-            Text txt1 = new Text("Recherche d'une munition : ");
-
-            ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
-
-
-            Text txt4 = new Text("Saisir l'identification: nom || categorie || type");
-            txt4.setLayoutX(90);
-            txt4.setLayoutY(290);
-
-            TextField idTF = new TextField();
-            idTF.setLayoutX(90);
-            idTF.setLayoutY(300);
-
-            Button validation = new Button("Validation");
-            validation.setLayoutX(90);
-            validation.setLayoutY(400);
-
-            pane.getChildren().addAll(txt1,txt4,idTF,validation);
-
-            validation.setOnAction(actionEvent -> {
-
-
-/**
-                 try {
-
-
-                 String identification =  idTF.getText();
-
-
-                 //Verification : si id existe deja
-                 for (Munitions muni : vecmunitions) {
-
-                 if (Objects.equals(identification , muni.getIdentification())) {
-
-
-                 MunitionsDAO.GererStockMunition(identification,quantite);
-
-
-
-                 Text supp = new Text("Une munition d'identification : "+identification+" a bien été trouvée");
-                 supp.setLayoutX(50);
-                 supp.setLayoutY(100);
-                 pane.getChildren().add(supp);
-
-                 vecmunitions.remove(muni);
-
-                 ///stage.close();
-                 break;
-                 }
-                 }
-
-                 } catch (SQLException e) {
-                 Text supp = new Text(e.toString());
-                 supp.setLayoutX(50);
-                 supp.setLayoutY(100);
-                 pane.getChildren().add(supp);
-                 stage.close();
-                 }
-                 **/
-            });
-
-            Scene scene = new Scene(pane,520,520);
-            scene.getRoot().setStyle("-fx-background-color: #4B5320; "
-                    + "-fx-background-radius: 5px; "
-                    + "-fx-background-insets: 0px; "
-                    + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
-            stage.setScene(scene);
-            stage.show();
-
-        }
 
         public void Munitionsaffich(ArrayList<Munitions>vecmunitions)
         {
@@ -1125,11 +967,11 @@ public class ScreenEmploye {
                 /**Affichage**/
                 for (Munitions muni : vecmunitions) {
 
-                    Text supp = new Text("Munition :\n" + "identification : " + muni.getIndentification() + "\ncategorie : " + muni.getCategorie() + "\nprix unique : " + muni.getPrix_unique()+ "\nprix vrac: " + muni.getPrix_vrac() + "\nreduction : " + muni.getReduction()+ "\ncalibre : " + muni.getCalibre()+ "\nquantite : " + muni.getQuantite()+ "\nnom: " + muni.getNom() );
-                    supp.setLayoutX(90);
+                    Text supp = new Text("Armes :\n" + "identification: " + muni.getIndentification() + "\ncategorie: " + muni.getCategorie() + "\nprix : " + muni.getPrix_unique() + "\nnnom: " + muni.getNom() );
+                    supp.setLayoutX(300);
                     supp.setLayoutY(300+decalage);
                     pane.getChildren().add(supp);
-                    decalage=decalage+150;
+                    decalage=decalage+100;
 
                 }
             }
@@ -1199,6 +1041,9 @@ public class ScreenEmploye {
 
             });
 
+            //ImageView imageView = new ImageView();
+
+            //imageView=DonationImage();
 
             Text pr = new Text("Saisir le prix unique");
             pr.setLayoutX(90);
@@ -1259,13 +1104,16 @@ public class ScreenEmploye {
 
             });
 
-            Text qt = new Text("Saisir la quantite");
-            qt.setLayoutX(90);
-            qt.setLayoutY(510);
 
-            TextField quant = new TextField();
-            quant.setLayoutX(90);
-            quant.setLayoutY(520);
+            Text vt = new Text("Nombre de vente: ");
+            vt.setLayoutX(90);
+            vt.setLayoutY(570);
+
+            TextField vente = new TextField();
+            vente.setLayoutX(90);
+            vente.setLayoutY(580);
+
+
 
             Button ajt = new Button("Valider");
             ajt.setLayoutX(400);
@@ -1275,7 +1123,7 @@ public class ScreenEmploye {
             ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
 
-            pane.getChildren().addAll(cal,idTF,prvc,prixvrac,prix,no,qt,quant,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c);
+            pane.getChildren().addAll(cal,idTF,prvc,prixvrac,vente,vt,prix,no,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c);
 
 
             ajt.setOnAction(actionEvent -> {
@@ -1284,14 +1132,7 @@ public class ScreenEmploye {
                 double prix_unique,prix_vrac, calibre;
                 int quantite,nb_vente;
 
-                /**Quantite **/
-                do {
-                    quantite= Integer.valueOf(quant.getText());
-
-                    muni.setQuantite(quantite);
-
-                } while (quantite <0 );
-
+                muni.setQuantite(1);
 
                 muni.setIndentification( String.valueOf(idTF.getText()));
 
@@ -1332,8 +1173,8 @@ public class ScreenEmploye {
 
                     if (muni != null) {
 
-                        Text supp = new Text("Munition :\n" + "identification : " + muni.getIndentification() + "\ncategorie : " + muni.getCategorie() + "\nprix unique : " + muni.getPrix_unique()+ "\nprix vrac: " + muni.getPrix_vrac() + "\nreduction : " + muni.getReduction()+ "\ncalibre : " + muni.getCalibre()+ "\nquantite : " + muni.getQuantite()+ "\nnom: " + muni.getNom() );
-                        supp.setLayoutX(90);
+                        Text supp = new Text("Armes ajouté :\n" + "identification: " + muni.getIndentification() + "\ncategorie: " + muni.getCategorie() + "\nnnom: " + muni.getNom() );
+                        supp.setLayoutX(300);
                         supp.setLayoutY(300);
                         pane.getChildren().add(supp);
 
@@ -1371,7 +1212,7 @@ public class ScreenEmploye {
 
             Text txt1 = new Text("Supression d'une munition : ");
 
-            ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
+            ImpleArmesDAO armesDAO = new ImpleArmesDAO();
 
             Text txt4 = new Text("Saisir l'identification:");
             txt4.setLayoutX(90);

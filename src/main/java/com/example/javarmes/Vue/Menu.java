@@ -610,7 +610,7 @@ public class Menu {
     public void connectionClient(Stage stage) throws SQLException {
         Pane pannne = new Pane();
         Stage settle = new Stage();
-        Text txt = new Text("Connection");
+        Text txt = new Text("Connexion");
         txt.setLayoutX(90);
         txt.setLayoutY(150);
 
@@ -678,7 +678,7 @@ public class Menu {
     public void connectionEmploye(Stage stage) throws SQLException {
         Pane pannne = new Pane();
         Stage settle = new Stage();
-        Text txt = new Text("Connection");
+        Text txt = new Text("Connexion");
         txt.setLayoutX(90);
         txt.setLayoutY(150);
 
