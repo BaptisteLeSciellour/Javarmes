@@ -14,7 +14,8 @@ import com.example.javarmes.Model.Articles.Armes;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Controleur {
+public class
+Controleur {
 
 
     /**

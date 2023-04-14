@@ -6,7 +6,10 @@ import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -25,32 +28,59 @@ public class ScreenCLient {
         Stage stage = new Stage();
         Pane panne = new Pane();
 
-        Text txt1 = new Text("*******   CREATION DU CLIENT   *******");
+        /*Text txt1 = new Text("*******   CREATION DU CLIENT   *******");
         txt1.setFont(new Font("Arial", 26));
         txt1.setStyle("-fx-fill: white;");
         txt1.setLayoutX(45);
-        txt1.setLayoutY(100);
+        txt1.setLayoutY(100);*/
+
+        Image txt1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/crrea.jpg")));
+        //Creating a rotated transition
+        ImageView Txt1 = new ImageView(txt1);
+        Txt1.setLayoutY(20);
+        Txt1.setLayoutX(100);
 
         ImpleClientDAO clientDAO = new ImpleClientDAO();
-        Text txt4 = new Text("NOUVEL E-MAIL:");
+        Text txt4 = new Text("Entrez votre e-mail:");
         txt4.setFont(new Font("Arial", 26));
         txt4.setStyle("-fx-fill: white;");
-        txt4.setLayoutX(90);
+        txt4.setLayoutX(300);
         txt4.setLayoutY(200);
 
         TextField mailTF = new TextField();
-        mailTF.setLayoutX(90);
+        mailTF.setLayoutX(300);
         mailTF.setLayoutY(220);
 
-        Text txt6 = new Text("NOUVEAU MOT DE PASSE:");
+        Text txt6 = new Text("Créez votre mot de passe:");
         txt6.setFont(new Font("Arial", 26));
         txt6.setStyle("-fx-fill: white;");
-        txt6.setLayoutX(90);
+        txt6.setLayoutX(300);
         txt6.setLayoutY(300);
 
+        Text txt67 = new Text("Confirmez votre mot de passe:");
+        txt67.setFont(new Font("Arial", 26));
+        txt67.setStyle("-fx-fill: white;");
+        txt67.setLayoutX(300);
+        txt67.setLayoutY(400);
+
         TextField mdpTF = new TextField();
-        mdpTF.setLayoutX(90); // ici on les décales
+        mdpTF.setLayoutX(300); // ici on les décales
         mdpTF.setLayoutY(320); // ici on remonte les cases
+
+        TextField mdpTF2 = new TextField();
+        mdpTF2.setLayoutX(300); // ici on les décales
+        mdpTF2.setLayoutY(420); // ici on remonte les cases
+
+//A checkbox without a caption
+        CheckBox cb1 = new CheckBox("J'accepte les conditions d'utilisation.");
+//A checkbox with a string caption
+        CheckBox cb2 = new CheckBox("Je ne suis pas un robot.");
+
+        cb1.setLayoutX(300);
+        cb1.setLayoutY(510);
+        cb2.setLayoutX(300);
+        cb2.setLayoutY(530);
+
 
         if(txxt!=null)
         {
@@ -64,8 +94,8 @@ public class ScreenCLient {
 
         Button saisie = new Button("Valider les données");
         saisie.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-        saisie.setLayoutY(400);
-        saisie.setLayoutX(150);
+        saisie.setLayoutY(600);
+        saisie.setLayoutX(550);
 
         /**!!!!!!!!!!!!!!!!!!**/
 
@@ -191,8 +221,8 @@ public class ScreenCLient {
             stage.close(); /**ici nous fermons l'écran d'avant**/
         });
 
-        panne.getChildren().addAll(saisie,mailTF,mdpTF,txt1,txt4,txt6);
-        Scene settle = new Scene(panne,520,520);
+        panne.getChildren().addAll(saisie,mailTF,mdpTF,txt4,txt6,txt67,mdpTF2,Txt1,cb1,cb2);
+        Scene settle = new Scene(panne,800,700);
         settle.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
                 + "-fx-background-insets: 0px; "
@@ -315,7 +345,7 @@ public class ScreenCLient {
 
                     ImpleClientDAO clientDAO = new ImpleClientDAO();
                     Text nvmail = new Text("Saisir le nouveau mail:");
-                    nvmail.setFont(new Font("Arial", 26));
+                    nvmail.setFont(new Font("Arial", 20));
                     nvmail.setStyle("-fx-fill: white;");
                     nvmail.setLayoutX(90);
                     nvmail.setLayoutY(290);
@@ -324,11 +354,22 @@ public class ScreenCLient {
                     nvxmailTF.setLayoutX(90);
                     nvxmailTF.setLayoutY(300);
 
-                    Text nvmdp = new Text("Saisir le nouveau MDP:");
-                    nvmdp.setFont(new Font("Arial", 26));
+                    Text nvmdp = new Text("Saisir un mot de passe :");
+                    nvmdp.setFont(new Font("Arial", 20));
                     nvmdp.setStyle("-fx-fill: white;");
                     nvmdp.setLayoutX(90);
                     nvmdp.setLayoutY(340);
+
+                    Text nvmdp2 = new Text("Confirmez votre mot de passe:");
+                    nvmdp2.setFont(new Font("Arial", 20));
+                    nvmdp2.setStyle("-fx-fill: white;");
+                    nvmdp2.setLayoutX(90);
+                    nvmdp2.setLayoutY(3780);
+
+                    TextField mdp2 = new TextField();
+                    mdp2.setLayoutX(90);
+                    mdp2.setLayoutY(460);
+
 
                     TextField mdpTF = new TextField();
                     mdpTF.setLayoutX(90); // ici on les décales
@@ -340,7 +381,7 @@ public class ScreenCLient {
 
                     saisie.setLayoutX(330);
                     saisie.setLayoutY(400);
-                    n.getChildren().addAll(nvmdp,nvmail,nvxmailTF,mdpTF,saisie);
+                    n.getChildren().addAll(nvmdp,nvmdp2,nvmail,nvxmailTF,mdpTF,saisie,mdp2);
 
                     saisie.setOnAction(actionEvent1 -> {
                         Pane pane = new Pane();
