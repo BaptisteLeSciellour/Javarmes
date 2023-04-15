@@ -543,20 +543,20 @@ public class ScreenEmploye {
 
             sup.setOnAction(actionEvent -> {
 
-                SupprimerArmes(vecarmes);
+                SupprimerArmes();
 
             });
 
 
             aff.setOnAction(actionEvent -> {
 
-                Armesaffich(vecarmes);
+                Armesaffich();
 
             });
 
             re.setOnAction(actionEvent -> {
 
-                RechercherArmes(vecarmes);
+                RechercherArmes();
 
             });
 
@@ -834,7 +834,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-        public void Armesaffich(ArrayList<Armes>vecarmes)
+        public void Armesaffich()
         {
             Pane pane = new Pane();
             Stage stage = new Stage();
@@ -845,22 +845,22 @@ public class ScreenEmploye {
 
             ImpleArmesDAO armesDAO = new ImpleArmesDAO();
 
-            int decalage=0;
 
             try {
 
-                armesDAO.ChoisirArmes();
+                int decalage=0;
+
+                ArrayList<Armes> ResultatRecherche= (ArrayList<Armes>)armesDAO.ChoisirArmes();
 
 
-                /**Affichage**/
-                for (Armes arm : vecarmes) {
+                //Verification : si id existe deja
+                for (Armes arm : ResultatRecherche) {
 
-                    Text supp = new Text("Armes :\n" + "identification: " + arm.getIndentification() + "\ncategorie: " + arm.getCategorie() + "\ntype: " + arm.getType() + "\nprix unique: " + arm.getPrix_unique()+ "\ncalibre: " + arm.getCalibre()+ "\nnom: " + arm.getNom()+ "\nreduction: " + arm.getReduction()+ "\nquantite : " + arm.getQuantite() );
+                    Text supp = new Text("Armes :\n" + "identification: " + arm.getIndentification() + "\ncategorie: " + arm.getCategorie() + "\nprix unique: " + arm.getPrix_unique()+ "\ncalibre: " + arm.getCalibre()+ "\nnom: " + arm.getNom()+ "\nreduction: " + arm.getReduction()+ "\nquantite : " + arm.getQuantite() );
                     supp.setLayoutX(90);
                     supp.setLayoutY(300+decalage);
                     pane.getChildren().add(supp);
                     decalage=decalage+150;
-
                 }
             }
             catch (SQLException e) {
@@ -890,7 +890,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-    public void RechercherArmes(ArrayList<Armes>vecarmes)
+    public void RechercherArmes()
     {
 
         Pane pane = new Pane();
@@ -940,8 +940,6 @@ public class ScreenEmploye {
         pane.getChildren().addAll(txt1,b,c,validation,CAT);
 
 
-
-    //    vecarmes=armesDAO.RechercherArmes(armes.getType(), armes.getCategorie());
 
         validation.setOnAction(actionEvent -> {
 
@@ -994,7 +992,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-        public  void SupprimerArmes(ArrayList<Armes>vecarmes)
+        public  void SupprimerArmes()
         {
             Pane pane = new Pane();
             Stage stage = new Stage();
@@ -1022,35 +1020,13 @@ public class ScreenEmploye {
 
                  try {
 
+                 int identification = Integer.valueOf(idTF.getText());
 
-                 String identification =  idTF.getText();
-                 int quantite=-1;
+                     Armesaffich();
+                     armesDAO.SupprimerArme(identification);
 
-            armesDAO.GererStockArme(identification,quantite);
+                     Armesaffich();
 
-/**
-                 //Verification : si id existe deja
-                 for (Armes arm : vecarmes) {
-
-                 if (Objects.equals(identification , arm.getIdentification())) {
-
-
-                 //ArmesDAO.GererStockArme(identification,quantite);
-
-
-
-                 Text supp = new Text("Une arme d'identification : "+identification+" a bien été supprimee");
-                 supp.setLayoutX(50);
-                 supp.setLayoutY(100);
-                 pane.getChildren().add(supp);
-
-                 vecarmes.remove(arm);
-
-                 ///stage.close();
-                 break;
-                 }
-                 }
- */
 
                  } catch (SQLException e) {
                  Text supp = new Text(e.toString());

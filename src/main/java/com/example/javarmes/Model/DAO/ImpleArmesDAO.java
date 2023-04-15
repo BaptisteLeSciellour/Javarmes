@@ -143,7 +143,7 @@ public class ImpleArmesDAO implements ArmesDAO {
             String requete = "SELECT * FROM armes ";
             pstmnt = con.prepareStatement(requete);
             result = pstmnt.executeQuery();
-            if (result.next()){
+            while(result.next()){
                 Armes armes = new Armes(result.getString("identification"),result.getString("type"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"), result.getInt("nb_vente"));
                 ListeArmes.add(armes);
             }
