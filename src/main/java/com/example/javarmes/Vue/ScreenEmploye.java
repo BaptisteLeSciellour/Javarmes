@@ -361,16 +361,18 @@ public class ScreenEmploye {
             Image txt1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/creapro.jpg")));
             //Creating a rotated transition
             ImageView Txt1 = new ImageView(txt1);
-            Txt1.setLayoutY(100);
-            Txt1.setLayoutX(100);
+            Txt1.setLayoutY(120);
+            Txt1.setLayoutX(50);
+            Txt1.setFitWidth(700);
+            Txt1.setFitHeight(100);
 
-            Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png")));
+            Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
             //Creating a rotated transition
             ImageView Loog = new ImageView(loog);
-            Loog.setLayoutY(5);
-            Loog.setFitWidth(200);
-            Loog.setFitHeight(90);
-            Loog.setLayoutX(5);
+            Loog.setLayoutY(1);
+            Loog.setFitWidth(800);
+            Loog.setFitHeight(130);
+            Loog.setLayoutX(1);
 
 
             Text txt = new Text("Prénom");
@@ -417,6 +419,8 @@ public class ScreenEmploye {
 
 
             Button bbtn = new Button("Ajouter l'employé(e)");
+            bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+
             bbtn.setLayoutX(300);
             bbtn.setLayoutY(600);
             bbtn.setOnAction(event1->{

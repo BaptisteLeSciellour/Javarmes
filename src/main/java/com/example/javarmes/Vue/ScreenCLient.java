@@ -34,50 +34,52 @@ public class ScreenCLient {
         txt1.setLayoutX(45);
         txt1.setLayoutY(100);*/
 
-        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png")));
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
         //Creating a rotated transition
         ImageView Loog = new ImageView(loog);
-        Loog.setLayoutY(5);
-        Loog.setFitWidth(200);
-        Loog.setFitHeight(90);
-        Loog.setLayoutX(5);
+        Loog.setLayoutY(1);
+        Loog.setFitWidth(800);
+        Loog.setFitHeight(130);
+        Loog.setLayoutX(1);
 
         Image txt1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/crrea.jpg")));
         //Creating a rotated transition
         ImageView Txt1 = new ImageView(txt1);
-        Txt1.setLayoutY(100);
-        Txt1.setLayoutX(100);
+        Txt1.setLayoutY(120);
+        Txt1.setLayoutX(50);
+        Txt1.setFitWidth(700);
+        Txt1.setFitHeight(100);
 
         ImpleClientDAO clientDAO = new ImpleClientDAO();
         Text txt4 = new Text("Entrez votre e-mail:");
         txt4.setFont(new Font("Arial", 26));
         txt4.setStyle("-fx-fill: white;");
         txt4.setLayoutX(300);
-        txt4.setLayoutY(200);
+        txt4.setLayoutY(250);
 
         TextField mailTF = new TextField();
         mailTF.setLayoutX(300);
-        mailTF.setLayoutY(220);
+        mailTF.setLayoutY(270);
 
         Text txt6 = new Text("Créez votre mot de passe:");
         txt6.setFont(new Font("Arial", 26));
         txt6.setStyle("-fx-fill: white;");
         txt6.setLayoutX(300);
-        txt6.setLayoutY(300);
+        txt6.setLayoutY(330);
 
         Text txt67 = new Text("Confirmez votre mot de passe:");
         txt67.setFont(new Font("Arial", 26));
         txt67.setStyle("-fx-fill: white;");
         txt67.setLayoutX(300);
-        txt67.setLayoutY(400);
+        txt67.setLayoutY(410);
 
         TextField mdpTF = new TextField();
         mdpTF.setLayoutX(300); // ici on les décales
-        mdpTF.setLayoutY(320); // ici on remonte les cases
+        mdpTF.setLayoutY(350); // ici on remonte les cases
 
         TextField mdpTF2 = new TextField();
         mdpTF2.setLayoutX(300); // ici on les décales
-        mdpTF2.setLayoutY(420); // ici on remonte les cases
+        mdpTF2.setLayoutY(430); // ici on remonte les cases
 
 //A checkbox without a caption
         CheckBox cb1 = new CheckBox("J'accepte les conditions d'utilisation.");

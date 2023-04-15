@@ -198,7 +198,7 @@ public class Menu {
         typee.setLayoutX(20);
         typee.setLayoutY(50);*/
 
-        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typutil.jpg")));
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typ2.jpg")));
         //Creating a rotated transition
         ImageView Loog = new ImageView(loog);
         Loog.setLayoutY(0);
@@ -206,7 +206,7 @@ public class Menu {
         Loog.setFitWidth(800);
         Loog.setFitHeight(230);
 
-        Image loogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/javarmestyle.jpg")));
+        Image loogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
         //Creating a rotated transition
         ImageView Loogo = new ImageView(loogo);
         Loogo.setLayoutY(550);
@@ -219,7 +219,7 @@ public class Menu {
         Button employe = new Button("EMPLOYE");
         employe.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         client.setLayoutX(300);
-        client.setLayoutY(380);
+        client.setLayoutY(440);
         client.setOnAction(actionEvent -> {
             ScreenCLient scc = new ScreenCLient();
             Text txxt = new Text();
@@ -227,7 +227,7 @@ public class Menu {
             settle.close();
         });
         employe.setLayoutX(300);
-        employe.setLayoutY(300);
+        employe.setLayoutY(360);
         employe.setOnAction(actionEvent -> {
             ScreenEmploye sce = new ScreenEmploye();
             sce.InscriptionEmploye(vecemployes,vecarmes,vecmunitions);
@@ -266,15 +266,15 @@ public class Menu {
         typee.setLayoutX(20);
         typee.setLayoutY(50);*/
 
-        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typutil.jpg")));
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typ2.jpg")));
         //Creating a rotated transition
         ImageView Loog = new ImageView(loog);
         Loog.setLayoutY(0);
         Loog.setLayoutX(0);
         Loog.setFitWidth(800);
-        Loog.setFitHeight(230);
+        Loog.setFitHeight(200);
 
-        Image loogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/javarmestyle.jpg")));
+        Image loogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
         //Creating a rotated transition
         ImageView Loogo = new ImageView(loogo);
         Loogo.setLayoutY(550);
@@ -287,7 +287,7 @@ public class Menu {
         Button employe = new Button("EMPLOYE");
         employe.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         client.setLayoutX(300);
-        client.setLayoutY(380);
+        client.setLayoutY(440);
         client.setOnAction(actionEvent -> {
             try {
                 connectionClient(settle);
@@ -296,7 +296,7 @@ public class Menu {
             }
         });
         employe.setLayoutX(300);
-        employe.setLayoutY(300);
+        employe.setLayoutY(360);
         employe.setOnAction(actionEvent -> {
             try {
                 connectionEmploye(settle);
@@ -679,37 +679,57 @@ public class Menu {
     public void connectionClient(Stage stage) throws SQLException {
         Pane pannne = new Pane();
         Stage settle = new Stage();
-        Text txt = new Text("Connexion");
-        txt.setLayoutX(90);
-        txt.setLayoutY(150);
+
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/connexion.jpg")));
+        //Creating a rotated transition
+        ImageView Loog = new ImageView(loog);
+        Loog.setLayoutY(0);
+        Loog.setLayoutX(0);
+        Loog.setFitWidth(800);
+        Loog.setFitHeight(200);
 
         Text txt4 = new Text("Saisir le mail:");
-        txt4.setLayoutX(90);
-        txt4.setLayoutY(170);
+        txt4.setFont(new Font("Arial", 26));
+        txt4.setStyle("-fx-fill: white;");
+        txt4.setLayoutX(300);
+        txt4.setLayoutY(260);
 
         TextField mailTF = new TextField();
-        mailTF.setLayoutX(90);
-        mailTF.setLayoutY(210);
+        mailTF.setLayoutX(300);
+        mailTF.setLayoutY(280);
 
         Text idT = new Text("Saisir le ID:");
-        idT.setLayoutX(90);
-        idT.setLayoutY(250);
+        idT.setFont(new Font("Arial", 26));
+        idT.setStyle("-fx-fill: white;");
+        idT.setLayoutX(300);
+        idT.setLayoutY(350);
 
         TextField idTF = new TextField();
-        idTF.setLayoutX(90);
-        idTF.setLayoutY(290);
+        idTF.setLayoutX(300);
+        idTF.setLayoutY(370);
 
         Text mdpT = new Text("Saisir le motdepasse:");
-        mdpT.setLayoutX(90);
-        mdpT.setLayoutY(320);
+        mdpT.setFont(new Font("Arial", 26));
+        mdpT.setStyle("-fx-fill: white;");
+        mdpT.setLayoutX(300);
+        mdpT.setLayoutY(450);
 
         final PasswordField mdpTF = new PasswordField();
-        mdpTF.setLayoutX(90);
-        mdpTF.setLayoutY(360);
+        mdpTF.setLayoutX(300);
+        mdpTF.setLayoutY(470);
+
+        Image loog2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        //Creating a rotated transition
+        ImageView Loog2 = new ImageView(loog2);
+        Loog2.setLayoutY(590);
+        Loog2.setLayoutX(0);
+        Loog2.setFitWidth(800);
+        Loog2.setFitHeight(110);
 
         Button validation = new Button("Validation");
-        validation.setLayoutX(90);
-        validation.setLayoutY(400);
+        validation.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        validation.setLayoutX(550);
+        validation.setLayoutY(520);
 
         validation.setOnAction(actionEvent -> {
             String mail = mailTF.getText();
@@ -734,7 +754,7 @@ public class Menu {
             } catch (SQLException e) {}
         });
 
-        pannne.getChildren().addAll(txt, validation, txt4, idTF,idT,mailTF,mdpTF,mdpT);
+        pannne.getChildren().addAll(validation, txt4, idTF,idT,mailTF,mdpTF,mdpT,Loog,Loog2);
 
         Scene sceene = new Scene(pannne, 800, 700);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -751,29 +771,47 @@ public class Menu {
     public void connectionEmploye(Stage stage) throws SQLException {
         Pane pannne = new Pane();
         Stage settle = new Stage();
-        Text txt = new Text("Connexion");
-        txt.setLayoutX(90);
-        txt.setLayoutY(150);
 
         Text idT = new Text("Saisir le ID:");
-        idT.setLayoutX(90);
-        idT.setLayoutY(250);
+        idT.setFont(new Font("Arial", 26));
+        idT.setStyle("-fx-fill: white;");
+        idT.setLayoutX(300);
+        idT.setLayoutY(350);
 
         TextField idTF = new TextField();
-        idTF.setLayoutX(90);
-        idTF.setLayoutY(290);
+        idTF.setLayoutX(300);
+        idTF.setLayoutY(370);
+
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/connexion.jpg")));
+        //Creating a rotated transition
+        ImageView Loog = new ImageView(loog);
+        Loog.setLayoutY(0);
+        Loog.setLayoutX(0);
+        Loog.setFitWidth(800);
+        Loog.setFitHeight(200);
+
+        Image loog2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        //Creating a rotated transition
+        ImageView Loog2 = new ImageView(loog2);
+        Loog2.setLayoutY(590);
+        Loog2.setLayoutX(0);
+        Loog2.setFitWidth(800);
+        Loog2.setFitHeight(110);
 
         Text mdpT = new Text("Saisir le motdepasse:");
-        mdpT.setLayoutX(90);
-        mdpT.setLayoutY(320);
+        mdpT.setFont(new Font("Arial", 26));
+        mdpT.setStyle("-fx-fill: white;");
+        mdpT.setLayoutX(300);
+        mdpT.setLayoutY(450);
 
         final PasswordField mdpTF = new PasswordField();
-        mdpTF.setLayoutX(90);
-        mdpTF.setLayoutY(360);
+        mdpTF.setLayoutX(300);
+        mdpTF.setLayoutY(470);
 
         Button validation = new Button("Validation");
-        validation.setLayoutX(90);
-        validation.setLayoutY(400);
+        validation.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        validation.setLayoutX(550);
+        validation.setLayoutY(520);
 
         validation.setOnAction(actionEvent -> {
             String idS = idTF.getText();
@@ -795,7 +833,7 @@ public class Menu {
             } catch (SQLException e) {}
         });
 
-        pannne.getChildren().addAll(txt, validation, idTF,idT,mdpTF,mdpT);
+        pannne.getChildren().addAll(Loog, validation, idTF,idT,mdpTF,mdpT,Loog2);
 
         Scene sceene = new Scene(pannne, 800, 700);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
