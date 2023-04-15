@@ -1,6 +1,5 @@
 package com.example.javarmes.Vue;
 
-import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
@@ -17,16 +16,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import com.example.javarmes.Model.DAO.ImpleClientDAO;
-import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
-import com.example.javarmes.Model.Utilisateurs.Client;
-import com.example.javarmes.Model.Utilisateurs.Employes;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
+
 
 import java.sql.SQLException;
 import java.util.*;
@@ -34,17 +28,25 @@ import java.util.*;
 import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Munitions;
 import  com.example.javarmes.Model.DAO.*;
-import com.example.javarmes.Model.Utilisateurs.Employes;
-import com.example.javarmes.Model.Articles.*;
-import com.example.javarmes.Model.Articles.Armes;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Classe de gestion de l'employee
+ * @author Olivia GAAD et Baptiste Lesciellour
+ * @version 3.0
+ */
+
 public class ScreenEmploye {
 
 
+    /**
+     * Methode de mise à jour d'employee
+     * @author Olivia GAAD
+     * @version 3.0
+     */
     public void MAJEmploye(ArrayList<Employes>vecemployes){
         Pane pannne = new Pane();
         Stage settle = new Stage();
@@ -154,19 +156,24 @@ public class ScreenEmploye {
         settle.show();
     }
 
+    /**
+     * Menu de l'employee
+     * @author Baptsiste
+     * @version 3.0
+     */
     public void MenuEmploye(ArrayList<Employes> vecemployes,ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions)
     {
         Pane pannne = new Pane();
         Stage settle = new Stage();
 
-        Text txt = new Text("Voulez-vous ajouter un employé ?");
+        Text txt = new Text("Employee : Que voulez vous faire?");
         txt.setFont(new Font("Arial", 26));
         txt.setStyle("-fx-fill: white;");
         txt.setLayoutX(90);
         txt.setLayoutY(290);
 
         /**creer deux boutons**/
-        Button bbtn = new Button("OUI");
+        Button bbtn = new Button("Ajouter ");
         bbtn.setLayoutX(140);
         bbtn.setLayoutY(400);
 
@@ -174,7 +181,7 @@ public class ScreenEmploye {
         bbtn2.setLayoutX(240);
         bbtn2.setLayoutY(400);
 
-        Button bbtn3 = new Button("Supp");
+        Button bbtn3 = new Button("Supprimer");
         bbtn3.setLayoutX(40);
         bbtn3.setLayoutY(400);
 
@@ -212,6 +219,11 @@ public class ScreenEmploye {
         settle.show();
     }
 
+    /**
+     * Fonction de suppression d'un employee
+     * @author Olivia et Baptsiste
+     * @version 3.0
+     */
     public void SuppresionEmploye(ArrayList<Employes>vecemployes) {
         Pane pane = new Pane();
         Stage stage = new Stage();
@@ -275,6 +287,11 @@ public class ScreenEmploye {
         stage.show();
     }
 
+    /**
+     * Fonction de statistique
+     * @author Baptsiste
+     * @version 3.0
+     */
     public void camembertsamere(Stage primaryStage , List<Client> art) {
         final PieChart chart = new PieChart();
         chart.setTitle("Achat par client");
@@ -295,7 +312,11 @@ public class ScreenEmploye {
         primaryStage.show();
     }
 
-
+    /**
+     * Fonction d'affichage d'un employee
+     * @author Olivia et Baptsiste
+     * @version 3.0
+     */
         public void Employeaffich(String prenom, String nom)
         {
             Pane pane = new Pane();
@@ -327,6 +348,11 @@ public class ScreenEmploye {
             stage.show();
         }
 
+    /**
+     * Fonction d'inscription d'un employee
+     * @author Olivia et Baptsiste
+     * @version 3.0
+     */
         public void InscriptionEmploye(ArrayList<Employes>vecemployes,ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions) /** Nous avons un second écran qui apparait**/
         {
             Pane panne = new Pane();
@@ -417,6 +443,11 @@ public class ScreenEmploye {
         }
 
 
+    /**
+     * Fonction de gestion des stocks
+     * @author Olivia
+     * @version 3.0
+     */
 
         public  void Stock(ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions)
         {
@@ -464,6 +495,11 @@ public class ScreenEmploye {
 
         }
 
+    /**
+     * Fonction de gestion des stocks d'armes
+     * @author Olivia
+     * @version 3.0
+     */
 
         public void StockArmes(ArrayList<Armes>vecarmes)
         {
@@ -528,7 +564,11 @@ public class ScreenEmploye {
 
         }
 
-
+    /**
+     * Fonction d'ajout d'arme dans le stock
+     * @author Olivia
+     * @version 3.0
+     */
         public  void AjoutArme(ArrayList<Armes> vecarmes)
         {  Pane pane = new Pane();
             Stage stage = new Stage();
@@ -776,6 +816,11 @@ public class ScreenEmploye {
 
         }
 
+    /**
+     * Fonction affichage du stock d'armes
+     * @author Olivia
+     * @version 3.0
+     */
         public void Armesaffich(ArrayList<Armes>vecarmes)
         {
             Pane pane = new Pane();
@@ -827,6 +872,11 @@ public class ScreenEmploye {
             stage.show();
         }
 
+    /**
+     * Fonction de recherche d'armes
+     * @author Olivia
+     * @version 3.0
+     */
     public void RechercherArmes(ArrayList<Armes>vecarmes)
     {
 
@@ -903,6 +953,11 @@ public class ScreenEmploye {
 
     }
 
+    /**
+     * Fonction de suppression d'armes
+     * @author Olivia
+     * @version 3.0
+     */
         public  void SupprimerArmes(ArrayList<Armes>vecarmes)
         {
             Pane pane = new Pane();
@@ -979,6 +1034,11 @@ public class ScreenEmploye {
             stage.show();
         }
 
+    /**
+     * Fonction de gestion de munitions
+     * @author Olivia
+     * @version 3.0
+     */
         public  void StockMunitions(ArrayList<Munitions>vecmunitions)
         {
             Pane pane = new Pane();
@@ -1040,6 +1100,12 @@ public class ScreenEmploye {
             stage.show();
 
         }
+
+    /**
+     * Fonction de recherche de munitions
+     * @author Olivia
+     * @version 3.0
+     */
     public void RechercherMunitions(ArrayList<Munitions>vecmunitions)
     {
 
@@ -1117,6 +1183,11 @@ public class ScreenEmploye {
 
     }
 
+    /**
+     * Fonction d'affichage de munitions
+     * @author Olivia
+     * @version 3.0
+     */
         public void Munitionsaffich(ArrayList<Munitions>vecmunitions)
         {
             Pane pane = new Pane();
@@ -1170,6 +1241,11 @@ public class ScreenEmploye {
             stage.show();
         }
 
+    /**
+     * Fonction d'ajout de munitions
+     * @author Olivia
+     * @version 3.0
+     */
     public  void AjoutMunitions(ArrayList<Munitions> vecmunitions)
     {
         Pane pane = new Pane();
@@ -1191,7 +1267,7 @@ public class ScreenEmploye {
         CAT.setLayoutX(90);
         CAT.setLayoutY(150);
 
-        /**Catégorie Bou C**/
+        /**Catégorie B ou C**/
         Button b = new Button("B");
         b.setLayoutX(90);
         b.setLayoutY(160);
@@ -1375,6 +1451,11 @@ public class ScreenEmploye {
 
     }
 
+    /**
+     * Fonction de suppression de munitions
+     * @author Olivia
+     * @version 3.0
+     */
         public  void SupprimerMunitions(ArrayList<Munitions>vecmunitions)
         {
             Pane pane = new Pane();
