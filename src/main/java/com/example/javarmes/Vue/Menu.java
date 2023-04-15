@@ -58,6 +58,10 @@ public class Menu {
         hpy.setLayoutY(600);
         hpy.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
+        Button contact = new Button("Nous contacter");
+        contact.setLayoutX(700);
+        contact.setLayoutY(700);
+        contact.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
 
         Text menuu = new Text("M E N U");
@@ -121,13 +125,17 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,test);
+        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,test,contact);
         connection.setOnAction(event -> {
             menuconnexion();
         });
 
         sortie.setOnAction(actionEvent -> {
             Platform.exit();
+        });
+
+        contact.setOnAction(actionEvent -> {
+            contact();
         });
 
         hpy.setOnAction(actionEvent -> {
@@ -641,7 +649,7 @@ public class Menu {
         valider.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 10px; -fx-background-radius: 10px;");
 
         panne.getChildren().addAll(valider, code, txt1, txt4, coor, date, coord, trois);
-        Scene settle = new Scene(panne, 520, 520);
+        Scene settle = new Scene(panne, 800, 700);
 
         settle.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
@@ -721,7 +729,11 @@ public class Menu {
 
         pannne.getChildren().addAll(txt, validation, txt4, idTF,idT,mailTF,mdpTF,mdpT);
 
-        Scene sceene = new Scene(pannne, 320, 540);
+        Scene sceene = new Scene(pannne, 800, 700);
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond
 
         settle.setScene(sceene);
         settle.setX(0);
@@ -778,12 +790,47 @@ public class Menu {
 
         pannne.getChildren().addAll(txt, validation, idTF,idT,mdpTF,mdpT);
 
-        Scene sceene = new Scene(pannne, 320, 540);
-
+        Scene sceene = new Scene(pannne, 800, 700);
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond
         settle.setScene(sceene);
         settle.setX(0);
         settle.setY(0);
         settle.show();
     }
+
+
+
+
+public void contact()
+{
+    Pane pannne = new Pane();
+    Stage settle = new Stage();
+
+
+    Image contact = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/contact.jpg")));
+    //Creating a rotated transition
+    ImageView Contact = new ImageView(contact);
+    Contact.setLayoutY(1);
+    Contact.setLayoutX(1);
+    Contact.setFitHeight(700);
+    Contact.setFitWidth(800);
+
+    pannne.getChildren().addAll(Contact);
+
+    Scene sceene = new Scene(pannne, 800, 700);
+    sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+            + "-fx-background-radius: 5px; "
+            + "-fx-background-insets: 0px; "
+            + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond
+
+    settle.setScene(sceene);
+    settle.setX(0);
+    settle.setY(0);
+    settle.show();
+}
+
 
 }
