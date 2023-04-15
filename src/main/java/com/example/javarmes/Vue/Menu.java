@@ -338,14 +338,20 @@ public class Menu {
 
 
 
-        Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bullet2.jpg")));
+        Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/dispo.jpg")));
         //Creating a rotated transition
         ImageView Logo = new ImageView(logo);
-        Logo.setFitWidth(1400);
+        Logo.setFitWidth(1550);
         Logo.setFitHeight(300);
-        Logo.setLayoutX(250);
-        Logo.setLayoutY(1);
+        Logo.setLayoutX(0);
+        Logo.setLayoutY(0);
 
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(1600);
+        Bande.setFitHeight(200);
+        Bande.setLayoutX(1);
+        Bande.setLayoutY(700);
 
         Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
         //Creating a rotated transition
@@ -470,7 +476,7 @@ public class Menu {
         po.setLayoutY(600);
 
 
-        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, Logo,connection);
+        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, Logo,connection,Bande);
 
         Scene scene = new Scene(pane, 520, 540);
         scene.getRoot().setStyle("-fx-background-color: #4B5320; "
