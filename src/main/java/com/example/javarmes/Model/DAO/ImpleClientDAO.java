@@ -7,9 +7,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe client de la bddd
+ * @author Akshaya
+ * @param
+ **/
 public class ImpleClientDAO implements ClientDAO {
 
-    /** Méthode qui permet à un client de s'inscrire**/
+    /**
+     * Méthode qui permet à un client de s'inscrire
+     * @author Akshaya
+     * @param
+     **/
+
     @Override
     public void Ajouter(Client client) throws SQLException{
         Connection con = null;
@@ -34,7 +44,13 @@ public class ImpleClientDAO implements ClientDAO {
         }
 
     }
-    /** Méthode qui permet à un client de mettre à jour ses informations de connexion**/
+
+
+    /**
+     * Méthode qui permet à un client de mettre à jour ses informations de connexion
+     * @author Akshaya
+     * @param
+     **/
 
     @Override
     public void MettreAJour(Client client) throws SQLException{
@@ -59,8 +75,14 @@ public class ImpleClientDAO implements ClientDAO {
             }
         }
     }
-    /** Méthode qui permet à un client de supprimer son compte**/
 
+
+
+    /**
+     * Méthode qui permet à un client de supprimer son compte
+     * @author Akshaya
+     * @param
+     **/
     @Override
     public void Supprimer(int id) throws SQLException{
         Connection con = null;
@@ -82,6 +104,12 @@ public class ImpleClientDAO implements ClientDAO {
             }
         }
     }
+
+    /**
+     * Méthode qui permet d'afficher le compte d'un client
+     * @author Akshaya
+     * @param
+     **/
     /** Enlever ou laisser ? */
     @Override
     public Client ChoisirClient(int id) throws SQLException{
@@ -111,7 +139,11 @@ public class ImpleClientDAO implements ClientDAO {
         return client;
     }
 
-    /** Méthode qui retourne true si le mail existe déjà et false si ce n'est pas le cas**/
+    /**
+     * Méthode qui retourne true si le mail existe déjà et false si ce n'est pas le cas
+     * @author Akshaya
+     * @param
+     **/
     public boolean BlindageParRecherche (String mailSaisi) throws SQLException {
         Connection con = null;
         Statement stmnt = null;
@@ -142,7 +174,12 @@ public class ImpleClientDAO implements ClientDAO {
         return verification;
 
     }
-    /** Méthode qui permet au client de se connecter **/
+
+    /**
+     * Méthode qui permet au client de se connecter
+     * @author Akshaya
+     * @param
+     **/
     public Client connexionClient(int ID, String mail, String mdp) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null ;

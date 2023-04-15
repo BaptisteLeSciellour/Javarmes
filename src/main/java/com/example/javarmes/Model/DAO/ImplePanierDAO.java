@@ -5,8 +5,18 @@ import com.example.javarmes.Model.Panier.Panier;
 import java.sql.Connection;
 import java.sql.*;
 
+/**
+ * Classe implementation du panier : BDD
+ * @author Akshaya
+ * @param
+ **/
 public class ImplePanierDAO implements PanierDAO {
-    /**Méthode de création d'une table panier qui garde le panier en mémoire **/
+
+    /**
+     * Méthode de création d'une table panier qui garde le panier en mémoire
+     * @author Akshaya
+     * @param
+     **/
     public void CreationPanier() throws SQLException{
         Connection con = null;
         Statement stmnt = null;
@@ -26,10 +36,14 @@ public class ImplePanierDAO implements PanierDAO {
             }
         }
     }
-    /**Méthode d'ajout de produit choisi par le client dans son panier
-     * Il faudrait ici pour chaque bouton situé près de l'article, set les valeurs String id_article et String type_article
-     * demander la saisie de **/
 
+    /**
+     * Méthode d'ajout de produit choisi par le client dans son panier
+     *      * Il faudrait ici pour chaque bouton situé près de l'article, set les valeurs String id_article et String type_article
+     *      * demander la saisie de
+     * @author Akshaya
+     * @param
+     **/
     public void AjouterProduitPanier(String id_article, int quantite) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -95,9 +109,16 @@ public class ImplePanierDAO implements PanierDAO {
             }
         }
     }
-    /**Méthode de suppression de produit
-     * @param id_article **/
-    /* Set l'id_article dans le bouton "retirer" correspondant à l'article */
+
+
+
+    /**
+     *  /**Méthode de suppression de produit
+     *      * @param id_article
+     *      * Set l'id_article dans le bouton "retirer" correspondant à l'article
+     * @author Akshaya
+     * @param
+     **/
     public void SupprimerProduitPanier(String id_article) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -130,7 +151,12 @@ public class ImplePanierDAO implements PanierDAO {
             }
         }
     }
-    /**Méthode de la destruction de la table panier dans la bdd**/
+
+    /**
+     * Méthode de la destruction de la table panier dans la bdd
+     * @author Akshaya
+     * @param
+     **/
     public void SupressionPanier() throws SQLException{
         Connection con = null;
         Statement stmnt = null;

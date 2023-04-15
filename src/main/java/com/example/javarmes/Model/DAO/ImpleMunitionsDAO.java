@@ -9,9 +9,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Classe implementation des munitions
+ * @author Akshaya
+ * @param
+ **/
 public class ImpleMunitionsDAO implements MunitionsDAO {
-    /**Méthode d'ajout de munitions**/
+
+
+    /**
+     * Méthode d'ajout de munitions
+     * @author Akshaya
+     * @param
+     **/
     public void ajouter(Munitions munition) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -39,7 +49,12 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             }
         }
     }
-    /**Méthode de gestion de stock des munitions idem à celle des armes**/
+
+    /**
+     * Méthode de gestion de stock des munitions idem à celle des armes
+     * @author Akshaya
+     * @param
+     **/
     public void GererStockMunition(String identification, int quantite) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -74,7 +89,12 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             }
         }
     }
-    /**Méthode de recherches des munitions identiques à celle des armes **/
+
+    /**
+     * Méthode de recherches des munitions identiques à celle des armes
+     * @author Akshaya
+     * @param
+     **/
     public List<Munitions> RechercherMunitions(String recherche, String critere) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -102,7 +122,12 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
         }
         return ResultatRecherche;
     }
-    /**Méthode d'affichage de l'ensemble des munitions **/
+
+    /**
+     * Méthode d'affichage de l'ensemble des munitions
+     * @author Akshaya
+     * @param
+     **/
     public List<Munitions> ChoisirMunitions() throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;

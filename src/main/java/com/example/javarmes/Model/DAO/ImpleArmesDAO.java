@@ -11,8 +11,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe DAO: implementation d'armes
+ * @author Akshaya
+ */
 public class ImpleArmesDAO implements ArmesDAO {
-    /**Méthode qui permet d'ajouter une nouvelle arme à la bdd**/
+
+    /**
+     * Méthode qui permet d'ajouter une nouvelle arme à la bdd
+     * @author Akshaya
+     * @param
+     */
     public void AjouterArme(Armes armes) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -40,8 +49,12 @@ public class ImpleArmesDAO implements ArmesDAO {
         }
     }
 
-    /**Méthode qui recherche dans la table Armes selon le critère saisi et la valeur voulue
-     ex : (categorie,B) affiche toutes les armes de la catégorie B**/
+    /**
+     * Méthode qui recherche dans la table Armes selon le critère saisi et la valeur voulue
+     *      ex : (categorie,B) affiche toutes les armes de la catégorie B
+     * @author Akshaya
+     * @param
+     **/
 
     public List<Article> RechercherArmes(String recherche, String critere) throws SQLException {
         Connection con = null;
@@ -71,9 +84,14 @@ public class ImpleArmesDAO implements ArmesDAO {
         }
         return ResultatRecherche;
     }
-    /** Méthode qui permet de diminuer ou augmenter le stock d'une arme
-     * nombre négatif pour décrementer, positif pour incrémenter
-     * avec blindage quantité>=0 **/
+
+    /**
+     * Méthode qui permet de diminuer ou augmenter le stock d'une arme
+     *      * nombre négatif pour décrementer, positif pour incrémenter
+     *      * avec blindage quantité>=0
+     * @author Akshaya
+     * @param
+     **/
     public void GererStockArme(String identification, int quantite) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -108,7 +126,13 @@ public class ImpleArmesDAO implements ArmesDAO {
             }
         }
     }
-    /** Méthode qui permet de récupérer les informations d'une arme **/
+
+    /**
+     * Méthode qui permet de récupérer les informations d'une arme
+     * @author Akshaya
+     * @param
+     **/
+
     public List<Armes> ChoisirArmes() throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -136,7 +160,12 @@ public class ImpleArmesDAO implements ArmesDAO {
         System.out.println(ListeArmes.size());
         return ListeArmes;
     }
-    /** Méthode qui permet de supprimer définitivement une arme de la bdd **/
+
+    /**
+     * Méthode qui permet de supprimer définitivement une arme de la bdd
+     * @author Akshaya
+     * @param
+     **/
     public void SupprimerArme(int identification) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
