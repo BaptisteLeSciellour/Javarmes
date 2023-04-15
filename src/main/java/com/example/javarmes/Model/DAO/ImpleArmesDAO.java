@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImpleArmesDAO implements ArmesDAO {
-
+    /**Méthode qui permet d'ajouter une nouvelle arme à la bdd**/
     public void AjouterArme(Armes armes) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -40,9 +40,9 @@ public class ImpleArmesDAO implements ArmesDAO {
         }
     }
 
-    /**
-     * Méthode qui recherche dans la table Armes selon le critère saisi et la valeur voulue
-     **/
+    /**Méthode qui recherche dans la table Armes selon le critère saisi et la valeur voulue
+     ex : (categorie,B) affiche toutes les armes de la catégorie B**/
+
     public List<Article> RechercherArmes(String recherche, String critere) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -71,7 +71,9 @@ public class ImpleArmesDAO implements ArmesDAO {
         }
         return ResultatRecherche;
     }
-
+    /** Méthode qui permet de diminuer ou augmenter le stock d'une arme
+     * nombre négatif pour décrementer, positif pour incrémenter
+     * avec blindage quantité>=0 **/
     public void GererStockArme(String identification, int quantite) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -106,7 +108,7 @@ public class ImpleArmesDAO implements ArmesDAO {
             }
         }
     }
-
+    /** Méthode qui permet de récupérer les informations d'une arme **/
     public List<Armes> ChoisirArmes() throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -132,6 +134,27 @@ public class ImpleArmesDAO implements ArmesDAO {
             }
         }
         return ListeArmes;
+    }
+    /** Méthode qui permet de supprimer définitivement une arme de la bdd **/
+    public void SupprimerArme(int identification) throws SQLException{
+        Connection con = null;
+        PreparedStatement pstmnt = null;
+        try{
+            con = new DAOFactory().getConnection();
+            String requete = "DELETE FROM armes WHERE identification = ?";
+            pstmnt = con.prepareStatement(requete);
+            pstmnt.setInt(1, identification);
+            pstmnt.executeUpdate();
+            System.out.println("L'arme a été supprimée de la base !");
+        } catch(SQLException e) {
+            System.out.println("Erreur lors de la suppression...");
+            System.out.println(e);
+        } finally {
+            if ((pstmnt !=null)||(con!=null)) {
+                pstmnt.close();
+                con.close();
+            }
+        }
     }
 }
 

@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ImpleEmployeDAO implements EmployeDAO {
+
     /** Méthodes de gestion des employés */
+    /** Méthode qui permet d'ajouter un employé**/
     @Override
     public void AjouterEmployes(Employes employe) throws SQLException {
         Connection con = null;
@@ -35,7 +37,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
             }
         }
     }
-
+    /** Méthode de suppression d'un employé **/
     @Override
     public void SupprimerEmployes(int id) throws SQLException{
         Connection con = null;
@@ -57,7 +59,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
             }
         }
     }
-
+    /**Méthode de mise à jour des informations d'un employé**/
     @Override
     public void MettreAJourEmployes(Employes employe) throws SQLException{
         Connection con = null;
@@ -81,7 +83,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
             }
         }
     }
-
+    /** Méthode d'affichage des infos d'un employé **/
     public Employes ChoisirEmploye(int id) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -108,7 +110,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
         }
         return employe;
     }
-
+    /** Méthode d'affichage de l'ensemble des employés**/
     public List<Employes>  ChoisirEmploye() throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -137,6 +139,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     }
 
     /** Méthodes de gestion de clients faisable par les employés*/
+    /**Méthode d'affichage des infos de tous les clients **/
     public List<Client> ChoisirClient() throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -163,7 +166,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
         }
         return ListeClients;
     }
-
+    /** Méthode d'affichage des infos d'un client**/
     public Client ChoisirClient(int id) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -191,7 +194,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
         return client;
     }
 
-
+    /** Méthode d'ajout d'un nouveau client **/
     @Override
     public void AjouterClient (Client client) throws SQLException{
         Connection con = null;
@@ -214,7 +217,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
             }
         }
     }
-
+    /** Méthode de modification des infos d'un client**/
     @Override
     public void MettreAJourClient(Client client) throws SQLException{
         Connection con = null;
@@ -238,7 +241,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
             }
         }
     }
-
+    /** Méthode de suppression des données d'un client **/
     @Override
     public void SupprimerClient(int id) throws SQLException{
         Connection con = null;
@@ -276,7 +279,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
                 String mdpSaisi = rsl.getString("motdepasse");
                 if (mdpSaisi.equals(mdp)) {
                     connexionEmploye = new Employes(rsl.getInt("id"), rsl.getString("motdepasse"));
-                    System.out.println("Client identifié");
+                    System.out.println("Employé identifié");
                 } else {
                     System.out.println("Mot de passe saisi incorrect");
                 }

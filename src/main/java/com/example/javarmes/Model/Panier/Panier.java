@@ -1,16 +1,16 @@
 package com.example.javarmes.Model.Panier;
 
 public class Panier {
-    public int id_panier;
-    public int id_client;
-    public int id_article;
+    public int id_panier; /**clé primaire**/
+    public String id_arme;/**clé étrangère pour arme**/
+    public String id_munition; /** clé étrangère pour munition**/
 
     public int qte;
     public String nom_article;
-    public double prix;
+    public double prix_unique;
+    public double prix_total;
     public String type_article;
     public int reduction;
-
     /** Getter and Setter **/
 
     public int getId_panier() {
@@ -21,53 +21,59 @@ public class Panier {
         this.id_panier = id_panier;
     }
 
-    public int getId_client() {
-        return id_client;
+    public String getId_arme() {
+        return id_arme;
     }
 
-    public void setId_client(int id_client) {
-        this.id_client = id_client;
+    public void setId_arme(String id_arme) {
+        this.id_arme = id_arme;
     }
 
-    public int getId_article() {
-        return id_article;
+    public String getId_munition() {
+        return id_munition;
     }
 
-    public void setId_arme(int is_article) {
-        this.id_article = id_article;
+    public void setId_munition(String id_munition) {
+        this.id_munition = id_munition;
     }
 
-
-    public int getQte_arme() {
+    public int getQte() {
         return qte;
     }
 
-    public void setQte_arme(int qte_arme) {
+    public void setQte(int qte) {
         this.qte = qte;
     }
 
-
-    public String getNom_arme() {
+    public String getNom_article() {
         return nom_article;
     }
 
-    public void setNom_arme(String nom_arme) {
+    public double getPrix_unique() {
+        return prix_unique;
+    }
+
+    public void setPrix_unique(double prix_unique) {
+        this.prix_unique = prix_unique;
+    }
+
+    public double getPrix_total() {
+        return prix_total;
+    }
+
+    public void setPrix_total(double prix_total) {
+        this.prix_total = prix_total;
+    }
+
+    public void setNom_article(String nom_article) {
         this.nom_article = nom_article;
     }
 
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-
-    public String getType() {
+    public String getType_article() {
         return type_article;
     }
 
-    public void setType(String type) {
+    public void setType_article(String type_article) {
         this.type_article = type_article;
     }
 
@@ -79,13 +85,15 @@ public class Panier {
         this.reduction = reduction;
     }
 
-    public Panier(int id_panier, int id_article, int qte, String nom_article, double prix, String type, int reduction) {
+    public Panier(int id_panier,String type_article, String id_arme, String id_munition, int qte, String nom_article, double prix_unique, double prix_total, int reduction) {
         this.id_panier = id_panier;
-        this.id_article = id_article;
+        this.type_article = type_article ;
+        this.id_arme= id_arme;
+        this.id_munition=id_munition;
         this.qte = qte;
         this.nom_article = nom_article;
-        this.prix = prix ;
-        this.type_article = type_article ;
+        this.prix_unique = prix_unique ;
+        this.prix_total=prix_total;
         this.reduction = reduction ;
     }
 }

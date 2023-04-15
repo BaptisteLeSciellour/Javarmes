@@ -9,14 +9,14 @@ import java.util.List;
 public class TestsTemporaire {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-       /**ImpleArmesDAO ArmesDAO = new ImpleArmesDAO();
+      /** ImpleArmesDAO ArmesDAO = new ImpleArmesDAO();
         //Client client = new Client (2, "test1@gmail.com", "test_1mdp");
         //Armes arme = new Armes("O3612","B", "Revolver",639.99,7.99);
-        String recherche = "reduction";
-        String critere = "5";
+        String recherche = "type";
+        String critere = "poing";
         try{
             //ArmesDAO.AjouterArmeB(arme);
-            List<Armes> resultatRecherche = ArmesDAO.RechercherArmes(recherche, critere);
+            List<Article> resultatRecherche = ArmesDAO.RechercherArmes(recherche, critere);
             if(resultatRecherche!= null){
                 System.out.println("Résultats de la recherche");
                 System.out.println(resultatRecherche);
@@ -50,8 +50,11 @@ public class TestsTemporaire {
         }**/
 
        ImplePanierDAO PanierDAO = new ImplePanierDAO();
+       String id_article = "30";
+       int quantite = 5;
        try{
-           PanierDAO.SupressionPanier();
+           //PanierDAO.CreationPanier();
+           PanierDAO.AjouterProduitPanier(id_article,quantite);
        }catch(SQLException e) {
             System.out.println("Erreur");
             System.out.println(e);

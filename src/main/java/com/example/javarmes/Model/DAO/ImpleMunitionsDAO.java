@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImpleMunitionsDAO implements MunitionsDAO {
-
+    /**Méthode d'ajout de munitions**/
     public void ajouter(Munitions munition) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -39,7 +39,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             }
         }
     }
-
+    /**Méthode de gestion de stock des munitions idem à celle des armes**/
     public void GererStockMunition(String identification, int quantite) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -74,7 +74,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             }
         }
     }
-
+    /**Méthode de recherches des munitions identiques à celle des armes **/
     public List<Munitions> RechercherMunitions(String recherche, String critere) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -102,7 +102,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
         }
         return ResultatRecherche;
     }
-
+    /**Méthode d'affichage de l'ensemble des munitions **/
     public List<Munitions> ChoisirMunitions() throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
