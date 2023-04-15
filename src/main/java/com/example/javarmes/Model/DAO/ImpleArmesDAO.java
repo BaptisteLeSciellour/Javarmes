@@ -4,10 +4,7 @@ import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.Utilisateurs.Client;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +19,7 @@ public class ImpleArmesDAO implements ArmesDAO {
      * @author Akshaya
      * @param
      */
+    @Override
     public void AjouterArme(Armes armes) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -56,14 +54,17 @@ public class ImpleArmesDAO implements ArmesDAO {
      * @param
      **/
 
+    @Override
     public List<Article> RechercherArmes(String recherche, String critere) throws SQLException {
-        Connection con = null;
+       Connection con = null;
         PreparedStatement pstmnt = null;
         ResultSet result = null;
         List<Article> ResultatRecherche = new ArrayList<>();
         try {
-            con = DAOFactory.getConnection();
-            String requete = "SELECT * FROM armes WHERE " + recherche + " = ?";
+            //con = DAOFactory.getConnection();
+             con= DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/ece_shopping","root","");
+            String requete = "SELECT * FROM armes WHERE " + recherche + " = '"+critere+"'";
             pstmnt = con.prepareStatement(requete);
             pstmnt.setString(1, critere);
             result = pstmnt.executeQuery();
@@ -92,6 +93,7 @@ public class ImpleArmesDAO implements ArmesDAO {
      * @author Akshaya
      * @param
      **/
+    @Override
     public void GererStockArme(String identification, int quantite) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -132,7 +134,7 @@ public class ImpleArmesDAO implements ArmesDAO {
      * @author Akshaya
      * @param
      **/
-
+    @Override
     public List<Armes> ChoisirArmes() throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -166,6 +168,7 @@ public class ImpleArmesDAO implements ArmesDAO {
      * @author Akshaya
      * @param
      **/
+    @Override
     public void SupprimerArme(int identification) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;

@@ -22,6 +22,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
      * @author Akshaya
      * @param
      **/
+    @Override
     public void ajouter(Munitions munition) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -55,6 +56,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
      * @author Akshaya
      * @param
      **/
+    @Override
     public void GererStockMunition(String identification, int quantite) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -95,6 +97,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
      * @author Akshaya
      * @param
      **/
+    @Override
     public List<Munitions> RechercherMunitions(String recherche, String critere) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -128,6 +131,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
      * @author Akshaya
      * @param
      **/
+    @Override
     public List<Munitions> ChoisirMunitions() throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;

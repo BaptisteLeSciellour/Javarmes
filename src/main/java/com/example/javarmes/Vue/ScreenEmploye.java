@@ -986,22 +986,26 @@ public class ScreenEmploye {
 
         pane.getChildren().addAll(txt1,poing,precision,chasse,assaut,tp,b,c,validation,CAT);
 
-        String st1="ddd";
-        String st2="eee";
-        //ArrayList<Article> ResultatRecherche=armesDAO.RechercherArmes(st1,st2);
+
 
     //    vecarmes=armesDAO.RechercherArmes(armes.getType(), armes.getCategorie());
 
         validation.setOnAction(actionEvent -> {
-/**
+
 
              try {
 
+                 //System.out.println("T:"+ armes.getType()+ "categori:"+armes.getCategorie());
+                 ArrayList<Article> ResultatRecherche= (ArrayList<Article>) armesDAO.RechercherArmes("Type", "precision");
 
-                     armesDAO.RechercherArmes(armes.getType(), armes.getCategorie());
+                 //Verification : si id existe deja
+                 for (Article art : ResultatRecherche) {
 
+                     art.getNom();
 
+                 }
 
+/**
              //Verification : si id existe deja
              for (Armes arm : vecarmes) {
 
@@ -1021,7 +1025,7 @@ public class ScreenEmploye {
              ///stage.close();
              break;
              }
-             }
+             }**/
 
              } catch (SQLException e) {
              Text supp = new Text(e.toString());
@@ -1030,7 +1034,6 @@ public class ScreenEmploye {
              pane.getChildren().add(supp);
              stage.close();
              }
- **/
 
         });
 
@@ -1075,14 +1078,16 @@ public class ScreenEmploye {
 
             validation.setOnAction(actionEvent -> {
 
-                /**
+
                  try {
 
 
                  String identification =  idTF.getText();
                  int quantite=-1;
 
+            armesDAO.GererStockArme(identification,quantite);
 
+/**
                  //Verification : si id existe deja
                  for (Armes arm : vecarmes) {
 
@@ -1104,6 +1109,7 @@ public class ScreenEmploye {
                  break;
                  }
                  }
+ */
 
                  } catch (SQLException e) {
                  Text supp = new Text(e.toString());
@@ -1112,7 +1118,7 @@ public class ScreenEmploye {
                  pane.getChildren().add(supp);
                  stage.close();
                  }
-                 **/
+
             });
 
             Scene scene = new Scene(pane,520,520);
@@ -1249,13 +1255,14 @@ public class ScreenEmploye {
         validation.setOnAction(actionEvent -> {
 
 
-/**
+
  try {
 
 
- String identification =  idTF.getText();
 
+     ArrayList<Munitions> ResultatRecherche=(ArrayList<Munitions>) munitionsDAO.RechercherMunitions("categorie","C");
 
+/**
  //Verification : si id existe deja
  for (Munitions muni : vecmunitions) {
 
@@ -1276,7 +1283,7 @@ public class ScreenEmploye {
  ///stage.close();
  break;
  }
- }
+ }**/
 
  } catch (SQLException e) {
  Text supp = new Text(e.toString());
@@ -1285,7 +1292,7 @@ public class ScreenEmploye {
  pane.getChildren().add(supp);
  stage.close();
  }
- **/
+
         });
 
         Scene scene = new Scene(pane,520,520);
@@ -1579,7 +1586,7 @@ public class ScreenEmploye {
 
             Text txt1 = new Text("Supression d'une munition : ");
 
-            ImpleArmesDAO armesDAO = new ImpleArmesDAO();
+            ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
             Text txt4 = new Text("Saisir l'identification:");
             txt4.setLayoutX(90);
@@ -1597,7 +1604,7 @@ public class ScreenEmploye {
 
             validation.setOnAction(actionEvent -> {
 
-                /**
+
 
                  try {
 
@@ -1605,7 +1612,9 @@ public class ScreenEmploye {
                  String identification =  idTF.getText();
                  int quantite=-1;
 
+                     munitionsDAO.GererStockMunition(identification,quantite);
 
+                     /**
                  //Verification : si id existe deja
                  for (Munitions muni : vecmunitions) {
 
@@ -1627,6 +1636,7 @@ public class ScreenEmploye {
                  break;
                  }
                  }
+                      **/
 
                  } catch (SQLException e) {
                  Text supp = new Text(e.toString());
@@ -1635,7 +1645,6 @@ public class ScreenEmploye {
                  pane.getChildren().add(supp);
                  stage.close();
                  }
-                 **/
             });
 
             Scene scene = new Scene(pane,520,520);
