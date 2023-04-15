@@ -482,6 +482,10 @@ public class ScreenEmploye {
             aff.setLayoutX(370);
             aff.setLayoutY(300);
 
+            Button re = new Button("Rechercher une armes");
+            re.setLayoutX(510);
+            re.setLayoutY(300);
+
             ajt.setOnAction(actionEvent -> {
 
                 AjoutArme(vecarmes);
@@ -501,9 +505,13 @@ public class ScreenEmploye {
 
             });
 
+            re.setOnAction(actionEvent -> {
 
+                RechercherArmes(vecarmes);
 
-            pane.getChildren().addAll(sup,ajt,aff);
+            });
+
+            pane.getChildren().addAll(sup,ajt,aff,re);
 
 
             Scene sceene = new Scene(pane, 320, 540);
@@ -674,6 +682,13 @@ public class ScreenEmploye {
 
             });
 
+            Text qt = new Text("Saisir la quantite");
+            qt.setLayoutX(90);
+            qt.setLayoutY(510);
+
+            TextField quant = new TextField();
+            quant.setLayoutX(90);
+            quant.setLayoutY(520);
 
             /**valide les données**/
             Button ajt = new Button("Valider");
@@ -685,12 +700,21 @@ public class ScreenEmploye {
             ImpleArmesDAO armesDAO = new ImpleArmesDAO();
 
 
-            pane.getChildren().addAll(oui,non,cal,idTF, b,c,prix,ajt,ident,CAT,tp,pr,nm,cl,red,nom,poing,chasse,assaut,precision);
+            pane.getChildren().addAll(oui,qt,quant,non,cal,idTF, b,c,prix,ajt,ident,CAT,tp,pr,nm,cl,red,nom,poing,chasse,assaut,precision);
 
 
             ajt.setOnAction(actionEvent -> {
 
-                armes.setQuantite(1);
+                int quantite=0;
+
+                /**Quantite **/
+                do {
+                    quantite= Integer.valueOf(quant.getText());
+
+                    armes.setQuantite(quantite);
+
+                } while (quantite <0 );
+
 
                 armes.setNom( nom.getText());
 
@@ -773,17 +797,16 @@ public class ScreenEmploye {
                 /**Affichage**/
                 for (Armes arm : vecarmes) {
 
-                    Text supp = new Text("Armes :\n" + "identification: " + arm.getIndentification() + "\ncategorie: " + arm.getCategorie() + "\ntype: " + arm.getType() + "\nnnom: " + arm.getNom() );
-                    supp.setLayoutX(300);
+                    Text supp = new Text("Armes :\n" + "identification: " + arm.getIndentification() + "\ncategorie: " + arm.getCategorie() + "\ntype: " + arm.getType() + "\nprix unique: " + arm.getPrix_unique()+ "\ncalibre: " + arm.getCalibre()+ "\nnom: " + arm.getNom()+ "\nreduction: " + arm.getReduction()+ "\nquantite : " + arm.getQuantite() );
+                    supp.setLayoutX(90);
                     supp.setLayoutY(300+decalage);
                     pane.getChildren().add(supp);
-                    decalage=decalage+100;
+                    decalage=decalage+150;
 
                 }
             }
             catch (SQLException e) {
-                //  System.out.println("Erreur");
-                //System.out.println(e);
+
 
                 Text supp = new Text(e.toString());
                 supp.setLayoutX(50);
@@ -804,7 +827,81 @@ public class ScreenEmploye {
             stage.show();
         }
 
+    public void RechercherArmes(ArrayList<Armes>vecarmes)
+    {
 
+        Pane pane = new Pane();
+        Stage stage = new Stage();
+
+        Text txt1 = new Text("Recherche d'une arme : ");
+
+        ImpleArmesDAO munitionsDAO = new ImpleArmesDAO();
+
+
+        Text txt4 = new Text("Saisir l'identification: nom || categorie || type");
+        txt4.setLayoutX(90);
+        txt4.setLayoutY(290);
+
+        TextField idTF = new TextField();
+        idTF.setLayoutX(90);
+        idTF.setLayoutY(300);
+
+        Button validation = new Button("Validation");
+        validation.setLayoutX(90);
+        validation.setLayoutY(400);
+
+        pane.getChildren().addAll(txt1,txt4,idTF,validation);
+
+        validation.setOnAction(actionEvent -> {
+
+            /**
+
+             try {
+
+
+             String identification =  idTF.getText();
+
+
+             //Verification : si id existe deja
+             for (Armes arm : vecarmes) {
+
+             if (Objects.equals(identification , arm.getIdentification())) {
+
+
+             ArmesDAO.RechercherArmes(identification,quantite);
+
+
+
+             Text supp = new Text("Une arme d'identification : "+identification+" a bien été trouvée");
+             supp.setLayoutX(50);
+             supp.setLayoutY(100);
+             pane.getChildren().add(supp);
+
+
+             ///stage.close();
+             break;
+             }
+             }
+
+             } catch (SQLException e) {
+             Text supp = new Text(e.toString());
+             supp.setLayoutX(50);
+             supp.setLayoutY(100);
+             pane.getChildren().add(supp);
+             stage.close();
+             }
+             **/
+        });
+
+        Scene scene = new Scene(pane,520,520);
+        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
         public  void SupprimerArmes(ArrayList<Armes>vecarmes)
         {
@@ -899,6 +996,10 @@ public class ScreenEmploye {
             aff.setLayoutX(440);
             aff.setLayoutY(300);
 
+            Button re = new Button("Rechercher une munition");
+            re.setLayoutX(580);
+            re.setLayoutY(300);
+
             ajt.setOnAction(actionEvent -> {
 
                 AjoutMunitions(vecmunitions);
@@ -917,9 +1018,13 @@ public class ScreenEmploye {
 
             });
 
+            re.setOnAction(actionEvent -> {
+
+                RechercherMunitions(vecmunitions);
+            });
 
 
-            pane.getChildren().addAll(sup,ajt,aff);
+            pane.getChildren().addAll(sup,ajt,aff,re);
 
 
             Scene sceene = new Scene(pane, 320, 540);
@@ -935,7 +1040,82 @@ public class ScreenEmploye {
             stage.show();
 
         }
+    public void RechercherMunitions(ArrayList<Munitions>vecmunitions)
+    {
 
+        Pane pane = new Pane();
+        Stage stage = new Stage();
+
+        Text txt1 = new Text("Recherche d'une munition : ");
+
+        ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
+
+
+        Text txt4 = new Text("Saisir l'identification: nom || categorie || type");
+        txt4.setLayoutX(90);
+        txt4.setLayoutY(290);
+
+        TextField idTF = new TextField();
+        idTF.setLayoutX(90);
+        idTF.setLayoutY(300);
+
+        Button validation = new Button("Validation");
+        validation.setLayoutX(90);
+        validation.setLayoutY(400);
+
+        pane.getChildren().addAll(txt1,txt4,idTF,validation);
+
+        validation.setOnAction(actionEvent -> {
+
+
+/**
+ try {
+
+
+ String identification =  idTF.getText();
+
+
+ //Verification : si id existe deja
+ for (Munitions muni : vecmunitions) {
+
+ if (Objects.equals(identification , muni.getIdentification())) {
+
+
+ MunitionsDAO.GererStockMunition(identification,quantite);
+
+
+
+ Text supp = new Text("Une munition d'identification : "+identification+" a bien été trouvée");
+ supp.setLayoutX(50);
+ supp.setLayoutY(100);
+ pane.getChildren().add(supp);
+
+ vecmunitions.remove(muni);
+
+ ///stage.close();
+ break;
+ }
+ }
+
+ } catch (SQLException e) {
+ Text supp = new Text(e.toString());
+ supp.setLayoutX(50);
+ supp.setLayoutY(100);
+ pane.getChildren().add(supp);
+ stage.close();
+ }
+ **/
+        });
+
+        Scene scene = new Scene(pane,520,520);
+        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
         public void Munitionsaffich(ArrayList<Munitions>vecmunitions)
         {
@@ -958,8 +1138,9 @@ public class ScreenEmploye {
                 /**Affichage**/
                 for (Munitions muni : vecmunitions) {
 
-                    Text supp = new Text("Armes :\n" + "identification: " + muni.getIndentification() + "\ncategorie: " + muni.getCategorie() + "\nprix : " + muni.getPrix_unique() + "\nnnom: " + muni.getNom() );
-                    supp.setLayoutX(300);
+
+                    Text supp = new Text("Munition :\n" + "identification : " + muni.getIndentification() + "\ncategorie : " + muni.getCategorie() + "\nprix unique : " + muni.getPrix_unique()+ "\nprix vrac: " + muni.getPrix_vrac() + "\nreduction : " + muni.getReduction()+ "\ncalibre : " + muni.getCalibre()+ "\nquantite : " + muni.getQuantite()+ "\nnom: " + muni.getNom() );
+                    supp.setLayoutX(90);
                     supp.setLayoutY(300+decalage);
                     pane.getChildren().add(supp);
                     decalage=decalage+100;
@@ -989,212 +1170,210 @@ public class ScreenEmploye {
             stage.show();
         }
 
+    public  void AjoutMunitions(ArrayList<Munitions> vecmunitions)
+    {
+        Pane pane = new Pane();
+        Stage stage = new Stage();
 
-        public  void AjoutMunitions(ArrayList<Munitions> vecmunitions)
-        {
-            Pane pane = new Pane();
-            Stage stage = new Stage();
 
+        Munitions muni=new Munitions();
 
-            Munitions muni=new Munitions();
+        Text ident = new Text("Saisir le nom de l'identification:");
+        ident.setLayoutX(90);
+        ident.setLayoutY(90);
 
-            Text ident = new Text("Saisir le nom de l'identification:");
-            ident.setLayoutX(90);
-            ident.setLayoutY(90);
+        TextField idTF = new TextField();
+        idTF.setLayoutX(90);
+        idTF.setLayoutY(100);
 
-            TextField idTF = new TextField();
-            idTF.setLayoutX(90);
-            idTF.setLayoutY(100);
+        /**categorie**/
+        Text CAT = new Text("Saisir la categorie :  B OU C");
+        CAT.setLayoutX(90);
+        CAT.setLayoutY(150);
 
-            /**categorie**/
-            Text CAT = new Text("Saisir la categorie :  B OU C");
-            CAT.setLayoutX(90);
-            CAT.setLayoutY(150);
+        /**Catégorie Bou C**/
+        Button b = new Button("B");
+        b.setLayoutX(90);
+        b.setLayoutY(160);
 
-            /**Catégorie Bou C**/
-            Button b = new Button("B");
-            b.setLayoutX(90);
-            b.setLayoutY(160);
+        Button c = new Button("C");
+        c.setLayoutX(150);
+        c.setLayoutY(160);
 
-            Button c = new Button("C");
-            c.setLayoutX(150);
-            c.setLayoutY(160);
+        b.setOnAction(actionEvent -> {
 
-            b.setOnAction(actionEvent -> {
+            muni.setCategorie("B");
 
-                muni.setCategorie("B");
+        });
 
-            });
+        c.setOnAction(actionEvent -> {
 
-            c.setOnAction(actionEvent -> {
+            muni.setCategorie("C");
 
-                muni.setCategorie("C");
+        });
 
-            });
 
-            //ImageView imageView = new ImageView();
+        Text pr = new Text("Saisir le prix unique");
+        pr.setLayoutX(90);
+        pr.setLayoutY(210);
 
-            //imageView=DonationImage();
+        TextField prix = new TextField();
+        prix.setLayoutX(90);
+        prix.setLayoutY(220);
 
-            Text pr = new Text("Saisir le prix unique");
-            pr.setLayoutX(90);
-            pr.setLayoutY(210);
+        Text prvc = new Text("Saisir le prix en vrac");
+        prvc.setLayoutX(90);
+        prvc.setLayoutY(270);
 
-            TextField prix = new TextField();
-            prix.setLayoutX(90);
-            prix.setLayoutY(220);
+        TextField prixvrac = new TextField();
+        prixvrac.setLayoutX(90);
+        prixvrac.setLayoutY(280);
 
-            Text prvc = new Text("Saisir le prix en vrac");
-            prvc.setLayoutX(90);
-            prvc.setLayoutY(270);
+        Text nm = new Text("Saisir le nom");
+        nm.setLayoutX(90);
+        nm.setLayoutY(330);
 
-            TextField prixvrac = new TextField();
-            prixvrac.setLayoutX(90);
-            prixvrac.setLayoutY(280);
+        TextField no = new TextField();
+        no.setLayoutX(90);
+        no.setLayoutY(340);
 
-            Text nm = new Text("Saisir le nom");
-            nm.setLayoutX(90);
-            nm.setLayoutY(330);
 
-            TextField no = new TextField();
-            no.setLayoutX(90);
-            no.setLayoutY(340);
+        Text cl = new Text("Saisir le calibre");
+        cl.setLayoutX(90);
+        cl.setLayoutY(390);
 
+        TextField cal = new TextField();
+        cal.setLayoutX(90);
+        cal.setLayoutY(400);
 
-            Text cl = new Text("Saisir le calibre");
-            cl.setLayoutX(90);
-            cl.setLayoutY(390);
+        /**Reduction**/
+        Text red = new Text("Saisir si une réduction est appliquée :  ");
+        red.setLayoutX(90);
+        red.setLayoutY(450);
 
-            TextField cal = new TextField();
-            cal.setLayoutX(90);
-            cal.setLayoutY(400);
 
-            /**Reduction**/
-            Text red = new Text("Saisir si une réduction est appliquée :  ");
-            red.setLayoutX(90);
-            red.setLayoutY(450);
+        Button oui = new Button("OUI");
+        oui.setLayoutX(90);
+        oui.setLayoutY(460);
 
+        Button non = new Button("NON");
+        non.setLayoutX(130);
+        non.setLayoutY(460);
 
-            Button oui = new Button("OUI");
-            oui.setLayoutX(90);
-            oui.setLayoutY(460);
+        oui.setOnAction(actionEvent -> {
 
-            Button non = new Button("NON");
-            non.setLayoutX(130);
-            non.setLayoutY(460);
+            muni.setReduction(true);
 
-            oui.setOnAction(actionEvent -> {
+        });
 
-                muni.setReduction(true);
+        non.setOnAction(actionEvent -> {
 
-            });
+            muni.setReduction(false);
 
-            non.setOnAction(actionEvent -> {
+        });
 
-                muni.setReduction(false);
+        Text qt = new Text("Saisir la quantite");
+        qt.setLayoutX(90);
+        qt.setLayoutY(510);
 
-            });
+        TextField quant = new TextField();
+        quant.setLayoutX(90);
+        quant.setLayoutY(520);
 
+        Button ajt = new Button("Valider");
+        ajt.setLayoutX(400);
+        ajt.setLayoutY(300);
 
-            Text vt = new Text("Nombre de vente: ");
-            vt.setLayoutX(90);
-            vt.setLayoutY(570);
 
-            TextField vente = new TextField();
-            vente.setLayoutX(90);
-            vente.setLayoutY(580);
+        ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
 
+        pane.getChildren().addAll(cal,idTF,prvc,prixvrac,prix,no,qt,quant,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c);
 
-            Button ajt = new Button("Valider");
-            ajt.setLayoutX(400);
-            ajt.setLayoutY(300);
 
+        ajt.setOnAction(actionEvent -> {
 
-            ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
+            String identification,categorie, nom;
+            double prix_unique,prix_vrac, calibre;
+            int quantite,nb_vente;
 
+            /**Quantite **/
+            do {
+                quantite= Integer.valueOf(quant.getText());
 
-            pane.getChildren().addAll(cal,idTF,prvc,prixvrac,vente,vt,prix,no,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c);
+                muni.setQuantite(quantite);
 
+            } while (quantite <0 );
 
-            ajt.setOnAction(actionEvent -> {
 
-                String identification,categorie, nom;
-                double prix_unique,prix_vrac, calibre;
-                int quantite,nb_vente;
+            muni.setIndentification( String.valueOf(idTF.getText()));
 
-                muni.setQuantite(1);
 
-                muni.setIndentification( String.valueOf(idTF.getText()));
+            /**Prix **/
+            do {
+                prix_unique = Integer.valueOf(prix.getText());
+                muni.setPrix_unique(prix_unique);
 
+            } while (prix_unique <=0 );
 
-                /**Prix **/
-                do {
-                    prix_unique = Integer.valueOf(prix.getText());
-                    muni.setPrix_unique(prix_unique);
+            /**Prix **/
+            do {
+                prix_vrac = Integer.valueOf(prixvrac.getText());
 
-                } while (prix_unique <=0 );
+                muni.setPrix_vrac(prix_vrac);
 
-                /**Prix **/
-                do {
-                    prix_vrac = Integer.valueOf(prixvrac.getText());
+            } while (prix_unique <=0 );
 
-                    muni.setPrix_vrac(prix_vrac);
+            muni.setNom ( no.getText());
 
-                } while (prix_unique <=0 );
 
-                muni.setNom ( no.getText());
+            /**calibre **/
+            do {
+                calibre = Integer.valueOf(cal.getText());
+                muni.setCalibre(calibre);
 
+            } while (calibre <=0 );
 
-                /**calibre **/
-                do {
-                    calibre = Integer.valueOf(cal.getText());
-                    muni.setCalibre(calibre);
 
-                } while (calibre <=0 );
+            vecmunitions.add(muni);
 
 
-                vecmunitions.add(muni);
+            try {
 
+                munitionsDAO.ajouter(muni);
 
-                try {
 
-                    munitionsDAO.ajouter(muni);
+                if (muni != null) {
 
-
-                    if (muni != null) {
-
-                        Text supp = new Text("Armes ajouté :\n" + "identification: " + muni.getIndentification() + "\ncategorie: " + muni.getCategorie() + "\nnnom: " + muni.getNom() );
-                        supp.setLayoutX(300);
-                        supp.setLayoutY(300);
-                        pane.getChildren().add(supp);
-
-
-                    }
-
-                } catch (SQLException e) {
-
-                    Text supp = new Text(e.toString());
-                    supp.setLayoutX(50);
-                    supp.setLayoutY(100);
+                    Text supp = new Text("Munition :\n" + "identification : " + muni.getIndentification() + "\ncategorie : " + muni.getCategorie() + "\nprix unique : " + muni.getPrix_unique()+ "\nprix vrac: " + muni.getPrix_vrac() + "\nreduction : " + muni.getReduction()+ "\ncalibre : " + muni.getCalibre()+ "\nquantite : " + muni.getQuantite()+ "\nnom: " + muni.getNom() );
+                    supp.setLayoutX(90);
+                    supp.setLayoutY(300);
                     pane.getChildren().add(supp);
-                    stage.close();
+
+
                 }
 
-            });
+            } catch (SQLException e) {
+
+                Text supp = new Text(e.toString());
+                supp.setLayoutX(50);
+                supp.setLayoutY(100);
+                pane.getChildren().add(supp);
+                stage.close();
+            }
+
+        });
 
 
-            Scene scene = new Scene(pane, 520, 520);
-            scene.getRoot().setStyle("-fx-background-color: #4B5320; "
-                    + "-fx-background-radius: 5px; "
-                    + "-fx-background-insets: 0px; "
-                    + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
-            stage.setScene(scene);
-            stage.show();
+        Scene scene = new Scene(pane, 520, 520);
+        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
+        stage.setScene(scene);
+        stage.show();
 
-        }
-
-
+    }
 
         public  void SupprimerMunitions(ArrayList<Munitions>vecmunitions)
         {
