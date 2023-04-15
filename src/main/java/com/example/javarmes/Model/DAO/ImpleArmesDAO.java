@@ -61,10 +61,8 @@ public class ImpleArmesDAO implements ArmesDAO {
         ResultSet result = null;
         List<Article> ResultatRecherche = new ArrayList<>();
         try {
-            //con = DAOFactory.getConnection();
-             con= DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/ece_shopping","root","");
-            String requete = "SELECT * FROM armes WHERE " + recherche + " = '"+critere+"'";
+            con = DAOFactory.getConnection();
+            String requete = "SELECT * FROM armes WHERE " + recherche + " = ?";
             pstmnt = con.prepareStatement(requete);
             pstmnt.setString(1, critere);
             result = pstmnt.executeQuery();

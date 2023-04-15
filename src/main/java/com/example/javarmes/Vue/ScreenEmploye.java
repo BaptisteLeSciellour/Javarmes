@@ -932,59 +932,12 @@ public class ScreenEmploye {
 
         });
 
-        /**type**/
-        Text tp = new Text("Saisir le type :");
-        tp.setLayoutX(90);
-        tp.setLayoutY(210);
-
-
-        Button poing = new Button("Poing");
-        poing.setLayoutX(90);
-        poing.setLayoutY(220);
-
-        Button assaut = new Button("Assaut");
-        assaut.setLayoutX(150);
-        assaut.setLayoutY(220);
-
-        Button chasse = new Button("Chasse");
-        chasse.setLayoutX(250);
-        chasse.setLayoutY(220);
-
-        Button precision = new Button("Precision");
-        precision.setLayoutX(350);
-        precision.setLayoutY(220);
-
-
-        poing.setOnAction(actionEvent -> {
-
-            armes.setType("Poing");
-
-        });
-
-        assaut.setOnAction(actionEvent -> {
-
-            armes.setType("Assaut");
-
-        });
-
-        chasse.setOnAction(actionEvent -> {
-
-
-            armes.setType("Chasse");
-
-        });
-
-        precision.setOnAction(actionEvent -> {
-
-            armes.setType("Precision");
-
-        });
 
         Button validation = new Button("Validation");
         validation.setLayoutX(90);
-        validation.setLayoutY(400);
+        validation.setLayoutY(240);
 
-        pane.getChildren().addAll(txt1,poing,precision,chasse,assaut,tp,b,c,validation,CAT);
+        pane.getChildren().addAll(txt1,b,c,validation,CAT);
 
 
 
@@ -995,37 +948,25 @@ public class ScreenEmploye {
 
              try {
 
-                 //System.out.println("T:"+ armes.getType()+ "categori:"+armes.getCategorie());
-                 ArrayList<Article> ResultatRecherche= (ArrayList<Article>) armesDAO.RechercherArmes("Type", "precision");
+                 int decalage=0;
+
+                 ArrayList<Article> ResultatRecherche= (ArrayList<Article>) armesDAO.RechercherArmes("categorie", armes.getCategorie());
+
 
                  //Verification : si id existe deja
                  for (Article art : ResultatRecherche) {
 
                      art.getNom();
 
+                     System.out.println(art.getIndentification()+art.getNom()+art.getCategorie());
+
+                     Text supp = new Text("Armes :\n" + "identification: " + art.getIndentification() + "\ncategorie: " + art.getCategorie() + "\nprix unique: " + art.getPrix_unique()+ "\ncalibre: " + art.getCalibre()+ "\nnom: " + art.getNom()+ "\nreduction: " + art.getReduction()+ "\nquantite : " + art.getQuantite() );
+                     supp.setLayoutX(90);
+                     supp.setLayoutY(300+decalage);
+                     pane.getChildren().add(supp);
+                     decalage=decalage+150;
                  }
 
-/**
-             //Verification : si id existe deja
-             for (Armes arm : vecarmes) {
-
-             if (Objects.equals(identification , arm.getIdentification())) {
-
-
-             ArmesDAO.RechercherArmes(identification,quantite);
-
-
-
-             Text supp = new Text("Une arme d'identification : "+identification+" a bien été trouvée");
-             supp.setLayoutX(50);
-             supp.setLayoutY(100);
-             pane.getChildren().add(supp);
-
-
-             ///stage.close();
-             break;
-             }
-             }**/
 
              } catch (SQLException e) {
              Text supp = new Text(e.toString());
@@ -1206,7 +1147,6 @@ public class ScreenEmploye {
      */
     public void RechercherMunitions(ArrayList<Munitions>vecmunitions)
     {
-
         Pane pane = new Pane();
         Stage stage = new Stage();
 
