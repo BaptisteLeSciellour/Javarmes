@@ -1,5 +1,6 @@
 package com.example.javarmes.Vue;
 
+import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
@@ -461,7 +462,6 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-
         public  void Stock(ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions)
         {
 
@@ -896,33 +896,110 @@ public class ScreenEmploye {
         Pane pane = new Pane();
         Stage stage = new Stage();
 
+        Armes armes=new Armes();
+
         Text txt1 = new Text("Recherche d'une arme : ");
+        txt1.setLayoutX(90);
+        txt1.setLayoutY(100);
 
-        ImpleArmesDAO munitionsDAO = new ImpleArmesDAO();
+
+        ImpleArmesDAO armesDAO = new ImpleArmesDAO();
+
+        /**categorie**/
+        Text CAT = new Text("Saisir la categorie :  B OU C");
+        CAT.setLayoutX(90);
+        CAT.setLayoutY(150);
 
 
-        Text txt4 = new Text("Saisir l'identification: nom || categorie || type");
-        txt4.setLayoutX(90);
-        txt4.setLayoutY(290);
+        /**Catégorie Bou C**/
+        Button b = new Button("B");
+        b.setLayoutX(90);
+        b.setLayoutY(160);
 
-        TextField idTF = new TextField();
-        idTF.setLayoutX(90);
-        idTF.setLayoutY(300);
+        Button c = new Button("C");
+        c.setLayoutX(150);
+        c.setLayoutY(160);
+
+        b.setOnAction(actionEvent -> {
+
+            armes.setCategorie("B");
+
+        });
+
+        c.setOnAction(actionEvent -> {
+
+            armes.setCategorie("C");
+
+        });
+
+        /**type**/
+        Text tp = new Text("Saisir le type :");
+        tp.setLayoutX(90);
+        tp.setLayoutY(210);
+
+
+        Button poing = new Button("Poing");
+        poing.setLayoutX(90);
+        poing.setLayoutY(220);
+
+        Button assaut = new Button("Assaut");
+        assaut.setLayoutX(150);
+        assaut.setLayoutY(220);
+
+        Button chasse = new Button("Chasse");
+        chasse.setLayoutX(250);
+        chasse.setLayoutY(220);
+
+        Button precision = new Button("Precision");
+        precision.setLayoutX(350);
+        precision.setLayoutY(220);
+
+
+        poing.setOnAction(actionEvent -> {
+
+            armes.setType("Poing");
+
+        });
+
+        assaut.setOnAction(actionEvent -> {
+
+            armes.setType("Assaut");
+
+        });
+
+        chasse.setOnAction(actionEvent -> {
+
+
+            armes.setType("Chasse");
+
+        });
+
+        precision.setOnAction(actionEvent -> {
+
+            armes.setType("Precision");
+
+        });
 
         Button validation = new Button("Validation");
         validation.setLayoutX(90);
         validation.setLayoutY(400);
 
-        pane.getChildren().addAll(txt1,txt4,idTF,validation);
+        pane.getChildren().addAll(txt1,poing,precision,chasse,assaut,tp,b,c,validation,CAT);
+
+        String st1="ddd";
+        String st2="eee";
+        //ArrayList<Article> ResultatRecherche=armesDAO.RechercherArmes(st1,st2);
+
+    //    vecarmes=armesDAO.RechercherArmes(armes.getType(), armes.getCategorie());
 
         validation.setOnAction(actionEvent -> {
-
-            /**
+/**
 
              try {
 
 
-             String identification =  idTF.getText();
+                     armesDAO.RechercherArmes(armes.getType(), armes.getCategorie());
+
 
 
              //Verification : si id existe deja
@@ -953,7 +1030,8 @@ public class ScreenEmploye {
              pane.getChildren().add(supp);
              stage.close();
              }
-             **/
+ **/
+
         });
 
         Scene scene = new Scene(pane,520,520);
@@ -965,6 +1043,7 @@ public class ScreenEmploye {
         stage.show();
 
     }
+
 
     /**
      * Fonction de suppression d'armes
@@ -1125,24 +1204,47 @@ public class ScreenEmploye {
         Pane pane = new Pane();
         Stage stage = new Stage();
 
+        Munitions munitions=new Munitions();
+
         Text txt1 = new Text("Recherche d'une munition : ");
+        txt1.setLayoutX(90);
+        txt1.setLayoutY(100);
 
         ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
 
-        Text txt4 = new Text("Saisir l'identification: nom || categorie || type");
-        txt4.setLayoutX(90);
-        txt4.setLayoutY(290);
+        /**categorie**/
+        Text CAT = new Text("Saisir la categorie :  B OU C");
+        CAT.setLayoutX(90);
+        CAT.setLayoutY(150);
 
-        TextField idTF = new TextField();
-        idTF.setLayoutX(90);
-        idTF.setLayoutY(300);
+
+        /**Catégorie Bou C**/
+        Button b = new Button("B");
+        b.setLayoutX(90);
+        b.setLayoutY(160);
+
+        Button c = new Button("C");
+        c.setLayoutX(150);
+        c.setLayoutY(160);
+
+        b.setOnAction(actionEvent -> {
+
+            munitions.setCategorie("B");
+
+        });
+
+        c.setOnAction(actionEvent -> {
+
+            munitions.setCategorie("C");
+
+        });
 
         Button validation = new Button("Validation");
         validation.setLayoutX(90);
         validation.setLayoutY(400);
 
-        pane.getChildren().addAll(txt1,txt4,idTF,validation);
+        pane.getChildren().addAll(txt1,b,c,CAT,validation);
 
         validation.setOnAction(actionEvent -> {
 
@@ -1195,6 +1297,7 @@ public class ScreenEmploye {
         stage.show();
 
     }
+
 
     /**
      * Fonction d'affichage de munitions
