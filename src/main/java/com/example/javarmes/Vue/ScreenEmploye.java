@@ -361,8 +361,17 @@ public class ScreenEmploye {
             Image txt1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/creapro.jpg")));
             //Creating a rotated transition
             ImageView Txt1 = new ImageView(txt1);
-            Txt1.setLayoutY(20);
+            Txt1.setLayoutY(100);
             Txt1.setLayoutX(100);
+
+            Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png")));
+            //Creating a rotated transition
+            ImageView Loog = new ImageView(loog);
+            Loog.setLayoutY(5);
+            Loog.setFitWidth(200);
+            Loog.setFitHeight(90);
+            Loog.setLayoutX(5);
+
 
             Text txt = new Text("Prénom");
             txt.setFont(new Font("Arial", 26));
@@ -427,7 +436,7 @@ public class ScreenEmploye {
                 MenuEmploye(vecemployes,vecarmes,vecmunitions);
                 settle.close();
             });
-            panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt,Txt1,cb1);
+            panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt,Txt1,cb1,Loog);
 
             Scene sceene = new Scene(panne,800,700);
 

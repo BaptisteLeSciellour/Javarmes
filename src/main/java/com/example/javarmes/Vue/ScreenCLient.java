@@ -34,10 +34,18 @@ public class ScreenCLient {
         txt1.setLayoutX(45);
         txt1.setLayoutY(100);*/
 
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png")));
+        //Creating a rotated transition
+        ImageView Loog = new ImageView(loog);
+        Loog.setLayoutY(5);
+        Loog.setFitWidth(200);
+        Loog.setFitHeight(90);
+        Loog.setLayoutX(5);
+
         Image txt1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/crrea.jpg")));
         //Creating a rotated transition
         ImageView Txt1 = new ImageView(txt1);
-        Txt1.setLayoutY(20);
+        Txt1.setLayoutY(100);
         Txt1.setLayoutX(100);
 
         ImpleClientDAO clientDAO = new ImpleClientDAO();
@@ -221,7 +229,7 @@ public class ScreenCLient {
             stage.close(); /**ici nous fermons l'écran d'avant**/
         });
 
-        panne.getChildren().addAll(saisie,mailTF,mdpTF,txt4,txt6,txt67,mdpTF2,Txt1,cb1,cb2);
+        panne.getChildren().addAll(saisie,mailTF,mdpTF,txt4,txt6,txt67,mdpTF2,Txt1,cb1,cb2,Loog);
         Scene settle = new Scene(panne,800,700);
         settle.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
