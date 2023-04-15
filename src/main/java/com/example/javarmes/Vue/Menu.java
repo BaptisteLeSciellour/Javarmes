@@ -39,7 +39,7 @@ public class Menu {
         Stage stage = new Stage();
 
         connection.setLayoutX(700);
-        connection.setLayoutY(500);
+        connection.setLayoutY(440);
         Button sortie = new Button("Exit");
         /** Button image = new Button("Image");
          Button anim  = new Button("Paiment");
@@ -55,12 +55,12 @@ public class Menu {
 
         Button hpy = new Button("Créer un compte");
         hpy.setLayoutX(700);
-        hpy.setLayoutY(600);
+        hpy.setLayoutY(520);
         hpy.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
         Button contact = new Button("Nous contacter");
         contact.setLayoutX(700);
-        contact.setLayoutY(700);
+        contact.setLayoutY(600);
         contact.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
 
@@ -79,7 +79,7 @@ public class Menu {
         sortie.setLayoutX(1500);
 
         pres.setLayoutX(700);
-        pres.setLayoutY(400);
+        pres.setLayoutY(360);
 
         pres.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         Image armenu = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/armemenu.png")));
@@ -89,6 +89,13 @@ public class Menu {
         Armenu.setFitHeight(400);
         Armenu.setLayoutX(1);
         Armenu.setLayoutY(50);
+
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(1600);
+        Bande.setFitHeight(200);
+        Bande.setLayoutX(1);
+        Bande.setLayoutY(700);
 
         Button test = new Button("test");
         test.setLayoutX(200);
@@ -125,7 +132,7 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,test,contact);
+        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,test,contact,Bande);
         connection.setOnAction(event -> {
             menuconnexion();
         });
