@@ -94,9 +94,9 @@ public class Menu {
             ScreenEmploye sc = new ScreenEmploye();
             Stage staaage = new Stage();
             ImpleEmployeDAO impl = new ImpleEmployeDAO();
-            ArrayList<Employes> arr ;
+            List<Client> arr ;
             try {
-                arr=(ArrayList<Employes>) impl.ChoisirEmploye();
+                arr=impl.ChoisirClient();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

@@ -29,10 +29,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+
 import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Munitions;
 import  com.example.javarmes.Model.DAO.*;
@@ -277,22 +275,15 @@ public class ScreenEmploye {
         stage.show();
     }
 
-    public void camembertsamere(Stage primaryStage , ArrayList<Employes> art) {
+    public void camembertsamere(Stage primaryStage , List<Client> art) {
         final PieChart chart = new PieChart();
-        chart.setTitle("Stock de fruits");
-        /**chart.getData().setAll(new PieChart.Data("Pommes", 50), new PieChart.Data("Oranges", 30),
-                new PieChart.Data("Poires", 25), new PieChart.Data("Pêches", 42),
-                new PieChart.Data("Citrons", 5), new PieChart.Data("Kiwis", 19)
-        );**/
-
-
-        for(Employes B : art)
+        chart.setTitle("Achat par client");
+        int i =0;
+        for(Client B : art)
         {
-
-            double a = Double.valueOf(B.getId());
-            chart.getData().setAll(
-                    new PieChart.Data(" ", 00),new PieChart.Data(B.getNom(), a)
-            );
+            System.out.print("/");
+            chart.getData().add(new PieChart.Data(B.getNom(),B.getId()));
+            i++;
         }
 
         // Montage de l'IU.

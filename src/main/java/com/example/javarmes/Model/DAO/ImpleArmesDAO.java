@@ -133,6 +133,7 @@ public class ImpleArmesDAO implements ArmesDAO {
                 result.close();
             }
         }
+        System.out.println(ListeArmes.size());
         return ListeArmes;
     }
     /** Méthode qui permet de supprimer définitivement une arme de la bdd **/

@@ -121,7 +121,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
             String requete = "SELECT * FROM employés ";
             pstmnt = con.prepareStatement(requete);
             resultat = pstmnt.executeQuery();
-            if (resultat.next()){
+            while (resultat.next()){
                 Employes employes = new Employes(resultat.getInt("id"), resultat.getString("nom"),resultat.getString("prénom"));
                 ListeEmployes.add(employes);
             }
@@ -150,8 +150,8 @@ public class ImpleEmployeDAO implements EmployeDAO {
             String requete = "SELECT * FROM clients ";
             pstmnt = con.prepareStatement(requete);
             resultat = pstmnt.executeQuery();
-            if (resultat.next()){
-                Client client = new Client(resultat.getInt("id"), resultat.getString("mail"));
+            while (resultat.next()){
+                    Client client = new Client(resultat.getInt("id"), resultat.getString("mail"),resultat.getString("mdp"),resultat.getInt("nb_commandes"));
                 ListeClients.add(client);
             }
         } catch(SQLException e) {
@@ -164,6 +164,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
                 resultat.close();
             }
         }
+        System.out.println(ListeClients.size());
         return ListeClients;
     }
     /** Méthode d'affichage des infos d'un client**/
