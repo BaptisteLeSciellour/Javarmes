@@ -95,8 +95,41 @@ public class ImplePanierDAO implements PanierDAO {
             }
         }
     }
-    /**Méthode de suppression de produit**/
-    public void SupprimerProduit(int id) throws SQLException{}
+    /**Méthode de suppression de produit
+     * @param id_article **/
+    /* Set l'id_article dans le bouton "retirer" correspondant à l'article */
+    public void SupprimerProduitPanier(String id_article) throws SQLException{
+        Connection con = null;
+        PreparedStatement pstmnt = null;
+        try{
+            con = new DAOFactory().getConnection();
+            String requete1 = "DELETE FROM panier WHERE id_arme = ?";
+            pstmnt = con.prepareStatement(requete1);
+            pstmnt.setString(1, id_article);
+            int lignesupp1 = pstmnt.executeUpdate(); //executeUpdate renvoie le nombre de ligne qui a été modifié et 0 sinon
+            if(lignesupp1 >0){
+                System.out.println("L'article a été supprimé du panier !");
+            }else{
+                    String requete2 = "DELETE FROM panier WHERE id_munition = ?";
+                    pstmnt = con.prepareStatement(requete2);
+                    pstmnt.setString(1, id_article);
+                    int lignesupp2 = pstmnt.executeUpdate();
+                    if(lignesupp2>0){
+                        System.out.println("L'article a été supprimé du panier !");
+                    }else{ //en cas d'erreur de saisi dans le set du bouton
+                        System.out.println("L'article n'a pas été reconnu");
+                    }
+            }
+        } catch(SQLException e) {
+            System.out.println("Erreur lors de la suppression...");
+            System.out.println(e);
+        } finally {
+            if ((pstmnt !=null)||(con!=null)) {
+                pstmnt.close();
+                con.close();
+            }
+        }
+    }
     /**Méthode de la destruction de la table panier dans la bdd**/
     public void SupressionPanier() throws SQLException{
         Connection con = null;
