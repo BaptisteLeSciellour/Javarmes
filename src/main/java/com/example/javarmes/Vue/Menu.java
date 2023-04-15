@@ -177,33 +177,49 @@ public class Menu {
         vecmunitions.add(munitions);
 
 
-        Text typee = new Text("TYPE D'UTILISATEUR");
+       /* Text typee = new Text("TYPE D'UTILISATEUR");
         typee.setFont(new Font("Arial", 26));
         typee.setStyle("-fx-fill: white;");
         typee.setLayoutX(20);
-        typee.setLayoutY(50);
+        typee.setLayoutY(50);*/
+
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typutil.jpg")));
+        //Creating a rotated transition
+        ImageView Loog = new ImageView(loog);
+        Loog.setLayoutY(0);
+        Loog.setLayoutX(0);
+        Loog.setFitWidth(800);
+        Loog.setFitHeight(230);
+
+        Image loogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/javarmestyle.jpg")));
+        //Creating a rotated transition
+        ImageView Loogo = new ImageView(loogo);
+        Loogo.setLayoutY(550);
+        Loogo.setLayoutX(0);
+        Loogo.setFitWidth(800);
+        Loogo.setFitHeight(150);
 
         Button client = new Button("CLIENT");
         client.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         Button employe = new Button("EMPLOYE");
         employe.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-        client.setLayoutX(100);
-        client.setLayoutY(150);
+        client.setLayoutX(300);
+        client.setLayoutY(380);
         client.setOnAction(actionEvent -> {
             ScreenCLient scc = new ScreenCLient();
             Text txxt = new Text();
             scc.creationClient(vecclient, txxt);
             settle.close();
         });
-        employe.setLayoutX(100);
+        employe.setLayoutX(300);
         employe.setLayoutY(300);
         employe.setOnAction(actionEvent -> {
             ScreenEmploye sce = new ScreenEmploye();
             sce.InscriptionEmploye(vecemployes,vecarmes,vecmunitions);
             settle.close();
         });
-        panne.getChildren().addAll(client, employe, typee);
-        Scene sceene = new Scene(panne, 320, 540);
+        panne.getChildren().addAll(client, employe, Loog,Loogo);
+        Scene sceene = new Scene(panne, 800, 700);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
                 + "-fx-background-insets: 0px; "
@@ -229,18 +245,34 @@ public class Menu {
         vecclient.add(clt);
 
 
-        Text typee = new Text("TYPE D'UTILISATEUR");
+     /*   Text typee = new Text("TYPE D'UTILISATEUR");
         typee.setFont(new Font("Arial", 26));
         typee.setStyle("-fx-fill: white;");
         typee.setLayoutX(20);
-        typee.setLayoutY(50);
+        typee.setLayoutY(50);*/
+
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typutil.jpg")));
+        //Creating a rotated transition
+        ImageView Loog = new ImageView(loog);
+        Loog.setLayoutY(0);
+        Loog.setLayoutX(0);
+        Loog.setFitWidth(800);
+        Loog.setFitHeight(230);
+
+        Image loogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/javarmestyle.jpg")));
+        //Creating a rotated transition
+        ImageView Loogo = new ImageView(loogo);
+        Loogo.setLayoutY(550);
+        Loogo.setLayoutX(0);
+        Loogo.setFitWidth(800);
+        Loogo.setFitHeight(150);
 
         Button client = new Button("CLIENT");
         client.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         Button employe = new Button("EMPLOYE");
         employe.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-        client.setLayoutX(100);
-        client.setLayoutY(150);
+        client.setLayoutX(300);
+        client.setLayoutY(380);
         client.setOnAction(actionEvent -> {
             try {
                 connectionClient(settle);
@@ -248,7 +280,7 @@ public class Menu {
                 throw new RuntimeException(e);
             }
         });
-        employe.setLayoutX(100);
+        employe.setLayoutX(300);
         employe.setLayoutY(300);
         employe.setOnAction(actionEvent -> {
             try {
@@ -257,8 +289,8 @@ public class Menu {
                 throw new RuntimeException(e);
             }
         });
-        panne.getChildren().addAll(client, employe, typee);
-        Scene sceene = new Scene(panne, 320, 540);
+        panne.getChildren().addAll(client, employe, Loog,Loogo);
+        Scene sceene = new Scene(panne, 800, 700);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
                 + "-fx-background-insets: 0px; "
