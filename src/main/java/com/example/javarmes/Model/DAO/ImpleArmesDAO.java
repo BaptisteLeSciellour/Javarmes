@@ -167,14 +167,14 @@ public class ImpleArmesDAO implements ArmesDAO {
      * @param
      **/
     @Override
-    public void SupprimerArme(int identification) throws SQLException{
+    public void SupprimerArme(String identification) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
         try{
             con = new DAOFactory().getConnection();
             String requete = "DELETE FROM armes WHERE identification = ?";
             pstmnt = con.prepareStatement(requete);
-            pstmnt.setInt(1, identification);
+            pstmnt.setString(1, identification);
             pstmnt.executeUpdate();
             System.out.println("L'arme a été supprimée de la base !");
         } catch(SQLException e) {

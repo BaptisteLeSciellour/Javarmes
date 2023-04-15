@@ -1020,7 +1020,7 @@ public class ScreenEmploye {
 
                  try {
 
-                 int identification = Integer.valueOf(idTF.getText());
+                 String identification = String.valueOf(idTF.getText());
 
                      Armesaffich();
                      armesDAO.SupprimerArme(identification);
