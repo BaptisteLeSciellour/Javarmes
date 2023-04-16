@@ -1460,32 +1460,32 @@ public class ScreenEmploye {
         Text txt1 = new Text("Recherche d'une arme : ");
         txt1.setFont(new Font("Arial", 26));
         txt1.setStyle("-fx-fill: white;");
-        txt1.setLayoutX(90);
-        txt1.setLayoutY(120);
+        txt1.setLayoutX(300);
+        txt1.setLayoutY(200);
 
 
         ImpleArmesDAO armesDAO = new ImpleArmesDAO();
 
         /**categorie**/
-        Text CAT = new Text("Saisir la categorie :  B OU C");
+        Text CAT = new Text("Saisir la categorie d'arme :");
         CAT.setFont(new Font("Arial", 26));
         CAT.setStyle("-fx-fill: white;");
-        CAT.setLayoutX(90);
-        CAT.setLayoutY(150);
+        CAT.setLayoutX(300);
+        CAT.setLayoutY(280);
 
 
         /**Catégorie Bou C**/
         Button b = new Button("B");
         b.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
-        b.setLayoutX(90);
-        b.setLayoutY(160);
+        b.setLayoutX(300);
+        b.setLayoutY(320);
 
         Button c = new Button("C");
         c.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
-        c.setLayoutX(150);
-        c.setLayoutY(160);
+        c.setLayoutX(450);
+        c.setLayoutY(320);
 
         b.setOnAction(actionEvent -> {
 
@@ -1503,8 +1503,8 @@ public class ScreenEmploye {
         Button validation = new Button("Validation");
         validation.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
-        validation.setLayoutX(90);
-        validation.setLayoutY(240);
+        validation.setLayoutX(500);
+        validation.setLayoutY(480);
 
         pane.getChildren().addAll(txt1,b,c,validation,CAT,Bande,Bande1);
 
@@ -1569,7 +1569,7 @@ public class ScreenEmploye {
             Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
             ImageView Bande = new ImageView(bande);
             Bande.setFitWidth(800);
-            Bande.setFitHeight(40);
+            Bande.setFitHeight(150);
             Bande.setLayoutX(0);
             Bande.setLayoutY(0);
 
@@ -1580,28 +1580,28 @@ public class ScreenEmploye {
             Bande1.setLayoutX(0);
             Bande1.setLayoutY(610);
 
-            Text txt1 = new Text("Supression d'une arme : ");
+            Text txt1 = new Text("SUPPRESSION D'UNE ARME");
             txt1.setFont(new Font("Arial", 26));
             txt1.setStyle("-fx-fill: white;");
             txt1.setLayoutX(300);
-            txt1.setLayoutY(390);
+            txt1.setLayoutY(250);
             ImpleArmesDAO armesDAO = new ImpleArmesDAO();
 
             Text txt4 = new Text("Saisir l'identification:");
             txt4.setFont(new Font("Arial", 26));
             txt4.setStyle("-fx-fill: white;");
             txt4.setLayoutX(300);
-            txt4.setLayoutY(440);
+            txt4.setLayoutY(300);
 
             TextField idTF = new TextField();
             idTF.setLayoutX(300);
-            idTF.setLayoutY(500);
+            idTF.setLayoutY(400);
 
             Button validation = new Button("Validation");
             validation.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
             validation.setLayoutX(300);
-            validation.setLayoutY(550);
+            validation.setLayoutY(500);
 
             pane.getChildren().addAll(txt1,txt4,idTF,validation,Bande,Bande1);
 
@@ -1741,7 +1741,7 @@ public class ScreenEmploye {
         Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
         ImageView Bande = new ImageView(bande);
         Bande.setFitWidth(800);
-        Bande.setFitHeight(110);
+        Bande.setFitHeight(130);
         Bande.setLayoutX(0);
         Bande.setLayoutY(0);
 
@@ -1755,32 +1755,32 @@ public class ScreenEmploye {
         Text txt1 = new Text("Recherche d'une munition : ");
         txt1.setFont(new Font("Arial", 26));
         txt1.setStyle("-fx-fill: white;");
-        txt1.setLayoutX(90);
-        txt1.setLayoutY(130);
+        txt1.setLayoutX(300);
+        txt1.setLayoutY(200);
 
         ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
 
         /**categorie**/
-        Text CAT = new Text("Saisir la categorie :  B OU C");
+        Text CAT = new Text("Saisir la categorie :");
         CAT.setFont(new Font("Arial", 26));
         CAT.setStyle("-fx-fill: white;");
-        CAT.setLayoutX(90);
-        CAT.setLayoutY(150);
+        CAT.setLayoutX(300);
+        CAT.setLayoutY(250);
 
 
         /**Catégorie Bou C**/
         Button b = new Button("B");
         b.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
-        b.setLayoutX(90);
-        b.setLayoutY(160);
+        b.setLayoutX(300);
+        b.setLayoutY(300);
 
         Button c = new Button("C");
         c.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
-        c.setLayoutX(150);
-        c.setLayoutY(160);
+        c.setLayoutX(450);
+        c.setLayoutY(300);
 
         b.setOnAction(actionEvent -> {
 
@@ -1797,8 +1797,8 @@ public class ScreenEmploye {
         Button validation = new Button("Validation");
         validation.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
-        validation.setLayoutX(90);
-        validation.setLayoutY(400);
+        validation.setLayoutX(500);
+        validation.setLayoutY(480);
 
         pane.getChildren().addAll(txt1,b,c,CAT,validation,Bande,Bande1);
 
@@ -1860,9 +1860,23 @@ public class ScreenEmploye {
             Pane pane = new Pane();
             Stage stage = new Stage();
 
+            Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+            ImageView Bande = new ImageView(bande);
+            Bande.setFitWidth(800);
+            Bande.setFitHeight(110);
+            Bande.setLayoutX(0);
+            Bande.setLayoutY(0);
+
+            Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+            ImageView Bande1 = new ImageView(bande1);
+            Bande1.setFitWidth(800);
+            Bande1.setFitHeight(90);
+            Bande1.setLayoutX(0);
+            Bande1.setLayoutY(610);
+
             Text txt8 = new Text("Voici les munitions :");
-            txt8.setLayoutX(90);
-            txt8.setLayoutY(90);
+            txt8.setLayoutX(300);
+            txt8.setLayoutY(250);
 
             ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
@@ -1899,8 +1913,8 @@ public class ScreenEmploye {
 
 
 
-            pane.getChildren().addAll(txt8);
-            Scene scene = new Scene(pane,520,520);
+            pane.getChildren().addAll(txt8,Bande,Bande1);
+            Scene scene = new Scene(pane,800,700);
             scene.getRoot().setStyle("-fx-background-color: #4B5320; "
                     + "-fx-background-radius: 5px; "
                     + "-fx-background-insets: 0px; "
@@ -1922,27 +1936,46 @@ public class ScreenEmploye {
 
         Munitions muni=new Munitions();
 
+
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(800);
+        Bande.setFitHeight(110);
+        Bande.setLayoutX(0);
+        Bande.setLayoutY(0);
+
+        Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande1 = new ImageView(bande1);
+        Bande1.setFitWidth(800);
+        Bande1.setFitHeight(90);
+        Bande1.setLayoutX(0);
+        Bande1.setLayoutY(610);
+
         Text ident = new Text("Saisir le nom de l'identification:");
-        ident.setLayoutX(90);
-        ident.setLayoutY(90);
+        ident.setFont(new Font("Arial", 20));
+        ident.setStyle("-fx-fill: white;");
+        ident.setLayoutX(100);
+        ident.setLayoutY(150);
 
         TextField idTF = new TextField();
-        idTF.setLayoutX(90);
-        idTF.setLayoutY(100);
+        idTF.setLayoutX(450);
+        idTF.setLayoutY(130);
 
         /**categorie**/
-        Text CAT = new Text("Saisir la categorie :  B OU C");
-        CAT.setLayoutX(90);
-        CAT.setLayoutY(150);
+        Text CAT = new Text("Saisir la categorie : ");
+        CAT.setFont(new Font("Arial", 20));
+        CAT.setStyle("-fx-fill: white;");
+        CAT.setLayoutX(100);
+        CAT.setLayoutY(200);
 
         /**Catégorie B ou C**/
         Button b = new Button("B");
-        b.setLayoutX(90);
-        b.setLayoutY(160);
+        b.setLayoutX(300);
+        b.setLayoutY(180);
 
         Button c = new Button("C");
-        c.setLayoutX(150);
-        c.setLayoutY(160);
+        c.setLayoutX(400);
+        c.setLayoutY(180);
 
         b.setOnAction(actionEvent -> {
 
@@ -1957,52 +1990,62 @@ public class ScreenEmploye {
         });
 
 
-        Text pr = new Text("Saisir le prix unique");
-        pr.setLayoutX(90);
-        pr.setLayoutY(210);
+        Text pr = new Text("Saisir le prix unique : ");
+        pr.setFont(new Font("Arial", 20));
+        pr.setStyle("-fx-fill: white;");
+        pr.setLayoutX(100);
+        pr.setLayoutY(250);
 
         TextField prix = new TextField();
-        prix.setLayoutX(90);
-        prix.setLayoutY(220);
+        prix.setLayoutX(300);
+        prix.setLayoutY(230);
 
-        Text prvc = new Text("Saisir le prix en vrac");
-        prvc.setLayoutX(90);
-        prvc.setLayoutY(270);
+        Text prvc = new Text("Saisir le prix en vrac : ");
+        prvc.setFont(new Font("Arial", 20));
+        prvc.setStyle("-fx-fill: white;");
+        prvc.setLayoutX(100);
+        prvc.setLayoutY(300);
 
         TextField prixvrac = new TextField();
-        prixvrac.setLayoutX(90);
+        prixvrac.setLayoutX(300);
         prixvrac.setLayoutY(280);
 
-        Text nm = new Text("Saisir le nom");
-        nm.setLayoutX(90);
-        nm.setLayoutY(330);
+        Text nm = new Text("Saisir le nom : ");
+        nm.setFont(new Font("Arial", 20));
+        nm.setStyle("-fx-fill: white;");
+        nm.setLayoutX(100);
+        nm.setLayoutY(350);
 
         TextField no = new TextField();
-        no.setLayoutX(90);
-        no.setLayoutY(340);
+        no.setLayoutX(300);
+        no.setLayoutY(330);
 
 
-        Text cl = new Text("Saisir le calibre");
-        cl.setLayoutX(90);
-        cl.setLayoutY(390);
+        Text cl = new Text("Saisir le calibre : ");
+        cl.setFont(new Font("Arial", 20));
+        cl.setStyle("-fx-fill: white;");
+        cl.setLayoutX(100);
+        cl.setLayoutY(400);
 
         TextField cal = new TextField();
-        cal.setLayoutX(90);
-        cal.setLayoutY(400);
+        cal.setLayoutX(300);
+        cal.setLayoutY(380);
 
         /**Reduction**/
         Text red = new Text("Saisir si une réduction est appliquée :  ");
-        red.setLayoutX(90);
+        red.setFont(new Font("Arial", 20));
+        red.setStyle("-fx-fill: white;");
+        red.setLayoutX(100);
         red.setLayoutY(450);
 
 
         Button oui = new Button("OUI");
-        oui.setLayoutX(90);
-        oui.setLayoutY(460);
+        oui.setLayoutX(450);
+        oui.setLayoutY(430);
 
         Button non = new Button("NON");
-        non.setLayoutX(130);
-        non.setLayoutY(460);
+        non.setLayoutX(550);
+        non.setLayoutY(430);
 
         oui.setOnAction(actionEvent -> {
 
@@ -2016,23 +2059,27 @@ public class ScreenEmploye {
 
         });
 
-        Text qt = new Text("Saisir la quantite");
-        qt.setLayoutX(90);
-        qt.setLayoutY(510);
+        Text qt = new Text("Saisir la quantite : ");
+        qt.setFont(new Font("Arial", 20));
+        qt.setStyle("-fx-fill: white;");
+        qt.setLayoutX(100);
+        qt.setLayoutY(500);
 
         TextField quant = new TextField();
-        quant.setLayoutX(90);
-        quant.setLayoutY(520);
+        quant.setLayoutX(300);
+        quant.setLayoutY(480);
 
         Button ajt = new Button("Valider");
-        ajt.setLayoutX(400);
-        ajt.setLayoutY(300);
+        ajt.setFont(new Font("Arial", 20));
+        ajt.setStyle("-fx-fill: white;");
+        ajt.setLayoutX(500);
+        ajt.setLayoutY(550);
 
 
         ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
 
-        pane.getChildren().addAll(cal,idTF,prvc,prixvrac,prix,no,qt,quant,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c);
+        pane.getChildren().addAll(cal,idTF,prvc,prixvrac,prix,no,qt,quant,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c,Bande,Bande1);
 
 
         ajt.setOnAction(actionEvent -> {
@@ -2111,7 +2158,7 @@ public class ScreenEmploye {
         });
 
 
-        Scene scene = new Scene(pane, 520, 520);
+        Scene scene = new Scene(pane, 800, 700);
         scene.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
                 + "-fx-background-insets: 0px; "
