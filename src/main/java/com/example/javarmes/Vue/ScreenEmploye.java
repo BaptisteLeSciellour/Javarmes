@@ -161,7 +161,7 @@ public class ScreenEmploye {
                                Text txt2 = new Text("PRENOM : " + empl.getPrenom());
                                txt2.setFont(new Font("Arial", 26));
                                txt2.setStyle("-fx-fill: white;");
-                               txt2.setLayoutX(90);
+                               txt2.setLayoutX(100);
                                txt2.setLayoutY(150);
 
                                Text txt3 = new Text("NOM : " + empl.getNom());
@@ -180,6 +180,10 @@ public class ScreenEmploye {
 
                                pane.getChildren().addAll(txt2, txt3, ID,Bande3,Bande4);
                                Scene scene = new Scene(pane, 800, 700);
+                               scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                                       + "-fx-background-radius: 5px; "
+                                       + "-fx-background-insets: 0px; "
+                                       + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
 
 
                                stage.setScene(scene);
@@ -195,13 +199,34 @@ public class ScreenEmploye {
                            stage.show();
                        });
                    } else {
+
+                       Image bande3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+                       ImageView Bande3 = new ImageView(bande3);
+                       Bande3.setFitWidth(800);
+                       Bande3.setFitHeight(110);
+                       Bande3.setLayoutX(0);
+                       Bande3.setLayoutY(0);
+
+                       Image bande4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+                       ImageView Bande4 = new ImageView(bande4);
+                       Bande4.setFitWidth(800);
+                       Bande4.setFitHeight(90);
+                       Bande4.setLayoutX(0);
+                       Bande4.setLayoutY(610);
+
                        Text erreur = new Text("pas de personne ce ce nom la ici");
+                       erreur.setFont(new Font("Arial", 26));
+                       erreur.setStyle("-fx-fill: white;");
                        erreur.setLayoutX(90);
                        erreur.setLayoutY(150);
-                       n.getChildren().add(erreur);
+                       n.getChildren().addAll(erreur,Bande3,Bande4);
                    }
 
                    Scene ssc = new Scene(n, 800, 700);
+                   ssc.getRoot().setStyle("-fx-background-color: #4B5320; "
+                           + "-fx-background-radius: 5px; "
+                           + "-fx-background-insets: 0px; "
+                           + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
                    stage.setScene(ssc);
                    stage.show();
 
