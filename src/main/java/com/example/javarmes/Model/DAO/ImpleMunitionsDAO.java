@@ -28,7 +28,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
         PreparedStatement pstmnt = null;
         try {
             con = new DAOFactory().getConnection();
-            String requete = "INSERT INTO munition( identification, categorie, nom, prix_unique, quantite, calibre, reduction, prix_vrac ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String requete = "INSERT INTO munitions( identification, categorie, nom, prix_unique, quantite, calibre, reduction, prix_vrac ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             pstmnt = con.prepareStatement(requete);
             pstmnt.setString(1, munition.getIndentification());
             pstmnt.setString(2, munition.getCategorie());
@@ -142,7 +142,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             String requete = "SELECT * FROM munitions ";
             pstmnt = con.prepareStatement(requete);
             result = pstmnt.executeQuery();
-            if (result.next()) {
+            while (result.next()) {
                 Munitions munition = new Munitions(result.getString("identification"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"), result.getDouble("prix_vrac"), result.getInt("nb_vente"));
                 ListeMunitions.add(munition);
             }

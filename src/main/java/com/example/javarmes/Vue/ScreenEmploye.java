@@ -203,7 +203,7 @@ public class ScreenEmploye {
         });
         bbtn4.setOnAction(actionEvent -> {
 
-            Stock(vecarmes,vecmunitions);
+            Stock();
 
         });
         pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3,bbtn4);
@@ -462,7 +462,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-        public  void Stock(ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions)
+        public  void Stock()
         {
 
             Pane pane = new Pane();
@@ -481,14 +481,14 @@ public class ScreenEmploye {
 
             arme.setOnAction(actionEvent -> {
 
-                StockArmes(vecarmes);
+                StockArmes();
 
 
             });
 
             muni.setOnAction(actionEvent -> {
 
-                StockMunitions(vecmunitions);
+                StockMunitions();
             });
 
             pane.getChildren().addAll(muni,arme);
@@ -514,7 +514,7 @@ public class ScreenEmploye {
      * @version 3.0
      */
 
-        public void StockArmes(ArrayList<Armes>vecarmes)
+        public void StockArmes()
         {
             Pane pane = new Pane();
             Stage stage = new Stage();
@@ -537,7 +537,7 @@ public class ScreenEmploye {
 
             ajt.setOnAction(actionEvent -> {
 
-                AjoutArme(vecarmes);
+                AjoutArme();
 
             });
 
@@ -582,7 +582,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-        public  void AjoutArme(ArrayList<Armes> vecarmes)
+        public  void AjoutArme()
         {  Pane pane = new Pane();
             Stage stage = new Stage();
 
@@ -788,7 +788,7 @@ public class ScreenEmploye {
 
                 //Armes armes = new Armes(identification,type,categorie,nom,prix_unique,quantite,calibre,reduction);
 
-                vecarmes.add(armes);
+                //vecarmes.add(armes);
 
                 try {
 
@@ -940,14 +940,9 @@ public class ScreenEmploye {
         pane.getChildren().addAll(txt1,b,c,validation,CAT);
 
 
-        String st1="ddd";
-        String st2="eee";
-        //ArrayList<Article> ResultatRecherche=armesDAO.RechercherArmes(st1,st2);
-
-    //    vecarmes=armesDAO.RechercherArmes(armes.getType(), armes.getCategorie());
 
         validation.setOnAction(actionEvent -> {
-/**
+
 
              try {
 
@@ -956,18 +951,10 @@ public class ScreenEmploye {
                  ArrayList<Article> ResultatRecherche= (ArrayList<Article>) armesDAO.RechercherArmes("categorie", armes.getCategorie());
 
 
-                     armesDAO.RechercherArmes(armes.getType(), armes.getCategorie());
-
+                 //Verification : si id existe deja
+                 for (Article art : ResultatRecherche) {
 
                      System.out.println(art.getIndentification()+art.getNom()+art.getCategorie());
-
-             //Verification : si id existe deja
-             for (Armes arm : vecarmes) {
-
-             if (Objects.equals(identification , arm.getIdentification())) {
-
-
-             ArmesDAO.RechercherArmes(identification,quantite);
 
                      Text supp = new Text("Armes :\n" + "identification: " + art.getIndentification() + "\ncategorie: " + art.getCategorie() + "\nprix unique: " + art.getPrix_unique()+ "\ncalibre: " + art.getCalibre()+ "\nnom: " + art.getNom()+ "\nreduction: " + art.getReduction()+ "\nquantite : " + art.getQuantite() );
                      supp.setLayoutX(90);
@@ -976,10 +963,6 @@ public class ScreenEmploye {
                      decalage=decalage+150;
                  }
 
-             ///stage.close();
-             break;
-             }
-             }
 
              } catch (SQLException e) {
              Text supp = new Text(e.toString());
@@ -988,7 +971,6 @@ public class ScreenEmploye {
              pane.getChildren().add(supp);
              stage.close();
              }
- **/
 
         });
 
@@ -1033,21 +1015,8 @@ public class ScreenEmploye {
 
             validation.setOnAction(actionEvent -> {
 
-                /**
+
                  try {
-
-
-                 String identification =  idTF.getText();
-                 int quantite=-1;
-
-
-                 //Verification : si id existe deja
-                 for (Armes arm : vecarmes) {
-
-                 if (Objects.equals(identification , arm.getIdentification())) {
-
-
-                 //ArmesDAO.GererStockArme(identification,quantite);
 
                  String identification = String.valueOf(idTF.getText());
 
@@ -1056,12 +1025,6 @@ public class ScreenEmploye {
 
                      Armesaffich();
 
-                 vecarmes.remove(arm);
-
-                 ///stage.close();
-                 break;
-                 }
-                 }
 
                  } catch (SQLException e) {
                  Text supp = new Text(e.toString());
@@ -1070,7 +1033,7 @@ public class ScreenEmploye {
                  pane.getChildren().add(supp);
                  stage.close();
                  }
-                 **/
+
             });
 
             Scene scene = new Scene(pane,520,520);
@@ -1089,7 +1052,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-        public  void StockMunitions(ArrayList<Munitions>vecmunitions)
+        public  void StockMunitions()
         {
             Pane pane = new Pane();
             Stage stage = new Stage();
@@ -1112,25 +1075,25 @@ public class ScreenEmploye {
 
             ajt.setOnAction(actionEvent -> {
 
-                AjoutMunitions(vecmunitions);
+                AjoutMunitions();
 
             });
 
             sup.setOnAction(actionEvent -> {
 
-                SupprimerMunitions(vecmunitions);
+                SupprimerMunitions();
 
             });
 
             aff.setOnAction(actionEvent -> {
 
-                Munitionsaffich(vecmunitions);
+                Munitionsaffich();
 
             });
 
             re.setOnAction(actionEvent -> {
 
-                RechercherMunitions(vecmunitions);
+                RechercherMunitions();
             });
 
 
@@ -1156,7 +1119,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-    public void RechercherMunitions(ArrayList<Munitions>vecmunitions)
+    public void RechercherMunitions()
     {
         Pane pane = new Pane();
         Stage stage = new Stage();
@@ -1206,34 +1169,29 @@ public class ScreenEmploye {
         validation.setOnAction(actionEvent -> {
 
 
-/**
+
  try {
 
 
- String identification =  idTF.getText();
+
+     ArrayList<Munitions> ResultatRecherche=(ArrayList<Munitions>) munitionsDAO.RechercherMunitions("categorie",munitions.getCategorie());
+     int decalage=0;
 
 
- //Verification : si id existe deja
- for (Munitions muni : vecmunitions) {
+     //Verification : si id existe deja
+     for (Article art : ResultatRecherche) {
 
- if (Objects.equals(identification , muni.getIdentification())) {
+         art.getNom();
 
+         System.out.println(art.getIndentification()+art.getNom()+art.getCategorie());
 
- MunitionsDAO.GererStockMunition(identification,quantite);
+         Text supp = new Text("Armes :\n" + "identification: " + art.getIndentification() + "\ncategorie: " + art.getCategorie() + "\nprix unique: " + art.getPrix_unique()+ "\ncalibre: " + art.getCalibre()+ "\nnom: " + art.getNom()+ "\nreduction: " + art.getReduction()+ "\nquantite : " + art.getQuantite() );
+         supp.setLayoutX(90);
+         supp.setLayoutY(500+decalage);
+         pane.getChildren().add(supp);
+         decalage=decalage+150;
 
-
-
- Text supp = new Text("Une munition d'identification : "+identification+" a bien été trouvée");
- supp.setLayoutX(50);
- supp.setLayoutY(100);
- pane.getChildren().add(supp);
-
- vecmunitions.remove(muni);
-
- ///stage.close();
- break;
- }
- }
+     }
 
  } catch (SQLException e) {
  Text supp = new Text(e.toString());
@@ -1242,7 +1200,7 @@ public class ScreenEmploye {
  pane.getChildren().add(supp);
  stage.close();
  }
- **/
+
         });
 
         Scene scene = new Scene(pane,520,520);
@@ -1261,7 +1219,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-        public void Munitionsaffich(ArrayList<Munitions>vecmunitions)
+        public void Munitionsaffich()
         {
             Pane pane = new Pane();
             Stage stage = new Stage();
@@ -1272,22 +1230,23 @@ public class ScreenEmploye {
 
             ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
-            int decalage=0;
 
             try {
 
-                munitionsDAO.ChoisirMunitions();
+                int decalage=0;
+
+                ArrayList<Munitions> ResultatRecherche= (ArrayList<Munitions>)munitionsDAO.ChoisirMunitions();
 
 
                 /**Affichage**/
-                for (Munitions muni : vecmunitions) {
+                for (Munitions muni : ResultatRecherche) {
 
 
                     Text supp = new Text("Munition :\n" + "identification : " + muni.getIndentification() + "\ncategorie : " + muni.getCategorie() + "\nprix unique : " + muni.getPrix_unique()+ "\nprix vrac: " + muni.getPrix_vrac() + "\nreduction : " + muni.getReduction()+ "\ncalibre : " + muni.getCalibre()+ "\nquantite : " + muni.getQuantite()+ "\nnom: " + muni.getNom() );
                     supp.setLayoutX(90);
                     supp.setLayoutY(300+decalage);
                     pane.getChildren().add(supp);
-                    decalage=decalage+100;
+                    decalage=decalage+150;
 
                 }
             }
@@ -1319,7 +1278,7 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-    public  void AjoutMunitions(ArrayList<Munitions> vecmunitions)
+    public  void AjoutMunitions()
     {
         Pane pane = new Pane();
         Stage stage = new Stage();
@@ -1484,22 +1443,24 @@ public class ScreenEmploye {
             } while (calibre <=0 );
 
 
-            vecmunitions.add(muni);
-
-
             try {
+
+
+                int decalage=0;
 
                 munitionsDAO.ajouter(muni);
 
+                ArrayList<Munitions> munit=(ArrayList<Munitions>)munitionsDAO.ChoisirMunitions();
 
-                if (muni != null) {
+
+                for(Munitions u : munit)
+                {
 
                     Text supp = new Text("Munition :\n" + "identification : " + muni.getIndentification() + "\ncategorie : " + muni.getCategorie() + "\nprix unique : " + muni.getPrix_unique()+ "\nprix vrac: " + muni.getPrix_vrac() + "\nreduction : " + muni.getReduction()+ "\ncalibre : " + muni.getCalibre()+ "\nquantite : " + muni.getQuantite()+ "\nnom: " + muni.getNom() );
                     supp.setLayoutX(90);
-                    supp.setLayoutY(300);
+                    supp.setLayoutY(570+decalage);
                     pane.getChildren().add(supp);
-
-
+                    decalage=decalage+150;
                 }
 
             } catch (SQLException e) {
@@ -1529,14 +1490,14 @@ public class ScreenEmploye {
      * @author Olivia
      * @version 3.0
      */
-        public  void SupprimerMunitions(ArrayList<Munitions>vecmunitions)
+        public  void SupprimerMunitions()
         {
             Pane pane = new Pane();
             Stage stage = new Stage();
 
             Text txt1 = new Text("Supression d'une munition : ");
 
-            ImpleArmesDAO armesDAO = new ImpleArmesDAO();
+            ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
             Text txt4 = new Text("Saisir l'identification:");
             txt4.setLayoutX(90);
@@ -1554,7 +1515,7 @@ public class ScreenEmploye {
 
             validation.setOnAction(actionEvent -> {
 
-                /**
+
 
                  try {
 
@@ -1562,28 +1523,12 @@ public class ScreenEmploye {
                  String identification =  idTF.getText();
                  int quantite=-1;
 
+                     Munitionsaffich();
 
-                 //Verification : si id existe deja
-                 for (Munitions muni : vecmunitions) {
+                     munitionsDAO.GererStockMunition(identification,quantite);
 
-                 if (Objects.equals(identification , muni.getIdentification())) {
+                     Munitionsaffich();
 
-
-                 MunitionsDAO.GererStockMunition(identification,quantite);
-
-
-
-                 Text supp = new Text("Une munition d'identification : "+identification+" a bien été supprimee");
-                 supp.setLayoutX(50);
-                 supp.setLayoutY(100);
-                 pane.getChildren().add(supp);
-
-                 vecmunitions.remove(muni);
-
-                 ///stage.close();
-                 break;
-                 }
-                 }
 
                  } catch (SQLException e) {
                  Text supp = new Text(e.toString());
@@ -1592,7 +1537,6 @@ public class ScreenEmploye {
                  pane.getChildren().add(supp);
                  stage.close();
                  }
-                 **/
             });
 
             Scene scene = new Scene(pane,520,520);
