@@ -4,10 +4,7 @@ package com.example.javarmes.Vue;
 import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.Articles.Munitions;
-import com.example.javarmes.Model.DAO.ImpleArmesDAO;
-import com.example.javarmes.Model.DAO.ImpleClientDAO;
-import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
-import com.example.javarmes.Model.DAO.ImplePanierDAO;
+import com.example.javarmes.Model.DAO.*;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.application.Platform;
@@ -95,22 +92,109 @@ public class Menu {
         Bande.setLayoutX(1);
         Bande.setLayoutY(700);
 
-        Button test = new Button("test");
-        test.setLayoutX(200);
-        test.setLayoutY(300);
+        Button camm = new Button("Camembert Munition : ");
+        camm.setLayoutX(300);
+        camm.setLayoutY(300);
 
-        test.setOnAction(actionEvent -> {
+        Button cama = new Button("Camembert Armes : ");
+        cama.setLayoutX(300);
+        cama.setLayoutY(350);
+
+        Button hista = new Button("Histogramme Armes : ");
+        hista.setLayoutX(300);
+        hista.setLayoutY(400);
+
+        Button histm = new Button("Histogramme Armes : ");
+        histm.setLayoutX(300);
+        histm.setLayoutY(450);
+
+        camm.setOnAction(actionEvent -> {
             ScreenEmploye sc = new ScreenEmploye();
-            Stage staaage = new Stage();
-            ImpleEmployeDAO impl = new ImpleEmployeDAO();
-            List<Client> arr ;
+
+            Stage st = new Stage();
+
+            ImpleMunitionsDAO implm = new ImpleMunitionsDAO();
+
+            List<Munitions> muni;
+
             try {
-                arr=impl.ChoisirClient();
+
+                muni=implm.ChoisirMunitions();
+
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            sc.camembertCLient(staaage,arr);
+
+            sc.camembertMunition(st,muni);
+
         });
+
+
+        cama.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+
+            Stage staage = new Stage();
+
+            ImpleArmesDAO imple = new ImpleArmesDAO();
+
+            List<Armes> art ;
+
+
+            try {
+                art=imple.ChoisirArmes();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            sc.camembertArme(staage , art);
+
+        });
+
+        hista.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+
+            Stage primaryStage = new Stage();
+
+            ImpleArmesDAO imple = new ImpleArmesDAO();
+
+            List<Armes> art ;
+
+
+            try {
+
+                art=imple.ChoisirArmes();
+
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            sc.HistogrammeTauxdereduction_Armes(primaryStage,art);
+
+        });
+
+        histm.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+
+            Stage pr = new Stage();
+
+            ImpleMunitionsDAO implm = new ImpleMunitionsDAO();
+
+            List<Munitions> muni;
+
+            try {
+
+                muni=implm.ChoisirMunitions();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            sc.HistogrammeTauxdereduction_Munitions(pr,muni);
+        });
+
+
 
         Image armenu2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/armemenu2.png")));
         //Creating a rotated transition
@@ -129,7 +213,7 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection, sortie,pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,test,contact,Bande);
+        ppane.getChildren().addAll(connection, sortie,pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,hista,histm,camm,cama,contact,Bande);
 
         connection.setOnAction(event -> {
             menuconnexion();

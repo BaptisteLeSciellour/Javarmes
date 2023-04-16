@@ -1,12 +1,13 @@
 package com.example.javarmes.Vue;
 
 import com.example.javarmes.Model.Articles.Article;
-import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import com.example.javarmes.Model.Utilisateurs.Employes;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+
 
 
 import javafx.scene.control.Button;
@@ -33,6 +34,9 @@ import  com.example.javarmes.Model.DAO.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+
+//Histogramme
+/**Sources : https://java.developpez.com/faq/javafx?page=Graphes-statistiques#:~:text=Pour%20cr%C3%A9er%20un%20histogramme%20empil%C3%A9,contiendront%20les%20valeurs%20%C3%A0%20afficher**/
 
 /**
  * Classe de gestion de l'employee
@@ -450,7 +454,7 @@ public class ScreenEmploye {
         for(Client B : art)
         {
             System.out.print("/");
-            chart.getData().add(new PieChart.Data(B.getNom(),B.getNb_commandes()));
+            chart.getData().add(new PieChart.Data(B.getMail(),B.getNb_commandes()));
             i++;
         }
 
@@ -469,11 +473,11 @@ public class ScreenEmploye {
      * @version 3.0
      */
 
-    public void camembertArme(Stage primaryStage , List<Article> art) {
+    public void camembertArme(Stage primaryStage , List<Armes> art) {
         final PieChart chart = new PieChart();
-        chart.setTitle("Achat par client");
+        chart.setTitle("Nombre de vente par arme");
         int i =0;
-        for(Article B : art)
+        for(Armes B : art)
         {
             System.out.print("/");
             chart.getData().add(new PieChart.Data(B.getNom(),B.getNb_vente()));
@@ -488,6 +492,120 @@ public class ScreenEmploye {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+
+    public void camembertMunition(Stage primaryStage , List<Munitions> art) {
+        final PieChart chart = new PieChart();
+        chart.setTitle("Nombre de vente par munition");
+        int i =0;
+        for(Munitions B : art)
+        {
+            System.out.print("/");
+            chart.getData().add(new PieChart.Data(B.getNom(),B.getNb_vente()));
+            i++;
+        }
+
+        // Montage de l'IU.
+        final StackPane root = new StackPane();
+        root.getChildren().add(chart);
+        final Scene scene = new Scene(root, 600, 500);
+        primaryStage.setTitle("Test de PieChart");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+
+    public void HistogrammeTauxdereduction_Armes(Stage primaryStage , List<Armes> art) {
+
+        // Données à utiliser pour l'histogramme
+        ObservableList<XYChart.Data<String, Number>> venteData = FXCollections.observableArrayList();
+        ObservableList<XYChart.Data<String, Number>> quantiteData = FXCollections.observableArrayList();
+
+
+        for (Armes a : art) {
+            venteData.add(new XYChart.Data<>(a.getIndentification(), a.getNb_vente()));
+            quantiteData.add(new XYChart.Data<>(a.getIndentification(), a.getQuantite()));
+        }
+
+        // Axe X
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Identification");
+
+        // Axe Y pour la vente
+        NumberAxis venteAxis = new NumberAxis();
+        venteAxis.setLabel("Vente");
+
+        // Axe Y pour la quantité
+        NumberAxis quantiteAxis = new NumberAxis();
+        //quantiteAxis.setLabel("Quantité");
+
+        // Création de la série de données pour la vente
+        XYChart.Series<String, Number> venteSeries = new XYChart.Series<>();
+        venteSeries.setName("Vente");
+        venteSeries.setData(venteData);
+
+        // Création de la série de données pour la quantité
+        XYChart.Series<String, Number> quantiteSeries = new XYChart.Series<>();
+        quantiteSeries.setName("Quantité");
+        quantiteSeries.setData(quantiteData);
+
+        // Création de l'histogramme
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, quantiteAxis);
+        barChart.setTitle("Vente et quantité par arme");
+        barChart.getData().addAll(venteSeries, quantiteSeries);
+
+        // Montage de l'IU
+        Scene scene = new Scene(barChart, 800, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+
+    public void HistogrammeTauxdereduction_Munitions(Stage primaryStage , List<Munitions> muni) {
+
+        // Données à utiliser pour l'histogramme
+        ObservableList<XYChart.Data<String, Number>> venteData = FXCollections.observableArrayList();
+        ObservableList<XYChart.Data<String, Number>> quantiteData = FXCollections.observableArrayList();
+
+
+        for (Munitions m : muni) {
+            venteData.add(new XYChart.Data<>(m.getIndentification(), m.getNb_vente()));
+            quantiteData.add(new XYChart.Data<>(m.getIndentification(), m.getQuantite()));
+        }
+
+        // Axe X
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Identification");
+
+        // Axe Y pour la vente
+        NumberAxis venteAxis = new NumberAxis();
+        venteAxis.setLabel("Vente");
+
+        // Axe Y pour la quantité
+        NumberAxis quantiteAxis = new NumberAxis();
+        //quantiteAxis.setLabel("Quantité");
+
+        // Création de la série de données pour la vente
+        XYChart.Series<String, Number> venteSeries = new XYChart.Series<>();
+        venteSeries.setName("Vente");
+        venteSeries.setData(venteData);
+
+        // Création de la série de données pour la quantité
+        XYChart.Series<String, Number> quantiteSeries = new XYChart.Series<>();
+        quantiteSeries.setName("Quantité");
+        quantiteSeries.setData(quantiteData);
+
+        // Création de l'histogramme
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, quantiteAxis);
+        barChart.setTitle("Vente et quantité par munition");
+        barChart.getData().addAll(venteSeries, quantiteSeries);
+
+        // Montage de l'IU
+        Scene scene = new Scene(barChart, 800, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
 
     /**
      * Fonction d'affichage d'un employee
