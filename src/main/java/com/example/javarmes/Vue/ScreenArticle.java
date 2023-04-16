@@ -91,22 +91,22 @@ public class ScreenArticle {
 
         Button downButton = new Button();
         downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
-        downButton.setLayoutX(240);
+        downButton.setLayoutX(400);
         downButton.setLayoutY(400);
 
 
         Button upButton = new Button();
         upButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/left.jpg")))));
-        upButton.setLayoutX(240);
+        upButton.setLayoutX(0);
         upButton.setLayoutY(400);
 
 
         Button achat = new Button("Achat");
-        achat.setLayoutX(0);
-        achat.setLayoutY(0);
+        achat.setLayoutX(100);
+        achat.setLayoutY(200);
         arm=armes.get(i.intValue());
         Text txt = new Text(" Nom "+arm.getNom());
-        txt.setLayoutX(90);
+        txt.setLayoutX(100);
         txt.setLayoutY(290);
         achat.setOnAction(actionEvent ->{
             int quantite = arm.getQuantite();
@@ -114,7 +114,7 @@ public class ScreenArticle {
             {
                 Text panier = new Text("Produit dans le panier");
                 panier.setLayoutX(100);
-                panier.setLayoutY(100);
+                panier.setLayoutY(340);
                 C.addCommandes(arm);
                 ImpleArmesDAO impp = new ImpleArmesDAO();
                 ImplePanierDAO imp = new ImplePanierDAO();
@@ -168,13 +168,13 @@ public class ScreenArticle {
 
         Button downButton = new Button();
         downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
-        downButton.setLayoutX(240);
+        downButton.setLayoutX(400);
         downButton.setLayoutY(400);
 
 
         Button upButton = new Button();
         upButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/left.jpg")))));
-        upButton.setLayoutX(240);
+        upButton.setLayoutX(0);
         upButton.setLayoutY(400);
 
 
@@ -182,16 +182,16 @@ public class ScreenArticle {
         i.compareAndSet(size,0);
         i.compareAndSet(-1,0);
         Button retirer = new Button("Retirer");
-        retirer.setLayoutX(260);
+        retirer.setLayoutX(300);
         retirer.setLayoutY(260);
         arm=armes.get(i.intValue());
         Text txt = new Text(" Nom "+arm.getNom());
-        txt.setLayoutX(90);
-        txt.setLayoutY(290);
+        txt.setLayoutX(300);
+        txt.setLayoutY(330);
         retirer.setOnAction(actionEvent ->{
             Text panier = new Text("Produit dans le panier");
-            panier.setLayoutX(100);
-            panier.setLayoutY(100);
+            panier.setLayoutX(300);
+            panier.setLayoutY(400);
             C.suppCommandes(arm);
             ImpleArmesDAO impp = new ImpleArmesDAO();
             ImplePanierDAO imp = new ImplePanierDAO();
