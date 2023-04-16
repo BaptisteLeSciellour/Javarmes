@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="">
+    <list default="true" id="b2c9dba0-80e1-476e-b64e-06ec23472cfe" name="Changes" comment="Plein de trucs de remise en forme et de petits ajustements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/Utilisateurs/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImplePanierDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Model/DAO/ImplePanierDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenArticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenCLient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/ScreenCLient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,9 +62,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.29.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;PLAIN_TEXT&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -238,7 +241,35 @@
       <option name="project" value="LOCAL" />
       <updated>1681146805687</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="panier fait et meilleur connection">
+      <created>1681207984987</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1681207984987</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Solution théorique pour les statistiques">
+      <created>1681479949923</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1681479949923</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Resolution d'un problème avec les fonctions retournant les lists, elles retournent vraiment des listes maintenant. Nous avons de plus les statistiques maintenant.">
+      <created>1681550262871</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1681550262872</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Plein de trucs de remise en forme et de petits ajustements">
+      <created>1681656303860</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1681656303860</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -273,6 +304,46 @@
     <MESSAGE value="Refonte de la structure du projet avec plus que deux possibilitées sur l'écran d'acceuil, connexion et nouveau. De plus il nous faut develloper les fonctions pour bien différencier les cas employé et clinets, qui ne doivent pas avoir les même possibilités. &#10;Ajout de la méthode triId pour savoir si l'id que l'on rentre est celui d'un employé ou celui d'un client&#10;Méthode connection pour l'écran ou rentrer l'id avant triId. &#10;Ce sera dand triId que nous allons bifurquer sur l'une ou l'autre voie en fonction de l'id que nous rentrons." />
     <MESSAGE value="CHnagement encore un peux de cap, ajout de la possibilité de voir le site sans être connecté, installation de la posisibilté de parcourir les armes d'une certaine catégorie quand on clique sur la bonne image" />
     <MESSAGE value="Ajout méthode pour avoir accès au panier, supprimer et ajouter des choses dedans. Ajout d'un circuit d'écran différent pour si on se connecte ou non. Ajout de la possibilité de se connecter. Petite modif sur les armesDAO afin de plus facilement afficher les munitions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout méthode pour avoir accès au panier, supprimer et ajouter des choses dedans. Ajout d'un circuit d'écran différent pour si on se connecte ou non. Ajout de la possibilité de se connecter. Petite modif sur les armesDAO afin de plus facilement afficher les munitions." />
+    <MESSAGE value="panier fait et meilleur connection" />
+    <MESSAGE value="Solution théorique pour les statistiques" />
+    <MESSAGE value="Resolution d'un problème avec les fonctions retournant les lists, elles retournent vraiment des listes maintenant. Nous avons de plus les statistiques maintenant." />
+    <MESSAGE value="Plein de trucs de remise en forme et de petits ajustements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Plein de trucs de remise en forme et de petits ajustements" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
+          <line>1173</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
+          <line>1171</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
+          <line>1172</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
+          <line>1169</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
+          <line>1170</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/javarmes/Vue/Menu.java</url>
+          <line>1168</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

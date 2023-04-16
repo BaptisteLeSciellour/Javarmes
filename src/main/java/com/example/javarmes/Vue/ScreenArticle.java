@@ -3,6 +3,7 @@ package com.example.javarmes.Vue;
 import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.DAO.ImpleArmesDAO;
+import com.example.javarmes.Model.DAO.ImplePanierDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -95,9 +96,10 @@ public class ScreenArticle {
                 panier.setLayoutY(100);
                 C.addCommandes(arm);
                 ImpleArmesDAO impp = new ImpleArmesDAO();
+                ImplePanierDAO imp = new ImplePanierDAO();
                 try {
                     impp.GererStockArme(arm.getIdentification(),-1);
-
+                    imp.AjouterProduitPanier(arm.getIdentification(),1);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -150,9 +152,10 @@ public class ScreenArticle {
             panier.setLayoutY(100);
             C.suppCommandes(arm);
             ImpleArmesDAO impp = new ImpleArmesDAO();
+            ImplePanierDAO imp = new ImplePanierDAO();
             try {
                 impp.GererStockArme(arm.getIdentification(),1);
-
+                imp.SupprimerProduitPanier(arm.getIdentification());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

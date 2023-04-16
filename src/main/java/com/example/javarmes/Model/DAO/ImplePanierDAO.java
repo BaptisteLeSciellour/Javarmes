@@ -15,20 +15,19 @@ public class ImplePanierDAO implements PanierDAO {
 
     /**
      * Méthode de création d'une table panier qui garde le panier en mémoire
-     *
-     * @param
      * @author Akshaya
+     * @param
      **/
-    public void CreationPanier() throws SQLException {
+    public void CreationPanier() throws SQLException{
         Connection con = null;
         Statement stmnt = null;
-        try {
+        try{
             con = new DAOFactory().getConnection();
-            String requete = "CREATE TABLE IF NOT EXISTS panier ( id_panier INT PRIMARY KEY AUTO_INCREMENT,type VARCHAR(50) NOT NULL,id_arme VARCHAR(255)  NULL,id_munition VARCHAR(255)  NULL,qte INT NOT NULL,prix_unique DOUBLE NOT NULL,prix_vrac DOUBLE NULL,prix_total DOUBLE NOT NULL, reduction BOOLEAN NOT NULL, FOREIGN KEY (id_arme) REFERENCES armes(identification), FOREIGN KEY (id_munition) REFERENCES munitions(identification))";
+            String requete = "CREATE TABLE IF NOT EXISTS panier ( id_panier INT PRIMARY KEY AUTO_INCREMENT,type VARCHAR(50) NOT NULL,id_arme VARCHAR(255)  NULL,id_munition VARCHAR(255)  NULL,qte INT NOT NULL,prix_unique DOUBLE NOT NULL,prix_vrac DOUBLE NULL,prix_total DOUBLE NOT NULL, reduction BOOLEAN NOT NULL)";
             stmnt = con.createStatement();
             stmnt.execute(requete);
             System.out.println("Panier crée avec succès !");
-        } catch (SQLException e) {
+        }catch(SQLException e){
             System.out.println(e);
             System.out.println("Panier non crée");
         } finally {
@@ -40,12 +39,10 @@ public class ImplePanierDAO implements PanierDAO {
     }
 
     /**
-     * Méthode qui calcule le prix totale dans le panier pour des munitions
-     *
-     * @param quantite
-     * @param id_article
+     *Méthode qui calcule le prix totale dans le panier pour des munitions
      * @author Akshaya
-     **/
+     * @param quantite
+     * @param id_article **/
     @Override
     // la vente au prix vrac est fixé à au dessus de  10
     public double prixTotal(String id_article, int quantite) throws SQLException {
@@ -53,7 +50,7 @@ public class ImplePanierDAO implements PanierDAO {
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rsl = null;
-        double prix_total = 0.0;
+        double prix_total=0.0;
         try {
             con = new DAOFactory().getConnection();
             String requete = "SELECT prix_unique FROM armes where identification = ?";
@@ -98,11 +95,13 @@ public class ImplePanierDAO implements PanierDAO {
     }
 
 
+
+
     /**
      * Méthode d'ajout de produit choisi par le client dans son panier
-     * * Il faudrait ici pour chaque bouton situé près de l'article, set les valeurs String id_article et String type_article
-     * * demander la saisie de
-     *
+     *      * Il faudrait ici pour chaque bouton situé près de l'article, set les valeurs String id_article et String type_article
+     *      * demander la saisie de
+     * @author Akshaya
      * @param id_article
      * @param quantite
      * @author Akshaya
@@ -236,6 +235,7 @@ public class ImplePanierDAO implements PanierDAO {
      *
      * @param id_article
      * @author Akshaya
+     * @param
      **/
     public void SupprimerProduitPanier(String id_article) throws SQLException {
         Connection con = null;
