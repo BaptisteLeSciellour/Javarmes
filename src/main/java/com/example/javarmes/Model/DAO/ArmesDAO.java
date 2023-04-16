@@ -1,5 +1,8 @@
 package com.example.javarmes.Model.DAO;
 import com.example.javarmes.Model.Articles.*;
+import javafx.scene.image.ImageView;
+
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 

@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.Objects;
 
 public class Paiment {
-    //Creating a hexagon
+
     public void anim(Stage stage)
     {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chargement.png")));

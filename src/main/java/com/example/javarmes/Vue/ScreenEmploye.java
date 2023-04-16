@@ -36,7 +36,7 @@ import java.util.Random;
 
 /**
  * Classe de gestion de l'employee
- * @author Olivia GAAD et Baptiste Lesciellour
+ * @author Olivia GAAD et Baptiste Le Sciellour
  * @version 3.0
  */
 
@@ -230,7 +230,7 @@ public class ScreenEmploye {
 
     /**
      * Menu de l'employee
-     * @author Baptsiste
+     * @author Baptiste
      * @version 3.0
      */
     public void MenuEmploye()
@@ -326,7 +326,7 @@ public class ScreenEmploye {
 
     /**
      * Fonction de suppression d'un employee
-     * @author Olivia et Baptsiste
+     * @author Olivia et Baptiste
      * @version 3.0
      */
     public void SuppresionEmploye() {
@@ -439,18 +439,44 @@ public class ScreenEmploye {
     }
 
     /**
-     * Fonction de statistique
-     * @author Baptsiste
+     * Fonction de production de camembert au bon lait crue pour le nombre de commandes par Clients
+     * @author Baptiste
      * @version 3.0
      */
-    public void camembertsamere(Stage primaryStage , List<Client> art) {
+    public void camembertCLient(Stage primaryStage , List<Client> art) {
         final PieChart chart = new PieChart();
         chart.setTitle("Achat par client");
         int i =0;
         for(Client B : art)
         {
             System.out.print("/");
-            chart.getData().add(new PieChart.Data(B.getNom(),B.getId()));
+            chart.getData().add(new PieChart.Data(B.getNom(),B.getNb_commandes()));
+            i++;
+        }
+
+        // Montage de l'IU.
+        final StackPane root = new StackPane();
+        root.getChildren().add(chart);
+        final Scene scene = new Scene(root, 600, 500);
+        primaryStage.setTitle("Test de PieChart");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    /**
+     * Fonction de production de camembert au bon lait crue pour le nombre de ventes par armes
+     * @author Baptiste
+     * @version 3.0
+     */
+
+    public void camembertArme(Stage primaryStage , List<Article> art) {
+        final PieChart chart = new PieChart();
+        chart.setTitle("Achat par client");
+        int i =0;
+        for(Article B : art)
+        {
+            System.out.print("/");
+            chart.getData().add(new PieChart.Data(B.getNom(),B.getNb_vente()));
             i++;
         }
 
@@ -465,7 +491,7 @@ public class ScreenEmploye {
 
     /**
      * Fonction d'affichage d'un employee
-     * @author Olivia et Baptsiste
+     * @author Olivia et Baptiste
      * @version 3.0
      */
         public void Employeaffich(String prenom, String nom)
@@ -612,7 +638,7 @@ public class ScreenEmploye {
 
     /**
      * Fonction d'inscription d'un employee
-     * @author Olivia et Baptsiste
+     * @author Olivia et Baptiste
      * @version 3.0
      */
         public void InscriptionEmploye() /** Nous avons un second écran qui apparait**/
@@ -638,7 +664,7 @@ public class ScreenEmploye {
             Loog.setLayoutX(1);
 
 
-            Text txt = new Text("Nom");
+            Text txt = new Text("Prenom");
             txt.setFont(new Font("Arial", 26));
             txt.setStyle("-fx-fill: white;");
             txt.setLayoutX(300);
@@ -648,7 +674,7 @@ public class ScreenEmploye {
             pr.setLayoutX(300);
             pr.setLayoutY(310);
 
-            Text txxt = new Text("Prenom");
+            Text txxt = new Text("Nom");
             txxt.setFont(new Font("Arial", 26));
             txxt.setStyle("-fx-fill: white;");
             txxt.setLayoutX(300);
@@ -661,9 +687,6 @@ public class ScreenEmploye {
             CheckBox cb1 = new CheckBox("J'atteste ajouter un membre du staff.");
             cb1.setLayoutX(300);
             cb1.setLayoutY(450);
-
-
-
 
             Button bbtn = new Button("Ajouter l'employé(e)");
             bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
@@ -692,23 +715,23 @@ public class ScreenEmploye {
 
                     String nom = nm.getText();
 
-                    int cpt=0;
+                    boolean verification = true;
 
                     for(Employes e: emp)
                     {
+                        System.out.println(e.getNom() + nom);
+                        System.out.println(e.getPrenom() + prenom);
 
                        if(prenom.equals(e.getPrenom()) && nom.equals(e.getNom()))
                        {
-                           cpt++;
-
+                           verification = false;
                        }
-
                     }
 
                    Employes empl = new Employes(id, nom,prenom);
 
 
-                    if(cpt==0)
+                    if(verification==true)
                     {
                         employeDAO.AjouterEmployes(empl);
 
@@ -719,7 +742,7 @@ public class ScreenEmploye {
 
                         Text sup = new Text("Cet employe existe deja");
                         sup.setLayoutX(90);
-                        sup.setLayoutY(600);
+                        sup.setLayoutY(300);
                         n.getChildren().add(sup);
 
                         settle.close();
@@ -728,10 +751,7 @@ public class ScreenEmploye {
                     Scene ssc = new Scene(n, 520, 520);
                     settle.setScene(ssc);
                     settle.show();
-
-
                     MenuEmploye();
-
                     settle.close();
                 }
              catch (SQLException e) {
@@ -1460,9 +1480,7 @@ public class ScreenEmploye {
 
                      Armesaffich();
                      armesDAO.SupprimerArme(identification);
-
                      Armesaffich();
-
 
                  } catch (SQLException e) {
                  Text supp = new Text(e.toString());

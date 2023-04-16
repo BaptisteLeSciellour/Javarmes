@@ -23,19 +23,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ScreenCLient {
-    public void creationClient(ArrayList<Client>vecclient,Text txxt)
-    {
+    /**
+     * Classe pour l'écran client. Fonction de création d'un client et de son ajout dans la base de données avec
+     * ses blindages.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
+    public void creationClient(Text txxt){
         Stage stage = new Stage();
         Pane panne = new Pane();
 
-        /*Text txt1 = new Text("*******   CREATION DU CLIENT   *******");
-        txt1.setFont(new Font("Arial", 26));
-        txt1.setStyle("-fx-fill: white;");
-        txt1.setLayoutX(45);
-        txt1.setLayoutY(100);*/
-
         Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
-        //Creating a rotated transition
         ImageView Loog = new ImageView(loog);
         Loog.setLayoutY(1);
         Loog.setFitWidth(800);
@@ -43,7 +41,6 @@ public class ScreenCLient {
         Loog.setLayoutX(1);
 
         Image txt1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/crrea.jpg")));
-        //Creating a rotated transition
         ImageView Txt1 = new ImageView(txt1);
         Txt1.setLayoutY(120);
         Txt1.setLayoutX(50);
@@ -74,16 +71,14 @@ public class ScreenCLient {
         txt67.setLayoutY(410);
 
         TextField mdpTF = new TextField();
-        mdpTF.setLayoutX(300); // ici on les décales
-        mdpTF.setLayoutY(350); // ici on remonte les cases
+        mdpTF.setLayoutX(300);
+        mdpTF.setLayoutY(350);
 
         TextField mdpTF2 = new TextField();
-        mdpTF2.setLayoutX(300); // ici on les décales
-        mdpTF2.setLayoutY(430); // ici on remonte les cases
-
-//A checkbox without a caption
+        mdpTF2.setLayoutX(300);
+        mdpTF2.setLayoutY(430);
+        //A checkbox without a caption
         CheckBox cb1 = new CheckBox("J'accepte les conditions d'utilisation.");
-//A checkbox with a string caption
         CheckBox cb2 = new CheckBox("Je ne suis pas un robot.");
 
         cb1.setLayoutX(300);
@@ -107,14 +102,19 @@ public class ScreenCLient {
         saisie.setLayoutY(600);
         saisie.setLayoutX(550);
 
-        /**!!!!!!!!!!!!!!!!!!**/
-
         saisie.setOnAction(event->{
-            boolean verif = true;
+            ImpleEmployeDAO empl = new ImpleEmployeDAO();
+            ArrayList<Client> vecclient = new ArrayList<>();
+            try {
+                vecclient = (ArrayList<Client>) empl.ChoisirClient(); /** Acquisition de toute la liste des clients présents dans notre base de données**/
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             String mail;
             String mdp;
             int id;
             boolean pass3;
+            /** Blindage pour la saisie du mail, outil majeur de notre connexion**/
             do {
                  pass3=true;
                  mail = mailTF.getText();
@@ -133,6 +133,7 @@ public class ScreenCLient {
                     }
                 } while (!pass3);
             boolean pass2;
+
             do {
 
                 pass2=true;
@@ -207,19 +208,11 @@ public class ScreenCLient {
                 }
             } catch (SQLException e) {
 
-                Text exception = new Text("Erreur"); /** il va falloir creer un écran d'erreur universel **/
+                Text exception = new Text("Erreur");
                 exception.setLayoutX(90);
                 exception.setLayoutY(290);
                 pane.getChildren().add(exception);
 
-            }
-            ///ArrayList<Client> vecclient = new ArrayList<Client>();
-            vecclient.add(client);
-
-            /**Affichage**/
-            for (Client cli : vecclient) {
-                cli.ToString();
-                System.out.println("\n");
             }
             Scene scene = new Scene(pane,520,520);
             scene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -228,7 +221,7 @@ public class ScreenCLient {
                     + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
             stage1.setScene(scene);
             stage1.show();
-            stage.close(); /**ici nous fermons l'écran d'avant**/
+            stage.close();
         });
 
         panne.getChildren().addAll(saisie,mailTF,mdpTF,txt4,txt6,txt67,mdpTF2,Txt1,cb1,cb2,Loog);
@@ -242,14 +235,25 @@ public class ScreenCLient {
 
     }
 
+    /**
+     * Classe pour l'écran client. Fonction pour l'affichage du panier d'un client.
+     * @author Baptiste
+     * @version 3.0
+     */
     public void affichagePanier(Client C){
         ArrayList<Article> artt ;
-        artt = C.getCommandes();
+        artt = C.getCommandes(); /** Obtention de toutes les commandes pour ce client**/
         ScreenArticle sc = new ScreenArticle();
-        AtomicInteger i = new AtomicInteger(0);
-        sc.defilementP(i,artt,C);
+        AtomicInteger i = new AtomicInteger(0); /** Atomic Integer pour pouvoir utiliser cette variable dans un ActionEvent.**/
+        sc.defilementP(i,artt,C); /** Appel d'une version spécial de la fonction défilement dotée d'un bouton effacer. **/
     }
-    public void DetailClient(Client C) /** Nous avons un second écran qui apparait**/
+    /**
+     * Classe pour l'écran client. Affichage des possibilités du client, la mise à jour de son profil, la visualisation de son panier ou encore la suppression
+     * de son compte.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
+    public void DetailClient(Client C)
     {
         Pane pannne = new Pane();
         Stage settle = new Stage();
@@ -261,12 +265,6 @@ public class ScreenCLient {
         txt.setStyle("-fx-fill: white;");
         txt.setLayoutX(20);
         txt.setLayoutY(150);
-
-        /**creer deux boutons
-        Button bbtn = new Button("Ajouter un client");
-        bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-        bbtn.setLayoutX(70);
-        bbtn.setLayoutY(200);**/
 
         Button bbtn2 = new Button("MAJ d'un client");
         bbtn2.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
@@ -283,7 +281,7 @@ public class ScreenCLient {
         });
         bbtn2.setOnAction(actionEvent -> {
             try {
-                MAJClient(C);
+                MAJClient();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -296,7 +294,7 @@ public class ScreenCLient {
                 throw new RuntimeException(e);
             }
         });
-        pannne.getChildren().addAll(/**bbtn,**/bbtn2,txt,bbtn3,panier);
+        pannne.getChildren().addAll(bbtn2,txt,bbtn3,panier);
 
         Scene sceene = new Scene(pannne, 320, 540);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -309,8 +307,14 @@ public class ScreenCLient {
         settle.setY(0);
         settle.show();
     }
+    /**
+     * Classe pour l'écran client. Mise à jour du client.
+     * de son compte.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
 
-    public void MAJClient(Client C) throws SQLException {
+    public void MAJClient() throws SQLException {
         Pane pannne = new Pane();
         Stage settle = new Stage();
         ArrayList<Client> arr ;
@@ -353,7 +357,6 @@ public class ScreenCLient {
                     txt1.setFont(new Font("Arial", 26));
                     txt1.setStyle("-fx-fill: white;");
 
-                    ImpleClientDAO clientDAO = new ImpleClientDAO();
                     Text nvmail = new Text("Saisir le nouveau mail:");
                     nvmail.setFont(new Font("Arial", 20));
                     nvmail.setStyle("-fx-fill: white;");
@@ -382,8 +385,8 @@ public class ScreenCLient {
 
 
                     TextField mdpTF = new TextField();
-                    mdpTF.setLayoutX(90); // ici on les décales
-                    mdpTF.setLayoutY(350); // ici on remonte les cases
+                    mdpTF.setLayoutX(90);
+                    mdpTF.setLayoutY(350);
 
 
                     Button saisie = new Button("Saisie");
@@ -452,6 +455,11 @@ public class ScreenCLient {
         settle.show();
     }
 
+    /**
+     * Classe pour l'écran client. Suppression du client.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
     public void suppressionClient(Client C) throws SQLException {
 
             Pane pane = new Pane();
@@ -497,7 +505,6 @@ public class ScreenCLient {
                                 supp.setLayoutX(50);
                                 supp.setLayoutY(100);
                                 pane.getChildren().add(supp);
-                                ///stage.close();
                                 break;
                             }
                         }

@@ -3,7 +3,16 @@ package com.example.javarmes.Model.DAO;
 import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.Utilisateurs.Client;
-
+import javafx.scene.image.*;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
+import java.io.*;
+import java.util.TreeSet;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.nio.ByteBuffer;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -187,6 +196,7 @@ public class ImpleArmesDAO implements ArmesDAO {
             }
         }
     }
+
 }
 
 

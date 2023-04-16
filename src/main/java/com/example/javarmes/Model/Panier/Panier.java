@@ -1,5 +1,7 @@
 package com.example.javarmes.Model.Panier;
 
+import com.example.javarmes.Model.Articles.Article;
+
 public class Panier {
     public int id_panier; /**clé primaire**/
     public String id_arme;/**clé étrangère pour arme**/
@@ -106,4 +108,5 @@ public class Panier {
         this.prix_total=prix_total;
         this.reduction = reduction ;
     }
+
 }

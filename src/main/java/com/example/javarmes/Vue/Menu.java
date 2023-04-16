@@ -7,6 +7,7 @@ import com.example.javarmes.Model.Articles.Munitions;
 import com.example.javarmes.Model.DAO.ImpleArmesDAO;
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
+import com.example.javarmes.Model.DAO.ImplePanierDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import com.example.javarmes.Model.Utilisateurs.Employes;
 import javafx.application.Platform;
@@ -34,6 +35,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Menu {
 
+    /**
+     * Classe pour l'écran d'acceuil, première fonction appelée elle nous sert de "hub" pour pouvoir lancer toutes
+     * les fonctions suivantes.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
     public void lancement() {
         Button connection = new Button("Connexion");
         Stage stage = new Stage();
@@ -41,17 +48,8 @@ public class Menu {
         connection.setLayoutX(700);
         connection.setLayoutY(440);
         Button sortie = new Button("Exit");
-        /** Button image = new Button("Image");
-         Button anim  = new Button("Paiment");
-         **/
+
         Button pres = new Button("Parcourir le site");
-
-       /* Hyperlink hpy = new Hyperlink("Nouveau ?");
-        hpy.setFont(new Font("Arial", 12));
-        hpy.setStyle("-fx-fill: white;");
-        hpy.setLayoutX(690);
-        hpy.setLayoutY(700);*/
-
 
         Button hpy = new Button("Créer un compte");
         hpy.setLayoutX(700);
@@ -111,7 +109,7 @@ public class Menu {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            sc.camembertsamere(staaage,arr);
+            sc.camembertCLient(staaage,arr);
         });
 
         Image armenu2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/armemenu2.png")));
@@ -123,7 +121,6 @@ public class Menu {
         Armenu2.setLayoutY(50);
 
         Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png")));
-        //Creating a rotated transition
         ImageView Logo = new ImageView(logo);
         Logo.setFitWidth(600);
         Logo.setFitHeight(300);
@@ -132,7 +129,8 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection, sortie,/**,image,anim,**/pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,test,contact,Bande);
+        ppane.getChildren().addAll(connection, sortie,pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,test,contact,Bande);
+
         connection.setOnAction(event -> {
             menuconnexion();
         });
@@ -154,7 +152,6 @@ public class Menu {
         });
         stage.setTitle("Page d'acceuil");
 
-        /** ne pas toucher à cela*/
         Scene scene = new Scene(ppane, 520, 540);
         scene.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
@@ -165,38 +162,15 @@ public class Menu {
         stage.show();
     }
 
-    public void menuinscription() /** va être utilsé pour l'inscription des nouvelles personnes**/
+    /**
+     * Classe pour l'écran du menu d'acceuil. Cette fonction va nous servir à donner le choix à l'utilisateur de s'inscrire en tant qu'employé ou client.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
+    public void menuinscription()
     {
         Pane panne = new Pane();
         Stage settle = new Stage();
-
-        /** ici les deux vecteurs contenant tout les personnes du sites**/
-        Employes empl = new Employes(123, "CC", "CC");
-        ArrayList<Employes> vecemployes = new ArrayList<Employes>();
-        vecemployes.add(empl);
-
-        Client clt = new Client(123, "CC", "CC");
-        ArrayList<Client> vecclient = new ArrayList<Client>();
-        vecclient.add(clt);
-
-        /** Armes **/
-        //String identification,String type, String categorie, String nom, double prix_unique, int quantite, double calibre, boolean reduction, int nb_vente
-        Armes armes = new Armes("ID456","Precision","B","Bambi",3.14,5,9,false,5);
-        ArrayList<Armes> vecarmes = new ArrayList<Armes>();
-        vecarmes.add(armes);
-
-        /** Munitions **/
-        //String identification, String categorie, String nom, double prix_unique,int quantite, double calibre,boolean reduction, double prix_vrac, int nb_vente
-        Munitions munitions = new Munitions("ID333","B","BOUM",45,7,8,false,30,6);
-        ArrayList<Munitions> vecmunitions = new ArrayList<Munitions>();
-        vecmunitions.add(munitions);
-
-
-       /* Text typee = new Text("TYPE D'UTILISATEUR");
-        typee.setFont(new Font("Arial", 26));
-        typee.setStyle("-fx-fill: white;");
-        typee.setLayoutX(20);
-        typee.setLayoutY(50);*/
 
         Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typ2.jpg")));
         //Creating a rotated transition
@@ -207,7 +181,6 @@ public class Menu {
         Loog.setFitHeight(230);
 
         Image loogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
-        //Creating a rotated transition
         ImageView Loogo = new ImageView(loogo);
         Loogo.setLayoutY(550);
         Loogo.setLayoutX(0);
@@ -223,7 +196,7 @@ public class Menu {
         client.setOnAction(actionEvent -> {
             ScreenCLient scc = new ScreenCLient();
             Text txxt = new Text();
-            scc.creationClient(vecclient, txxt);
+            scc.creationClient(txxt);
             settle.close();
         });
         employe.setLayoutX(300);
@@ -245,29 +218,17 @@ public class Menu {
         settle.show();
     }
 
-    public void menuconnexion() /** va être utilsé pour l'inscription des nouvelles personnes**/
+    /**
+     * Classe pour l'écran du menu d'acceuil. Cette fonction va nous servir à donner le choix à l'utilisateur pour se connecter en tant qu'employé ou client.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
+    public void menuconnexion()
     {
         Pane panne = new Pane();
         Stage settle = new Stage();
 
-        /** ici les deux vecteurs contenant tout les personnes du sites**/
-        Employes empl = new Employes(123, "CC", "CC");
-        ArrayList<Employes> vecemployes = new ArrayList<Employes>();
-        vecemployes.add(empl);
-
-        Client clt = new Client(123, "CC", "CC");
-        ArrayList<Client> vecclient = new ArrayList<Client>();
-        vecclient.add(clt);
-
-
-     /*   Text typee = new Text("TYPE D'UTILISATEUR");
-        typee.setFont(new Font("Arial", 26));
-        typee.setStyle("-fx-fill: white;");
-        typee.setLayoutX(20);
-        typee.setLayoutY(50);*/
-
         Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typ2.jpg")));
-        //Creating a rotated transition
         ImageView Loog = new ImageView(loog);
         Loog.setLayoutY(0);
         Loog.setLayoutX(0);
@@ -315,6 +276,11 @@ public class Menu {
         settle.setY(0);
         settle.show();
     }
+    /**
+     * Classe test pour l'affichage d'image.
+     * @author Baptiste
+     * @version 3.0
+     */
     public void Image() {
         Pane pane = new Pane();
         final String imageURL = new File("C:\\Users\\bapt8\\OneDrive\\Images\\yolooo.png").toURI().toString();
@@ -330,13 +296,18 @@ public class Menu {
         settle.setScene(sceene);
         settle.show();
     }
+    /**
+     * Classe pour l'écran du menu d'acceuil. Cette fonction nous sert à donner le choix à l'utilisateur de quel type d'arme
+     * il veut voir. Cette fonction est en deux versions. Cette version ne donne pas la possibilité de mettre des armes dans le panier,
+     * car nous ne sommes pas connectés en tant que client.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
 
     public void menupresentation() {
         Pane pane = new Pane();
         Stage stage = new Stage();
         Button connection = new Button("Connexion");
-
-
 
         Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/dispo.jpg")));
         //Creating a rotated transition
@@ -362,28 +333,10 @@ public class Menu {
         });
 
         Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
-        //Creating a rotated transition
         ImageView Assaut = new ImageView(assaut);
         Assaut.setOnMouseClicked(mouseEvent -> {
-                    /*ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger(0);
-                    ArrayList<Article> dassaut;
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        dassaut = (ArrayList<Article>) ae.RechercherArmes("type", "assaut");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    if(dassaut==null)
-                    {
-                        Image();
-                    }
-                    else {
-                        scc.defilement(i, dassaut);
-                        }*/
             assaut();
-
-                }
+        }
         );
         Assaut.setLayoutX(100);
         Assaut.setLayoutY(300);
@@ -403,21 +356,8 @@ public class Menu {
 
 
         Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
-        //Creating a rotated transition
         ImageView Precision = new ImageView(precison);
         Precision.setOnMouseClicked(mouseEvent -> {
-            /*
-                    ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger(0);
-                    ArrayList<Article> precisionn;
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        precisionn = (ArrayList<Article>) ae.RechercherArmes("type", "precision");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    scc.defilement(i, precisionn);*/
-
             precision();
                 }
         );
@@ -440,19 +380,8 @@ public class Menu {
         typee.setLayoutY(200);
 
         Image chasse = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chasse.jpg")));
-        //Creating a rotated transition
         ImageView Chasse = new ImageView(chasse);
         Chasse.setOnMouseClicked(mouseEvent -> {
-                   /* ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger(0);
-                    ArrayList<Article> chasses;
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        chasses = (ArrayList<Article>) ae.RechercherArmes("type", "chasse");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    scc.defilement(i, chasses);*/
             chasse();
                 }
         );
@@ -465,19 +394,8 @@ public class Menu {
         cha.setLayoutY(600);
 
         Image poing = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing.png")));
-        //Creating a rotated transition
         ImageView Poing = new ImageView(poing);
         Poing.setOnMouseClicked(mouseEvent -> {
-                  /*  ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger(0);
-                    ArrayList<Article> poingg;
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        poingg = (ArrayList<Article>) ae.RechercherArmes("type", "poing");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    scc.defilement(i, poingg);*/
             poing();
                 }
         );
@@ -502,9 +420,10 @@ public class Menu {
         stage.show();
     }
 
-
-
-
+    /**
+     * Fonction de classe pour les armes
+     * @version 3.0
+     */
     public void poing() {
         Pane panne = new Pane();
         Stage staage = new Stage();
@@ -562,9 +481,6 @@ public class Menu {
         staage.show();
 
     }
-
-
-
 
 
     public void chasse() {
@@ -626,11 +542,6 @@ public class Menu {
 
     }
 
-
-
-
-
-
     public void precision() {
         Pane panne = new Pane();
         Stage staage = new Stage();
@@ -680,12 +591,6 @@ public class Menu {
         staage.show();
 
     }
-
-
-
-
-
-
 
 
     public void assaut() {
@@ -738,27 +643,45 @@ public class Menu {
 
     }
 
-
-
-
     public void menupresentationC(Client C) {
         Pane pane = new Pane();
-        Stage staage = new Stage();
+        Stage stage = new Stage();
         Button detail = new Button("Detail");
+        Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/dispo.jpg")));
+        ImageView Logo = new ImageView(logo);
+        Logo.setFitWidth(1550);
+        Logo.setFitHeight(300);
+        Logo.setLayoutX(0);
+        Logo.setLayoutY(0);
+
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(1600);
+        Bande.setFitHeight(200);
+        Bande.setLayoutX(1);
+        Bande.setLayoutY(700);
+
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
+        downButton.setLayoutX(1370);
+        downButton.setLayoutY(400);
+        downButton.setOnAction(event -> {
+            munitionpres();
+        });
+
         Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
-        //Creating a rotated transition
         ImageView Assaut = new ImageView(assaut);
         Assaut.setOnMouseClicked(mouseEvent -> {
-                    ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger(0);
-                    ArrayList<Article> dassaut;
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        dassaut = (ArrayList<Article>) ae.RechercherArmes("type", "assaut");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    scc.defilementC(i, dassaut,C);
+            ScreenArticle scc = new ScreenArticle();
+            AtomicInteger i = new AtomicInteger(0);
+            ArrayList<Article> Assau;
+            try {
+                ImpleArmesDAO ae = new ImpleArmesDAO();
+                Assau = (ArrayList<Article>) ae.RechercherArmes("type", "assaut");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            scc.defilementC(i, Assau,C);
                 }
         );
         Assaut.setLayoutX(100);
@@ -769,35 +692,32 @@ public class Menu {
         ass.setLayoutX(100);
         ass.setLayoutY(600);
 
-        Button downButton = new Button();
-        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
-        downButton.setLayoutX(700);
-        downButton.setLayoutY(300);
-        downButton.setOnAction(event -> {
-            munitionpres();
+        detail.setOnAction(actionEvent -> {
+            ScreenCLient sc = new ScreenCLient();
+            sc.DetailClient(C);
         });
 
-menupresentation();
+
         Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
-        //Creating a rotated transition
         ImageView Precision = new ImageView(precison);
         Precision.setOnMouseClicked(mouseEvent -> {
-                    ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger(0);
-                    ArrayList<Article> precisionn;
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        precisionn = (ArrayList<Article>) ae.RechercherArmes("type", "precision");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    scc.defilementC(i, precisionn,C);
-                }
+            ScreenArticle scc = new ScreenArticle();
+            AtomicInteger i = new AtomicInteger(0);
+            ArrayList<Article> Precis;
+            try {
+                ImpleArmesDAO ae = new ImpleArmesDAO();
+                Precis = (ArrayList<Article>) ae.RechercherArmes("type", "precision");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            scc.defilementC(i, Precis,C);
+            }
+
         );
 
-
-
-        Precision.setLayoutY(300);
+        Precision.setFitWidth(350);
+        Precision.setFitHeight(200);
+        Precision.setLayoutY(350);
         Precision.setLayoutX(400);
         Text pre = new Text("Arme de Precision");
         pre.setFont(new Font("Arial", 36));
@@ -813,20 +733,20 @@ menupresentation();
         typee.setLayoutY(200);
 
         Image chasse = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chasse.jpg")));
-        //Creating a rotated transition
         ImageView Chasse = new ImageView(chasse);
         Chasse.setOnMouseClicked(mouseEvent -> {
-                    ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger(0);
-                    ArrayList<Article> chasses;
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        chasses = (ArrayList<Article>) ae.RechercherArmes("type", "chasse");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    scc.defilementC(i, chasses,C);
-                }
+            ScreenArticle scc = new ScreenArticle();
+            AtomicInteger i = new AtomicInteger(0);
+            ArrayList<Article> Chass;
+            try {
+                ImpleArmesDAO ae = new ImpleArmesDAO();
+                Chass = (ArrayList<Article>) ae.RechercherArmes("type", "chasse");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            scc.defilementC(i, Chass,C);
+             }
+
         );
         Chasse.setLayoutX(800);
         Chasse.setLayoutY(300);
@@ -837,19 +757,9 @@ menupresentation();
         cha.setLayoutY(600);
 
         Image poing = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing.png")));
-        //Creating a rotated transition
         ImageView Poing = new ImageView(poing);
         Poing.setOnMouseClicked(mouseEvent -> {
-                    ScreenArticle scc = new ScreenArticle();
-                    AtomicInteger i = new AtomicInteger(0);
-                    ArrayList<Article> poingg;
-                    try {
-                        ImpleArmesDAO ae = new ImpleArmesDAO();
-                        poingg = (ArrayList<Article>) ae.RechercherArmes("type", "poing");
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    scc.defilementC(i, poingg,C);
+                    poing();
                 }
         );
         Poing.setLayoutX(1100);
@@ -860,21 +770,17 @@ menupresentation();
         po.setLayoutX(1100);
         po.setLayoutY(600);
 
-        detail.setOnAction(actionEvent -> {
-            ScreenCLient sc = new ScreenCLient();
-            sc.DetailClient(C);
-        });
 
-        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, detail,downButton);
+        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, Logo,detail,Bande,downButton);
 
         Scene scene = new Scene(pane, 520, 540);
         scene.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
                 + "-fx-background-insets: 0px; "
                 + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
-        staage.setScene(scene);
-        staage.setMaximized(true);
-        staage.show();
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
     }
 
     private void munitionpres() {
@@ -1099,6 +1005,8 @@ menupresentation();
                 {
                     ArrayList<Article> rl = new ArrayList<>();
                     client.setCommandes(rl);
+                    ImplePanierDAO omp = new ImplePanierDAO();
+                    omp.CreationPanier();
                     menupresentationC(client);
                 }
                 else{
@@ -1201,9 +1109,6 @@ menupresentation();
         settle.setY(0);
         settle.show();
     }
-
-
-
 
 public void contact()
 {

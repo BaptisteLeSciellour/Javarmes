@@ -2,6 +2,7 @@ package com.example.javarmes.Vue;
 
 import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Article;
+import com.example.javarmes.Model.DAO.ImpleArmesDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -67,7 +69,7 @@ public class ScreenArticle {
         Article arm;
         int size = armes.size();
 
-        /// système de controle pour que il ne soit pas possible de passer outre les tailles de vecteur
+        /** Système de controle pour qu'il ne soit pas possible de passer outre les tailles de vecteur**/
         i.compareAndSet(size,0);
         i.compareAndSet(-1,0);
 
@@ -85,19 +87,31 @@ public class ScreenArticle {
         btn2.setLayoutX(140);
         btn2.setLayoutY(400);
         achat.setOnAction(actionEvent ->{
-            Text panier = new Text("Produit dans le panier");
-            C.addCommandes(arm);
-            pane.getChildren().add(panier);
+            int quantite = arm.getQuantite();
+            if(quantite>0)
+            {
+                Text panier = new Text("Produit dans le panier");
+                panier.setLayoutX(100);
+                panier.setLayoutY(100);
+                C.addCommandes(arm);
+                ImpleArmesDAO impp = new ImpleArmesDAO();
+                try {
+                    impp.GererStockArme(arm.getIdentification(),-1);
+
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                pane.getChildren().add(panier);
+            }
+
         });
         btn.setOnAction(actionEvent -> {
             i.getAndIncrement();
-            ///txt.setText("hehe"+i);
             defilementC(i,armes,C);
             stage.close();
         });
         btn2.setOnAction(actionEvent -> {
             i.getAndDecrement();
-            ///txt.setText("hehe"+i);
             defilementC(i,armes,C);
             stage.close();
         });
@@ -132,18 +146,25 @@ public class ScreenArticle {
         btn2.setLayoutY(400);
         retirer.setOnAction(actionEvent ->{
             Text panier = new Text("Produit dans le panier");
+            panier.setLayoutX(100);
+            panier.setLayoutY(100);
             C.suppCommandes(arm);
+            ImpleArmesDAO impp = new ImpleArmesDAO();
+            try {
+                impp.GererStockArme(arm.getIdentification(),1);
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             pane.getChildren().add(panier);
         });
         btn.setOnAction(actionEvent -> {
             i.getAndIncrement();
-            txt.setText("hehe"+i);
             defilementP(i,armes,C);
             stage.close();
         });
         btn2.setOnAction(actionEvent -> {
             i.getAndDecrement();
-            txt.setText("hehe"+i);
             defilementC(i,armes,C);
             stage.close();
         });
