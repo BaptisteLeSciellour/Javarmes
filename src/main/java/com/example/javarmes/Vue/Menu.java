@@ -334,7 +334,7 @@ public class Menu {
     public void menupresentation() {
         Pane pane = new Pane();
         Stage stage = new Stage();
-        Button connection = new Button("Connection");
+        Button connection = new Button("Connexion");
 
 
 
@@ -352,6 +352,14 @@ public class Menu {
         Bande.setFitHeight(200);
         Bande.setLayoutX(1);
         Bande.setLayoutY(700);
+
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
+        downButton.setLayoutX(1370);
+        downButton.setLayoutY(400);
+        downButton.setOnAction(event -> {
+            munitionpres();
+        });
 
         Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
         //Creating a rotated transition
@@ -482,7 +490,7 @@ public class Menu {
         po.setLayoutY(600);
 
 
-        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, Logo,connection,Bande);
+        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, Logo,connection,Bande,downButton);
 
         Scene scene = new Scene(pane, 520, 540);
         scene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -761,7 +769,15 @@ public class Menu {
         ass.setLayoutX(100);
         ass.setLayoutY(600);
 
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
+        downButton.setLayoutX(700);
+        downButton.setLayoutY(300);
+        downButton.setOnAction(event -> {
+            munitionpres();
+        });
 
+menupresentation();
         Image precison = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/precision.jpg")));
         //Creating a rotated transition
         ImageView Precision = new ImageView(precison);
@@ -778,6 +794,8 @@ public class Menu {
                     scc.defilementC(i, precisionn,C);
                 }
         );
+
+
 
         Precision.setLayoutY(300);
         Precision.setLayoutX(400);
@@ -847,7 +865,7 @@ public class Menu {
             sc.DetailClient(C);
         });
 
-        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, detail);
+        pane.getChildren().addAll(Assaut, Chasse, Poing, Precision, typee, ass, pre, po, cha, detail,downButton);
 
         Scene scene = new Scene(pane, 520, 540);
         scene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -857,6 +875,56 @@ public class Menu {
         staage.setScene(scene);
         staage.setMaximized(true);
         staage.show();
+    }
+
+    private void munitionpres() {
+        Pane panne = new Pane();
+        Stage stage = new Stage();
+
+
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(1550);
+        Bande.setFitHeight(300);
+        Bande.setLayoutX(0);
+        Bande.setLayoutY(0);
+
+        Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande1 = new ImageView(bande1);
+        Bande1.setFitWidth(1600);
+        Bande1.setFitHeight(200);
+        Bande1.setLayoutX(0);
+        Bande1.setLayoutY(700);
+
+        Image poing1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni1.jpg")));
+        ImageView Poing1 = new ImageView(poing1);
+        Poing1.setFitWidth(450);
+        Poing1.setFitHeight(500);
+        Poing1.setLayoutX(100);
+        Poing1.setLayoutY(300);
+
+        Image poing2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni2.jpg")));
+        ImageView Poing2 = new ImageView(poing2);
+        Poing2.setFitWidth(450);
+        Poing2.setFitHeight(500);
+        Poing2.setLayoutX(300);
+        Poing2.setLayoutY(300);
+
+
+        panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1);
+        Scene settle = new Scene(panne, 1600, 800);
+
+        settle.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond
+
+        stage.setScene(settle);
+        stage.show();
+        stage.setMaximized(true);
+
+
+
     }
 
     public void coordonees() {  //sous programme permettannt de remplir les coordonnes bancaires
