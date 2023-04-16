@@ -56,7 +56,7 @@ public class ScreenEmploye {
         Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/majemploye.jpg")));
         ImageView Bande = new ImageView(bande);
         Bande.setFitWidth(800);
-        Bande.setFitHeight(110);
+        Bande.setFitHeight(250);
         Bande.setLayoutX(0);
         Bande.setLayoutY(0);
 
@@ -338,7 +338,7 @@ public class ScreenEmploye {
         Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
         ImageView Bande = new ImageView(bande);
         Bande.setFitWidth(800);
-        Bande.setFitHeight(110);
+        Bande.setFitHeight(300);
         Bande.setLayoutX(0);
         Bande.setLayoutY(0);
 
