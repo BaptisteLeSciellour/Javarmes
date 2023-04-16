@@ -230,7 +230,7 @@ public class Menu {
         employe.setLayoutY(360);
         employe.setOnAction(actionEvent -> {
             ScreenEmploye sce = new ScreenEmploye();
-            sce.InscriptionEmploye(vecemployes,vecarmes,vecmunitions);
+            sce.InscriptionEmploye();
             settle.close();
         });
         panne.getChildren().addAll(client, employe, Loog,Loogo);

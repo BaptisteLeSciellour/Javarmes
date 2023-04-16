@@ -48,7 +48,7 @@ public class ScreenEmploye {
      * @author Olivia GAAD
      * @version 3.0
      */
-    public void MAJEmploye(ArrayList<Employes>vecemployes){
+    public void MAJEmploye(){
         Pane pannne = new Pane();
         Stage settle = new Stage();
 
@@ -75,7 +75,7 @@ public class ScreenEmploye {
                 String mail = mailTF.getText();
             int id= Integer.valueOf(mail);
 
-
+/**
             for(Employes e : vecemployes)
             {
                 if(e.getId()==id)
@@ -140,6 +140,7 @@ public class ScreenEmploye {
                 stage.show();
 
             }
+ **/
             settle.close();
         });
 
@@ -162,7 +163,7 @@ public class ScreenEmploye {
      * @author Baptsiste
      * @version 3.0
      */
-    public void MenuEmploye(ArrayList<Employes> vecemployes,ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions)
+    public void MenuEmploye()
     {
         Pane pannne = new Pane();
         Stage settle = new Stage();
@@ -191,15 +192,15 @@ public class ScreenEmploye {
         bbtn4.setLayoutY(400);
 
         bbtn.setOnAction(actionEvent -> {
-            InscriptionEmploye(vecemployes,vecarmes,vecmunitions); /** ici on appelle l'écran que nous allons utiliser**/
+            InscriptionEmploye(); /** ici on appelle l'écran que nous allons utiliser**/
             settle.close();
         });
 
         bbtn2.setOnAction(actionEvent -> {
-            MAJEmploye(vecemployes);
+            MAJEmploye();
         });
         bbtn3.setOnAction(actionEvent -> {
-            SuppresionEmploye(vecemployes);
+            SuppresionEmploye();
         });
         bbtn4.setOnAction(actionEvent -> {
 
@@ -225,7 +226,7 @@ public class ScreenEmploye {
      * @author Olivia et Baptsiste
      * @version 3.0
      */
-    public void SuppresionEmploye(ArrayList<Employes>vecemployes) {
+    public void SuppresionEmploye() {
         Pane pane = new Pane();
         Stage stage = new Stage();
 
@@ -251,11 +252,17 @@ public class ScreenEmploye {
 
         validation.setOnAction(actionEvent -> {
 
+            /**
             try {
+
 
                 int id = Integer.valueOf(idTF.getText());
 
-                /**Verification : si id existe deja **/
+
+                Armesaffich();
+                armesDAO.SupprimerArme(identification);
+
+
                 for (Employes cli : vecemployes) {
 
                     if (id == cli.getId()) {
@@ -265,7 +272,8 @@ public class ScreenEmploye {
                         supp.setLayoutX(50);
                         supp.setLayoutY(100);
                         pane.getChildren().add(supp);
-                        ///stage.close();
+
+
                         break;
                     }
                 }
@@ -277,7 +285,9 @@ public class ScreenEmploye {
                 pane.getChildren().add(supp);
                 stage.close();
             }
-        });
+                 **/
+
+            });
 
         Scene scene = new Scene(pane,520,520);
         scene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -354,7 +364,7 @@ public class ScreenEmploye {
      * @author Olivia et Baptsiste
      * @version 3.0
      */
-        public void InscriptionEmploye(ArrayList<Employes>vecemployes,ArrayList<Armes>vecarmes,ArrayList<Munitions>vecmunitions) /** Nous avons un second écran qui apparait**/
+        public void InscriptionEmploye() /** Nous avons un second écran qui apparait**/
         {
             Pane panne = new Pane();
             Stage settle = new Stage();
@@ -407,7 +417,7 @@ public class ScreenEmploye {
                 Random rand = new Random();
                 id = rand.nextInt(4500 + 14500); /** generation aléatoire**/
 
-                /***on verifie que l'identifiant n'existe pas deja**/
+                /**
                 for (Employes emp : vecemployes) {
 
                     if (id == emp.getId()) {
@@ -416,7 +426,10 @@ public class ScreenEmploye {
                     }
                     break;
                 }
+                 **/
             } while (!pass2);
+
+
 
 
             Button bbtn = new Button("Ajouter l'employé(e)");
@@ -438,7 +451,7 @@ public class ScreenEmploye {
                 empl.setPrenom(phrase);
                 empl.ToString();
                 Employeaffich(phrase,SecondNom);
-                MenuEmploye(vecemployes,vecarmes,vecmunitions);
+                MenuEmploye();
                 settle.close();
             });
             panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt,Txt1,cb1,Loog);
@@ -455,6 +468,7 @@ public class ScreenEmploye {
             settle.setY(0);
             settle.show();
         }
+
 
 
     /**
