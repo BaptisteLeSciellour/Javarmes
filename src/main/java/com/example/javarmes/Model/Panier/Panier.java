@@ -108,5 +108,21 @@ public class Panier {
         this.prix_total=prix_total;
         this.reduction = reduction ;
     }
+    public Panier(String type_article, int qte,double prix_total, int reduction) {
+        this.type_article = type_article ;
+        this.qte = qte;
+        this.prix_total=prix_total;
+        this.reduction = reduction ;
+    }
+
+    @Override
+    public String toString() {
+        return "Panier{" +
+                ", type_article='" + type_article + '\'' +
+                ", qte=" + qte +
+                ", prix_total=" + prix_total +
+                ", reduction=" + reduction +
+                '}';
+    }
 
 }

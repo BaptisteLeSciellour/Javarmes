@@ -61,6 +61,7 @@ public class TestsTemporaire {
            //PanierDAO.prixTotal("X95",1);
            PanierDAO.ResumePaiement();
            //PanierDAO.Payer(11968);
+           //PanierDAO.AffichePanier();
 
            //PanierDAO.SupprimerProduitPanier(id_article);
        }catch(SQLException e) {

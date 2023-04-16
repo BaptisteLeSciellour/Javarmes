@@ -5,6 +5,8 @@ import com.example.javarmes.Model.Articles.*;
 import com.example.javarmes.Model.DAO.*;
 import java.sql.Connection;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe implementation du panier : BDD
@@ -196,7 +198,6 @@ public class ImplePanierDAO implements PanierDAO {
                     pst.setInt(1, qte_article);
                     pst.setString(2,id_arme);
                     pst.executeUpdate();
-                    System.out.println("Arme fait !");
                 } else if (id_munition != null) {
                     ImpleMunitionsDAO MunitionDAO = new ImpleMunitionsDAO();
                     MunitionDAO.GererStockMunition(id_munition, (-qte_article));
@@ -205,14 +206,12 @@ public class ImplePanierDAO implements PanierDAO {
                     pst.setInt(1, qte_article);
                     pst.setString(2, id_munition);
                     pst.executeUpdate();
-                    System.out.println("Munition fait !");
                 }
             }
             String requeteClient = "UPDATE clients SET nb_commandes = nb_commandes+1 WHERE id = ?";
             pst = con.prepareStatement(requeteClient);
             pst.setInt(1, id_client);
             pst.executeUpdate();
-            System.out.println("Client Commande fait !");
             SupressionPanier();
             System.out.println("Panier supprimé à bientot !");
             con.commit();
@@ -313,6 +312,7 @@ public class ImplePanierDAO implements PanierDAO {
                 pst = con.prepareStatement(requetePrixTotal);
                 rs = pst.executeQuery();
                 if(rs.next()){
+                    AffichePanier();
                     int PrixPanier = rs.getInt("PrixPanier");
                     System.out.println("Vous avez actuellement " + TotalProduit + " produits dans votre panier pour une somme totale à payer de " + PrixPanier+"€");
                 }
@@ -328,5 +328,33 @@ public class ImplePanierDAO implements PanierDAO {
                     con.close();
                 }
             }
+        }
+        @Override
+        public List<Panier> AffichePanier() throws SQLException{
+            Connection con = null;
+            PreparedStatement pstmnt = null;
+            ResultSet result = null;
+            List<Panier> PanierContenu = new ArrayList<>();
+            try{
+                con = new DAOFactory().getConnection();
+                String requete = "SELECT * FROM panier ";
+                pstmnt = con.prepareStatement(requete);
+                result = pstmnt.executeQuery();
+                while(result.next()){
+                    Panier panier = new Panier(result.getString("type"),result.getInt("qte"),result.getDouble("prix_total"),result.getInt("reduction"));
+                    PanierContenu.add(panier);
+                }
+            } catch(SQLException e) {
+                System.out.println("Erreur lors de la récupération du panier");
+                System.out.println(e);
+            } finally {
+                if ((pstmnt !=null)||(con!=null)||(result!=null)) {
+                    pstmnt.close();
+                    con.close();
+                    result.close();
+                }
+            }
+            System.out.println(PanierContenu);
+           return PanierContenu;
         }
     }
