@@ -18,10 +18,10 @@ public class Employes extends Personnes{
         this.prenom = b;
     }
 
-    public Employes(int a, String b, String c) {
-        this.id = a;
-        this.nom = b;
-        this.prenom = c;
+    public Employes(int id, String nom, String prenom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
     }
 
     public Employes() {

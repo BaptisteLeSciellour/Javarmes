@@ -111,6 +111,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
      * @author Akshaya
      * @param
      **/
+    @Override
     public Employes ChoisirEmploye(int id) throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -124,6 +125,9 @@ public class ImpleEmployeDAO implements EmployeDAO {
             resultat = pstmnt.executeQuery();
             if (resultat.next()){
                 employe = new Employes(resultat.getInt("id"), resultat.getString("nom"),resultat.getString("prénom"));
+            }
+            else {
+                employe = new Employes(-1, "NULL","NULL");
             }
         } catch(SQLException e) {
             System.out.println("Erreur lors de la récupération de l'employé");
@@ -144,7 +148,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
      * @author Akshaya
      * @param
      **/
-
+@Override
     public List<Employes>  ChoisirEmploye() throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -157,8 +161,11 @@ public class ImpleEmployeDAO implements EmployeDAO {
             resultat = pstmnt.executeQuery();
             while (resultat.next()){
                 Employes employes = new Employes(resultat.getInt("id"), resultat.getString("nom"),resultat.getString("prénom"));
+                System.out.println("Choisir employeees "+ employes.getNom()+employes.getPrenom());
                 ListeEmployes.add(employes);
+
             }
+
         } catch(SQLException e) {
             System.out.println("Erreur lors de la récupération des employés");
             System.out.println(e);

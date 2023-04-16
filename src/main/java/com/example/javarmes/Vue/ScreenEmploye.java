@@ -68,79 +68,108 @@ public class ScreenEmploye {
         validation.setLayoutX(90);
         validation.setLayoutY(400);
 
+        ImpleEmployeDAO employeDAO= new ImpleEmployeDAO();
+
         validation.setOnAction(actionEvent -> {
-            Pane n = new Pane();
-            Stage stage = new Stage();
 
-                String mail = mailTF.getText();
-            int id= Integer.valueOf(mail);
-
-/**
-            for(Employes e : vecemployes)
-            {
-                if(e.getId()==id)
-                {
-                    ImpleClientDAO clientDAO = new ImpleClientDAO();
-                    Text nvnom = new Text("Saisir le nouveau nom:");
-                    nvnom.setLayoutX(90);
-                    nvnom.setLayoutY(290);
-
-                    TextField nvxnom = new TextField();
-                    nvxnom.setLayoutX(90);
-                    nvxnom.setLayoutY(300);
-
-                    Text nvprenom = new Text("Saisir le nouveau prenom:");
-                    nvprenom.setLayoutX(90);
-                    nvprenom.setLayoutY(340);
-
-                    TextField prenomTF = new TextField();
-                    prenomTF.setLayoutX(90); // ici on les décales
-                    prenomTF.setLayoutY(350); // ici on remonte les cases
+           try {
 
 
-                    Button saisie = new Button("Saisie");
-                    saisie.setLayoutX(330);
-                    saisie.setLayoutY(400);
-                    n.getChildren().addAll(nvnom,nvxnom,nvprenom,prenomTF,saisie);
+               Pane n = new Pane();
+               Stage stage = new Stage();
 
-                    saisie.setOnAction(actionEvent1 -> {
-                        Pane pane = new Pane();
+               String mail = mailTF.getText();
+               int id = Integer.valueOf(mail);
 
-                        String prenom = prenomTF.getText();
-                        String nom = nvxnom.getText();
-                        e.setNom(nom);
-                        e.setPrenom(prenom);
 
-                        Text txt2 = new Text("prenom : "+e.getPrenom());
-                        txt2.setLayoutX(90);
-                        txt2.setLayoutY(150);
+               ArrayList<Employes> employ= (ArrayList<Employes>) employeDAO.ChoisirEmploye();
 
-                        Text txt3 = new Text("nom : "+e.getNom());
-                        txt3.setLayoutX(90);
-                        txt3.setLayoutY(200);
 
-                        Text ID = new Text("ID : "+e.getId());
-                        ID.setLayoutX(90);
-                        ID.setLayoutY(250);
-                        pane.getChildren().addAll(txt2,txt3,ID);
-                        Scene scene = new Scene(pane,520,520);
-                        stage.setScene(scene);
-                        stage.show();
-                    });
-                }
-                else
-                {
-                    Text erreur = new Text("pas de personne ce ce nom la ici");
-                    erreur.setLayoutX(90);
-                    erreur.setLayoutY(150);
-                    n.getChildren().add(erreur);
-                }
-                Scene ssc = new Scene(n,520,520);
-                stage.setScene(ssc);
-                stage.show();
+               for (Employes emp : employ) {
+                   if (emp.getId() == id) {
 
+                       Text nvnom = new Text("Saisir le nouveau nom:");
+                       nvnom.setLayoutX(90);
+                       nvnom.setLayoutY(290);
+
+                       TextField nvxnom = new TextField();
+                       nvxnom.setLayoutX(90);
+                       nvxnom.setLayoutY(300);
+
+                       Text nvprenom = new Text("Saisir le nouveau prenom:");
+                       nvprenom.setLayoutX(90);
+                       nvprenom.setLayoutY(340);
+
+                       TextField prenomTF = new TextField();
+                       prenomTF.setLayoutX(90); // ici on les décales
+                       prenomTF.setLayoutY(350); // ici on remonte les cases
+
+
+                       Button saisie = new Button("Saisie");
+                       saisie.setLayoutX(330);
+                       saisie.setLayoutY(400);
+                       n.getChildren().addAll(nvnom, nvxnom, nvprenom, prenomTF, saisie);
+
+                       saisie.setOnAction(actionEvent1 -> {
+                           Pane pane = new Pane();
+
+                           try {
+                               String prenom = prenomTF.getText();
+                               String nom = nvxnom.getText();
+
+                               Employes empl = new Employes(emp.getId(), prenom, nom);
+
+                               Text txt2 = new Text("prenom : " + empl.getPrenom());
+                               txt2.setLayoutX(90);
+                               txt2.setLayoutY(150);
+
+                               Text txt3 = new Text("nom : " + empl.getNom());
+                               txt3.setLayoutX(90);
+                               txt3.setLayoutY(200);
+
+                               Text ID = new Text("ID : " + empl.getId());
+                               ID.setLayoutX(90);
+                               ID.setLayoutY(250);
+
+                               employeDAO.MettreAJourEmployes(empl);
+
+                               pane.getChildren().addAll(txt2, txt3, ID);
+                               Scene scene = new Scene(pane, 520, 520);
+
+
+                               stage.setScene(scene);
+                           }
+                           catch(SQLException e) {
+                               Text supp = new Text(e.toString());
+                               supp.setLayoutX(50);
+                               supp.setLayoutY(100);
+                               pannne.getChildren().add(supp);
+                               settle.close();
+                           }
+
+                           stage.show();
+                       });
+                   } else {
+                       Text erreur = new Text("pas de personne ce ce nom la ici");
+                       erreur.setLayoutX(90);
+                       erreur.setLayoutY(150);
+                       n.getChildren().add(erreur);
+                   }
+
+                   Scene ssc = new Scene(n, 520, 520);
+                   stage.setScene(ssc);
+                   stage.show();
+
+               }
+
+           } catch(SQLException e) {
+                Text supp = new Text(e.toString());
+                supp.setLayoutX(50);
+                supp.setLayoutY(100);
+                pannne.getChildren().add(supp);
+               settle.close();
             }
- **/
+
             settle.close();
         });
 
@@ -190,18 +219,18 @@ public class ScreenEmploye {
 
         /**creer deux boutons**/
         Button bbtn = new Button("Ajouter ");
-        bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+      bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
 
         bbtn.setLayoutX(300);
         bbtn.setLayoutY(250);
 
         Button bbtn2 = new Button("MAJ");
-        bbtn2.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+       bbtn2.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         bbtn2.setLayoutX(300);
         bbtn2.setLayoutY(350);
 
         Button bbtn3 = new Button("Supprimer");
-        bbtn3.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+      bbtn3.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         bbtn3.setLayoutX(300);
         bbtn3.setLayoutY(450);
 
@@ -209,6 +238,11 @@ public class ScreenEmploye {
         bbtn4.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         bbtn4.setLayoutX(300);
         bbtn4.setLayoutY(550);
+
+        Button bbtn5 = new Button("Afficher les employees");
+       bbtn5.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn5.setLayoutX(300);
+        bbtn5.setLayoutY(650);
 
         bbtn.setOnAction(actionEvent -> {
             InscriptionEmploye(); /** ici on appelle l'écran que nous allons utiliser**/
@@ -226,7 +260,13 @@ public class ScreenEmploye {
             Stock();
 
         });
-        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3,bbtn4,Bande,Bande);
+
+        bbtn5.setOnAction(actionEvent -> {
+            Employeafficher();
+
+        });
+
+        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3,bbtn4,Bande,Bande1,bbtn5);
 
         Scene sceene = new Scene(pannne, 800, 700);
 
@@ -252,7 +292,10 @@ public class ScreenEmploye {
         Text txt1 = new Text("Supression de l'employé : ");
         txt1.setFont(new Font("Arial", 26));
         txt1.setStyle("-fx-fill: white;");
-        ImpleEmployeDAO clientDAO = new ImpleEmployeDAO();
+        txt1.setLayoutX(90);
+        txt1.setLayoutY(100);
+        ImpleEmployeDAO employeDAO = new ImpleEmployeDAO();
+
         Text txt4 = new Text("Saisir l'identifiant de cet employé:");
         txt4.setFont(new Font("Arial", 26));
         txt4.setStyle("-fx-fill: white;");
@@ -267,35 +310,52 @@ public class ScreenEmploye {
         validation.setLayoutX(90);
         validation.setLayoutY(400);
 
-        pane.getChildren().addAll(txt1,idTF,validation);
+
+        pane.getChildren().addAll(txt1,txt4,idTF,validation);
 
         validation.setOnAction(actionEvent -> {
 
-            /**
+
             try {
 
 
                 int id = Integer.valueOf(idTF.getText());
 
-
-                Armesaffich();
-                armesDAO.SupprimerArme(identification);
+                Employes empl=employeDAO.ChoisirEmploye(id);
 
 
-                for (Employes cli : vecemployes) {
+                int decalage=0;
 
-                    if (id == cli.getId()) {
+               System.out.println("Employe :\n" + empl.getId());
 
-                        clientDAO.SupprimerEmployes(id);
+                    if (empl.getId()!=-1) {
+
+                        employeDAO.SupprimerEmployes(id);
                         Text supp = new Text("Le profil d'id : "+id+" a bien été supprimer");
-                        supp.setLayoutX(50);
-                        supp.setLayoutY(100);
+                        supp.setLayoutX(100);
+                        supp.setLayoutY(550);
                         pane.getChildren().add(supp);
 
-
-                        break;
                     }
+                    else {
+
+                            Text supp = new Text("Identifiant inexistant");
+                            supp.setLayoutX(90);
+                            supp.setLayoutY(500);
+                        pane.getChildren().add(supp);
+                    }
+
+
+                ArrayList<Employes> employe=(ArrayList<Employes>)employeDAO.ChoisirEmploye();
+                for(Employes emp : employe) {
+                    Text supp = new Text("Employe :\n" + "Prenon: " + emp.getPrenom() + "\nNom: " + emp.getNom() + "\nID: " + emp.getId());
+                    supp.setLayoutX(90);
+                    supp.setLayoutY(500+decalage);
+                    pane.getChildren().add(supp);
+                    decalage=decalage+150;
+
                 }
+
 
             } catch (SQLException e) {
                 Text supp = new Text(e.toString());
@@ -304,7 +364,7 @@ public class ScreenEmploye {
                 pane.getChildren().add(supp);
                 stage.close();
             }
-                 **/
+
 
             });
 
@@ -378,6 +438,97 @@ public class ScreenEmploye {
             stage.show();
         }
 
+
+
+    public void Employeafficher()
+    {
+        Pane pane = new Pane();
+        Stage stage = new Stage();
+
+        Text txt8 = new Text("Identifiant :");
+        txt8.setFont(new Font("Arial", 26));
+        txt8.setStyle("-fx-fill: white;");
+        txt8.setLayoutX(90);
+        txt8.setLayoutY(90);
+
+        TextField txtfield = new TextField();
+        txtfield.setLayoutX(90);
+        txtfield.setLayoutY(200);
+
+
+        Button re = new Button("Afficher un employee");
+        re.setLayoutX(90);
+        re.setLayoutY(300);
+
+        Button de = new Button("Afficher tous les employees");
+        de.setLayoutX(300);
+        de.setLayoutY(300);
+
+        pane.getChildren().addAll(txt8,re,de,txtfield);
+
+        ImpleEmployeDAO employeDAO=new ImpleEmployeDAO();
+
+        re.setOnAction(actionEvent -> {
+
+            try {
+
+               int  id=Integer.valueOf(txtfield.getText());
+
+               Employes emp=employeDAO.ChoisirEmploye(id);
+
+
+                    Text supp = new Text("Employe :\n" + "Prenon: " + emp.getPrenom() + "\nNom: " + emp.getNom()+ "\nID: "+ emp.getId() );
+                    supp.setLayoutX(90);
+                    supp.setLayoutY(600);
+                    pane.getChildren().add(supp);
+
+
+            } catch (SQLException e) {
+
+                Text supp = new Text(e.toString());
+                supp.setLayoutX(50);
+                supp.setLayoutY(100);
+                pane.getChildren().add(supp);
+                stage.close();
+            }
+        });
+
+        de.setOnAction(actionEvent -> {
+            try {
+              int decalage =0;
+
+              ArrayList<Employes> employ=(ArrayList<Employes>)employeDAO.ChoisirEmploye();
+
+
+              for(Employes emp : employ) {
+                  Text supp = new Text("Employe :\n" + "Prenon: " + emp.getPrenom() + "\nNom: " + emp.getNom() + "\nID: " + emp.getId());
+                  supp.setLayoutX(90);
+                  supp.setLayoutY(300+decalage);
+                  pane.getChildren().add(supp);
+                  decalage=decalage+150;
+
+              }
+            } catch (SQLException e) {
+
+                Text supp = new Text(e.toString());
+                supp.setLayoutX(50);
+                supp.setLayoutY(100);
+                pane.getChildren().add(supp);
+                stage.close();
+            }
+
+        });
+
+        Scene scene = new Scene(pane,520,520);
+        scene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
     /**
      * Fonction d'inscription d'un employee
      * @author Olivia et Baptsiste
@@ -386,6 +537,7 @@ public class ScreenEmploye {
         public void InscriptionEmploye() /** Nous avons un second écran qui apparait**/
         {
             Pane panne = new Pane();
+            Pane n = new Pane();
             Stage settle = new Stage();
 
             Image txt1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/creapro.jpg")));
@@ -405,75 +557,113 @@ public class ScreenEmploye {
             Loog.setLayoutX(1);
 
 
-            Text txt = new Text("Prénom");
+            Text txt = new Text("Nom");
             txt.setFont(new Font("Arial", 26));
             txt.setStyle("-fx-fill: white;");
             txt.setLayoutX(300);
             txt.setLayoutY(290);
 
-            TextField txtfield = new TextField();
-            txtfield.setLayoutX(300);
-            txtfield.setLayoutY(310);
+            TextField pr = new TextField();
+            pr.setLayoutX(300);
+            pr.setLayoutY(310);
 
-            Text txxt = new Text("Nom de famille");
+            Text txxt = new Text("Prenom");
             txxt.setFont(new Font("Arial", 26));
             txxt.setStyle("-fx-fill: white;");
             txxt.setLayoutX(300);
             txxt.setLayoutY(380);
-            TextField textField = new TextField();
-            textField.setLayoutX(300); // ici on les décales
-            textField.setLayoutY(400); // ici on remonte les cases
+
+            TextField nm = new TextField();
+            nm.setLayoutX(300); // ici on les décales
+            nm.setLayoutY(400); // ici on remonte les cases
 
             CheckBox cb1 = new CheckBox("J'atteste ajouter un membre du staff.");
             cb1.setLayoutX(300);
             cb1.setLayoutY(450);
-            boolean pass2;
-            int id;
-            do {
-                pass2=true;
-
-                /**Génération de l'ID : ALEATOIRE entre 4 500 20 000 **/
-                Random rand = new Random();
-                id = rand.nextInt(4500 + 14500); /** generation aléatoire**/
-
-                /**
-                for (Employes emp : vecemployes) {
-
-                    if (id == emp.getId()) {
-                        System.out.println("L'identifiant est deja pris par un autre employee");
-                        pass2=false;
-                    }
-                    break;
-                }
-                 **/
-            } while (!pass2);
 
 
 
 
             Button bbtn = new Button("Ajouter l'employé(e)");
             bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
-
             bbtn.setLayoutX(300);
             bbtn.setLayoutY(600);
+
+            ImpleEmployeDAO employeDAO=new ImpleEmployeDAO();
+
             bbtn.setOnAction(event1->{
-                String phrase = txtfield.getText();
 
-                System.out.println(phrase);
+                try {
 
-                String SecondNom = textField.getText();
+                    ArrayList<Employes> emp=(ArrayList<Employes>)employeDAO.ChoisirEmploye();
 
-                System.out.print(SecondNom+"\n");
+                    int id;
+                    do {
 
-                Employes empl = new Employes();
-                empl.setNom(SecondNom);
-                empl.setPrenom(phrase);
-                empl.ToString();
-                Employeaffich(phrase,SecondNom);
-                MenuEmploye();
-                settle.close();
+
+                        /**Génération de l'ID : ALEATOIRE entre 4 500 20 000 **/
+                        Random rand = new Random();
+                        id = rand.nextInt(4500 + 14500); /** generation aléatoire**/
+
+                    } while (id!=0);
+
+                    String prenom = pr.getText();
+
+                    String nom = nm.getText();
+
+                    int cpt=0;
+
+                    for(Employes e: emp)
+                    {
+
+                       if(prenom.equals(e.getPrenom()) && nom.equals(e.getNom()))
+                       {
+                           cpt++;
+
+                       }
+
+                    }
+
+                   Employes empl = new Employes(id, nom,prenom);
+
+
+                    if(cpt==0)
+                    {
+                        employeDAO.AjouterEmployes(empl);
+
+                        Employeaffich(prenom, nom);
+                    }
+                    else
+                    {
+
+                        Text sup = new Text("Cet employe existe deja");
+                        sup.setLayoutX(90);
+                        sup.setLayoutY(600);
+                        n.getChildren().add(sup);
+
+                        settle.close();
+
+                    }
+                    Scene ssc = new Scene(n, 520, 520);
+                    settle.setScene(ssc);
+                    settle.show();
+
+
+                    MenuEmploye();
+
+                    settle.close();
+                }
+             catch (SQLException e) {
+
+            Text supp = new Text(e.toString());
+            supp.setLayoutX(50);
+            supp.setLayoutY(100);
+            panne.getChildren().add(supp);
+            settle.close();
+        }
+
             });
-            panne.getChildren().addAll(bbtn,txtfield,textField,txt,txxt,Txt1,cb1,Loog);
+            panne.getChildren().addAll(bbtn,pr,nm,txt,txxt,Txt1,cb1,Loog);
 
             Scene sceene = new Scene(panne,800,700);
 
