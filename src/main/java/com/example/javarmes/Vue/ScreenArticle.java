@@ -210,6 +210,8 @@ public class ScreenArticle {
             defilementC(i,armes,C);
             stage.close();
         });
+
+
         upButton.setOnAction(actionEvent -> {
             i.getAndDecrement();
             defilementC(i,armes,C);
