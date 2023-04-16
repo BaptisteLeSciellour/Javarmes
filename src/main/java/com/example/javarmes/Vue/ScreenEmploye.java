@@ -482,21 +482,27 @@ public class ScreenEmploye {
         Loogo.setFitHeight(150);
 
 
-        Button camm = new Button("Camembert Munition : ");
+        Button camm = new Button("Camembert Munitions ");
         camm.setLayoutX(300);
         camm.setLayoutY(300);
 
-        Button cama = new Button("Camembert Armes : ");
+        Button cama = new Button("Camembert Armes ");
         cama.setLayoutX(300);
         cama.setLayoutY(350);
 
-        Button hista = new Button("Histogramme Armes : ");
-        hista.setLayoutX(300);
-        hista.setLayoutY(400);
+        Button camc = new Button("Camembert Clients ");
+        camc.setLayoutX(300);
+        camc.setLayoutY(400);
 
-        Button histm = new Button("Histogramme Munitions : ");
+        Button hista = new Button("Histogramme Armes ");
+        hista.setLayoutX(300);
+        hista.setLayoutY(450);
+
+        Button histm = new Button("Histogramme Munitions ");
         histm.setLayoutX(300);
-        histm.setLayoutY(450);
+        histm.setLayoutY(500);
+
+
 
         camm.setOnAction(actionEvent -> {
             ScreenEmploye sc = new ScreenEmploye();
@@ -585,7 +591,28 @@ public class ScreenEmploye {
         });
 
 
-        panne.getChildren().addAll(hista,histm,cama,camm,Loog,Loogo);
+        camc.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+
+            Stage pr = new Stage();
+
+            ImpleEmployeDAO implm = new ImpleEmployeDAO();
+
+            List<Client> muni;
+
+            try {
+
+                muni=implm.ChoisirClient();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            sc.camembertCLient(pr , muni);
+        });
+
+
+        panne.getChildren().addAll(hista,histm,cama,camm,Loog,Loogo,camc);
 
         Scene sceene = new Scene(panne, 800, 700);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
@@ -597,6 +624,7 @@ public class ScreenEmploye {
         settle.setY(0);
         settle.show();
     }
+
     /**
      * Fonction de production de camembert au bon lait crue pour le nombre de commandes par Clients
      * @author Baptiste
