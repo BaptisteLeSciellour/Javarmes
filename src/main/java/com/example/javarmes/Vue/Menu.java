@@ -574,6 +574,12 @@ public class Menu {
         Poing1.setLayoutX(50);
         Poing1.setLayoutY(200);
 
+        Image chasse2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chasse2.jpg")));
+        ImageView Chasse2 = new ImageView(chasse2);
+        Chasse2.setFitWidth(610);
+        Chasse2.setFitHeight(500);
+        Chasse2.setLayoutX(50);
+        Chasse2.setLayoutY(800);
 
 
         Button downButton = new Button();
@@ -582,6 +588,7 @@ public class Menu {
         downButton.setLayoutY(0);
         downButton.setOnAction(event -> {
             Poing1.setLayoutY(Poing1.getLayoutY() + 100);
+            Chasse2.setLayoutY(Chasse2.getLayoutY() + 100);
 
         });
 
@@ -591,9 +598,11 @@ public class Menu {
         upButton.setLayoutY(600);
         upButton.setOnAction(event -> {
             Poing1.setLayoutY(Poing1.getLayoutY() - 100);
+            Chasse2.setLayoutY(Chasse2.getLayoutY() - 100);
+
         });
 
-        panne.getChildren().addAll(Poing1,downButton,upButton,Bande);
+        panne.getChildren().addAll(Poing1,downButton,upButton,Bande,Chasse2);
         Scene settle = new Scene(panne, 800, 700);
 
         settle.getRoot().setStyle("-fx-background-color: #4B5320; "
