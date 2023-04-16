@@ -907,41 +907,48 @@ menupresentation();
 
         Image poing1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni1.jpg")));
         ImageView Poing1 = new ImageView(poing1);
-        Poing1.setFitWidth(300);
-        Poing1.setFitHeight(400);
-        Poing1.setLayoutX(100);
-        Poing1.setLayoutY(300);
+        Poing1.setFitWidth(210);
+        Poing1.setFitHeight(310);
+        Poing1.setLayoutX(120);
+        Poing1.setLayoutY(350);
 
         Image poing2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni2.jpg")));
         ImageView Poing2 = new ImageView(poing2);
-        Poing2.setFitWidth(300);
-        Poing2.setFitHeight(400);
-        Poing2.setLayoutX(400);
-        Poing2.setLayoutY(300);
+        Poing2.setFitWidth(210);
+        Poing2.setFitHeight(310);
+        Poing2.setLayoutX(350);
+        Poing2.setLayoutY(350);
 
         Image muni3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni3.jpg")));
         ImageView Muni3 = new ImageView(muni3);
-        Muni3.setFitWidth(300);
-        Muni3.setFitHeight(400);
-        Muni3.setLayoutX(700);
-        Muni3.setLayoutY(300);
+        Muni3.setFitWidth(210);
+        Muni3.setFitHeight(310);
+        Muni3.setLayoutX(600);
+        Muni3.setLayoutY(350);
 
         Image muni4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni4.jpg")));
         ImageView Muni4 = new ImageView(muni4);
-        Muni4.setFitWidth(300);
-        Muni4.setFitHeight(400);
-        Muni4.setLayoutX(1000);
-        Muni4.setLayoutY(300);
+        Muni4.setFitWidth(210);
+        Muni4.setFitHeight(310);
+        Muni4.setLayoutX(850);
+        Muni4.setLayoutY(350);
 
         Image muni5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni5.jpg")));
         ImageView Muni5 = new ImageView(muni5);
-        Muni5.setFitWidth(300);
-        Muni5.setFitHeight(400);
-        Muni5.setLayoutX(1300);
-        Muni5.setLayoutY(300);
+        Muni5.setFitWidth(210);
+        Muni5.setFitHeight(310);
+        Muni5.setLayoutX(1070);
+        Muni5.setLayoutY(350);
+
+        Image muni6 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni6.jpg")));
+        ImageView Muni6 = new ImageView(muni6);
+        Muni6.setFitWidth(210);
+        Muni6.setFitHeight(310);
+        Muni6.setLayoutX(1300);
+        Muni6.setLayoutY(350);
 
 
-        panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1,downButton,Muni3,Muni5,Muni4);
+        panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1,downButton,Muni3,Muni5,Muni4,Muni6);
         Scene settle = new Scene(panne, 1600, 800);
 
         settle.getRoot().setStyle("-fx-background-color: #4B5320; "
