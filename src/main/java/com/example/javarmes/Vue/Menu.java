@@ -357,7 +357,7 @@ public class Menu {
         //Creating a rotated transition
         ImageView Assaut = new ImageView(assaut);
         Assaut.setOnMouseClicked(mouseEvent -> {
-                    ScreenArticle scc = new ScreenArticle();
+                    /*ScreenArticle scc = new ScreenArticle();
                     AtomicInteger i = new AtomicInteger(0);
                     ArrayList<Article> dassaut;
                     try {
@@ -372,7 +372,8 @@ public class Menu {
                     }
                     else {
                         scc.defilement(i, dassaut);
-                        }
+                        }*/
+            assaut();
 
                 }
         );
@@ -431,7 +432,7 @@ public class Menu {
         //Creating a rotated transition
         ImageView Chasse = new ImageView(chasse);
         Chasse.setOnMouseClicked(mouseEvent -> {
-                    ScreenArticle scc = new ScreenArticle();
+                   /* ScreenArticle scc = new ScreenArticle();
                     AtomicInteger i = new AtomicInteger(0);
                     ArrayList<Article> chasses;
                     try {
@@ -440,7 +441,8 @@ public class Menu {
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    scc.defilement(i, chasses);
+                    scc.defilement(i, chasses);*/
+            chasse();
                 }
         );
         Chasse.setLayoutX(800);
@@ -551,6 +553,112 @@ public class Menu {
     }
 
 
+
+
+
+    public void chasse() {
+        Pane panne = new Pane();
+        Stage staage = new Stage();
+
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(710);
+        Bande.setFitHeight(110);
+        Bande.setLayoutX(0);
+        Bande.setLayoutY(0);
+
+        Image poing1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chasse1.jpg")));
+        ImageView Poing1 = new ImageView(poing1);
+        Poing1.setFitWidth(610);
+        Poing1.setFitHeight(500);
+        Poing1.setLayoutX(50);
+        Poing1.setLayoutY(200);
+
+
+
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/up_arrow.png")))));
+        downButton.setLayoutX(710);
+        downButton.setLayoutY(0);
+        downButton.setOnAction(event -> {
+            Poing1.setLayoutY(Poing1.getLayoutY() + 100);
+
+        });
+
+        Button upButton = new Button();
+        upButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/do.png")))));
+        upButton.setLayoutX(710);
+        upButton.setLayoutY(600);
+        upButton.setOnAction(event -> {
+            Poing1.setLayoutY(Poing1.getLayoutY() - 100);
+        });
+
+        panne.getChildren().addAll(Poing1,downButton,upButton,Bande);
+        Scene settle = new Scene(panne, 800, 700);
+
+        settle.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond
+
+        staage.setScene(settle);
+        staage.show();
+
+    }
+
+
+
+
+
+    public void assaut() {
+        Pane panne = new Pane();
+        Stage staage = new Stage();
+
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(710);
+        Bande.setFitHeight(110);
+        Bande.setLayoutX(0);
+        Bande.setLayoutY(0);
+
+        Image poing1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut1.jpg")));
+        ImageView Poing1 = new ImageView(poing1);
+        Poing1.setFitWidth(450);
+        Poing1.setFitHeight(500);
+        Poing1.setLayoutX(50);
+        Poing1.setLayoutY(200);
+
+
+
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/up_arrow.png")))));
+        downButton.setLayoutX(710);
+        downButton.setLayoutY(0);
+        downButton.setOnAction(event -> {
+            Poing1.setLayoutY(Poing1.getLayoutY() + 100);
+
+        });
+
+        Button upButton = new Button();
+        upButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/do.png")))));
+        upButton.setLayoutX(710);
+        upButton.setLayoutY(600);
+        upButton.setOnAction(event -> {
+            Poing1.setLayoutY(Poing1.getLayoutY() - 100);
+        });
+
+        panne.getChildren().addAll(Poing1,downButton,upButton,Bande);
+        Scene settle = new Scene(panne, 800, 700);
+
+        settle.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond
+
+        staage.setScene(settle);
+        staage.show();
+
+    }
 
 
 
