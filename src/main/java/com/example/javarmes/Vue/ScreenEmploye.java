@@ -1582,14 +1582,11 @@ public class ScreenEmploye {
             Bande.setLayoutX(0);
             Bande.setLayoutY(0);
 
-            Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
-            ImageView Bande1 = new ImageView(bande1);
-            Bande1.setFitWidth(800);
-            Bande1.setFitHeight(90);
-            Bande1.setLayoutX(0);
-            Bande1.setLayoutY(610);
 
-            Text txt8 = new Text("Voici les armes :");
+
+            Text txt8 = new Text("AFFICHAGE DES ARMES :");
+            txt8.setFont(new Font("Arial", 26));
+            txt8.setStyle("-fx-fill: white;");
             txt8.setLayoutX(90);
             txt8.setLayoutY(120);
 
@@ -1625,7 +1622,7 @@ public class ScreenEmploye {
 
 
 
-            pane.getChildren().addAll(txt8,Bande1,Bande);
+            pane.getChildren().addAll(txt8,Bande);
             Scene scene = new Scene(pane,800,700);
             scene.getRoot().setStyle("-fx-background-color: #4B5320; "
                     + "-fx-background-radius: 5px; "
@@ -1654,14 +1651,8 @@ public class ScreenEmploye {
         Bande.setLayoutX(0);
         Bande.setLayoutY(0);
 
-        Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
-        ImageView Bande1 = new ImageView(bande1);
-        Bande1.setFitWidth(800);
-        Bande1.setFitHeight(90);
-        Bande1.setLayoutX(0);
-        Bande1.setLayoutY(610);
 
-        Text txt1 = new Text("Recherche d'une arme : ");
+        Text txt1 = new Text("RECHERCHE D'UNE ARME : ");
         txt1.setFont(new Font("Arial", 26));
         txt1.setStyle("-fx-fill: white;");
         txt1.setLayoutX(300);
@@ -1710,7 +1701,7 @@ public class ScreenEmploye {
         validation.setLayoutX(500);
         validation.setLayoutY(480);
 
-        pane.getChildren().addAll(txt1,b,c,validation,CAT,Bande,Bande1);
+        pane.getChildren().addAll(txt1,b,c,validation,CAT,Bande);
 
 
 
@@ -2071,14 +2062,11 @@ public class ScreenEmploye {
             Bande.setLayoutX(0);
             Bande.setLayoutY(0);
 
-            Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
-            ImageView Bande1 = new ImageView(bande1);
-            Bande1.setFitWidth(800);
-            Bande1.setFitHeight(90);
-            Bande1.setLayoutX(0);
-            Bande1.setLayoutY(610);
 
-            Text txt8 = new Text("Voici les munitions :");
+
+            Text txt8 = new Text("VOICI LES MUNITIONS :");
+            txt8.setFont(new Font("Arial", 26));
+            txt8.setStyle("-fx-fill: white;");
             txt8.setLayoutX(300);
             txt8.setLayoutY(250);
 
@@ -2117,7 +2105,7 @@ public class ScreenEmploye {
 
 
 
-            pane.getChildren().addAll(txt8,Bande,Bande1);
+            pane.getChildren().addAll(txt8,Bande);
             Scene scene = new Scene(pane,800,700);
             scene.getRoot().setStyle("-fx-background-color: #4B5320; "
                     + "-fx-background-radius: 5px; "
@@ -2148,12 +2136,6 @@ public class ScreenEmploye {
         Bande.setLayoutX(0);
         Bande.setLayoutY(0);
 
-        Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
-        ImageView Bande1 = new ImageView(bande1);
-        Bande1.setFitWidth(800);
-        Bande1.setFitHeight(90);
-        Bande1.setLayoutX(0);
-        Bande1.setLayoutY(610);
 
         Text ident = new Text("Saisir le nom de l'identification:");
         ident.setFont(new Font("Arial", 20));
@@ -2283,7 +2265,7 @@ public class ScreenEmploye {
         ImpleMunitionsDAO munitionsDAO = new ImpleMunitionsDAO();
 
 
-        pane.getChildren().addAll(cal,idTF,prvc,prixvrac,prix,no,qt,quant,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c,Bande,Bande1);
+        pane.getChildren().addAll(cal,idTF,prvc,prixvrac,prix,no,qt,quant,ajt,ident,CAT,pr,nm,cl,red,oui,non,b,c,Bande);
 
 
         ajt.setOnAction(actionEvent -> {
