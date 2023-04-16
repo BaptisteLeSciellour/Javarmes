@@ -158,4 +158,26 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
         }
         return ListeMunitions;
     }
+
+    @Override
+    public void SupprimerMunition (String identification) throws SQLException{
+        Connection con = null;
+        PreparedStatement pstmnt = null;
+        try{
+            con = new DAOFactory().getConnection();
+            String requete = "DELETE FROM munitions WHERE identification = ?";
+            pstmnt = con.prepareStatement(requete);
+            pstmnt.setString(1, identification);
+            pstmnt.executeUpdate();
+            System.out.println("La munition a été supprimée de la base !");
+        } catch(SQLException e) {
+            System.out.println("Erreur lors de la suppression...");
+            System.out.println(e);
+        } finally {
+            if ((pstmnt !=null)||(con!=null)) {
+                pstmnt.close();
+                con.close();
+            }
+        }
+    }
 }
