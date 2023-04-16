@@ -6,6 +6,10 @@ import java.sql.SQLException;
 
 import java.util.*;
 
+/**
+ * Interface de munition
+ * @author Akshaya
+ **/
 public interface MunitionsDAO {
     void ajouter (Munitions munition) throws SQLException;
     void GererStockMunition(String identification, int quantite) throws SQLException;

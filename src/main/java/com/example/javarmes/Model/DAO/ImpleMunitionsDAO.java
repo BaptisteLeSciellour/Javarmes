@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Classe implementation des munitions
  * @author Akshaya
- * @param
  **/
 public class ImpleMunitionsDAO implements MunitionsDAO {
 
@@ -20,7 +19,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
     /**
      * Méthode d'ajout de munitions
      * @author Akshaya
-     * @param
+     * @param munition : Objet munition
      **/
     @Override
     public void ajouter(Munitions munition) throws SQLException {
@@ -54,7 +53,8 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
     /**
      * Méthode de gestion de stock des munitions idem à celle des armes
      * @author Akshaya
-     * @param
+     * @param identification : identification des munitions
+     * @param quantite : quantite de munition
      **/
     @Override
     public void GererStockMunition(String identification, int quantite) throws SQLException {
@@ -95,7 +95,8 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
     /**
      * Méthode de recherches des munitions identiques à celle des armes
      * @author Akshaya
-     * @param
+     * @param recherche : colonne de recherche
+     * @param critere : critere qu'on recherche
      **/
     @Override
     public List<Munitions> RechercherMunitions(String recherche, String critere) throws SQLException {
@@ -129,7 +130,6 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
     /**
      * Méthode d'affichage de l'ensemble des munitions
      * @author Akshaya
-     * @param
      **/
     @Override
     public List<Munitions> ChoisirMunitions() throws SQLException {
@@ -159,6 +159,11 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
         return ListeMunitions;
     }
 
+    /**
+     * Méthode d'affichage de l'ensemble des munitions
+     * @author Akshaya
+     * @param identification : identification des munitions
+     **/
     @Override
     public void SupprimerMunition (String identification) throws SQLException{
         Connection con = null;

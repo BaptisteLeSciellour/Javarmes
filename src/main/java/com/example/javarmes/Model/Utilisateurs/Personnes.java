@@ -1,5 +1,9 @@
 package com.example.javarmes.Model.Utilisateurs;
 
+/**
+ * Interface Personne : classe abstraite
+ * @author Baptiste
+ **/
 public abstract  class Personnes {
     protected String nom;
     protected String prenom;

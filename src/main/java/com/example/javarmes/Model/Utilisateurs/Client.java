@@ -3,7 +3,10 @@ package com.example.javarmes.Model.Utilisateurs;
 import com.example.javarmes.Model.Articles.Article;
 
 import java.util.ArrayList;
-
+/**
+ * Interface client
+ * @author Baptiste
+ **/
 public class Client extends Personnes {
 
     /**Attributs correspondant au client*/

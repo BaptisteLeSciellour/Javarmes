@@ -15,7 +15,6 @@ import java.sql.SQLException;
 /**
  * Classe implementation du client : BDD
  * @author Akshaya
- * @param
  **/
 public class ImpleEmployeDAO implements EmployeDAO {
 
@@ -23,9 +22,8 @@ public class ImpleEmployeDAO implements EmployeDAO {
      * Méthodes de gestion des employés
      * Méthode qui permet d'ajouter un employé
      * @author Akshaya
-     * @param
+     * @param employe : objet employe
      **/
-
     @Override
     public void AjouterEmployes(Employes employe) throws SQLException {
         Connection con = null;
@@ -53,7 +51,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode de suppression d'un employé
      * @author Akshaya
-     * @param
+     * @param id : identifiant de l'employee
      **/
     @Override
     public void SupprimerEmployes(int id) throws SQLException{
@@ -80,7 +78,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode de mise à jour des informations d'un employé
      * @author Akshaya
-     * @param
+     * @param employe : Objet employee
      **/
     @Override
     public void MettreAJourEmployes(Employes employe) throws SQLException{
@@ -109,7 +107,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode d'affichage des infos d'un employé
      * @author Akshaya
-     * @param
+     * @param id : identifiant de l'employee
      **/
     @Override
     public Employes ChoisirEmploye(int id) throws SQLException{
@@ -146,7 +144,6 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode d'affichage de l'ensemble des employés
      * @author Akshaya
-     * @param
      **/
 @Override
     public List<Employes>  ChoisirEmploye() throws SQLException{
@@ -183,9 +180,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
      * Méthodes de gestion de clients faisable par les employés
      * Méthode d'affichage des infos de tous les clients
      * @author Akshaya
-     * @param
      **/
-
     public List<Client> ChoisirClient() throws SQLException{
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -217,7 +212,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode d'affichage des infos d'un client
      * @author Akshaya
-     * @param
+     * @param id : identifiant du client
      **/
     public Client ChoisirClient(int id) throws SQLException {
         Connection con = null;
@@ -249,7 +244,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode d'ajout d'un nouveau client
      * @author Akshaya
-     * @param
+     * @param client : objet client
      **/
     @Override
     public void AjouterClient (Client client) throws SQLException{
@@ -278,7 +273,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode de modification des infos d'un client
      * @author Akshaya
-     * @param
+     * @param client : objet client
      **/
     @Override
     public void MettreAJourClient(Client client) throws SQLException{
@@ -308,7 +303,7 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode de suppression des données d'un client
      * @author Akshaya
-     * @param
+     * @param id : identifiant du client
      **/
     @Override
     public void SupprimerClient(int id) throws SQLException{
@@ -336,8 +331,8 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode de
      * @author Akshaya
-     * @param ID
-     * @param nom
+     * @param ID : identifiant de l'employee
+     * @param nom : nom de l'employee
      **/
     @Override
     public Employes connexionemployes(int ID, String nom) throws SQLException {

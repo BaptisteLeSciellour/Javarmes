@@ -3,6 +3,11 @@ package com.example.javarmes.Model.DAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 
 import java.sql.SQLException;
+/**
+ * Interface client
+ * @author Akshaya
+ * @version 3.0
+ */
 public interface ClientDAO {
 
     void  Ajouter(Client Client) throws SQLException;

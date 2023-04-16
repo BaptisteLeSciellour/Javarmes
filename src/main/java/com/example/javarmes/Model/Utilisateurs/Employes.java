@@ -1,5 +1,9 @@
 package com.example.javarmes.Model.Utilisateurs;
 
+/**
+ * Interface Employee
+ * @author Baptiste
+ **/
 public class Employes extends Personnes{
     protected int id;
 

@@ -49,7 +49,7 @@ public class ImpleClientDAO implements ClientDAO {
     /**
      * Méthode qui permet à un client de mettre à jour ses informations de connexion
      * @author Akshaya
-     * @param
+     * @param client : Objet client
      **/
 
     @Override
@@ -81,7 +81,7 @@ public class ImpleClientDAO implements ClientDAO {
     /**
      * Méthode qui permet à un client de supprimer son compte
      * @author Akshaya
-     * @param
+     * @param id : identifiant du client
      **/
     @Override
     public void Supprimer(int id) throws SQLException{
@@ -108,9 +108,8 @@ public class ImpleClientDAO implements ClientDAO {
     /**
      * Méthode qui permet d'afficher le compte d'un client
      * @author Akshaya
-     * @param
+     * @param id : identifiant du client
      **/
-    /** Enlever ou laisser ? */
     @Override
     public Client ChoisirClient(int id) throws SQLException{
         Connection con = null;
@@ -142,7 +141,7 @@ public class ImpleClientDAO implements ClientDAO {
     /**
      * Méthode qui retourne true si le mail existe déjà et false si ce n'est pas le cas
      * @author Akshaya
-     * @param
+     * @param mailSaisi : mail du client
      **/
     public boolean BlindageParRecherche (String mailSaisi) throws SQLException {
         Connection con = null;
@@ -178,7 +177,9 @@ public class ImpleClientDAO implements ClientDAO {
     /**
      * Méthode qui permet au client de se connecter
      * @author Akshaya
-     * @param
+     * @param ID: identifiant du client
+     * @param mail : mail du client
+     * @param mdp : mot de passe du client
      **/
     public Client connexionClient(int ID, String mail, String mdp) throws SQLException{
         Connection con = null;

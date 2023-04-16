@@ -26,7 +26,7 @@ public class ImpleArmesDAO implements ArmesDAO {
     /**
      * Méthode qui permet d'ajouter une nouvelle arme à la bdd
      * @author Akshaya
-     * @param
+     * @param armes : Objet arme
      */
     @Override
     public void AjouterArme(Armes armes) throws SQLException {
@@ -60,7 +60,8 @@ public class ImpleArmesDAO implements ArmesDAO {
      * Méthode qui recherche dans la table Armes selon le critère saisi et la valeur voulue
      *      ex : (categorie,B) affiche toutes les armes de la catégorie B
      * @author Akshaya
-     * @param
+     * @param critere : critere de recherche
+     * @param recherche : colonne de la bdd
      **/
 
     @Override
@@ -98,7 +99,8 @@ public class ImpleArmesDAO implements ArmesDAO {
      *      * nombre négatif pour décrementer, positif pour incrémenter
      *      * avec blindage quantité>=0
      * @author Akshaya
-     * @param
+     * @param identification : identification de l'arme
+     * @param quantite : quantite d'arme
      **/
     @Override
     public void GererStockArme(String identification, int quantite) throws SQLException {
@@ -139,7 +141,6 @@ public class ImpleArmesDAO implements ArmesDAO {
     /**
      * Méthode qui permet de récupérer les informations d'une arme
      * @author Akshaya
-     * @param
      **/
     @Override
     public List<Armes> ChoisirArmes() throws SQLException{
@@ -173,7 +174,7 @@ public class ImpleArmesDAO implements ArmesDAO {
     /**
      * Méthode qui permet de supprimer définitivement une arme de la bdd
      * @author Akshaya
-     * @param
+     * @param identification : identification de l'arme
      **/
     @Override
     public void SupprimerArme(String identification) throws SQLException{

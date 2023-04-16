@@ -6,7 +6,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * Interface armes
+ * @author Akshaya
+ * @version 3.0
+ */
 public interface ArmesDAO {
+
 
      void AjouterArme(Armes armes) throws SQLException;
      void GererStockArme (String identification, int quantite) throws SQLException;/**Gestion du stock - incrémentation/décrémentation **/

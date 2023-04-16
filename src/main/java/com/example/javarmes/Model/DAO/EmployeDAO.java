@@ -6,9 +6,14 @@ import com.example.javarmes.Model.Utilisateurs.*;
 
 import java.sql.SQLException;
 
+/**
+ * Interface employee
+ * @author Baptiste
+ * @version 3.0
+ */
 public interface EmployeDAO {
 
-    /** Méthodes de gestion des employés */
+
     void  AjouterEmployes(Employes Employes) throws SQLException; /**Des employés peuvent être ajoutés*/
     void MettreAJourEmployes(Employes employe) throws SQLException;
     void SupprimerEmployes(int id) throws SQLException;

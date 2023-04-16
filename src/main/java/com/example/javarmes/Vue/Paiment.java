@@ -19,8 +19,20 @@ import javafx.util.Duration;
 import java.io.File;
 import java.util.Objects;
 
+/**
+ * Classe paiement : gere l'interface fictive du paiement
+ * @author Baptsiste
+ * @version 3.0
+ */
 public class Paiment {
+    //Creating a hexagon
 
+    /**
+     * Methode d'affichage du paiement
+     * @author Baptsiste
+     * @version 3.0
+     * @param stage : fenetre principal
+     */
     public void anim(Stage stage)
     {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/chargement.png")));

@@ -1,6 +1,11 @@
 package com.example.javarmes.Model.DAO;
 import java.sql.*;
 
+/**
+ * Interface de connexion
+ * @author Baptiste
+ * @version 3.0
+ */
 public class DAOFactory {
 
     private static String url = "jdbc:mysql://localhost:3306/ece_shopping";
@@ -8,6 +13,11 @@ public class DAOFactory {
     private static String password = "";
 
 
+    /**
+     * Constructeur de connexion entre le modele et la vue
+     * @author Baptiste
+     * @version 3.0
+     */
     /*Cette constructeur permet de faire la liaison entre les différentes tables de la BDD et Java*/
     public DAOFactory() {
         try{
@@ -24,6 +34,12 @@ public class DAOFactory {
         }
     }
 
+
+    /**
+     * Methode de connexion avec le driver
+     * @author Baptiste
+     * @version 3.0
+     */
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
     }
