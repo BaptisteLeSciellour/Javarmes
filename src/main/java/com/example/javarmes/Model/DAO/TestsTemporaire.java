@@ -52,11 +52,11 @@ public class TestsTemporaire {
 
        ImplePanierDAO PanierDAO = new ImplePanierDAO();
        String id_article = "X95";
-       //int quantite = 5;
+       int quantite = 15;
        try{
            //PanierDAO.CreationPanier();
-           //PanierDAO.AjouterProduitPanier(id_article,quantite);
-           PanierDAO.SupprimerProduitPanier(id_article);
+           PanierDAO.AjouterProduitPanier(id_article,quantite);
+           //PanierDAO.SupprimerProduitPanier(id_article);
        }catch(SQLException e) {
             System.out.println("Erreur");
             System.out.println(e);

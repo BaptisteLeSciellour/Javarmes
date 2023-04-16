@@ -8,6 +8,7 @@ public class Panier {
     public int qte;
     public String nom_article;
     public double prix_unique;
+    public double prix_vrac;
     public double prix_total;
     public String type_article;
     public int reduction;
@@ -85,14 +86,23 @@ public class Panier {
         this.reduction = reduction;
     }
 
-    public Panier(int id_panier,String type_article, String id_arme, String id_munition, int qte, String nom_article, double prix_unique, double prix_total, int reduction) {
+    public double getPrix_vrac() {
+        return prix_vrac;
+    }
+
+    public void setPrix_vrac(double prix_vrac) {
+        this.prix_vrac = prix_vrac;
+    }
+
+    public Panier(int id_panier, String type_article, String id_arme, String id_munition, int qte, String nom_article, double prix_unique, double prix_vrac, double prix_total, int reduction) {
         this.id_panier = id_panier;
         this.type_article = type_article ;
         this.id_arme= id_arme;
         this.id_munition=id_munition;
         this.qte = qte;
         this.nom_article = nom_article;
-        this.prix_unique = prix_unique ;
+        this.prix_unique = prix_unique;
+        this.prix_vrac = prix_vrac;
         this.prix_total=prix_total;
         this.reduction = reduction ;
     }
