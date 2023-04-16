@@ -354,7 +354,7 @@ public class ScreenEmploye {
         Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
         ImageView Bande = new ImageView(bande);
         Bande.setFitWidth(800);
-        Bande.setFitHeight(300);
+        Bande.setFitHeight(180);
         Bande.setLayoutX(0);
         Bande.setLayoutY(0);
 
@@ -364,6 +364,7 @@ public class ScreenEmploye {
         Bande1.setFitHeight(90);
         Bande1.setLayoutX(0);
         Bande1.setLayoutY(610);
+
 
         Text txt1 = new Text("Supression de l'employé : ");
         txt1.setFont(new Font("Arial", 26));

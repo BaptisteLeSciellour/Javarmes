@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ScreenArticle {
@@ -74,19 +75,39 @@ public class ScreenArticle {
         i.compareAndSet(size,0);
         i.compareAndSet(-1,0);
 
-        Button achat = new Button("achat");
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(800);
+        Bande.setFitHeight(150);
+        Bande.setLayoutX(0);
+        Bande.setLayoutY(0);
+
+        Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande1 = new ImageView(bande1);
+        Bande1.setFitWidth(800);
+        Bande1.setFitHeight(90);
+        Bande1.setLayoutX(0);
+        Bande1.setLayoutY(610);
+
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
+        downButton.setLayoutX(240);
+        downButton.setLayoutY(400);
+
+
+        Button upButton = new Button();
+        upButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/left.jpg")))));
+        upButton.setLayoutX(240);
+        upButton.setLayoutY(400);
+
+
+        Button achat = new Button("Achat");
         achat.setLayoutX(0);
         achat.setLayoutY(0);
         arm=armes.get(i.intValue());
-        Text txt = new Text(" nom "+arm.getNom());
+        Text txt = new Text(" Nom "+arm.getNom());
         txt.setLayoutX(90);
         txt.setLayoutY(290);
-        Button btn = new Button("->");
-        btn.setLayoutX(240);
-        btn.setLayoutY(400);
-        Button btn2 = new Button("<-");
-        btn2.setLayoutX(140);
-        btn2.setLayoutY(400);
         achat.setOnAction(actionEvent ->{
             int quantite = arm.getQuantite();
             if(quantite>0)
@@ -107,19 +128,19 @@ public class ScreenArticle {
             }
 
         });
-        btn.setOnAction(actionEvent -> {
+        downButton.setOnAction(actionEvent -> {
             i.getAndIncrement();
             defilementC(i,armes,C);
             stage.close();
         });
-        btn2.setOnAction(actionEvent -> {
+        upButton.setOnAction(actionEvent -> {
             i.getAndDecrement();
             defilementC(i,armes,C);
             stage.close();
         });
 
-        pane.getChildren().addAll(btn,btn2,txt,achat);
-        Scene scene = new Scene(pane,520,520);
+        pane.getChildren().addAll(downButton,upButton,txt,achat,Bande,Bande1);
+        Scene scene = new Scene(pane,800,700);
         stage.setScene(scene);
         stage.show();
     }
@@ -130,22 +151,43 @@ public class ScreenArticle {
         Article arm;
         int size = armes.size();
 
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(800);
+        Bande.setFitHeight(110);
+        Bande.setLayoutX(0);
+        Bande.setLayoutY(0);
+
+        Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande1 = new ImageView(bande1);
+        Bande1.setFitWidth(800);
+        Bande1.setFitHeight(90);
+        Bande1.setLayoutX(0);
+        Bande1.setLayoutY(610);
+
+
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
+        downButton.setLayoutX(240);
+        downButton.setLayoutY(400);
+
+
+        Button upButton = new Button();
+        upButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/left.jpg")))));
+        upButton.setLayoutX(240);
+        upButton.setLayoutY(400);
+
+
         /// système de controle pour que il ne soit pas possible de passer outre les tailles de vecteur
         i.compareAndSet(size,0);
         i.compareAndSet(-1,0);
-        Button retirer = new Button("retirer");
+        Button retirer = new Button("Retirer");
         retirer.setLayoutX(260);
         retirer.setLayoutY(260);
         arm=armes.get(i.intValue());
-        Text txt = new Text(" nom "+arm.getNom());
+        Text txt = new Text(" Nom "+arm.getNom());
         txt.setLayoutX(90);
         txt.setLayoutY(290);
-        Button btn = new Button("->");
-        btn.setLayoutX(240);
-        btn.setLayoutY(400);
-        Button btn2 = new Button("<-");
-        btn2.setLayoutX(140);
-        btn2.setLayoutY(400);
         retirer.setOnAction(actionEvent ->{
             Text panier = new Text("Produit dans le panier");
             panier.setLayoutX(100);
@@ -161,19 +203,22 @@ public class ScreenArticle {
             }
             pane.getChildren().add(panier);
         });
-        btn.setOnAction(actionEvent -> {
+
+
+        downButton.setOnAction(actionEvent -> {
             i.getAndIncrement();
-            defilementP(i,armes,C);
+            defilementC(i,armes,C);
             stage.close();
         });
-        btn2.setOnAction(actionEvent -> {
+        upButton.setOnAction(actionEvent -> {
             i.getAndDecrement();
             defilementC(i,armes,C);
             stage.close();
         });
 
-        pane.getChildren().addAll(btn,btn2,txt,retirer);
-        Scene scene = new Scene(pane,520,520);
+
+        pane.getChildren().addAll(upButton,downButton,txt,retirer,Bande,Bande1);
+        Scene scene = new Scene(pane,800,700);
         stage.setScene(scene);
         stage.show();
     }
