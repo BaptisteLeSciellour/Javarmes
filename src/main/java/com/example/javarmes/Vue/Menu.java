@@ -889,6 +889,15 @@ menupresentation();
         Bande.setLayoutX(0);
         Bande.setLayoutY(0);
 
+
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/left.jpg")))));
+        downButton.setLayoutX(0);
+        downButton.setLayoutY(400);
+        downButton.setOnAction(event -> {
+            menupresentation();
+        });
+
         Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
         ImageView Bande1 = new ImageView(bande1);
         Bande1.setFitWidth(1600);
@@ -898,20 +907,20 @@ menupresentation();
 
         Image poing1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni1.jpg")));
         ImageView Poing1 = new ImageView(poing1);
-        Poing1.setFitWidth(450);
-        Poing1.setFitHeight(500);
+        Poing1.setFitWidth(300);
+        Poing1.setFitHeight(400);
         Poing1.setLayoutX(100);
         Poing1.setLayoutY(300);
 
         Image poing2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni2.jpg")));
         ImageView Poing2 = new ImageView(poing2);
-        Poing2.setFitWidth(450);
-        Poing2.setFitHeight(500);
-        Poing2.setLayoutX(300);
+        Poing2.setFitWidth(300);
+        Poing2.setFitHeight(400);
+        Poing2.setLayoutX(400);
         Poing2.setLayoutY(300);
 
 
-        panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1);
+        panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1,downButton);
         Scene settle = new Scene(panne, 1600, 800);
 
         settle.getRoot().setStyle("-fx-background-color: #4B5320; "
