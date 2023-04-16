@@ -92,110 +92,6 @@ public class Menu {
         Bande.setLayoutX(1);
         Bande.setLayoutY(700);
 
-        Button camm = new Button("Camembert Munition : ");
-        camm.setLayoutX(300);
-        camm.setLayoutY(300);
-
-        Button cama = new Button("Camembert Armes : ");
-        cama.setLayoutX(300);
-        cama.setLayoutY(350);
-
-        Button hista = new Button("Histogramme Armes : ");
-        hista.setLayoutX(300);
-        hista.setLayoutY(400);
-
-        Button histm = new Button("Histogramme Armes : ");
-        histm.setLayoutX(300);
-        histm.setLayoutY(450);
-
-        camm.setOnAction(actionEvent -> {
-            ScreenEmploye sc = new ScreenEmploye();
-
-            Stage st = new Stage();
-
-            ImpleMunitionsDAO implm = new ImpleMunitionsDAO();
-
-            List<Munitions> muni;
-
-            try {
-
-                muni=implm.ChoisirMunitions();
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-            sc.camembertMunition(st,muni);
-
-        });
-
-
-        cama.setOnAction(actionEvent -> {
-            ScreenEmploye sc = new ScreenEmploye();
-
-            Stage staage = new Stage();
-
-            ImpleArmesDAO imple = new ImpleArmesDAO();
-
-            List<Armes> art ;
-
-
-            try {
-                art=imple.ChoisirArmes();
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-            sc.camembertArme(staage , art);
-
-        });
-
-        hista.setOnAction(actionEvent -> {
-            ScreenEmploye sc = new ScreenEmploye();
-
-            Stage primaryStage = new Stage();
-
-            ImpleArmesDAO imple = new ImpleArmesDAO();
-
-            List<Armes> art ;
-
-
-            try {
-
-                art=imple.ChoisirArmes();
-
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-            sc.HistogrammeTauxdereduction_Armes(primaryStage,art);
-
-        });
-
-        histm.setOnAction(actionEvent -> {
-            ScreenEmploye sc = new ScreenEmploye();
-
-            Stage pr = new Stage();
-
-            ImpleMunitionsDAO implm = new ImpleMunitionsDAO();
-
-            List<Munitions> muni;
-
-            try {
-
-                muni=implm.ChoisirMunitions();
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-            sc.HistogrammeTauxdereduction_Munitions(pr,muni);
-        });
-
-
-
         Image armenu2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/armemenu2.png")));
         //Creating a rotated transition
         ImageView Armenu2 = new ImageView(armenu2);
@@ -213,7 +109,7 @@ public class Menu {
 
         Pane ppane = new Pane();
 
-        ppane.getChildren().addAll(connection, sortie,pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,hista,histm,camm,cama,contact,Bande);
+        ppane.getChildren().addAll(connection, sortie,pres, menuu, Armenu, Armenu2, nomarque, hpy,Logo,contact,Bande);
 
         connection.setOnAction(event -> {
             menuconnexion();
@@ -380,6 +276,7 @@ public class Menu {
         settle.setScene(sceene);
         settle.show();
     }
+
     /**
      * Classe pour l'écran du menu d'acceuil. Cette fonction nous sert à donner le choix à l'utilisateur de quel type d'arme
      * il veut voir. Cette fonction est en deux versions. Cette version ne donne pas la possibilité de mettre des armes dans le panier,
@@ -387,7 +284,6 @@ public class Menu {
      * @author Maléna et Baptiste
      * @version 3.0
      */
-
     public void menupresentation() {
         Pane pane = new Pane();
         Stage stage = new Stage();

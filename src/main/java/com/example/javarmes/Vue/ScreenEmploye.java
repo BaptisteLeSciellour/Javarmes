@@ -292,6 +292,12 @@ public class ScreenEmploye {
         bbtn5.setLayoutX(300);
         bbtn5.setLayoutY(530);
 
+        Button bbtn6 = new Button("Statistiques : ");
+        bbtn6.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn6.setLayoutX(300);
+        bbtn6.setLayoutY(530);
+
+
         bbtn.setOnAction(actionEvent -> {
             InscriptionEmploye(); /** ici on appelle l'écran que nous allons utiliser**/
             settle.close();
@@ -314,7 +320,13 @@ public class ScreenEmploye {
 
         });
 
-        pannne.getChildren().addAll(bbtn,bbtn2,Txt,bbtn3,bbtn4,Bande,Bande1,bbtn5);
+        bbtn6.setOnAction(actionEvent -> {
+            Statistique();
+
+        });
+
+
+        pannne.getChildren().addAll(bbtn,bbtn2,Txt,bbtn3,bbtn4,Bande,Bande1,bbtn5,bbtn6);
 
         Scene sceene = new Scene(pannne, 800, 700);
 
@@ -443,6 +455,148 @@ public class ScreenEmploye {
     }
 
     /**
+     * Classe pour l'écran du menu d'acceuil. Cette fonction va nous servir à donner le choix à l'utilisateur de s'inscrire en tant qu'employé ou client.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
+    public void Statistique()
+    {
+
+        Pane panne = new Pane();
+        Stage settle = new Stage();
+
+        Image loog = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/typ2.jpg")));
+        //Creating a rotated transition
+        ImageView Loog = new ImageView(loog);
+        Loog.setLayoutY(0);
+        Loog.setLayoutX(0);
+        Loog.setFitWidth(800);
+        Loog.setFitHeight(230);
+
+        Image loogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Loogo = new ImageView(loogo);
+        Loogo.setLayoutY(550);
+        Loogo.setLayoutX(0);
+        Loogo.setFitWidth(800);
+        Loogo.setFitHeight(150);
+
+
+        Button camm = new Button("Camembert Munition : ");
+        camm.setLayoutX(300);
+        camm.setLayoutY(300);
+
+        Button cama = new Button("Camembert Armes : ");
+        cama.setLayoutX(300);
+        cama.setLayoutY(350);
+
+        Button hista = new Button("Histogramme Armes : ");
+        hista.setLayoutX(300);
+        hista.setLayoutY(400);
+
+        Button histm = new Button("Histogramme Munitions : ");
+        histm.setLayoutX(300);
+        histm.setLayoutY(450);
+
+        camm.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+
+            Stage st = new Stage();
+
+            ImpleMunitionsDAO implm = new ImpleMunitionsDAO();
+
+            List<Munitions> muni;
+
+            try {
+
+                muni=implm.ChoisirMunitions();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            sc.camembertMunition(st,muni);
+
+        });
+
+
+        cama.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+
+            Stage staage = new Stage();
+
+            ImpleArmesDAO imple = new ImpleArmesDAO();
+
+            List<Armes> art ;
+
+
+            try {
+                art=imple.ChoisirArmes();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            sc.camembertArme(staage , art);
+
+        });
+
+        hista.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+
+            Stage primaryStage = new Stage();
+
+            ImpleArmesDAO imple = new ImpleArmesDAO();
+
+            List<Armes> art ;
+
+
+            try {
+
+                art=imple.ChoisirArmes();
+
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            sc.HistogrammeTauxdereduction_Armes(primaryStage,art);
+
+        });
+
+        histm.setOnAction(actionEvent -> {
+            ScreenEmploye sc = new ScreenEmploye();
+
+            Stage pr = new Stage();
+
+            ImpleMunitionsDAO implm = new ImpleMunitionsDAO();
+
+            List<Munitions> muni;
+
+            try {
+
+                muni=implm.ChoisirMunitions();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            sc.HistogrammeTauxdereduction_Munitions(pr,muni);
+        });
+
+
+        panne.getChildren().addAll(hista,histm,cama,camm,Loog,Loogo);
+
+        Scene sceene = new Scene(panne, 800, 700);
+        sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);");
+        settle.setScene(sceene);
+        settle.setX(0);
+        settle.setY(0);
+        settle.show();
+    }
+    /**
      * Fonction de production de camembert au bon lait crue pour le nombre de commandes par Clients
      * @author Baptiste
      * @version 3.0
@@ -471,8 +625,9 @@ public class ScreenEmploye {
      * Fonction de production de camembert au bon lait crue pour le nombre de ventes par armes
      * @author Baptiste
      * @version 3.0
+     * @param primaryStage : ecran principal
+     * @param art : Liste armes
      */
-
     public void camembertArme(Stage primaryStage , List<Armes> art) {
         final PieChart chart = new PieChart();
         chart.setTitle("Nombre de vente par arme");
@@ -493,7 +648,13 @@ public class ScreenEmploye {
         primaryStage.show();
     }
 
-
+    /**
+     * Fonction de production de camembert au bon lait crue pour le nombre de ventes par armes
+     * @author Baptiste
+     * @version 3.0
+     * @param primaryStage : ecran principal
+     * @param art : Liste armes
+     */
     public void camembertMunition(Stage primaryStage , List<Munitions> art) {
         final PieChart chart = new PieChart();
         chart.setTitle("Nombre de vente par munition");
@@ -515,6 +676,13 @@ public class ScreenEmploye {
     }
 
 
+    /**
+     * Fonction histogramme
+     * @author Olivia
+     * @version 3.0
+     * @param primaryStage : ecran principal
+     * @param art : Liste armes
+     */
     public void HistogrammeTauxdereduction_Armes(Stage primaryStage , List<Armes> art) {
 
         // Données à utiliser pour l'histogramme
@@ -561,6 +729,13 @@ public class ScreenEmploye {
     }
 
 
+    /**
+     * Fonction histogramme
+     * @author Olivia
+     * @version 3.0
+     * @param primaryStage : ecran principal
+     * @param muni : Liste de munition
+     */
     public void HistogrammeTauxdereduction_Munitions(Stage primaryStage , List<Munitions> muni) {
 
         // Données à utiliser pour l'histogramme
