@@ -58,11 +58,9 @@ public class ImplePanierDAO implements PanierDAO {
             rsl = pst.executeQuery();
             if (rsl.next()) {
                 double prix_unique = rsl.getDouble("prix_unique");
-                //double prix_vrac = rsl.getDouble("prix_vrac");
                 prix_total = quantite * prix_unique;
                 System.out.println("Prix total pour arme calculé");
             } else {
-                //con = new DAOFactory().getConnection();
                 String requete1 = "SELECT prix_unique, prix_vrac FROM munitions where identification = ?";
                 pst = con.prepareStatement(requete1);
                 pst.setString(1, id_article);
