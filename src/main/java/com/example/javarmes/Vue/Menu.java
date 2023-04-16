@@ -498,54 +498,46 @@ public class Menu {
 
         Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
         ImageView Bande = new ImageView(bande);
-        Bande.setFitWidth(730);
-        Bande.setFitHeight(120);
+        Bande.setFitWidth(710);
+        Bande.setFitHeight(110);
         Bande.setLayoutX(0);
         Bande.setLayoutY(0);
 
         Image poing1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing1.jpg")));
         ImageView Poing1 = new ImageView(poing1);
-        Poing1.setFitWidth(800);
-        Poing1.setFitHeight(200);
-        Poing1.setLayoutX(1);
+        Poing1.setFitWidth(450);
+        Poing1.setFitHeight(500);
+        Poing1.setLayoutX(50);
         Poing1.setLayoutY(200);
 
         Image poing2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing2.jpg")));
         ImageView Poing2 = new ImageView(poing2);
-        Poing2.setFitWidth(800);
-        Poing2.setFitHeight(200);
-        Poing2.setLayoutX(1);
-        Poing2.setLayoutY(600);
+        Poing2.setFitWidth(450);
+        Poing2.setFitHeight(500);
+        Poing2.setLayoutX(50);
+        Poing2.setLayoutY(800);
 
-        Image poing3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing3.jpg")));
-        ImageView Poing3 = new ImageView(poing3);
-        Poing3.setFitWidth(800);
-        Poing3.setFitHeight(200);
-        Poing3.setLayoutX(1);
-        Poing3.setLayoutY(900);
 
        Button downButton = new Button();
         downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/up_arrow.png")))));
-        downButton.setLayoutX(720);
+        downButton.setLayoutX(710);
         downButton.setLayoutY(0);
         downButton.setOnAction(event -> {
             Poing1.setLayoutY(Poing1.getLayoutY() + 100);
             Poing2.setLayoutY(Poing2.getLayoutY() + 100);
-            Poing3.setLayoutY(Poing3.getLayoutY() + 100);
 
         });
 
         Button upButton = new Button();
         upButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/do.png")))));
-        upButton.setLayoutX(720);
+        upButton.setLayoutX(710);
         upButton.setLayoutY(600);
         upButton.setOnAction(event -> {
             Poing1.setLayoutY(Poing1.getLayoutY() - 100);
             Poing2.setLayoutY(Poing2.getLayoutY() - 100);
-            Poing3.setLayoutY(Poing3.getLayoutY() - 100);
         });
 
-        panne.getChildren().addAll(Poing1, Poing2, Poing3,downButton,upButton,Bande);
+        panne.getChildren().addAll(Poing1, Poing2,downButton,upButton,Bande);
         Scene settle = new Scene(panne, 800, 700);
 
         settle.getRoot().setStyle("-fx-background-color: #4B5320; "
