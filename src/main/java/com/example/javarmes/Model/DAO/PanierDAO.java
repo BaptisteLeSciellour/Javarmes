@@ -9,6 +9,8 @@ public interface PanierDAO {
     public double prixTotal(String id_article, int quantite) throws SQLException;
     void AjouterProduitPanier(String id_article, int quantite) throws SQLException;
     void SupprimerProduitPanier(String id_article) throws SQLException;
+    void ResumePaiement() throws SQLException;
+    void Payer(int id_client) throws SQLException;
     void SupressionPanier() throws SQLException;
-    void Payer() throws SQLException;
+
 }

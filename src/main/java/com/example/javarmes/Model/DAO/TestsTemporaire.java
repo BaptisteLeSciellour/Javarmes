@@ -51,11 +51,17 @@ public class TestsTemporaire {
 
 
        ImplePanierDAO PanierDAO = new ImplePanierDAO();
-       String id_article = "X95";
-       int quantite = 15;
+       String id_article = "GL17";
+       int quantite = 2;
        try{
            //PanierDAO.CreationPanier();
-           PanierDAO.AjouterProduitPanier(id_article,quantite);
+           //PanierDAO.AjouterProduitPanier(id_article,quantite);
+           //PanierDAO.AjouterProduitPanier("50BMG",4);
+
+           //PanierDAO.prixTotal("X95",1);
+           PanierDAO.ResumePaiement();
+           //PanierDAO.Payer(11968);
+
            //PanierDAO.SupprimerProduitPanier(id_article);
        }catch(SQLException e) {
             System.out.println("Erreur");
