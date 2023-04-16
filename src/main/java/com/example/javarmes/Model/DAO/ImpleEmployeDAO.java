@@ -329,29 +329,27 @@ public class ImpleEmployeDAO implements EmployeDAO {
     /**
      * Méthode de
      * @author Akshaya
-     * @param
+     * @param ID
+     * @param nom
      **/
-    public Employes connexionemployes(int ID, String mdp) throws SQLException {
+    @Override
+    public Employes connexionemployes(int ID, String nom) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
         ResultSet rsl = null;
         Employes connexionEmploye = null;
         try {
             con = DAOFactory.getConnection();
-            String requete = "SELECT * FROM employés WHERE id = ?";
+            String requete = "SELECT * FROM employés WHERE id = ? AND nom = ?";
             pstmnt = con.prepareStatement(requete);
             pstmnt.setInt(1, ID);
+            pstmnt.setString(2,nom);
             rsl = pstmnt.executeQuery();
             if (rsl.next()) {
-                String mdpSaisi = rsl.getString("motdepasse");
-                if (mdpSaisi.equals(mdp)) {
-                    connexionEmploye = new Employes(rsl.getInt("id"), rsl.getString("motdepasse"));
-                    System.out.println("Employé identifié");
-                } else {
-                    System.out.println("Mot de passe saisi incorrect");
-                }
-            } else {
-                System.out.println("Données saisies incorrectes");
+                connexionEmploye = new Employes(rsl.getInt("id"), rsl.getString("nom"));
+                System.out.println("Employé identifié");
+            } else{
+                System.out.println("Erreur : Employé non identifié ");
             }
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'authentification");

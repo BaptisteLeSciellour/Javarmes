@@ -1147,15 +1147,15 @@ menupresentation();
         Loog2.setFitWidth(800);
         Loog2.setFitHeight(110);
 
-        Text mdpT = new Text("Saisir le motdepasse:");
-        mdpT.setFont(new Font("Arial", 26));
-        mdpT.setStyle("-fx-fill: white;");
-        mdpT.setLayoutX(300);
-        mdpT.setLayoutY(450);
+        Text nompT = new Text("Saisir le nom:");
+        nompT.setFont(new Font("Arial", 26));
+        nompT.setStyle("-fx-fill: white;");
+        nompT.setLayoutX(300);
+        nompT.setLayoutY(450);
 
-        final PasswordField mdpTF = new PasswordField();
-        mdpTF.setLayoutX(300);
-        mdpTF.setLayoutY(470);
+        TextField nomTF = new TextField();
+        nomTF.setLayoutX(300);
+        nomTF.setLayoutY(470);
 
         Button validation = new Button("Validation");
         validation.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
@@ -1164,11 +1164,11 @@ menupresentation();
 
         validation.setOnAction(actionEvent -> {
             String idS = idTF.getText();
-            String motdepasse = mdpTF.getText();
+            String nom = nomTF.getText();
             int id=Integer.valueOf(idS);
             ImpleEmployeDAO imp = new ImpleEmployeDAO();
             try {
-                Employes employes = imp.    connexionemployes(id,motdepasse);
+                Employes employes = imp.connexionemployes(id,nom);
                 if(employes != null)
                 {
                     Image();
@@ -1182,7 +1182,7 @@ menupresentation();
             } catch (SQLException e) {}
         });
 
-        pannne.getChildren().addAll(Loog, validation, idTF,idT,mdpTF,mdpT,Loog2);
+        pannne.getChildren().addAll(Loog, validation, idTF,idT,nomTF,nompT,Loog2);
 
         Scene sceene = new Scene(pannne, 800, 700);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
