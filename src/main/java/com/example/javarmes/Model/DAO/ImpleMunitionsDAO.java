@@ -28,7 +28,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
         PreparedStatement pstmnt = null;
         try {
             con = new DAOFactory().getConnection();
-            String requete = "INSERT INTO munition( identification, categorie, nom, prix_unique, quantite, calibre, reduction, prix_vrac ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String requete = "INSERT INTO munitions( identification, categorie, nom, prix_unique, quantite, calibre, reduction, prix_vrac ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             pstmnt = con.prepareStatement(requete);
             pstmnt.setString(1, munition.getIndentification());
             pstmnt.setString(2, munition.getCategorie());
@@ -142,7 +142,7 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             String requete = "SELECT * FROM munitions ";
             pstmnt = con.prepareStatement(requete);
             result = pstmnt.executeQuery();
-            if (result.next()) {
+            while (result.next()) {
                 Munitions munition = new Munitions(result.getString("identification"), result.getString("categorie"), result.getString("nom"), result.getDouble("prix_unique"), result.getInt("quantite"), result.getDouble("calibre"), result.getBoolean("reduction"), result.getDouble("prix_vrac"), result.getInt("nb_vente"));
                 ListeMunitions.add(munition);
             }
@@ -157,5 +157,27 @@ public class ImpleMunitionsDAO implements MunitionsDAO {
             }
         }
         return ListeMunitions;
+    }
+
+    @Override
+    public void SupprimerMunition (String identification) throws SQLException{
+        Connection con = null;
+        PreparedStatement pstmnt = null;
+        try{
+            con = new DAOFactory().getConnection();
+            String requete = "DELETE FROM munitions WHERE identification = ?";
+            pstmnt = con.prepareStatement(requete);
+            pstmnt.setString(1, identification);
+            pstmnt.executeUpdate();
+            System.out.println("La munition a été supprimée de la base !");
+        } catch(SQLException e) {
+            System.out.println("Erreur lors de la suppression...");
+            System.out.println(e);
+        } finally {
+            if ((pstmnt !=null)||(con!=null)) {
+                pstmnt.close();
+                con.close();
+            }
+        }
     }
 }

@@ -11,4 +11,5 @@ public interface MunitionsDAO {
     void GererStockMunition(String identification, int quantite) throws SQLException;
     List<Munitions> RechercherMunitions(String recherche, String critere) throws SQLException;
     List<Munitions> ChoisirMunitions() throws SQLException;
+    void SupprimerMunition (String identification) throws SQLException;
 }
