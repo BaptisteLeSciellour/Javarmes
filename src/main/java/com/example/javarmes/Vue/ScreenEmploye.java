@@ -254,7 +254,7 @@ public class ScreenEmploye {
         Bande1.setFitWidth(800);
         Bande1.setFitHeight(90);
         Bande1.setLayoutX(0);
-        Bande1.setLayoutY(610);
+        Bande1.setLayoutY(700);
 
 
         Image txt = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/voulez.jpg")));
@@ -292,10 +292,10 @@ public class ScreenEmploye {
         bbtn5.setLayoutX(300);
         bbtn5.setLayoutY(530);
 
-        Button bbtn6 = new Button("Statistiques : ");
+        Button bbtn6 = new Button("Statistiques ");
         bbtn6.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         bbtn6.setLayoutX(300);
-        bbtn6.setLayoutY(530);
+        bbtn6.setLayoutY(600);
 
 
         bbtn.setOnAction(actionEvent -> {
