@@ -919,8 +919,29 @@ menupresentation();
         Poing2.setLayoutX(400);
         Poing2.setLayoutY(300);
 
+        Image muni3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni3.jpg")));
+        ImageView Muni3 = new ImageView(muni3);
+        Muni3.setFitWidth(300);
+        Muni3.setFitHeight(400);
+        Muni3.setLayoutX(700);
+        Muni3.setLayoutY(300);
 
-        panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1,downButton);
+        Image muni4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni4.jpg")));
+        ImageView Muni4 = new ImageView(muni4);
+        Muni4.setFitWidth(300);
+        Muni4.setFitHeight(400);
+        Muni4.setLayoutX(1000);
+        Muni4.setLayoutY(300);
+
+        Image muni5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni5.jpg")));
+        ImageView Muni5 = new ImageView(muni5);
+        Muni5.setFitWidth(300);
+        Muni5.setFitHeight(400);
+        Muni5.setLayoutX(1300);
+        Muni5.setLayoutY(300);
+
+
+        panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1,downButton,Muni3,Muni5,Muni4);
         Scene settle = new Scene(panne, 1600, 800);
 
         settle.getRoot().setStyle("-fx-background-color: #4B5320; "
