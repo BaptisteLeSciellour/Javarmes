@@ -168,28 +168,47 @@ public class ScreenEmploye {
         Pane pannne = new Pane();
         Stage settle = new Stage();
 
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(710);
+        Bande.setFitHeight(110);
+        Bande.setLayoutX(0);
+        Bande.setLayoutY(0);
+
+        Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande1 = new ImageView(bande1);
+        Bande1.setFitWidth(710);
+        Bande1.setFitHeight(110);
+        Bande1.setLayoutX(0);
+        Bande1.setLayoutY(590);
+
         Text txt = new Text("Employee : Que voulez vous faire?");
         txt.setFont(new Font("Arial", 26));
         txt.setStyle("-fx-fill: white;");
         txt.setLayoutX(90);
-        txt.setLayoutY(290);
+        txt.setLayoutY(180);
 
         /**creer deux boutons**/
         Button bbtn = new Button("Ajouter ");
-        bbtn.setLayoutX(140);
-        bbtn.setLayoutY(400);
+        bbtn.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+
+        bbtn.setLayoutX(300);
+        bbtn.setLayoutY(250);
 
         Button bbtn2 = new Button("MAJ");
-        bbtn2.setLayoutX(240);
-        bbtn2.setLayoutY(400);
+        bbtn2.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn2.setLayoutX(300);
+        bbtn2.setLayoutY(350);
 
         Button bbtn3 = new Button("Supprimer");
-        bbtn3.setLayoutX(40);
-        bbtn3.setLayoutY(400);
+        bbtn3.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn3.setLayoutX(300);
+        bbtn3.setLayoutY(450);
 
         Button bbtn4 = new Button("Gerer les stocks");
-        bbtn4.setLayoutX(340);
-        bbtn4.setLayoutY(400);
+        bbtn4.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn4.setLayoutX(300);
+        bbtn4.setLayoutY(550);
 
         bbtn.setOnAction(actionEvent -> {
             InscriptionEmploye(); /** ici on appelle l'écran que nous allons utiliser**/
@@ -207,9 +226,9 @@ public class ScreenEmploye {
             Stock();
 
         });
-        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3,bbtn4);
+        pannne.getChildren().addAll(bbtn,bbtn2,txt,bbtn3,bbtn4,Bande,Bande);
 
-        Scene sceene = new Scene(pannne, 320, 540);
+        Scene sceene = new Scene(pannne, 800, 700);
 
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
@@ -482,13 +501,31 @@ public class ScreenEmploye {
             Pane pane = new Pane();
             Stage stage = new Stage();
 
+            Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande2.jpg")));
+            ImageView Bande = new ImageView(bande);
+            Bande.setFitWidth(710);
+            Bande.setFitHeight(110);
+            Bande.setLayoutX(0);
+            Bande.setLayoutY(0);
+
+            Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+            ImageView Bande1 = new ImageView(bande1);
+            Bande1.setFitWidth(710);
+            Bande1.setFitHeight(110);
+            Bande1.setLayoutX(0);
+            Bande1.setLayoutY(590);
+
             Button arme = new Button("Armes");
-            arme.setLayoutX(90);
-            arme.setLayoutY(300);
+            arme.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+
+            arme.setLayoutX(300);
+            arme.setLayoutY(250);
 
             Button muni = new Button("Munuitions");
-            muni.setLayoutX(190);
-            muni.setLayoutY(300);
+            muni.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+
+            muni.setLayoutX(300);
+            muni.setLayoutY(350);
 
 
 
@@ -505,10 +542,10 @@ public class ScreenEmploye {
                 StockMunitions();
             });
 
-            pane.getChildren().addAll(muni,arme);
+            pane.getChildren().addAll(muni,arme,Bande,Bande1);
 
 
-            Scene sceene = new Scene(pane, 320, 540);
+            Scene sceene = new Scene(pane, 800, 700);
 
             sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
                     + "-fx-background-radius: 5px; "
