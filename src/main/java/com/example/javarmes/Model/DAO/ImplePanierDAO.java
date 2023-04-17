@@ -11,14 +11,12 @@ import java.util.List;
 /**
  * Classe implementation du panier : BDD
  * @author Akshaya
- * @param
  **/
 public class ImplePanierDAO implements PanierDAO {
 
     /**
      * Méthode de création d'une table panier qui garde le panier en mémoire
      * @author Akshaya
-     * @param
      **/
     public void CreationPanier() throws SQLException{
         Connection con = null;
@@ -43,8 +41,7 @@ public class ImplePanierDAO implements PanierDAO {
     /**
      *Méthode qui calcule le prix totale dans le panier pour des munitions
      * @author Akshaya
-     * @param quantite
-     * @param id_article **/
+ **/
     @Override
     // la vente au prix vrac est fixé à au dessus de  10
     public double prixTotal(String id_article, int quantite) throws SQLException {
@@ -104,8 +101,6 @@ public class ImplePanierDAO implements PanierDAO {
      *      * Il faudrait ici pour chaque bouton situé près de l'article, set les valeurs String id_article et String type_article
      *      * demander la saisie de
      * @author Akshaya
-     * @param id_article
-     * @param quantite
      * @author Akshaya
      **/
     public void AjouterProduitPanier(String id_article, int quantite) throws SQLException {
@@ -234,8 +229,7 @@ public class ImplePanierDAO implements PanierDAO {
      *
      * @param id_article
      * @author Akshaya
-     * @param
-     **/
+     * **/
     public void SupprimerProduitPanier(String id_article) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
@@ -272,8 +266,6 @@ public class ImplePanierDAO implements PanierDAO {
 
     /**
      * Méthode de la destruction de la table panier dans la bdd
-     *
-     * @param
      * @author Akshaya
      **/
     public void SupressionPanier() throws SQLException {

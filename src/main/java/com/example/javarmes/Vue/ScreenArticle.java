@@ -26,45 +26,14 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ScreenArticle {
-    public void defilement(AtomicInteger i, ArrayList<Article> armes){
-        Pane pane = new Pane();
-        Stage stage = new Stage();
-        Article arm;
-        int size = armes.size();
 
-        /// système de controle pour que il ne soit pas possible de passer outre les tailles de vecteur
-        i.compareAndSet(size,0);
-        i.compareAndSet(-1,0);
-            arm=armes.get(i.intValue());
-        Text txt = new Text(" nom "+arm.getNom());
-        txt.setLayoutX(90);
-        txt.setLayoutY(290);
-        Button btn = new Button("->");
-        btn.setLayoutX(240);
-        btn.setLayoutY(400);
-        Button btn2 = new Button("<-");
-        btn2.setLayoutX(140);
-        btn2.setLayoutY(400);
-
-        btn.setOnAction(actionEvent -> {
-            i.getAndIncrement();
-            txt.setText("hehe"+i);
-            defilement(i,armes);
-            stage.close();
-        });
-        btn2.setOnAction(actionEvent -> {
-            i.getAndDecrement();
-            txt.setText("hehe"+i);
-            defilement(i,armes);
-            stage.close();
-        });
-
-        pane.getChildren().addAll(btn,btn2,txt);
-        Scene scene = new Scene(pane,520,520);
-        stage.setScene(scene);
-        stage.show();
-    }
-
+    /**
+     * Classe pour le défilement d'objets dans une ArrayList d'articles. Elle est en différentes versions pour
+     * l'achat et le panier. Deux versions pour ne pas avoir les mêmes possibilités sur cet écran.
+     * Elle est récursive pour plus de simplicité et de scalabilité.
+     * @author Maléna et Baptiste
+     * @version 3.0
+     */
     public void defilementC(AtomicInteger i, ArrayList<Article> armes, Client C){
         Pane pane = new Pane();
         Stage stage = new Stage();
@@ -106,6 +75,7 @@ public class ScreenArticle {
         achat.setLayoutY(200);
         arm=armes.get(i.intValue());
         Text txt = new Text(" Nom "+arm.getNom());
+        txt.setStyle("-fx-background-color: black; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         txt.setLayoutX(100);
         txt.setLayoutY(290);
         achat.setOnAction(actionEvent ->{
@@ -126,7 +96,6 @@ public class ScreenArticle {
                 }
                 pane.getChildren().add(panier);
             }
-
         });
         downButton.setOnAction(actionEvent -> {
             i.getAndIncrement();
@@ -186,6 +155,7 @@ public class ScreenArticle {
         retirer.setLayoutY(260);
         arm=armes.get(i.intValue());
         Text txt = new Text(" Nom "+arm.getNom());
+        txt.setStyle("-fx-background-color: black; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         txt.setLayoutX(300);
         txt.setLayoutY(330);
         retirer.setOnAction(actionEvent ->{

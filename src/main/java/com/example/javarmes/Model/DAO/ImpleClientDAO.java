@@ -10,14 +10,12 @@ import java.util.List;
 /**
  * Classe client de la bddd
  * @author Akshaya
- * @param
  **/
 public class ImpleClientDAO implements ClientDAO {
 
     /**
      * Méthode qui permet à un client de s'inscrire
      * @author Akshaya
-     * @param
      **/
 
     @Override

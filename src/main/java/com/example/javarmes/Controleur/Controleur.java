@@ -1,14 +1,12 @@
-package com.example.javarmes.Contrôleur;
+package com.example.javarmes.Controleur;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.example.javarmes.Model.Articles.Article;
 import com.example.javarmes.Model.Utilisateurs.Client;
 
 import  com.example.javarmes.Model.DAO.*;
 import com.example.javarmes.Model.Utilisateurs.Employes;
-import com.example.javarmes.Model.Articles.*;
 import com.example.javarmes.Model.Articles.Armes;
 
 import java.sql.SQLException;

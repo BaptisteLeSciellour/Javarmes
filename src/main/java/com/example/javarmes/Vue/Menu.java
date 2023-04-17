@@ -1066,7 +1066,8 @@ public class Menu {
                 Employes employes = imp.connexionemployes(id,nom);
                 if(employes != null)
                 {
-                    Image();
+                    ScreenEmploye sc = new ScreenEmploye();
+                    sc.MenuEmploye();
                 }
                 else{
                     Text nop = new Text("Error");
