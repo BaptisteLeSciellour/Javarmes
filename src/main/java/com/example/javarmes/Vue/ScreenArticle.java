@@ -192,6 +192,7 @@ public class ScreenArticle {
         pane.getChildren().addAll(upButton,downButton,txt,retirer,Bande,Bande1);
         Scene scene = new Scene(pane,800,700);
         stage.setScene(scene);
+
         stage.show();
     }
 
