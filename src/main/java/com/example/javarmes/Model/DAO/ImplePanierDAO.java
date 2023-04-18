@@ -18,12 +18,16 @@ public class ImplePanierDAO implements PanierDAO {
      * Méthode de création d'une table panier qui garde le panier en mémoire
      * @author Akshaya
      **/
-    public void CreationPanier() throws SQLException{
+    /**
+    public void CreationPanier( int id_createur) throws SQLException{
         Connection con = null;
         Statement stmnt = null;
+        PreparedStatement pst = null;
         try{
             con = new DAOFactory().getConnection();
-            String requete = "CREATE TABLE IF NOT EXISTS panier ( id_panier INT PRIMARY KEY AUTO_INCREMENT,type VARCHAR(50) NOT NULL,id_arme VARCHAR(255)  NULL,id_munition VARCHAR(255)  NULL,qte INT NOT NULL,prix_unique DOUBLE NOT NULL,prix_vrac DOUBLE NULL,prix_total DOUBLE NOT NULL, reduction BOOLEAN NOT NULL)";
+            String requete = "CREATE TABLE IF NOT EXISTS panier ( id_panier INT PRIMARY KEY AUTO_INCREMENT,type VARCHAR(50) ? ,id_arme VARCHAR(255)  NULL,id_munition VARCHAR(255)  NULL,qte INT NOT NULL,prix_unique DOUBLE NOT NULL,prix_vrac DOUBLE NULL,prix_total DOUBLE NOT NULL, reduction BOOLEAN NOT NULL)";
+            pst = con.prepareStatement(requete);
+            pst.setInt(1, id_createur);
             stmnt = con.createStatement();
             stmnt.execute(requete);
             System.out.println("Panier crée avec succès !");
@@ -37,13 +41,14 @@ public class ImplePanierDAO implements PanierDAO {
             }
         }
     }
+     **/
 
     /**
      *Méthode qui calcule le prix totale dans le panier pour des munitions
      * @author Akshaya
  **/
     @Override
-    // la vente au prix vrac est fixé à au dessus de  10
+    // la vente au prix vrac est fixé à au dessus de 10
     public double prixTotal(String id_article, int quantite) throws SQLException {
         int quantiteVrac = 10;
         Connection con = null;
@@ -93,9 +98,6 @@ public class ImplePanierDAO implements PanierDAO {
         return prix_total;
     }
 
-
-
-
     /**
      * Méthode d'ajout de produit choisi par le client dans son panier
      *      * Il faudrait ici pour chaque bouton situé près de l'article, set les valeurs String id_article et String type_article
@@ -103,12 +105,12 @@ public class ImplePanierDAO implements PanierDAO {
      * @author Akshaya
      * @author Akshaya
      **/
-    public void AjouterProduitPanier(String id_article, int quantite) throws SQLException {
+    public void AjouterProduitPanier(String id_article, int quantite, int id_createur) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
         ResultSet rsl = null;
         /**Création des String pour les requêtes SQL et initialisation à vide **/
-
+        System.out.println("%%");
         try {
             con = new DAOFactory().getConnection();
             String requete = "SELECT * FROM armes WHERE identification = ?";
@@ -120,15 +122,23 @@ public class ImplePanierDAO implements PanierDAO {
                 Double article_prix = rsl.getDouble("prix_unique");
                 Double article_prix_vrac = rsl.getDouble("prix_unique");
                 boolean reduction = rsl.getBoolean("reduction");
-
-                String requete3 = "INSERT INTO panier(type,id_arme,qte, prix_unique, prix_total, reduction) VALUES (?, ?, ?, ?, ?, ?)";
+                String requete3 = "INSERT INTO panier(creation,type,id_arme,qte, prix_unique, prix_total, reduction,id_panier) VALUES (?, ?, ?, ?, ?, ?,?,?)";
                 pstmnt = con.prepareStatement(requete3);
-                pstmnt.setString(1, article_type);
-                pstmnt.setString(2, id_article);
-                pstmnt.setInt(3, quantite);
-                pstmnt.setDouble(4, article_prix);
-                pstmnt.setDouble(5, prixTotal(id_article, quantite));
-                pstmnt.setBoolean(6, reduction);
+                pstmnt.setInt(1,id_createur);
+                pstmnt.setString(2, article_type);
+                pstmnt.setString(3, id_article);
+                pstmnt.setInt(4, quantite);
+                pstmnt.setDouble(5, article_prix);
+                pstmnt.setDouble(6, prixTotal(id_article, quantite));
+                pstmnt.setBoolean(7, reduction);
+                int max = 1000000;
+                int min = 0;
+                int range = (max - min) + 1;
+
+                // Générer un nombre aléatoire entre une plage spécifique
+                int nbr = (int)(Math.random() * range) + min;
+
+                pstmnt.setInt(8,nbr);
                 pstmnt.executeUpdate();
                 System.out.println("Article ajouté à votre panier !");
             } else {
@@ -143,14 +153,23 @@ public class ImplePanierDAO implements PanierDAO {
                     Double article_prix_vrac = rsl.getDouble("prix_vrac");
                     boolean reduction = rsl.getBoolean("reduction");
 
-                    String requete4 = "INSERT INTO panier(type, id_munition, qte, prix_unique, prix_total, reduction) VALUES (?, ?, ?, ?, ?, ?)";
+                    String requete4 = "INSERT INTO panier(creation,type, id_munition, qte, prix_unique, prix_total, reduction,id_panier) VALUES (?, ?, ?, ?, ?, ?,?,?)";
                     pstmnt = con.prepareStatement(requete4);
-                    pstmnt.setString(1, article_type);
-                    pstmnt.setString(2, id_article);
-                    pstmnt.setInt(3, quantite);
-                    pstmnt.setDouble(4, article_prix);
-                    pstmnt.setDouble(5, prixTotal(id_article, quantite));
-                    pstmnt.setBoolean(6, reduction);
+                    pstmnt.setInt(1, id_createur);
+                    pstmnt.setString(2, article_type);
+                    pstmnt.setString(3, id_article);
+                    pstmnt.setInt(4, quantite);
+                    pstmnt.setDouble(5, article_prix);
+                    pstmnt.setDouble(6, prixTotal(id_article, quantite));
+                    pstmnt.setBoolean(7, reduction);
+                    int max = 1000000;
+                    int min = 0;
+                    int range = (max - min) + 1;
+
+                    // Générer un nombre aléatoire entre une plage spécifique
+                    int nbr = (int)(Math.random() * range) + min;
+
+                    pstmnt.setInt(8,nbr);
                     pstmnt.executeUpdate();
                     System.out.println("Article ajouté à votre panier !");
                 } else {
@@ -176,9 +195,10 @@ public class ImplePanierDAO implements PanierDAO {
         ResultSet rs = null;
         try {
             con = new DAOFactory().getConnection();
-            con.setAutoCommit(false);
-            String requete = "SELECT id_arme,id_munition,qte FROM panier";
+            ///con.setAutoCommit(false);
+            String requete = "SELECT id_arme,id_munition,qte FROM panier WHERE creation = ?";
             pst = con.prepareStatement(requete);
+            pst.setInt(1,id_client);
             rs = pst.executeQuery();
             while (rs.next()) {
                 String id_arme = rs.getString("id_arme");
@@ -207,9 +227,9 @@ public class ImplePanierDAO implements PanierDAO {
             pst = con.prepareStatement(requeteClient);
             pst.setInt(1, id_client);
             pst.executeUpdate();
-            SupressionPanier();
+            SupressionPanier(id_client);
             System.out.println("Panier supprimé à bientot !");
-            con.commit();
+            ///con.commit();
         } catch (SQLException e) {
             System.out.println("Erreur lors de la suppression...");
             System.out.println(e);
@@ -230,14 +250,15 @@ public class ImplePanierDAO implements PanierDAO {
      * @param id_article
      * @author Akshaya
      * **/
-    public void SupprimerProduitPanier(String id_article) throws SQLException {
+    public void SupprimerProduitPanier(String id_article,int id_createur) throws SQLException {
         Connection con = null;
         PreparedStatement pstmnt = null;
         try {
             con = new DAOFactory().getConnection();
-            String requete1 = "DELETE FROM panier WHERE id_arme = ?";
+            String requete1 = "DELETE FROM panier WHERE id_arme = ? AND creation = ?";
             pstmnt = con.prepareStatement(requete1);
             pstmnt.setString(1, id_article);
+            pstmnt.setInt(2,id_createur);
             int lignesupp1 = pstmnt.executeUpdate(); //executeUpdate renvoie le nombre de ligne qui a été modifié et 0 sinon
             if (lignesupp1 > 0) {
                 System.out.println("L'article a été supprimé du panier !");
@@ -268,14 +289,15 @@ public class ImplePanierDAO implements PanierDAO {
      * Méthode de la destruction de la table panier dans la bdd
      * @author Akshaya
      **/
-    public void SupressionPanier() throws SQLException {
+    public void SupressionPanier(int id_createur) throws SQLException {
         Connection con = null;
-        Statement stmnt = null;
+        PreparedStatement stmnt = null;
         try {
             con = new DAOFactory().getConnection();
-            String requete = "DROP TABLE panier";
-            stmnt = con.createStatement();
-            stmnt.execute(requete);
+            String requete = "DELETE FROM panier WHERE creation = ?";
+            stmnt = con.prepareStatement(requete);
+            stmnt.setInt(1,id_createur);
+            stmnt.execute();
             System.out.println("Panier supprimée");
         } catch (SQLException e) {
             System.out.println(e);
@@ -287,26 +309,27 @@ public class ImplePanierDAO implements PanierDAO {
             }
         }
     }
-
-
-    public void ResumePaiement () throws SQLException {
+    public String ResumePaiement(int id_createur) throws SQLException {
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
             con = new DAOFactory().getConnection();
-            String requeteNbProduit = "SELECT MAX(id_panier) AS TotalProduit FROM panier";
+            int i = AffichePanier(id_createur).size();
+            String requeteNbProduit = "SELECT MAX(?) AS TotalProduit FROM panier";
             pst = con.prepareStatement(requeteNbProduit);
+            pst.setInt(1,id_createur);
             rs = pst.executeQuery();
             if (rs.next()) {
                 int TotalProduit = rs.getInt("TotalProduit");
-                String requetePrixTotal = "SELECT SUM(prix_total) AS PrixPanier FROM panier";
+                String requetePrixTotal = "SELECT SUM(prix_total) AS PrixPanier FROM panier WHERE creation = ?";
                 pst = con.prepareStatement(requetePrixTotal);
+                pst.setInt(1,id_createur);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    AffichePanier();
+                    AffichePanier(id_createur);
                     int PrixPanier = rs.getInt("PrixPanier");
-                    System.out.println("Vous avez actuellement " + TotalProduit + " produits dans votre panier pour une somme totale à payer de " + PrixPanier+"€");
+                    return "Vous avez actuellement " + i + " produits dans votre panier pour une somme totale à payer de " + PrixPanier+"€";
                 }
             }else{
                 System.out.println("Erreur lors du calcul...");
@@ -320,20 +343,22 @@ public class ImplePanierDAO implements PanierDAO {
                     con.close();
                 }
             }
+        return "Votre panier nous semble vide";
         }
         @Override
-        public List<Panier> AffichePanier() throws SQLException{
+        public List<Panier> AffichePanier(int id_createur) throws SQLException{
             Connection con = null;
             PreparedStatement pstmnt = null;
             ResultSet result = null;
             List<Panier> PanierContenu = new ArrayList<>();
             try{
                 con = new DAOFactory().getConnection();
-                String requete = "SELECT * FROM panier ";
+                String requete = "SELECT * FROM panier WHERE creation = ?";
                 pstmnt = con.prepareStatement(requete);
+                pstmnt.setInt(1,id_createur);
                 result = pstmnt.executeQuery();
                 while(result.next()){
-                    Panier panier = new Panier(result.getString("type"),result.getInt("qte"),result.getDouble("prix_total"),result.getInt("reduction"));
+                    Panier panier = new Panier(result.getString("type"),result.getInt("qte"),result.getDouble("prix_total"),result.getInt("reduction"),result.getString("id_arme"));
                     PanierContenu.add(panier);
                 }
             } catch(SQLException e) {

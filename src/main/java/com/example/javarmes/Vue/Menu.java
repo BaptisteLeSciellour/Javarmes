@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -645,8 +646,9 @@ public class Menu {
         downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/right.jpg")))));
         downButton.setLayoutX(1370);
         downButton.setLayoutY(400);
+
         downButton.setOnAction(event -> {
-            munitionpres();
+            munitionpresC(C);
         });
 
         Image assaut = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/assaut.png")));
@@ -674,7 +676,11 @@ public class Menu {
 
         detail.setOnAction(actionEvent -> {
             ScreenCLient sc = new ScreenCLient();
-            sc.DetailClient(C);
+            try {
+                sc.DetailClient(C);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
 
 
@@ -739,8 +745,18 @@ public class Menu {
         Image poing = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/poing.png")));
         ImageView Poing = new ImageView(poing);
         Poing.setOnMouseClicked(mouseEvent -> {
-                    poing();
+                    ScreenArticle scc = new ScreenArticle();
+                    AtomicInteger i = new AtomicInteger(0);
+                    ArrayList<Article> poin;
+                    try {
+                        ImpleArmesDAO ae = new ImpleArmesDAO();
+                        poin = (ArrayList<Article>) ae.RechercherArmes("type", "poing");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    scc.defilementC(i, poin,C);
                 }
+
         );
         Poing.setLayoutX(1100);
         Poing.setLayoutY(300);
@@ -764,6 +780,7 @@ public class Menu {
     }
 
     private void munitionpres() {
+
         Pane panne = new Pane();
         Stage stage = new Stage();
 
@@ -798,6 +815,7 @@ public class Menu {
         Poing1.setLayoutX(120);
         Poing1.setLayoutY(350);
 
+
         Image poing2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni2.jpg")));
         ImageView Poing2 = new ImageView(poing2);
         Poing2.setFitWidth(210);
@@ -805,12 +823,14 @@ public class Menu {
         Poing2.setLayoutX(350);
         Poing2.setLayoutY(350);
 
+
         Image muni3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni3.jpg")));
         ImageView Muni3 = new ImageView(muni3);
         Muni3.setFitWidth(210);
         Muni3.setFitHeight(310);
         Muni3.setLayoutX(600);
         Muni3.setLayoutY(350);
+
 
         Image muni4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni4.jpg")));
         ImageView Muni4 = new ImageView(muni4);
@@ -826,13 +846,17 @@ public class Menu {
         Muni5.setLayoutX(1070);
         Muni5.setLayoutY(350);
 
+
         Image muni6 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni6.jpg")));
         ImageView Muni6 = new ImageView(muni6);
         Muni6.setFitWidth(210);
         Muni6.setFitHeight(310);
         Muni6.setLayoutX(1300);
         Muni6.setLayoutY(350);
-
+        Muni6.setOnMouseClicked(mouseEvent -> {
+                    System.out.print('%');
+                }
+        );
 
         panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1,downButton,Muni3,Muni5,Muni4,Muni6);
         Scene settle = new Scene(panne, 1600, 800);
@@ -845,9 +869,186 @@ public class Menu {
         stage.setScene(settle);
         stage.show();
         stage.setMaximized(true);
+    }
+
+    private void munitionpresC(Client C) {
+
+        Pane panne = new Pane();
+        Stage stage = new Stage();
 
 
+        Image bande = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni.jpg")));
+        ImageView Bande = new ImageView(bande);
+        Bande.setFitWidth(1550);
+        Bande.setFitHeight(300);
+        Bande.setLayoutX(0);
+        Bande.setLayoutY(0);
 
+
+        Button downButton = new Button();
+        downButton.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/left.jpg")))));
+        downButton.setLayoutX(0);
+        downButton.setLayoutY(400);
+        downButton.setOnAction(event -> {
+            menupresentationC(C);
+        });
+
+        Image bande1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/bande.jpg")));
+        ImageView Bande1 = new ImageView(bande1);
+        Bande1.setFitWidth(1600);
+        Bande1.setFitHeight(200);
+        Bande1.setLayoutX(0);
+        Bande1.setLayoutY(700);
+
+        Image poing1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni1.jpg")));
+        ImageView Poing1 = new ImageView(poing1);
+        Poing1.setFitWidth(210);
+        Poing1.setFitHeight(310);
+        Poing1.setLayoutX(120);
+        Poing1.setLayoutY(350);
+        Poing1.setOnMouseClicked(mouseEvent -> {
+                    ImpleMunitionsDAO munn = new ImpleMunitionsDAO();
+                    try {
+                        Munitions winches = (Munitions) munn.RechercherMunitions("identification","OT556").get(0);
+                        C.addCommandes(winches);
+                        ImplePanierDAO imp = new ImplePanierDAO();
+                        try {
+                            imp.AjouterProduitPanier(winches.getIdentification(),10,C.getId());
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
+
+        Image poing2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni2.jpg")));
+        ImageView Poing2 = new ImageView(poing2);
+        Poing2.setFitWidth(210);
+        Poing2.setFitHeight(310);
+        Poing2.setLayoutX(350);
+        Poing2.setLayoutY(350);
+        Poing2.setOnMouseClicked(mouseEvent -> {
+                    ImpleMunitionsDAO munn = new ImpleMunitionsDAO();
+                    try {
+                        Munitions mili = (Munitions) munn.RechercherMunitions("identification","OT762").get(0);
+                        C.addCommandes(mili);
+                        ImplePanierDAO imp = new ImplePanierDAO();
+                        try {
+                            imp.AjouterProduitPanier(mili.getIdentification(),10,C.getId());
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
+
+        Image muni3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni3.jpg")));
+        ImageView Muni3 = new ImageView(muni3);
+        Muni3.setFitWidth(210);
+        Muni3.setFitHeight(310);
+        Muni3.setLayoutX(600);
+        Muni3.setLayoutY(350);
+        Muni3.setOnMouseClicked(mouseEvent -> {
+                    ImpleMunitionsDAO munn = new ImpleMunitionsDAO();
+                    try {
+                        Munitions cal = (Munitions) munn.RechercherMunitions("identification","CAL12").get(0);
+                        C.addCommandes(cal);
+                        ImplePanierDAO imp = new ImplePanierDAO();
+                        try {
+                            imp.AjouterProduitPanier(cal.getIdentification(),10,C.getId());
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
+
+        Image muni4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni4.jpg")));
+        ImageView Muni4 = new ImageView(muni4);
+        Muni4.setFitWidth(210);
+        Muni4.setFitHeight(310);
+        Muni4.setLayoutX(850);
+        Muni4.setLayoutY(350);
+        Muni4.setOnMouseClicked(mouseEvent -> {
+                    ImpleMunitionsDAO munn = new ImpleMunitionsDAO();
+                    try {
+                        Munitions bmg = (Munitions) munn.RechercherMunitions("identification","50BMG").get(0);
+                        C.addCommandes(bmg);
+                        ImplePanierDAO imp = new ImplePanierDAO();
+                        try {
+                            imp.AjouterProduitPanier(bmg.getIdentification(),10,C.getId());
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
+
+        Image muni5 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni5.jpg")));
+        ImageView Muni5 = new ImageView(muni5);
+        Muni5.setFitWidth(210);
+        Muni5.setFitHeight(310);
+        Muni5.setLayoutX(1070);
+        Muni5.setLayoutY(350);
+        Muni5.setOnMouseClicked(mouseEvent -> {
+            ImpleMunitionsDAO munn = new ImpleMunitionsDAO();
+            try {
+                Munitions mili = (Munitions) munn.RechercherMunitions("identification","9MM").get(0);
+                C.addCommandes(mili);
+                ImplePanierDAO imp = new ImplePanierDAO();
+                try {
+                    imp.AjouterProduitPanier(mili.getIdentification(),10,C.getId());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+                }
+        );
+
+        Image muni6 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/muni6.jpg")));
+        ImageView Muni6 = new ImageView(muni6);
+        Muni6.setFitWidth(210);
+        Muni6.setFitHeight(310);
+        Muni6.setLayoutX(1300);
+        Muni6.setLayoutY(350);
+        Muni6.setOnMouseClicked(mouseEvent -> {
+                    ImpleMunitionsDAO munn = new ImpleMunitionsDAO();
+                    try {
+                        Munitions mili = munn.RechercherMunitions("identification","38WIN").get(0);
+                        C.addCommandes(mili);
+                        ImplePanierDAO imp = new ImplePanierDAO();
+                        try {
+                            imp.AjouterProduitPanier(mili.getIdentification(),10,C.getId());
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+            }
+        );
+
+        panne.getChildren().addAll(Poing1,Poing2,Bande,Bande1,downButton,Muni3,Muni5,Muni4,Muni6);
+        Scene settle = new Scene(panne, 1600, 800);
+
+        settle.getRoot().setStyle("-fx-background-color: #4B5320; "
+                + "-fx-background-radius: 5px; "
+                + "-fx-background-insets: 0px; "
+                + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0.0, 0, 4);"); //le code couleur pour le fond
+
+        stage.setScene(settle);
+        stage.show();
+        stage.setMaximized(true);
     }
 
     public void coordonees() {  //sous programme permettannt de remplir les coordonnes bancaires
@@ -986,7 +1187,7 @@ public class Menu {
                     ArrayList<Article> rl = new ArrayList<>();
                     client.setCommandes(rl);
                     ImplePanierDAO omp = new ImplePanierDAO();
-                    omp.CreationPanier();
+                    ///omp.CreationPanier();
                     menupresentationC(client);
                 }
                 else{

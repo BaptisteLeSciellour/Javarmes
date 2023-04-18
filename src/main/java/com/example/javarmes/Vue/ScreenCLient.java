@@ -1,8 +1,12 @@
 package com.example.javarmes.Vue;
 
+import com.example.javarmes.Model.Articles.Armes;
 import com.example.javarmes.Model.Articles.Article;
+import com.example.javarmes.Model.Articles.Munitions;
 import com.example.javarmes.Model.DAO.ImpleClientDAO;
 import com.example.javarmes.Model.DAO.ImpleEmployeDAO;
+import com.example.javarmes.Model.DAO.ImplePanierDAO;
+import com.example.javarmes.Model.Panier.Panier;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -240,12 +244,31 @@ public class ScreenCLient {
      * @author Baptiste
      * @version 3.0
      */
-    public void affichagePanier(Client C){
-        ArrayList<Article> artt ;
-        artt = C.getCommandes(); /** Obtention de toutes les commandes pour ce client**/
+    public void affichagePanier(Client C) throws SQLException {
+        ArrayList<Panier> artt ;
+        ArrayList<Article> armme = new ArrayList<>();
+        ImplePanierDAO panier = new ImplePanierDAO();
+        artt = (ArrayList<Panier>) panier.AffichePanier(C.getId()); /** Obtention de toutes les commandes pour ce client**/
         ScreenArticle sc = new ScreenArticle();
         AtomicInteger i = new AtomicInteger(0); /** Atomic Integer pour pouvoir utiliser cette variable dans un ActionEvent.**/
-        sc.defilementP(i,artt,C); /** Appel d'une version spécial de la fonction défilement dotée d'un bouton effacer. **/
+        for( Panier e : artt)
+        {
+            if(Objects.equals(e.type_article,"Arme"))
+            {
+                System.out.println("*");
+                Armes temp = new Armes();
+                temp.setNom(e.nom_article);
+                armme.add(temp);
+            }
+            else
+            {
+                System.out.println("/");
+                Munitions mun = new Munitions();
+                mun.setNom(e.nom_article);
+                armme.add(mun);
+            }
+        }
+        sc.defilementP(i,armme,C); /** Appel d'une version spécial de la fonction défilement dotée d'un bouton effacer. **/
     }
     /**
      * Classe pour l'écran client. Affichage des possibilités du client, la mise à jour de son profil, la visualisation de son panier ou encore la suppression
@@ -253,11 +276,16 @@ public class ScreenCLient {
      * @author Maléna et Baptiste
      * @version 3.0
      */
-    public void DetailClient(Client C)
-    {
+    public void DetailClient(Client C) throws SQLException {
         Pane pannne = new Pane();
         Stage settle = new Stage();
         Button panier = new Button("Panier de "+C.getMail());
+        Text renfo = new Text();
+        ImplePanierDAO pannnnn = new ImplePanierDAO();
+        renfo.setLayoutX(0);
+        renfo.setLayoutY(100);
+        renfo.setText(pannnnn.ResumePaiement(C.getId()));
+        renfo.setStyle("-fx-background-color: white; -fx-text-fill: white; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         panier.setLayoutX(0);
         panier.setLayoutY(0);
         Text txt = new Text("Que voulez vous faire?");
@@ -266,18 +294,27 @@ public class ScreenCLient {
         txt.setLayoutX(20);
         txt.setLayoutY(150);
 
-        Button bbtn2 = new Button("MAJ d'un client");
+        Button bbtn2 = new Button("MAJ du client");
         bbtn2.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         bbtn2.setLayoutX(70);
         bbtn2.setLayoutY(300);
 
-        Button bbtn3 = new Button("Supprimer un client");
+        Button bbtn3 = new Button("Supprimer votre profil");
         bbtn3.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
         bbtn3.setLayoutX(70);
         bbtn3.setLayoutY(400);
 
+        Button bbtn4 = new Button("Payer");
+        bbtn4.setStyle("-fx-background-color: white; -fx-text-fill: #4B5320; -fx-font-size: 16pt; -fx-padding: 10px 20px; -fx-background-radius: 10px;");
+        bbtn4.setLayoutX(70);
+        bbtn4.setLayoutY(200);
+
         panier.setOnAction(actionEvent -> {
-            affichagePanier(C);
+            try {
+                affichagePanier(C);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         bbtn2.setOnAction(actionEvent -> {
             try {
@@ -294,9 +331,20 @@ public class ScreenCLient {
                 throw new RuntimeException(e);
             }
         });
-        pannne.getChildren().addAll(bbtn2,txt,bbtn3,panier);
 
-        Scene sceene = new Scene(pannne, 320, 540);
+        bbtn4.setOnAction(actionEvent -> {
+            ImplePanierDAO pann = new ImplePanierDAO();
+            try {
+                pann.Payer(C.getId());
+                Menu scc = new Menu();
+                scc.coordonees();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        pannne.getChildren().addAll(bbtn2,txt,bbtn3,bbtn4,panier,renfo);
+
+        Scene sceene = new Scene(pannne, 950, 540);
         sceene.getRoot().setStyle("-fx-background-color: #4B5320; "
                 + "-fx-background-radius: 5px; "
                 + "-fx-background-insets: 0px; "
@@ -309,7 +357,6 @@ public class ScreenCLient {
     }
     /**
      * Classe pour l'écran client. Mise à jour du client.
-     * de son compte.
      * @author Maléna et Baptiste
      * @version 3.0
      */

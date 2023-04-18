@@ -6,8 +6,11 @@ import com.example.javarmes.Model.DAO.ImpleArmesDAO;
 import com.example.javarmes.Model.DAO.ImplePanierDAO;
 import com.example.javarmes.Model.Utilisateurs.Client;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -15,8 +18,10 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -79,23 +84,43 @@ public class ScreenArticle {
         txt.setLayoutX(100);
         txt.setLayoutY(290);
         achat.setOnAction(actionEvent ->{
-            int quantite = arm.getQuantite();
-            if(quantite>0)
-            {
-                Text panier = new Text("Produit dans le panier");
-                panier.setLayoutX(100);
-                panier.setLayoutY(340);
-                C.addCommandes(arm);
-                ImpleArmesDAO impp = new ImpleArmesDAO();
-                ImplePanierDAO imp = new ImplePanierDAO();
-                try {
-                    impp.GererStockArme(arm.getIdentification(),-1);
-                    imp.AjouterProduitPanier(arm.getIdentification(),1);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                pane.getChildren().add(panier);
-            }
+            Stage popupwindow = new Stage();
+            popupwindow.initModality(Modality.APPLICATION_MODAL);
+
+            Button button1= new Button("Validation");
+
+            TextField quantite = new TextField();
+
+            button1.setOnAction(actionEvent1 -> {
+                popupwindow.close();
+                int reponse = Integer.valueOf(quantite.getText());
+
+                    Text panier = new Text("Produit dans le panier");
+                    panier.setLayoutX(100);
+                    panier.setLayoutY(340);
+                    C.addCommandes(arm);
+                    ImplePanierDAO imp = new ImplePanierDAO();
+                    try {
+                        imp.AjouterProduitPanier(arm.getIdentification(),reponse,C.getId());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    pane.getChildren().add(panier);
+            });
+
+            VBox layout= new VBox(10);
+
+
+            layout.getChildren().addAll(quantite, button1);
+
+            layout.setAlignment(Pos.CENTER);
+
+            Scene scene1= new Scene(layout, 300, 250);
+
+            popupwindow.setScene(scene1);
+
+            popupwindow.showAndWait();
+
         });
         downButton.setOnAction(actionEvent -> {
             i.getAndIncrement();
@@ -167,27 +192,25 @@ public class ScreenArticle {
             ImplePanierDAO imp = new ImplePanierDAO();
             try {
                 impp.GererStockArme(arm.getIdentification(),1);
-                imp.SupprimerProduitPanier(arm.getIdentification());
+                imp.SupprimerProduitPanier(arm.getIdentification(),C.getId());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
             pane.getChildren().add(panier);
         });
 
-
         downButton.setOnAction(actionEvent -> {
             i.getAndIncrement();
-            defilementC(i,armes,C);
+            defilementP(i,armes,C);
             stage.close();
         });
 
 
         upButton.setOnAction(actionEvent -> {
             i.getAndDecrement();
-            defilementC(i,armes,C);
+            defilementP(i,armes,C);
             stage.close();
         });
-
 
         pane.getChildren().addAll(upButton,downButton,txt,retirer,Bande,Bande1);
         Scene scene = new Scene(pane,800,700);

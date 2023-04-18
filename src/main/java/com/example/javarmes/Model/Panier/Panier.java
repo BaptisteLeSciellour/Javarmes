@@ -108,11 +108,12 @@ public class Panier {
         this.prix_total=prix_total;
         this.reduction = reduction ;
     }
-    public Panier(String type_article, int qte,double prix_total, int reduction) {
+    public Panier(String type_article, int qte,double prix_total, int reduction,String nom_article) {
         this.type_article = type_article ;
         this.qte = qte;
         this.prix_total=prix_total;
         this.reduction = reduction ;
+        this.nom_article = nom_article;
     }
 
     @Override
